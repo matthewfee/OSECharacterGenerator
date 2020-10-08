@@ -1,5 +1,3 @@
-import React from 'react'
-
 const equipmentData = [{
         "name": "Backpack",
         "price": 5,

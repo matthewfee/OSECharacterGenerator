@@ -120,9 +120,7 @@ class Equipment extends React.Component {
 
         return (
 
-
-
-            <div>
+            <div className="equipment-screen container">
                 <h2>Equipment</h2>
 
                 <select value={this.state.equipmentSelected} onChange={this.updateSelectedEquipment} price={null}>

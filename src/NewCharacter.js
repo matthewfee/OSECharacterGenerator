@@ -1,7 +1,9 @@
-import React, { useLayoutEffect } from 'react'
+import React from 'react'
 import classOptionsData from './data/classOptionsData'
 import ClassOptionsButton from './ClassOptionsButton.js';
 import Equipment from './Equipment.js';
+import ClassDescription from './ClassDescription.js';
+import ClassScreen from './ClassScreen.js'
 
 
 class NewCharacter extends React.Component {
@@ -25,7 +27,7 @@ class NewCharacter extends React.Component {
             charismaOriginal: null,
 
             pointBuy: 0,
-            characterClass: undefined,
+            characterClass: null,
             level: 1,
             primeReq: undefined,
             primeReq2: null,
@@ -33,6 +35,7 @@ class NewCharacter extends React.Component {
             equipmentSelected: undefined,
             equipmentScreen: false,
             abilityScreen: true,
+            classScreen: false,
             goldStarting: undefined,
             randomNumbers: [],
  
@@ -100,7 +103,7 @@ class NewCharacter extends React.Component {
             charisma: this.d6(3),
             goldStarting: this.d6(3) * 10,
             pointBuy: 0,
-            characterClass: "unselected",
+            characterClass: null,
             primeReq: undefined,
             primeReq2: undefined,
 
@@ -183,19 +186,15 @@ class NewCharacter extends React.Component {
 
         const modArr = [null, null, null, "-20%", "-20%", "-20%", "-10%", "-10%", "-10%", "0", "0", "0", "0", "+5%", "+5%", "+5%", "+10%", "+10%", "+10%"]
 
-
-
         var abilityScore = this.state[this.state.primeReq]
         var abilityScore2 = this.state[this.state.primeReq2]
 
-       
+        //only counts lowest of the two prime reqs 
 
         if (abilityScore2 < abilityScore) {
-            console.log("second prime req detected")
             abilityScore = abilityScore2
         }
 
-        console.log(abilityScore, this.state.primeReq, this.state.primeReq2)
 
         return modArr[abilityScore]
 
@@ -234,17 +233,14 @@ class NewCharacter extends React.Component {
         //checks if there's points to buy
 
         if (this.state.pointBuy < 1) {
-            return console.log("insufficient points")
+            return 
         }
 
         //maximum 18
 
         if (value === 18) {
-            return console.log("max score is 18")
+            return 
         }
-
-
-
 
         var newObject = {
             [key]: value + increment,
@@ -269,7 +265,7 @@ class NewCharacter extends React.Component {
         var newPointBuy = this.state.pointBuy + 1
 
         if (this.state[key] <= 10) {
-            return console.log("Cannot bring ability scores below 9")
+            return 
         }
 
         var newObject = {
@@ -336,11 +332,33 @@ class NewCharacter extends React.Component {
     )
 
     showEquipmentScreen = () => {
-        this.setState({ equipmentScreen: true, abilityScreen: false })
+        this.setState({ equipmentScreen: true, abilityScreen: false, classScreen: false })
     }
 
     showAbilityScreen = () => {
-        this.setState({ equipmentScreen: false, abilityScreen: true })
+        this.setState({ equipmentScreen: false, abilityScreen: true, classScreen: false })
+    }
+
+    showClassScreen = () => {
+        this.setState({ equipmentScreen: false, abilityScreen: false, classScreen: true})
+    } 
+
+    getClassInfo = () => {
+        
+        if (this.state.characterClass === null) {return "choose your class"}
+        let obj = classOptionsData.find(obj => obj.name === this.state.characterClass)
+        return (<ul className="class-description-list">
+                    <li><b>Description:</b> {obj.description}</li>
+                    <li><b>Hit Dice:</b> d{obj.hd}</li>
+                    <li><b>Armour:</b> {obj.armour}</li>
+                    <li><b>Weapons:</b> {obj.weapons}</li>
+                    <li><b>Languages:</b> {obj.languages}</li>
+                    <li><b>XP to level 2:</b> {obj.nextLevel}</li>
+                    <li><b>Maximium Level:</b> {obj.maxLevel} </li>
+                    <li><b>Saving Throws:</b> <span> Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis {obj.savingThrows[2]}, Breath Attacks {obj.savingThrows[3]}, Spells/rods/staves {obj.savingThrows[4]}</span></li>
+                </ul>
+
+            )
     }
 
 
@@ -350,43 +368,61 @@ render() {
 
     <div className="wrapper">
 
-        <h2>Character Generator</h2>
+        <header className="header">
 
-        <h3> 
-                <button onClick={this.reRoll}>Roll</button>
-        </h3>
+        <h2 className="title">OSE Character Generator</h2>
 
-        {this.state.abilityScreen && 
+        {this.state.abilityScreen &&<button className="button button--roll" onClick={this.reRoll}>Roll</button>}
 
-        <div className="character-menu container">  
+        {this.state.equipmentScreen && <h4 className="header--equipment">Equipment</h4>}
+        
+
+        </header>
+
+        
+
+        <div className="character-menu container"> 
+
+        {this.state.abilityScreen &&
+
+        <div className="ability-screen container">
                       
-        <div className="class-options-container container" dir="rtl">
+            <div className="class-options-container container">
 
             {this.classOptionsListButton()}
             
-        </div>
-
-
-        {/* <div className="class-info-box">Prime Requisites: {this.state.primeReq} {<span>,</span> && this.state.primeReq2} </div>
-
-        <div className="point-buy-box">Point Buy: {this.state.pointBuy}</div> */}
-        <div className="class-info"> 
-    
-            <div className="class-info__prime-reqs">Prime Reqs: {this.state.primeReq} {this.state.primeReq2 && <span>& {this.state.primeReq2}</span>} </div>
-            <div className="class-info__prime-reqs-mod">XP Mod: {this.getPrimeReqMod()} </div>
-
-        </div>
-                    
-        <div className="container ability-score-container"> 
-
-            <div className="button-container">{this.state.strength > 10 &&
-                <button className="button button--ability"onClick={() => { this.scoreDecrease("strength") }}>-</button>}</div>
-            <div className="button-container">
-                {this.state.pointBuy > 0 && (this.state.primeReq === "strength" || this.state.primeReq2 === "strength" || this.state.strength < this.state.strengthOriginal) &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("strength") }}>+</button>}
             </div>
-            <div className="ability-score-name">STRENGTH</div>
+
+            <ClassDescription characterClass={this.state.characterClass}>
+
+
+            </ClassDescription>
+
+        
+                    
+            <div className="container ability-score-container"> 
+
+            
+            <div className="ability-score-name">
+                
+                <h2>STRENGTH</h2>
+            
+            </div>
+
+            
             <div className="ability-score">{this.state.strength}
+
+                {this.state.strength > 10 &&
+                    <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("strength") }}>
+                         <div className="arrow-down"></div>
+                    
+                    </button>}
+                
+                {this.state.pointBuy > 0 && (this.state.primeReq === "strength" || this.state.primeReq2 === "strength" || this.state.strength < this.state.strengthOriginal) && this.state.strength < 18 &&
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("strength") }}>
+                    
+                        <div className="arrow-up"></div>    
+                </button>}
                 
             </div>
             <div className="ability-mod">
@@ -394,18 +430,22 @@ render() {
                 <span>Open Doors: {this.getMod(this.state.strength, "openDoors")}</span>
             </div>
 
-
-            
-            <div className="button-container">
+            <div className="ability-score-name">
+                
+                <h2>INTELLIGENCE</h2>
+                
+            </div>     
+            <div className="ability-score">{this.state.intelligence} 
                 {this.state.intelligence > 10 &&
-                <button className="button button--ability"onClick={() => { this.scoreDecrease("intelligence") }}>-</button>}  
-            </div>
-            <div className="button-container">
-                {this.state.pointBuy > 0 && (this.state.primeReq === "intelligence" || this.state.primeReq2 === "intelligence" || this.state.intelligence < this.state.intelligenceOriginal) &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("intelligence") }}>+</button>}
-            </div>
-            <div className="ability-score-name">INTELLIGENCE</div>     
-            <div className="ability-score">{this.state.intelligence}  
+                <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("intelligence") }}>
+                    
+                    <div className="arrow-down"></div>     
+                </button>}  
+                {this.state.pointBuy > 0 && (this.state.primeReq === "intelligence" || this.state.primeReq2 === "intelligence" || this.state.intelligence < this.state.intelligenceOriginal) && this.state.intelligence < 18 && 
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("intelligence") }}>
+                    <div className="arrow-up"></div>        
+                </button>}
+                
             </div>
             <div className="ability-mod ability-mod2"> 
                 <span>Languages: {this.getMod(this.state.intelligence, "spokenLanguages")}</span>
@@ -414,29 +454,36 @@ render() {
             </div>
             
 
-            <div className="button-container">
+            
+            <div className="ability-score-name">
+                <h2>WISDOM</h2>  
+            </div> 
+            <div className="ability-score">{this.state.wisdom}
                 {this.state.wisdom > 10 &&
-                <button className="button button--ability"onClick={() => { this.scoreDecrease("wisdom") }}>-</button>}
+                <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("wisdom") }}>
+                    <div className="arrow-down"></div>        
+                </button>}
+                {this.state.pointBuy > 0 && (this.state.primeReq === "wisdom" || this.state.primeReq2 === "wisdom" || this.state.wisdom < this.state.wisdomOriginal) && this.state.wisdom < 18 &&
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("wisdom") }}>
+                    <div className="arrow-up"></div>    
+                </button>}
             </div>
-            <div className="button-container">
-                {this.state.pointBuy > 0 && (this.state.primeReq === "wisdom" || this.state.primeReq2 === "wisdom" || this.state.wisdom < this.state.wisdomOriginal) &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("wisdom") }}>+</button>}
-            </div>
-            <div className="ability-score-name">WISDOM</div> 
-            <div className="ability-score">{this.state.wisdom}</div>
             <div className="ability-mod">
                 <span>Magic Saves: {this.getMod(this.state.wisdom)}</span> 
-                </div>
+            </div>
 
             
+            <div className="ability-score-name">
+                <h2>DEXTERITY</h2>
 
-            <div className="button-container"></div>
-            <div className="button-container">
-                {this.state.pointBuy > 0 && (this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity") &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("dexterity") }}>+</button>}
             </div>
-            <div className="ability-score-name">DEXTERITY</div>
-            <div className="ability-score">{this.state.dexterity} </div>
+            <div className="ability-score">{this.state.dexterity} 
+                    
+                {this.state.pointBuy > 0 && (this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity") && this.state.dexterity < 18 &&
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("dexterity") }}>
+                    <div className="arrow-up"></div>    
+                </button>}
+            </div>
             <div className="ability-mod">
                 <span> AC: {this.getMod(this.state.dexterity)}
                 </span>
@@ -447,27 +494,32 @@ render() {
                 </span>
             </div>
 
-            <div className="button-container"></div>
-            <div className="button-container">
-                {this.state.pointBuy > 0 && (this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution") &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("constitution") }}>+</button>}
+
+
+            <div className="ability-score-name">
+                <h2>CONSTITUTION</h2>
             </div>
-            <div className="ability-score-name">CONSTITUTION</div>
-            <div className="ability-score"> {this.state.constitution}</div>
+            <div className="ability-score"> {this.state.constitution}
+                {this.state.pointBuy > 0 && (this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution") && this.state.constitution < 18 &&
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("constitution") }}>
+                    <div className="arrow-up"></div>     
+                </button>}    
+            </div>
             <div className="ability-mod"> 
                 <span>Hit Points: {this.getMod(this.state.constitution)}
                 </span>
             </div>
 
-            
-
-            <div className="button-container"></div>
-            <div className="button-container">
-              {this.state.pointBuy > 0 && (this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma") &&
-                <button className="button button--ability"onClick={() => { this.scoreIncrease("charisma") }}>+</button>}
+            <div className="ability-score-name">
+                <h2>CHARISMA</h2> 
             </div>
-            <div className="ability-score-name">CHARISMA</div>
-            <div className="ability-score"> {this.state.charisma} </div>
+            <div className="ability-score"> {this.state.charisma} 
+                {this.state.pointBuy > 0 && (this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma") && this.state.charisma < 18 &&
+                <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("charisma") }}>
+                    <div className="arrow-up"></div>     
+                    
+                </button>}
+            </div>
             <div className="ability-mod">
                 <span> NPC Reactions: {this.getMod(this.state.charisma, "reactions")}
                 </span>
@@ -477,27 +529,37 @@ render() {
                 <span>
                     Loyalty: {this.getMod(this.state.charisma, "loyalty")}
                 </span>
-            </div>
+                </div>
             
-
+ 
 
             </div>
 
+            <div className="point-buy">Point Buy: {this.state.pointBuy}</div>
 
             {this.state.strength && <button onClick={this.resetCharacter}>Reset</button>}
 
-            {this.state.strength && <div>
+            {this.state.strength && this.state.characterClass !== null && <div>
+                <button onClick={this.showClassScreen}>Class Options</button> </div>}
+            
+            {this.state.strength && this.state.characterClass !== null && <div>
                 <button onClick={this.showEquipmentScreen}>Purchase Equipment</button> </div>}
 
             </div>}
-            
+
         {this.state.equipmentScreen &&
         <Equipment showAbilityScreen={this.showAbilityScreen} gold={this.state.goldStarting} />}
 
-    
+        {this.state.classScreen && 
+        <ClassScreen showAbilityScreen={() => this.showAbilityScreen} characterClass={this.state.characterClass} conMod={parseInt(this.getMod(this.state.constitution))} d={this.d}>
+        </ClassScreen>}
         
+        </div>
+
+       
+
     <br></br>
-    all scores generated from random.org
+    
     <br></br>
     </div>
     )

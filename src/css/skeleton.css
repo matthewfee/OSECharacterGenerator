@@ -32,8 +32,8 @@
     position: relative;
     width: 100%;
     max-width: 960px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 0;
+    padding: 0 0;
     box-sizing: border-box;
 }
 
@@ -463,7 +463,7 @@ label>.label-body {
 /* Lists
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 ul {
-    list-style: circle inside;
+    list-style: none;
 }
 
 ol {
