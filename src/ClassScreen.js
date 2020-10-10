@@ -7,7 +7,7 @@ class ClassScreen extends React.Component {
     constructor(props) {
         super() 
         this.state = {
-            hitPoints: 0,
+            hitPoints: null,
             canReroll: true, 
         }
 
@@ -20,12 +20,14 @@ class ClassScreen extends React.Component {
 
     getHitPoints = () => {
 
-        var HP = this.props.d(1, this.state.hitDie)
-        var totalHP = HP + this.props.conMod
+        var HPResult = this.props.d(1, this.state.hitDie)
+        var totalHP = HPResult + this.props.conMod
+        if (totalHP < 1) 
+            {return totalHP = 1}
         this.setState(
             {hitPoints: totalHP,
             conModifier: this.props.conMod,
-            HPResult: HP,
+            HPResult: HPResult,
         
         })
     }
@@ -63,21 +65,42 @@ class ClassScreen extends React.Component {
 
         return (
 
-        <div> 
+        <div className="class-options-screen"> 
+
+            <h3>Level 1 {this.props.characterClass}</h3>
+
+            {!this.state.HPResult &&
+            <button className="button button-primary button--hp" onClick={() => setTimeout(this.getHitPoints(), 200)}> Roll HP</button>}
+
+            {this.state.HPResult && 
+
+            <button className="button button-primary button--hp" 
+            onClick={() => setTimeout(this.reRoll(), 4000)}
             
-            <h1>{this.props.characterClass}</h1>
+            style={{opacity: (this.state.HPResult < 3) && this.state.canReroll ? 1 : 0}}
+            disabled={!this.state.canReroll}
+    
+            > ReRoll ? </button>}
+
+
+
 
             <div className="hp-container container">
                 <div className="hp-container--hit-die">
-                    {this.state.hitDie}
-                    <div className="hp-container--hit-die-name">Hit Die</div>    
+                    {this.state.hitPoints && <span>{this.state.HPResult}</span>}
+                    {!this.state.hitPoints && <span>d{this.state.hitDie}</span>}
+
+                    {!this.state.hitPoints && <div className="hp-container--hit-die-name">Hit Die</div>}
+                    {this.state.hitPoints && <div className="hp-container--hit-die-name">Rolled</div>}
+                        
                 </div>
 
-                <div className="hp-container--+">+</div>
+                <div className="hp-container--math">+</div>
 
-                <div className="hp-container--con-mod">Con Mod</div>
+                <div className="hp-container--con-mod"> {this.props.conMod}
+                    <div className="hp-container--con-mod-name">Con Mod</div></div>
 
-                <div className="hp-container--=">=</div>
+                <div className="hp-container--math">=</div>
 
                 <div className="hp-container--hit-points">{this.state.hitPoints}
                 <div className="hp-container--hit-points-name">Hit Points</div>
@@ -86,25 +109,7 @@ class ClassScreen extends React.Component {
               
             </div>
 
-            
-
-            {!this.state.HPResult &&
-            <button onClick={() => setTimeout(this.getHitPoints(), 100)}> Roll HP</button>}
-
-            {this.state.HPResult < 3 && this.state.canReroll &&
-            <button onClick={() => setTimeout(this.reRoll(), 100)}> ReRoll ?</button>}
-            {this.state.HPResult &&
-            <div>
-            <h2>Hit Points: {this.state.hitPoints}</h2>
-            <h4>({this.state.HPResult} and {this.props.conMod} CON modifier)</h4>
-            </div>}
-            
                 
-                
-            
-    
-            
-
             
             <div className="saving-throws container"> 
                 <div className="saving-throw">Death/Poison {obj.savingThrows[0]}</div>
@@ -115,9 +120,6 @@ class ClassScreen extends React.Component {
             </div> 
 
             <button onClick={this.props.showAbilityScreen()}>Go Back</button>
-
-            <ClassDescription characterClass={this.props.characterClass}>
-            </ClassDescription>   
             
         </div>
 

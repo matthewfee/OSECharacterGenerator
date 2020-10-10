@@ -368,46 +368,45 @@ render() {
 
     <div className="wrapper">
 
-        <header className="header">
+        <header className="header" style={{'margin-top': !this.state.strength ? '30rem' : ''}}>
 
-        <h2 className="title">OSE Character Generator</h2>
+        <h2 className="title">OSR Character Generator</h2>
 
-        {this.state.abilityScreen &&<button className="button button--roll" onClick={this.reRoll}>Roll</button>}
+        {this.state.abilityScreen && !this.state.strength &&
+        <button className={`button button--roll button-primary`} 
+        onClick={this.reRoll}>Roll</button>}
 
-        {this.state.equipmentScreen && <h4 className="header--equipment">Equipment</h4>}
-        
+        {this.state.equipmentScreen && <h4 className="header--equipment">Equipment</h4>}  
 
         </header>
 
-        
 
-        <div className="character-menu container"> 
+        <div className={`character-menu container`} 
+            style={{display: this.state.strength ? "inline-block" : "none"}}
+        >
 
         {this.state.abilityScreen &&
 
         <div className="ability-screen container">
                       
-            <div className="class-options-container container">
+        <div className="class-options-container container">
 
             {this.classOptionsListButton()}
+
+            {this.state.strength && <ClassDescription characterClass={this.state.characterClass}>
+            </ClassDescription>}
             
-            </div>
-
-            <ClassDescription characterClass={this.state.characterClass}>
-
-
-            </ClassDescription>
-
+        </div>
         
                     
-            <div className="container ability-score-container"> 
+        <div className="container ability-score-container"> 
 
             
-            <div className="ability-score-name">
+        <div className="ability-score-name">
                 
-                <h2>STRENGTH</h2>
+            <h2>STRENGTH</h2>
             
-            </div>
+        </div>
 
             
             <div className="ability-score">{this.state.strength}

@@ -13,6 +13,7 @@
   row-gap: 1rem;
   width: 100%;
   position: relative;
+  margin-top: 5rem;
 
 }
 
@@ -36,10 +37,8 @@
   background-color: rgba(2, 0, 106, 0.153);
   width: auto;
   height: auto;
-  max-height: 6rem;
-  max-width: 6rem;
-  min-width: 6rem;
-  min-width: 6rem;
+  height: 6rem;
+  width: 6rem;
 
 }
 
@@ -139,18 +138,24 @@
 
 
 .class-details {
-  padding: 0.5rem;
   font-size: 2rem;
   display: inline-flex;
+  position: absolute;
+  margin: auto;
+  right: 0;
+  left: 0;
+  top: 110%;
+  justify-content: center;
 }
 
-.class-details > .class-details--arrow {
+.class-details>.class-details--arrow {
   width: 0;
   height: 0;
   margin: 1rem;
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
-  border-bottom: 1.2rem solid black;
+  border-bottom: 1.2rem solid #E50000;
+  ;
 }
 
 
@@ -166,7 +171,7 @@ div.ability-screen {
   display: inline-block;
   width: 100vw;
   max-width: 600px;
-
+  position: relative;
 
 }
 
@@ -183,6 +188,7 @@ div.character-menu {
   max-width: 600px;
   min-width: 300px;
   min-height: 600px;
+  position: relative;
 
 }
 
@@ -197,6 +203,11 @@ div.character-menu {
   border-bottom: 1px solid rgba(0, 0, 0, 0.501);
   border-radius: 15px;
 
+}
+
+.class-options-screen>.button.button--hp.button-primary {
+  background-color: #FF0000;
+  font-size: 1.5rem;
 }
 
 .class-options-container>.button-class-option {
@@ -214,6 +225,7 @@ div.character-menu {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     width: 100%;
+    position: relative;
   }
 
   .class-options-container>.button-class-option {
@@ -280,44 +292,78 @@ div>.class-options-container>.button:disabled {
   color: whitesmoke;
   display: inline-block;
   width: 100%;
+  position: relative;
 
 }
 
 .header>.button--roll {
   font-size: 2.5rem;
-  color: whitesmoke;
+  color: #FF0000;
   background-color: black;
   width: 10rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   padding: 0;
   border: none;
+  position: absolute;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 200%);
 }
 
 .header>.button--roll:hover {
   font-size: 2.5rem;
-  color: rgb(187, 0, 0);
+  color: #E50000;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   width: 10rem;
   padding: 0;
 }
 
-.hp-container {
-  border: 1px solid black;
+.character-menu>div>.hp-container {
+
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 6rem auto 6rem auto 6rem;
+  font-size: 3rem;
+  padding: 2rem;
+  padding-top: 4rem;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 4rem;
+  justify-items: center;
+
 }
 
-.hp-container > div {
+.hp-container>div {
+
+
+  background-color: rgba(2, 0, 106, 0.153);
+  border-radius: 10px;
+  font-size: 4rem;
   position: relative;
-  border: 1px solid black;
+  font-weight: normal;
+  width: 6rem;
+  height: 6rem
 }
 
-.hpcontainer >div > div {
+.hp-container>.hp-container--math {
+  border: none;
+  background-color: transparent;
+  width: 2rem;
+}
+
+.hp-container>div>div {
+  font-size: 1.2rem;
+  text-transform: uppercase;
   position: absolute;
-  top: -2rem;
-  background-color: tomato;
+  top: -2.5rem;
+  margin: auto;
+  left: -4rem;
+  right: -4rem;
+  font-weight: 600;
+  max-height: 12rem;
 }
 
 .point-buy {
@@ -325,14 +371,15 @@ div>.class-options-container>.button:disabled {
 }
 
 
-
-
-
 .title {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 1.8rem;
-  margin-top: 0.4rem;
-  margin-bottom: 0rem;
+  font-size: 2.8rem;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }
 
 .wrapper {
