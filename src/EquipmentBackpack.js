@@ -12,22 +12,25 @@ class EquipmentBackpack extends React.Component {
 
     render() {
 
-        return ( <
-            li value = {
+        return ( 
+            <li value = {
                 this.props.name
             }
             key = {
                 this.props.key
-            } > {
+            }> 
+            {
                 this.props.name
-            } <
-            button value = {
+            } 
+            <button 
+            value = {
                 this.props.name
             }
             onClick = {
                 () => this.props.sellSelectedEquipment(this.props.name)
-            } > Sell < /button> <
-            /li>
+            }> Sell 
+            </button> 
+            </li>
         )
     }
 }

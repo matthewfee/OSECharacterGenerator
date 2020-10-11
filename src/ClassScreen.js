@@ -67,8 +67,6 @@ class ClassScreen extends React.Component {
 
         <div className="class-options-screen"> 
 
-            <h3>Level 1 {this.props.characterClass}</h3>
-
             {!this.state.HPResult &&
             <button className="button button-primary button--hp" onClick={() => setTimeout(this.getHitPoints(), 200)}> Roll HP</button>}
 
@@ -110,16 +108,43 @@ class ClassScreen extends React.Component {
             </div>
 
                 
-            
-            <div className="saving-throws container"> 
-                <div className="saving-throw">Death/Poison {obj.savingThrows[0]}</div>
-                <div className="saving-throw">Wands {obj.savingThrows[1]}</div>
-                <div className="saving-throw">Paralysis/Petrify {obj.savingThrows[2]}</div>
-                <div className="saving-throw">Breath Attacks {obj.savingThrows[3]}</div>
-                <div className="saving-throw">Spells/Rods/Staves {obj.savingThrows[4]}</div>
-            </div> 
+            <div className="saving-throws-menu">
 
+                <h5 className="saving-throws-menu--header"> {this.props.characterClass} Saving Throws
+                </h5>
+
+                <div className="saving-throws container"> 
+                    <div className="saving-throw--death">Death </div>
+                    <div className="saving-throw--death--value saving--value">{obj.savingThrows[0]}</div>
+                    <div className="saving-throw--wands">Wands </div>
+                    <div className="saving-throw--wands--value saving--value">{obj.savingThrows[1]}</div>
+                    <div className="saving-throw--paralysis">Paralysis </div>
+                    <div className="saving-throw--paralysis--value saving--value">{obj.savingThrows[2]}</div>
+                    <div className="saving-throw--breath">Breath</div>
+                    <div className="saving-throw--breath--value saving--value">{obj.savingThrows[3]}</div>
+                    <div className="saving-throw--spells">Spells </div>
+                    <div className="saving-throw--spells--value saving--value">{obj.savingThrows[4]}</div>
+                </div> 
+
+
+            </div>
+
+            <div className="class-ability-menu">
+                <h5 className="class-ability-menu--header"> {this.props.characterClass} Abilities
+                </h5>
+
+                <div className="class-ability-menu--abilities">
+                    <ul>
+                        <li>{obj.abilities}</li>
+                    </ul>
+
+                </div>
+
+            </div>
+            
             <button onClick={this.props.showAbilityScreen()}>Go Back</button>
+            <button onClick={this.props.showEquipmentScreen()}>Equipment</button>
+            
             
         </div>
 

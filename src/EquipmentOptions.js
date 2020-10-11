@@ -16,7 +16,7 @@ class EquipmentOptions extends React.Component {
             <option value={this.props.name}
                 price={this.props.price}
             >
-                {this.props.name}- {this.props.price} gp
+                {this.props.name} - {this.props.price} gp
             </option>
         )
     }

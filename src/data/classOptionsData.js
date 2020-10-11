@@ -51,7 +51,7 @@ const classOptionsData = [
     primeReq: "DEX",
     hd: 4,
     maxLevel: 0,
-    armour: "leather, no sheilds",
+    armour: "leather, no shields",
     weapons: "any",
     languages: "alignment, common",
     description: "Thieves are adventurers who live by their skills of deception and stealth. Their range of unique skills makes them very handy companions in adventures. However, thieves are not always to be trusted.",

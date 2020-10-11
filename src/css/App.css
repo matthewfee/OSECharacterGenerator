@@ -136,17 +136,38 @@
 
 }
 
+.class-ability-menu {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  border-bottom: 1px solid black;
+}
+
+.class-ability-menu>.class-ability-menu--header {
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.class-ability-menu>.class-ability-menu--abilities {
+  font-size: 1.2rem;
+}
 
 .class-details {
   font-size: 2rem;
   display: inline-flex;
   position: absolute;
+  border-radius: 4px;
+  z-index: 2;
   margin: auto;
   right: 0;
   left: 0;
   top: 110%;
+  width: 98%;
   justify-content: center;
+  background-color: whitesmoke;
 }
+
 
 .class-details>.class-details--arrow {
   width: 0;
@@ -166,12 +187,16 @@
 }
 
 
+
+
 div.ability-screen {
 
   display: inline-block;
   width: 100vw;
   max-width: 600px;
   position: relative;
+  padding: 0;
+  margin: 0;
 
 }
 
@@ -183,7 +208,8 @@ div.character-menu {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.95);
   padding: 0px 0px;
-  margin: 0px 0px;
+  margin: 0;
+  margin-top: -1rem;
   width: 100vw;
   max-width: 600px;
   min-width: 300px;
@@ -195,9 +221,6 @@ div.character-menu {
 .class-info {
   text-align: left;
   font-size: 1rem;
-  padding-left: 2rem;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
   max-width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.501);
   border-bottom: 1px solid rgba(0, 0, 0, 0.501);
@@ -207,7 +230,7 @@ div.character-menu {
 
 .class-options-screen>.button.button--hp.button-primary {
   background-color: #FF0000;
-  font-size: 1.5rem;
+  margin: 2rem;
 }
 
 .class-options-container>.button-class-option {
@@ -230,7 +253,7 @@ div.character-menu {
 
   .class-options-container>.button-class-option {
     max-height: 80px !important;
-    font-size: 1.2rem !important;
+
   }
 
 
@@ -241,6 +264,7 @@ div.character-menu {
     background-image: linear-gradient(to right bottom, rgba(85, 83, 83, 0.8), rgba(56, 56, 56, 0.8)),
       url(../img/header.svg);
     background-size: cover;
+    height: 6rem;
   }
 
 }
@@ -255,7 +279,6 @@ div.character-menu {
 }
 
 .class-options-container>.button-class-option:focus {
-  font-size: 1.1rem;
   height: auto;
   width: auto;
   padding: 0;
@@ -282,22 +305,24 @@ div>.class-options-container {
 
 div>.class-options-container>.button:disabled {
   color: rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
+
 }
 
 
 .header {
   text-align: center;
-  min-height: 8rem;
+  min-height: 4rem;
   color: whitesmoke;
   display: inline-block;
   width: 100%;
   position: relative;
+  padding: 0;
+  margin: 0;
 
 }
 
 .header>.button--roll {
-  font-size: 2.5rem;
+
   color: #FF0000;
   background-color: black;
   width: 10rem;
@@ -314,7 +339,6 @@ div>.class-options-container>.button:disabled {
 }
 
 .header>.button--roll:hover {
-  font-size: 2.5rem;
   color: #E50000;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -331,7 +355,9 @@ div>.class-options-container>.button:disabled {
   padding-top: 4rem;
   width: 80%;
   margin: auto;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   justify-items: center;
 
 }
@@ -370,10 +396,116 @@ div>.class-options-container>.button:disabled {
   margin-bottom: 1rem;
 }
 
+.saving-throws-menu {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  border-bottom: 1px solid black;
+}
+
+.saving-throws-menu--header {
+  font-size: 2rem;
+  width: auto;
+  margin: auto;
+  margin-bottom: 4rem;
+}
+
+.saving-throws.container {
+  position: relative;
+  background-color: transparent;
+  width: 10rem;
+  height: 10rem;
+  margin: auto;
+  margin-bottom: 4rem;
+}
+
+.saving-throws.container::after {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding-top: 40%;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  clip-path: polygon(50% 0%, 100% 46%, 76% 100%, 24% 100%, 0% 46%);
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.549);
+  text-align: center;
+
+}
+
+.saving-throws.container>div {
+  position: absolute;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 12rem;
+  z-index: 1;
+}
+
+.saving-throws.container>.saving--value {
+  color: white;
+  font-size: 1.6rem;
+}
+
+.saving-throws.container>.saving-throw--death {
+  top: -20%;
+  left: -10%;
+}
+
+.saving-throws.container>.saving-throw--death--value {
+  top: 5%;
+  left: -10%;
+}
+
+.saving-throws.container>.saving-throw--wands {
+  top: 36%;
+  left: 76%;
+}
+
+.saving-throws.container>.saving-throw--wands--value {
+  top: 36%;
+  left: 22%;
+}
+
+.saving-throws.container>.saving-throw--paralysis {
+  top: 100%;
+  left: 54%;
+}
+
+.saving-throws.container>.saving-throw--paralysis--value {
+  bottom: 0%;
+  right: -28%;
+}
+
+.saving-throws.container>.saving-throw--breath {
+  top: 100%;
+  left: -70%;
+}
+
+.saving-throws.container>.saving-throw--breath--value {
+  bottom: 0%;
+  left: -30%;
+}
+
+.saving-throws.container>.saving-throw--spells {
+  top: 36%;
+  left: -100%;
+}
+
+.saving-throws.container>.saving-throw--spells--value {
+  top: 36%;
+  left: -45%;
+}
+
+
 
 .title {
   font-family: 'Courier New', Courier, monospace;
-  font-size: 2.8rem;
+  font-size: 2rem;
   margin: 0;
   position: absolute;
   top: 50%;

@@ -1,7 +1,7 @@
 import React from 'react'
 import classOptionsData from './data/classOptionsData'
 import ClassOptionsButton from './ClassOptionsButton.js';
-import Equipment from './Equipment.js';
+import EquipmentScreen from './Equipment.js';
 import ClassDescription from './ClassDescription.js';
 import ClassScreen from './ClassScreen.js'
 
@@ -376,8 +376,6 @@ render() {
         <button className={`button button--roll button-primary`} 
         onClick={this.reRoll}>Roll</button>}
 
-        {this.state.equipmentScreen && <h4 className="header--equipment">Equipment</h4>}  
-
         </header>
 
 
@@ -541,25 +539,24 @@ render() {
             {this.state.strength && this.state.characterClass !== null && <div>
                 <button onClick={this.showClassScreen}>Class Options</button> </div>}
             
-            {this.state.strength && this.state.characterClass !== null && <div>
-                <button onClick={this.showEquipmentScreen}>Purchase Equipment</button> </div>}
-
             </div>}
 
-        {this.state.equipmentScreen &&
-        <Equipment showAbilityScreen={this.showAbilityScreen} gold={this.state.goldStarting} />}
+      
 
         {this.state.classScreen && 
-        <ClassScreen showAbilityScreen={() => this.showAbilityScreen} characterClass={this.state.characterClass} conMod={parseInt(this.getMod(this.state.constitution))} d={this.d}>
+        <ClassScreen 
+        showEquipmentScreen={() => this.showEquipmentScreen}
+        showAbilityScreen={() => this.showAbilityScreen} 
+        characterClass={this.state.characterClass} 
+        conMod={parseInt(this.getMod(this.state.constitution))} 
+        d={this.d}>
         </ClassScreen>}
+
+        {this.state.equipmentScreen &&
+        <EquipmentScreen showAbilityScreen={this.showAbilityScreen} gold={this.state.goldStarting} />}
         
         </div>
 
-       
-
-    <br></br>
-    
-    <br></br>
     </div>
     )
 }
