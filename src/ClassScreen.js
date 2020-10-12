@@ -1,6 +1,5 @@
 import React from 'react'
 import classOptionsData from './data/classOptionsData'
-import ClassDescription from './ClassDescription.js'
 
 
 class ClassScreen extends React.Component {

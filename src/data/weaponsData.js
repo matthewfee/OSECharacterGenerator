@@ -165,7 +165,6 @@ const weaponsData = [
         "qualities": ["Ammunition"]
     }
 
-
 ]
 
 export default weaponsData

@@ -26,6 +26,7 @@ class ClassDescription extends React.Component {
             
             <ul className="class-description-list">
                     <li><b>Description:</b> {obj.description}</li>
+                    <li><b>Prime Requisites:</b> {obj.primeReq} </li>
                     <li><b>Hit Dice:</b> d{obj.hd}</li>
                     <li><b>Armour:</b> {obj.armour}</li>
                     <li><b>Weapons:</b> {obj.weapons}</li>

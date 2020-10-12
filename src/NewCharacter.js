@@ -1,7 +1,7 @@
 import React from 'react'
 import classOptionsData from './data/classOptionsData'
 import ClassOptionsButton from './ClassOptionsButton.js';
-import EquipmentScreen from './Equipment.js';
+import EquipmentScreen from './EquipmentScreen.js';
 import ClassDescription from './ClassDescription.js';
 import ClassScreen from './ClassScreen.js'
 
@@ -364,6 +364,8 @@ class NewCharacter extends React.Component {
 
 render() {
 
+    console.log("Parent State", this.state)
+
     return (
 
     <div className="wrapper">
@@ -532,17 +534,17 @@ render() {
 
             </div>
 
-            <div className="point-buy">Point Buy: {this.state.pointBuy}</div>
+        <div className="point-buy">Point Buy: {this.state.pointBuy}</div>
+        <div className="prime-req">Prime Req: {this.getPrimeReqMod()}</div>
 
-            {this.state.strength && <button onClick={this.resetCharacter}>Reset</button>}
+        {this.state.strength && <button onClick={this.resetCharacter}>Reset</button>}
 
-            {this.state.strength && this.state.characterClass !== null && <div>
+        {this.state.strength && this.state.characterClass !== null && <div>
                 <button onClick={this.showClassScreen}>Class Options</button> </div>}
             
-            </div>}
+        </div>}
 
       
-
         {this.state.classScreen && 
         <ClassScreen 
         showEquipmentScreen={() => this.showEquipmentScreen}
@@ -553,7 +555,11 @@ render() {
         </ClassScreen>}
 
         {this.state.equipmentScreen &&
-        <EquipmentScreen showAbilityScreen={this.showAbilityScreen} gold={this.state.goldStarting} />}
+        <EquipmentScreen 
+        characterClass={this.state.characterClass}
+        showAbilityScreen={this.showAbilityScreen} 
+        gold={this.state.goldStarting} 
+        />}
         
         </div>
 
