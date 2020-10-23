@@ -4,6 +4,26 @@
   box-sizing: inherit;
 }
 
+.ability-scores--header {
+  margin-top: 0px;
+
+}
+
+.header-default {
+  padding-top: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  letter-spacing: 0.4rem;
+  border-top: 1px solid black;
+  color:  #400000;
+  margin-left: auto;
+  margin-right: auto;
+
+
+}
+
+
 .container>.ability-score-container {
 
   display: grid;
@@ -13,9 +33,10 @@
   row-gap: 1rem;
   width: 100%;
   position: relative;
-  margin-top: 5rem;
+  margin-top: 25px;
 
 }
+
 
 .ability-score-container>div {
   display: flex;
@@ -153,8 +174,9 @@
   font-size: 1.2rem;
 }
 
+
 .class-details {
-  font-size: 2rem;
+  font-size: 1.6rem;
   display: inline-flex;
   position: absolute;
   border-radius: 4px;
@@ -173,9 +195,11 @@
   width: 0;
   height: 0;
   margin: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
-  border-bottom: 1.2rem solid #E50000;
+  border-bottom: 1rem solid #E50000;
   ;
 }
 
@@ -184,6 +208,7 @@
   font-size: 1.5rem;
   text-align: left;
   padding: 2rem;
+
 }
 
 
@@ -298,7 +323,9 @@ div>.class-options-container {
   grid-row-gap: 0rem;
   max-width: 100%;
   min-height: 80px;
-  margin-bottom: 0;
+  margin-bottom: 4rem;
+  padding-top: 0rem;
+
 }
 
 
@@ -309,6 +336,7 @@ div>.class-options-container>.button:disabled {
 
 .equipment-screen {
   position: relative;
+  font-size: 1.4rem;
 }
 
 .equipment-screen>.equipment-screen--header {
@@ -327,6 +355,13 @@ div>.class-options-container>.button:disabled {
   text-align: center;
   left: 0;
   right: 0;
+}
+
+.button--equipment.button {
+  height: 8px;
+  width: 8px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .equipment-screen>.gold {

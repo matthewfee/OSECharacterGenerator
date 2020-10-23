@@ -389,6 +389,8 @@ render() {
 
         <div className="ability-screen container">
                       
+        <h2 className="header-default">Character Class</h2>  
+
         <div className="class-options-container container">
 
             {this.classOptionsListButton()}
@@ -397,6 +399,10 @@ render() {
             </ClassDescription>}
             
         </div>
+
+        
+        <h2 className="ability-scores--header header-default">Ability Scores</h2>
+
         
                     
         <div className="container ability-score-container"> 
