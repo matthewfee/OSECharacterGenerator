@@ -12,9 +12,10 @@ class EquipmentBackpack extends React.Component {
 
     render() {
 
+        console.log("Main State", this.state)
         return ( 
             <li value = {this.props.name}
-            key = {this.props.key}> 
+            key = {this.props.keyName}> 
             {this.props.name} 
             <button
             className="button button--equipment" 
