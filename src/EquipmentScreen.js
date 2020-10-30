@@ -329,6 +329,8 @@ return (
 
     <div className="equipment-screen">
 
+        
+
     {this.state.gold === null &&
     <button className="button button-primary button--gold" 
     onClick={() => setTimeout(this.getGold(), 200)}> 
@@ -337,15 +339,16 @@ return (
 
     <h5 className="gold">{this.state.gold} gp</h5>
 
-    <div>{characterClass.name} Armour: {characterClass.armour}</div>
+    <h3 className="equipment-screen--header header-default">Equipment</h3>
+
+    <div className="armour-restrictions">Armour Restrictions: {characterClass.armour}</div>
+
+    <div className="armour-container--header">Select Armour</div>
     
     <div className="armour-container">
 
-        <div className="armour-container--header">Select Armour
-        </div>
 
-
-        <label>
+        <label className="armour-radio">
         <input
             type="radio"
             value="none"
@@ -353,12 +356,13 @@ return (
             className="form-check-input"
             onChange={this.handleOptionChange}
         />
-            None
+            <span class="radio--label">None</span>
+            
         </label>
 
 
     
-        <label>
+        <label className="armour-radio">
         <input
         type="radio"
         value="Leather"
@@ -366,12 +370,13 @@ return (
         checked={this.state.armourSelected === "Leather"}
         onChange={this.handleOptionChange}
         />  
-        Leather (AC 12) - 20gp
+        
+        <span class="radio--label">Leather (AC 12) - 20gp</span>
         </label>
     
 
     
-        <label>
+        <label className="armour-radio">
         <input
         type="radio"
         value="Chainmail"
@@ -379,12 +384,12 @@ return (
         checked={this.state.armourSelected === "Chainmail"}
         onChange={this.handleOptionChange}
         />
-        Chainmail (AC 14) - 40gp
+        <span class="radio--label">Chainmail (AC 14) - 40gp</span>
         </label>
     
 
     
-        <label>
+        <label className="armour-radio">
         <input
         type="radio"
         value="Plate mail"
@@ -392,12 +397,12 @@ return (
         checked={this.state.armourSelected === "Plate mail"}
         onChange={this.handleOptionChange}
         />
-        Plate mail (AC 16) - 60gp
+        <span class="radio--label">Plate mail (AC 16) - 60gp</span>
         </label>
     
 
     
-        <label>
+        <label className="armour-radio">
         <input
         type="radio"
         value="Shield"
