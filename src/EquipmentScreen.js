@@ -55,6 +55,7 @@ class EquipmentScreen extends React.Component {
 
     weaponsOptions = (item) =>  {
         return (
+            
             <option value={item.name}
                 price={item.price}
                 damage = {item.damage}
@@ -64,9 +65,43 @@ class EquipmentScreen extends React.Component {
         )
     }
 
-    weaponsList = () => weaponsData.map(
-        item => this.weaponsOptions(item)
-    )
+    weaponsList = () => {
+    
+        var characterClass = classOptionsData.find(obj => obj.name === this.props.characterClass) 
+
+        if (characterClass.weapons.includes("any")) {
+            return weaponsData.map(
+                item => this.weaponsOptions(item)
+            )
+        }
+
+        if (characterClass.weapons.includes("dagger")) {
+            console.table(weaponsData)
+
+            return weaponsData.filter((weapon) => {
+
+                if (weapon.name.includes("Staff")) {
+                    return true
+                }
+                return weapon.name.includes("agger") ? true : false;
+            }).map(item => this.weaponsOptions(item))
+        }
+
+        if (characterClass.weapons.includes("blunt")) {
+            let bluntWeapons = weaponsData.filter((weapon) => {
+                return weapon.qualities.includes('Blunt')
+            })
+            return bluntWeapons.map(item => this.weaponsOptions(item))
+
+        }
+   
+        weaponsData.map(
+            item => this.weaponsOptions(item)
+        )
+
+
+    }
+ 
 
 
     equipmentBackpack = () => this.state.equipment.map((item, index) =>
@@ -102,7 +137,7 @@ class EquipmentScreen extends React.Component {
             <li className = "backpack-item backpack-item--armour"
             value = {item}
             key = {index}> 
-            {item} 
+            {item} Armour
             <button
             className="button button--equipment button--armour" 
             value = {item}
@@ -385,11 +420,13 @@ return (
     
     </div>
 
+    {!characterClass.armour.includes("none") && this.state.armour.length === 0 &&
+
+    <div className="armour-container-parent">
+
     <div className="equipment-container--header">Armour</div>
 
     <div className="equipment-restrictions">Allowed Armour: {characterClass.armour}</div>
-
-    {!characterClass.armour.includes("none") &&
     
     <div className="armour-container">
 
@@ -461,7 +498,9 @@ return (
     price = {null}
     />
         
-        </div>}
+        </div>
+    
+    </div>}
 
         <div className="equipment-container--header">Weapons</div>
 
@@ -500,23 +539,13 @@ return (
 
         <div className="backpack-container">
 
-
-        <div className="armour-name">Armour</div>
-
         <div className="armour-backpack">
             {this.armourBackpack()}
-        </div>
-
-        <div className="weapons-name">
-            Weapons
         </div>
 
         <div className="weapons-backpack">
             {this.weaponsBackpack()}
         </div>
-
-
-        <div className="gear-name">Adventuring Gear</div>
 
         <div className="gear-backpack">
             {this.equipmentBackpack()}

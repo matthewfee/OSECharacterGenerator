@@ -47,8 +47,6 @@ class NewCharacter extends React.Component {
     componentDidMount() {
 
         
-        
-
         var RandomOrg = require('random-org');
         var random = new RandomOrg({ apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d" });
         random.generateIntegers({min: 1, max:6, n: 40})
@@ -120,12 +118,20 @@ class NewCharacter extends React.Component {
         newObject.constitutionOriginal = newObject.constitution;
         newObject.charismaOriginal = newObject.charisma
 
-        this.setState(newObject)
+        this.setState(newObject, () => {this.getMod()})
+
     };
 
-    //function returns the details of an ability mod for a given ability score and ability
+    //function that updates state with details of an ability mod for a given ability score and ability
 
-    getMod = (abilityScore, secondary) => {
+    getMod = () => {
+
+        var STR = this.state.strength
+        var INT = this.state.intelligence
+        var WIS = this.state.wisdom
+        var DEX = this.state.dexterity
+        var CON = this.state.constitution
+        var CHA = this.state.charisma
         
 
         const abilityMod = ['-3', '-2', '-2', '-1', '-1',
@@ -146,44 +152,26 @@ class NewCharacter extends React.Component {
 
         const loyalty = [null, null, null, "4", "5", "5", "6", "6", "6", "7", "7", "7", "7", "8", "8", "8", "9", "9", "10"]
 
-
-        var mod = abilityMod[abilityScore - 3]
-
-        if (abilityScore === null) {
-            return ' '
+        const newMods = {
+            
+            strengthModMelee: abilityMod[STR],
+            strenghtModDoors: openDoors[STR],
+            intelligenceModLanguages: spokenLanguages[INT], 
+            intelligenceModLiteracy: literacy[INT],
+            wisdomMod: abilityMod[WIS],
+            dexterityModAC: abilityMod[DEX], 
+            dexterityModMissiles: abilityMod[DEX], 
+            dexterityModInitiative: initiative[DEX],
+            constitutionMod: abilityMod[CON],
+            charismaModNPCReactions: npcReactions[CHA], 
+            charismaModRetainersMax: retainersMax[CHA],
+            charismaModLoyalty: loyalty[CHA],
+        
         }
+        console.log("SOME NEW MODS")
+        console.table(newMods)
 
-        if (secondary === "openDoors") {
-            return openDoors[abilityScore]
-        }
-
-        if (secondary === "spokenLanguages") {
-            return spokenLanguages[abilityScore]} 
-        if (secondary === "literacy") {
-            return literacy[abilityScore]
-        }
-
-        if (secondary === "init") {
-            return initiative[abilityScore]
-        }
-
-        if (secondary === "constitution") {
-            return `Hit Points: ${mod}`
-        }
-
-        if (secondary === "reactions") {
-            return npcReactions[abilityScore] 
-        }
-
-        if (secondary === "retainers") {
-            return retainersMax[abilityScore]
-        }
-
-        if (secondary === "loyalty") {
-            return loyalty[abilityScore]
-        }
-
-        return mod
+        this.setState(newMods, () => {this.getPrimeReqMod()})
     }
 
     getPrimeReqMod = () => {
@@ -198,10 +186,10 @@ class NewCharacter extends React.Component {
         if (abilityScore2 < abilityScore) {
             abilityScore = abilityScore2
         }
-
-
-        return modArr[abilityScore]
-
+        console.log("UPDATING PRIME REQ")
+        console.log(modArr[abilityScore])
+        
+        this.setState({primeReqMod: modArr[abilityScore]})
 
     }
 
@@ -251,7 +239,7 @@ class NewCharacter extends React.Component {
             pointBuy: newPointBuy 
         }
 
-        this.setState(newObject)
+        this.setState(newObject, () => {this.getMod()})
 
     }
 
@@ -277,7 +265,8 @@ class NewCharacter extends React.Component {
             pointBuy: newPointBuy
         }
 
-        this.setState(newObject)
+        this.setState(newObject, () => {this.getMod()})
+   
 
     }
 
@@ -288,32 +277,43 @@ class NewCharacter extends React.Component {
         this.setState({ primeReq2: null, characterClass: event.target.value })
 
         if (event.target.value === "Magic-User") {
-            return this.setState({ primeReq: "intelligence" })
+            return this.setState({ primeReq: "intelligence" }, () => {
+                this.getPrimeReqMod()
+            })
         };
 
         if (event.target.value === "Cleric") {
-            return this.setState({ primeReq: "wisdom" })
+            return this.setState({ primeReq: "wisdom" }, () => {
+                this.getPrimeReqMod()
+            })
         };
         if (event.target.value === "Fighter") {
-            return this.setState({ primeReq: "strength" })
+            return this.setState({ primeReq: "strength" }, () => {
+                this.getPrimeReqMod()
+            })
         };
         if (event.target.value === "Dwarf") {
-            return this.setState({ primeReq: "strength" })
+            return this.setState({ primeReq: "strength" }, () => {
+                this.getPrimeReqMod()
+            })
         };
         if (event.target.value === "Thief") {
-            return this.setState({ primeReq: "dexterity" })
+            return this.setState({ primeReq: "dexterity" }, () => {
+                this.getPrimeReqMod()
+            })
         };
         if (event.target.value === "Halfling") {
-            return this.setState({ primeReq: "dexterity", primeReq2: "strength" })
+            return this.setState({ primeReq: "dexterity", primeReq2: "strength" }, () => {
+                this.getPrimeReqMod()
+            })
         };
         if (event.target.value === "Elf") {
-            return this.setState({ primeReq: "intelligence", primeReq2: "strength" })
+            return this.setState({ primeReq: "intelligence", primeReq2: "strength" }, () => {
+                this.getPrimeReqMod()
+            })
         };
 
         this.state.getPrimeReqMod();
-
-
-
     }
 
 
@@ -438,8 +438,8 @@ render() {
                 
             </div>
             <div className="ability-mod">
-                <span>Melee Attacks: {this.getMod(this.state.strength)} </span>
-                <span>Open Doors: {this.getMod(this.state.strength, "openDoors")}</span>
+                <span>Melee Attacks: {this.state.strengthModMelee} </span>
+                <span>Open Doors: {this.state.strengthModDoors}</span>
             </div>
 
             <div className="ability-score-name">
@@ -460,8 +460,8 @@ render() {
                 
             </div>
             <div className="ability-mod ability-mod2"> 
-                <span>Languages: {this.getMod(this.state.intelligence, "spokenLanguages")}</span>
-                <span>Literacy: {this.getMod(this.state.intelligence, "literacy")}</span>
+                <span>Languages: {this.state.intelligenceModLanguages}</span>
+                <span>Literacy: {this.state.intelligenceModLiteracy}</span>
             
             </div>
             
@@ -481,7 +481,7 @@ render() {
                 </button>}
             </div>
             <div className="ability-mod">
-                <span>Magic Saves: {this.getMod(this.state.wisdom)}</span> 
+                <span>Magic Saves: {this.state.wisdomMod}</span> 
             </div>
 
             
@@ -497,12 +497,12 @@ render() {
                 </button>}
             </div>
             <div className="ability-mod">
-                <span> AC: {this.getMod(this.state.dexterity)}
+                <span> AC: {this.state.dexterityModAC}
                 </span>
-                <span> Missile: {this.getMod(this.state.dexterity)}
+                <span> Missile: {this.state.dexterityModMissiles}
                 </span>
                 <span>
-                    Initiative: {this.getMod(this.state.dexterity, "init")}
+                    Initiative: {this.state.dexterityModInitiative}
                 </span>
             </div>
 
@@ -518,7 +518,7 @@ render() {
                 </button>}    
             </div>
             <div className="ability-mod"> 
-                <span>Hit Points: {this.getMod(this.state.constitution)}
+                <span>Hit Points: {this.state.constitutionMod}
                 </span>
             </div>
 
@@ -533,13 +533,13 @@ render() {
                 </button>}
             </div>
             <div className="ability-mod">
-                <span> NPC Reactions: {this.getMod(this.state.charisma, "reactions")}
+                <span> NPC Reactions: {this.state.charismaModNPCReactions}
                 </span>
                 <span>
-                    Retainers Max #: {this.getMod(this.state.charisma, "retainers")}
+                    Retainers Max #: {this.state.charismaModRetainersMax}
                 </span>
                 <span>
-                    Loyalty: {this.getMod(this.state.charisma, "loyalty")}
+                    Loyalty: {this.state.charismaModLoyalty}
                 </span>
                 </div>
             
@@ -548,7 +548,7 @@ render() {
             </div>
 
         <div className="point-buy">Point Buy: {this.state.pointBuy}</div>
-        <div className="prime-req">Prime Req: {this.getPrimeReqMod()}</div>
+        <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>
 
         {this.state.strength && <button onClick={this.resetCharacter}>Reset</button>}
 
