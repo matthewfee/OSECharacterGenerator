@@ -129,7 +129,8 @@ class ClassScreen extends React.Component {
             </div>
 
             <div className="class-ability-menu">
-                <h5 className="class-ability-menu--header"> {this.props.characterClass} Abilities
+
+                <h5 className="saving-throws-menu--header"> {this.props.characterClass} Abilities
                 </h5>
 
                 <div className="class-ability-menu--abilities">

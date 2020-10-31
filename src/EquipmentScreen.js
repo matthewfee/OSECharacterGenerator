@@ -15,15 +15,39 @@ class EquipmentScreen extends React.Component {
             equipment: [],
             equipmentSelected: "Backpack",
             armour: [],
-            armourSelected: "none",
+            armourSelected: null,
             shieldSelected: false,
             weapons: [],
-            weaponSelected: "Sword",
+            weaponSelected: "Dagger",
         }
     }
 
     componentDidMount() {
+        
         window.scrollTo(0, 0);
+
+        // update auto selectedWeapon to one appropriate for class
+
+        if (this.props.characterClass === "Cleric") {
+            this.setState({weaponSelected: "Mace"})
+        } 
+
+        if (this.props.characterClass === "Fighter") {
+            this.setState({weaponSelected: "Sword"})
+        }
+
+        if (this.props.characterClass === "Elf") {
+            this.setState({weaponSelected: "Long bow"})
+        }
+
+        if (this.props.characterClass === "Dwarf") {
+            this.setState({weaponSelected: "Battle axe"})
+        }
+
+        if (this.props.characterClass === "Halfling") {
+            this.setState({weaponSelected: "Sling"})
+        }
+
     }
 
     getRndInteger = (min, max) => {
@@ -137,7 +161,7 @@ class EquipmentScreen extends React.Component {
             <li className = "backpack-item backpack-item--armour"
             value = {item}
             key = {index}> 
-            {item} Armour
+            {item}
             <button
             className="button button--equipment button--armour" 
             value = {item}
@@ -420,6 +444,8 @@ return (
     
     </div>
 
+    {this.state.gold && <div className="equipment-purchase-container">
+
     {!characterClass.armour.includes("none") && this.state.armour.length === 0 &&
 
     <div className="armour-container-parent">
@@ -443,7 +469,7 @@ return (
         disabled={characterClass.armour.includes("none") ? true : false}
         />  
         
-        <span className="radio--label">Leather (AC 12) - 20gp</span>
+        <span className="radio--label">Leather - AC 7 [12] - 20 gp</span>
         </label>
     
 
@@ -457,7 +483,7 @@ return (
         onChange={this.handleOptionChange}
         disabled={characterClass.armour.includes("any") ? false : true}
         />
-        <span class="radio--label">Chainmail (AC 14) - 40gp</span>
+        <span className="radio--label">Chainmail - AC  5 [14] - 40 gp</span>
         </label>}
     
 
@@ -471,7 +497,7 @@ return (
         onChange={this.handleOptionChange}
         disabled={characterClass.armour.includes("any") ? false : true}
         />
-        <span class="radio--label">Plate mail (AC 16) - 60gp</span>
+        <span className="radio--label">Plate mail - AC 3 [16] - 60 gp</span>
         </label>}
     
 
@@ -535,23 +561,27 @@ return (
 
         </div>
 
+        </div>}
+
         <h3 className="header-default"> Inventory </h3>
 
         <div className="backpack-container">
 
-        <div className="armour-backpack">
+        {this.state.armour.length > 0 &&<div className="armour-backpack">
             {this.armourBackpack()}
-        </div>
+        </div>}
 
-        <div className="weapons-backpack">
+        {this.state.weapons.length > 0 && <div className="weapons-backpack">
             {this.weaponsBackpack()}
-        </div>
+        </div>}
 
         <div className="gear-backpack">
             {this.equipmentBackpack()}
         </div>
 
         </div>
+
+        
 
         
 

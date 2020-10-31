@@ -563,7 +563,7 @@ render() {
         showEquipmentScreen={() => this.showEquipmentScreen}
         showAbilityScreen={() => this.showAbilityScreen} 
         characterClass={this.state.characterClass} 
-        conMod={parseInt(this.getMod(this.state.constitution))} 
+        conMod={parseInt(this.state.constitutionMod)} 
         d={this.d}>
         </ClassScreen>}
 

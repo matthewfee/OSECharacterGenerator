@@ -629,6 +629,7 @@ div>.class-options-container>.button:disabled {
   width: 80%;
   margin: auto;
   border-bottom: 1px solid black;
+  margin-bottom: 2rem;
 }
 
 .saving-throws-menu--header {
@@ -657,7 +658,7 @@ div>.class-options-container>.button:disabled {
   width: 100%;
   height: 100%;
   position: absolute;
-  clip-path: polygon(50% 0%, 100% 46%, 76% 100%, 24% 100%, 0% 46%);
+  clip-path: polygon(50% 0%, 100% 44%, 76% 100%, 24% 100%, 0% 44%);
   z-index: 0;
   background-color: rgba(0, 0, 0, 0.549);
   text-align: center;
@@ -700,22 +701,22 @@ div>.class-options-container>.button:disabled {
 
 .saving-throws.container>.saving-throw--paralysis {
   top: 105%;
-  left: 34%;
+  left: 45%;
 }
 
 .saving-throws.container>.saving-throw--paralysis--value {
-  bottom: 0%;
-  right: -28%;
+  bottom: -2%;
+  right: -26%;
 }
 
 .saving-throws.container>.saving-throw--breath {
   top: 105%;
-  left: -40%;
+  left: -65%;
 }
 
 .saving-throws.container>.saving-throw--breath--value {
-  bottom: 0%;
-  left: -30%;
+  bottom: -2%;
+  left: -28%;
 }
 
 .saving-throws.container>.saving-throw--spells {
