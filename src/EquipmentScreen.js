@@ -52,8 +52,9 @@ class EquipmentScreen extends React.Component {
         return (
             <option value={item.name}
                 price={item.price}
+                damage = {item.damage}
             >
-                {item.name} - {item.price} gp
+                {item.name} ({item.damage}) - {item.price} gp
             </option>
         )
     }
@@ -74,11 +75,14 @@ class EquipmentScreen extends React.Component {
     weaponsBackpack = () =>  this.state.weapons.map((item, index) => {
 
         return ( 
-            <li value = {item}
-            key = {index}> 
+            <li 
+            className = "backpack-item backpack-item--weapon"
+            value = {item}
+            key = {index}>
+             
             {item} 
             <button
-            className="button button--weapon" 
+            className="button button--equipment button--weapon" 
             value = {item}
             onClick = {() => this.sellSelectedWeapon(item)}> 
             X 
@@ -90,11 +94,12 @@ class EquipmentScreen extends React.Component {
     armourBackpack = () =>  this.state.armour.map((item, index) => {
 
         return ( 
-            <li value = {item}
+            <li className = "backpack-item backpack-item--armour"
+            value = {item}
             key = {index}> 
             {item} 
             <button
-            className="button button--weapon" 
+            className="button button--equipment button--armour" 
             value = {item}
             onClick = {() => this.sellSelectedArmour(item)}> 
             X 
@@ -329,39 +334,36 @@ return (
 
     <div className="equipment-screen">
 
-        
-
-    {this.state.gold === null &&
-    <button className="button button-primary button--gold" 
-    onClick={() => setTimeout(this.getGold(), 200)}> 
-    Roll Gold
-    </button>}
-
-    <h5 className="gold">{this.state.gold} gp</h5>
-
+    
     <h3 className="equipment-screen--header header-default">Equipment</h3>
 
-    <div className="armour-restrictions">Armour Restrictions: {characterClass.armour}</div>
 
-    <div className="armour-container--header">Select Armour</div>
+    
+
+    <h5 className="gold">
+        
+        {this.state.gold} gp
+        
+        {this.state.gold === null &&
+        <button className="button button-primary button--gold" 
+        onClick={() => setTimeout(this.getGold(), 200)}> 
+        Roll Gold
+        </button>}
+    
+    </h5>
+
+
+
+    <div className="equipment-container--header">Purchase Armour</div>
+
+    <div className="equipment-restrictions">Allowed Armour: {characterClass.armour}</div>
+
+
     
     <div className="armour-container">
 
+        <div className="radio-container">
 
-        <label className="armour-radio">
-        <input
-            type="radio"
-            value="none"
-            checked={this.state.armourSelected === "none"}
-            className="form-check-input"
-            onChange={this.handleOptionChange}
-        />
-            <span class="radio--label">None</span>
-            
-        </label>
-
-
-    
         <label className="armour-radio">
         <input
         type="radio"
@@ -412,8 +414,11 @@ return (
         />
         Shield (AC +1 bonus) - 10gp
         </label>
+
+        </div>
             
     <input 
+    className="button--buy-armour"
     type="submit" 
     value="Buy" 
     onClick={this.buySelectedArmour} 
@@ -422,39 +427,69 @@ return (
         
         </div>
 
-        <select value={this.state.equipmentSelected} onChange={this.updateSelectedEquipment} price={null}>
+        <div className="equipment-container--header">Purchase Weapons</div>
+
+        <div className="equipment-restrictions">Allowed Weapons: {characterClass.weapons}</div>
+
+        <div className="weapons-container">
+
+        <select className="weapons-select" value={this.state.weaponSelected} onChange={this.updateSelectedWeapon}>
+
+        {this.weaponsList()}
+
+        </select>
+
+       
+
+        <input className="button--buy-weapon" type="submit" value="Buy" onClick={this.buySelectedWeapon} price = {null}/>
+
+        </div>
+
+        <div className="equipment-container--header">Purchase Adventuring Gear</div>
+
+
+        <div className="gear-container">
+
+        <select className="gear-select" value={this.state.equipmentSelected} onChange={this.updateSelectedEquipment} price={null}>
 
             {this.equipmentList()}
 
         </select>
 
-        <input type="submit" value="Buy" onClick={this.buySelectedEquipment} />
+        <input className="button--buy-gear" type="submit" value="Buy" onClick={this.buySelectedEquipment} />
 
-        <br></br>
-
-        <select value={this.state.weaponSelected} onChange={this.updateSelectedWeapon}>
-
-            {this.weaponsList()}
-
-        </select>
-
-        <input type="submit" value="Buy" onClick={this.buySelectedWeapon} price = {null}/>
-
-        <br></br>
-
-
-
-        <div>Adventuring Gear: <br></br>
-            {this.equipmentBackpack()}
         </div>
 
-        <div className="weapons-backpack">Weapons: <br></br>
+        <h3 className="header-default"> Gear </h3>
+
+        <div className="backpack-container">
+
+
+        <div className="armour-name">Armour:</div>
+
+        <div className="armour-backpack">
+            {this.armourBackpack()}
+        </div>
+
+        <div className="weapons-name">
+            Weapons:
+        </div>
+
+        <div className="weapons-backpack">
             {this.weaponsBackpack()}
         </div>
 
-        <div className="armour-backpack">Armour: <br></br>
-            {this.armourBackpack()}
+
+
+        <div className="gear-name">Gear: </div>
+
+        <div className="gear-backpack">
+            {this.equipmentBackpack()}
         </div>
+
+        </div>
+
+
 
         <button onClick={this.props.showAbilityScreen}>Go Back</button>
     </div>

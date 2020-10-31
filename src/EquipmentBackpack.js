@@ -14,7 +14,8 @@ class EquipmentBackpack extends React.Component {
 
         console.log("Main State", this.state)
         return ( 
-            <li value = {this.props.name}
+            <li className = "backpack-item backpack-item--gear"
+            value = {this.props.name}
             key = {this.props.keyName}> 
             {this.props.name} 
             <button

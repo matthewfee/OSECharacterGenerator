@@ -126,38 +126,133 @@
 
 }
 
-.armour-container {
+.armour-container, .weapons-container, .gear-container {
+  padding-top: 10px;
   display: flex;
   flex-flow: column nowrap;
-  align-items: start;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  border-bottom: 1px solid black;
 }
 
- .armour-restrictions {
+.armour-container {
+  align-items: center;
+}
+
+ .equipment-restrictions {
+  margin: auto;
+  width: 80%;
   color: grey;
   font-style: italic;
 }
 
-.armour-container > .armour-container--header {
-  margin-left: 40px
+.equipment-container--header {
+  font-weight: bold;
+  margin-top: 20px;
+  font-size: 1.4rem;
+
 }
 
-.armour-container > .armour-radio {
-  padding-left: 20px;
-  margin-top: 10px;
+.armour-container > .radio-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+}
+
+.armour-container > .radio-container > .armour-radio {
   display: grid;
   grid-template-columns: min-content auto;
   grid-gap: 1rem;
   font-weight: normal;
-  place-items: center;
+  place-items: left;
+  justify-content: left;
   
 }
 
-.armour-container > .armour-radio > .form-check-input {
-  line-height: 1rem;
-  margin-top: auto;
-  margin-bottom: auto;
-
+.armour-radio > .form-check-input {
+  vertical-align: center;
+  margin-top: 4px;
 }
+
+.backpack-container {
+  margin: auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-row-gap: 20px;
+  text-align: left;
+}
+
+.backpack-container > .armour-backpack, .backpack-container > .weapons-backpack {
+  display: grid;
+  grid-template-columns: auto min-content min-content;
+  margin-left: 10px;
+}
+
+.backpack-container > .gear-backpack {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-left: 10px;
+}
+
+.backpack-item {
+  text-align: center;
+  vertical-align: center;
+  line-height: 100%;
+  font-size: 1rem;
+  position: relative;
+  border: 1px solid black;
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  width: auto;
+  border-radius: 8px;
+  margin-left: 2px;
+}
+
+.backpack-item.backpack-item--weapon, .backpack-item.backpack-item--armour {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.backpack-item > .button--equipment {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  color: transparent;
+  border: none;
+}
+
+.backpack-item > .button--equipment:hover, 
+.backpack-item > .button--equipment:focus {
+  position: absolute;
+  color: #FFF;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  line-height: 100%;
+  text-transform: uppercase;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #E50000;
+  background-color: #E50000;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  z-index: 20;
+}
+
 
 
 .button--ability--decrease>.arrow-down {
@@ -166,7 +261,6 @@
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
   border-top: 2.2rem solid rgba(255, 0, 0, 0.5);
-
 
 }
 
@@ -382,20 +476,17 @@ div>.class-options-container>.button:disabled {
   justify-content: center;
 }
 
-.equipment-screen>.button--gold {
+.equipment-screen > .gold {
+  position: relative;
+}
+
+.equipment-screen> .gold > .button--gold {
   position: absolute;
   margin: auto;
   text-align: center;
   left: 0;
   right: 0;
   border-radius: 0px;
-}
-
-.button--equipment.button {
-  height: 8px;
-  width: 8px;
-  padding: 0px;
-  margin: 0px;
 }
 
 .equipment-screen>.gold {
@@ -640,7 +731,7 @@ div>.class-options-container>.button:disabled {
 }
 
 .wrapper {
-  height: 900px;
+  min-height: 900px;
   margin-top: 0px;
   margin-bottom: 0px;
   overflow: hidden;
