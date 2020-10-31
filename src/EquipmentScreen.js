@@ -5,6 +5,7 @@ import armourData from './data/armourData.js';
 import classOptionsData from './data/classOptionsData'
 import EquipmentOptions from './EquipmentOptions.js';
 import EquipmentBackpack from './EquipmentBackpack.js';
+import { StickyContainer, Sticky} from 'react-sticky';
 
 
 class EquipmentScreen extends React.Component {
@@ -16,6 +17,7 @@ class EquipmentScreen extends React.Component {
             equipmentSelected: "Backpack",
             armour: [],
             armourSelected: "none",
+            shieldSelected: false,
             weapons: [],
             weaponSelected: "Sword",
         }
@@ -85,7 +87,7 @@ class EquipmentScreen extends React.Component {
             className="button button--equipment button--weapon" 
             value = {item}
             onClick = {() => this.sellSelectedWeapon(item)}> 
-            X 
+            Sell 
             </button> 
         </li>
         )
@@ -102,7 +104,7 @@ class EquipmentScreen extends React.Component {
             className="button button--equipment button--armour" 
             value = {item}
             onClick = {() => this.sellSelectedArmour(item)}> 
-            X 
+            Sell 
             </button> 
         </li>
         )
@@ -254,13 +256,26 @@ class EquipmentScreen extends React.Component {
         });
       };
 
+    handleShieldChange= () => {
+
+        if (!this.state.shieldSelected === true) {
+            this.setState({
+                shieldSelected: true
+            })
+        } else {
+            this.setState({
+                shieldSelected: false
+            })
+        }
+
+    }
+
     buySelectedArmour = () => {
 
         
         var equipmentSelected = this.state.armourSelected;
 
         if (equipmentSelected === "none") {return};
-        console.log(equipmentSelected)
 
         function findItem(object) {
             return object.name === equipmentSelected
@@ -272,14 +287,31 @@ class EquipmentScreen extends React.Component {
             return console.log("Insufficient funds")
         }
 
+        if (this.state.shieldSelected && itemObject.price + 10 > this.state.gold) {
+            return console.log("Insufficient funds")
+        }
+
         //updates state with new equipment item
+
+        
 
         var newObject = {
             gold: this.state.gold - itemObject.price,
             armour: this.state.armour.concat(itemObject.name)
         }
 
+        if (this.state.shieldSelected) {
+            newObject = {
+                gold: this.state.gold - itemObject.price - 10,
+                armour: this.state.armour.concat(itemObject.name).concat("Shield")
+            }
+        }
+
         this.setState(newObject)
+
+        // adds shield if selected
+
+        
 
     }
 
@@ -328,20 +360,16 @@ class EquipmentScreen extends React.Component {
 
     var characterClass = classOptionsData.find(obj => obj.name === this.props.characterClass) 
         
-    console.log("Equipment State", this.state)
 
 return (
 
     <div className="equipment-screen">
 
-    
-    <h3 className="equipment-screen--header header-default">Equipment</h3>
-
+    <StickyContainer>
 
     
+    <Sticky>{({ style }) => <div className="gold-container"> <h5 style={style} className="gold">
 
-    <h5 className="gold">
-        
         {this.state.gold} gp
         
         {this.state.gold === null &&
@@ -349,21 +377,26 @@ return (
         onClick={() => setTimeout(this.getGold(), 200)}> 
         Roll Gold
         </button>}
+
+        
+    
     
     </h5>
+    
+    </div>}
+    </Sticky>
 
-
-
-    <div className="equipment-container--header">Purchase Armour</div>
+    <div className="equipment-container--header">Armour</div>
 
     <div className="equipment-restrictions">Allowed Armour: {characterClass.armour}</div>
 
-
+    {!characterClass.armour.includes("none") &&
     
     <div className="armour-container">
 
         <div className="radio-container">
 
+       
         <label className="armour-radio">
         <input
         type="radio"
@@ -371,13 +404,14 @@ return (
         className="form-check-input"
         checked={this.state.armourSelected === "Leather"}
         onChange={this.handleOptionChange}
+        disabled={characterClass.armour.includes("none") ? true : false}
         />  
         
-        <span class="radio--label">Leather (AC 12) - 20gp</span>
+        <span className="radio--label">Leather (AC 12) - 20gp</span>
         </label>
     
 
-    
+        {characterClass.armour.includes("any") && 
         <label className="armour-radio">
         <input
         type="radio"
@@ -385,12 +419,13 @@ return (
         className="form-check-input"
         checked={this.state.armourSelected === "Chainmail"}
         onChange={this.handleOptionChange}
+        disabled={characterClass.armour.includes("any") ? false : true}
         />
         <span class="radio--label">Chainmail (AC 14) - 40gp</span>
-        </label>
+        </label>}
     
 
-    
+        {characterClass.armour.includes("any") && 
         <label className="armour-radio">
         <input
         type="radio"
@@ -398,22 +433,24 @@ return (
         className="form-check-input"
         checked={this.state.armourSelected === "Plate mail"}
         onChange={this.handleOptionChange}
+        disabled={characterClass.armour.includes("any") ? false : true}
         />
         <span class="radio--label">Plate mail (AC 16) - 60gp</span>
-        </label>
+        </label>}
     
 
-    
+        {characterClass.armour.includes("any") && 
         <label className="armour-radio">
         <input
-        type="radio"
+        type="checkbox"
         value="Shield"
         className="form-check-input"
-        checked={this.state.armourSelected === "Shield"}
-        onChange={this.handleOptionChange}
+        checked={this.state.shieldSelected === true}
+        onChange={this.handleShieldChange}
+        disabled={characterClass.armour.includes("any") ? false : true}
         />
         Shield (AC +1 bonus) - 10gp
-        </label>
+        </label>}
 
         </div>
             
@@ -425,9 +462,9 @@ return (
     price = {null}
     />
         
-        </div>
+        </div>}
 
-        <div className="equipment-container--header">Purchase Weapons</div>
+        <div className="equipment-container--header">Weapons</div>
 
         <div className="equipment-restrictions">Allowed Weapons: {characterClass.weapons}</div>
 
@@ -445,7 +482,7 @@ return (
 
         </div>
 
-        <div className="equipment-container--header">Purchase Adventuring Gear</div>
+        <div className="equipment-container--header">Adventuring Gear</div>
 
 
         <div className="gear-container">
@@ -488,6 +525,8 @@ return (
         </div>
 
         </div>
+
+        </StickyContainer>
 
 
 

@@ -22,7 +22,7 @@ class EquipmentBackpack extends React.Component {
             className="button button--equipment" 
             value = {this.props.name}
             onClick = {() => this.props.sellSelectedEquipment(this.props.name)}> 
-            X 
+            Sell 
             </button> 
             </li>
         )
