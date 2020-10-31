@@ -5,7 +5,6 @@ import armourData from './data/armourData.js';
 import classOptionsData from './data/classOptionsData'
 import EquipmentOptions from './EquipmentOptions.js';
 import EquipmentBackpack from './EquipmentBackpack.js';
-import { StickyContainer, Sticky} from 'react-sticky';
 
 
 class EquipmentScreen extends React.Component {
@@ -21,6 +20,10 @@ class EquipmentScreen extends React.Component {
             weapons: [],
             weaponSelected: "Sword",
         }
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
     getRndInteger = (min, max) => {
@@ -365,12 +368,12 @@ return (
 
     <div className="equipment-screen">
 
-    <StickyContainer>
+    <h3 className="header-default"> Equipment </h3>
 
     
-    <Sticky>{({ style }) => <div className="gold-container"> <h5 style={style} className="gold">
-
-        {this.state.gold} gp
+     <div className="gold-container"> 
+     
+     <h5 className="gold"> {this.state.gold} gp 
         
         {this.state.gold === null &&
         <button className="button button-primary button--gold" 
@@ -378,13 +381,9 @@ return (
         Roll Gold
         </button>}
 
-        
-    
-    
     </h5>
     
-    </div>}
-    </Sticky>
+    </div>
 
     <div className="equipment-container--header">Armour</div>
 
@@ -497,19 +496,19 @@ return (
 
         </div>
 
-        <h3 className="header-default"> Gear </h3>
+        <h3 className="header-default"> Inventory </h3>
 
         <div className="backpack-container">
 
 
-        <div className="armour-name">Armour:</div>
+        <div className="armour-name">Armour</div>
 
         <div className="armour-backpack">
             {this.armourBackpack()}
         </div>
 
         <div className="weapons-name">
-            Weapons:
+            Weapons
         </div>
 
         <div className="weapons-backpack">
@@ -517,8 +516,7 @@ return (
         </div>
 
 
-
-        <div className="gear-name">Gear: </div>
+        <div className="gear-name">Adventuring Gear</div>
 
         <div className="gear-backpack">
             {this.equipmentBackpack()}
@@ -526,7 +524,7 @@ return (
 
         </div>
 
-        </StickyContainer>
+        
 
 
 

@@ -46,7 +46,9 @@ class NewCharacter extends React.Component {
 
     componentDidMount() {
 
-   
+        
+        
+
         var RandomOrg = require('random-org');
         var random = new RandomOrg({ apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d" });
         random.generateIntegers({min: 1, max:6, n: 40})
@@ -92,6 +94,8 @@ class NewCharacter extends React.Component {
     }
 
     reRoll = () => {
+
+        window.scrollTo(0, 0);
 
         var newObject = {
 
@@ -333,14 +337,17 @@ class NewCharacter extends React.Component {
 
     showEquipmentScreen = () => {
         this.setState({ equipmentScreen: true, abilityScreen: false, classScreen: false })
+        window.scrollTo(0, 0);
     }
 
     showAbilityScreen = () => {
         this.setState({ equipmentScreen: false, abilityScreen: true, classScreen: false })
+        window.scrollTo(0, 0);
     }
 
     showClassScreen = () => {
         this.setState({ equipmentScreen: false, abilityScreen: false, classScreen: true})
+        window.scrollTo(0, 0);
     } 
 
     getClassInfo = () => {
