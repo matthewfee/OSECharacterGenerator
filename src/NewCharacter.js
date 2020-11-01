@@ -4,6 +4,7 @@ import ClassOptionsButton from './ClassOptionsButton.js';
 import EquipmentScreen from './EquipmentScreen.js';
 import ClassDescription from './ClassDescription.js';
 import ClassScreen from './ClassScreen.js'
+import DetailsScreen from './DetailsScreen.js'
 
 
 class NewCharacter extends React.Component {
@@ -36,6 +37,7 @@ class NewCharacter extends React.Component {
             equipmentScreen: false,
             abilityScreen: true,
             classScreen: false,
+            detailsScreen: false,
             goldStarting: undefined,
             randomNumbers: [],
  
@@ -174,7 +176,7 @@ class NewCharacter extends React.Component {
 
     getPrimeReqMod = () => {
 
-        const modArr = [null, null, null, "-20%", "-20%", "-20%", "-10%", "-10%", "-10%", "0", "0", "0", "0", "+5%", "+5%", "+5%", "+10%", "+10%", "+10%"]
+        const modArr = [null, null, null, "-20%", "-20%", "-20%", "-10%", "-10%", "-10%", "+0%", "+0%", "+0%", "+0%", "+5%", "+5%", "+5%", "+10%", "+10%", "+10%"]
 
         var abilityScore = this.state[this.state.primeReq]
         var abilityScore2 = this.state[this.state.primeReq2]
@@ -309,7 +311,7 @@ class NewCharacter extends React.Component {
             })
         };
 
-        this.state.getPrimeReqMod();
+        this.getPrimeReqMod();
     }
 
 
@@ -344,7 +346,16 @@ class NewCharacter extends React.Component {
     showClassScreen = () => {
         this.setState({ equipmentScreen: false, abilityScreen: false, classScreen: true})
         window.scrollTo(0, 0);
-    } 
+    }
+    
+    showDetailsScreen = () => {
+        this.setState({
+            equipmentScreen: false,
+            abilityScreen: false,
+            classScreen: false,
+            detailsScreen: true,
+        })
+    }
 
     getClassInfo = () => {
         
@@ -367,6 +378,7 @@ class NewCharacter extends React.Component {
 
 render() {
 
+    var classNames = require('classnames')
 
     console.log("Parent State", this.state)
 
@@ -405,12 +417,15 @@ render() {
         </div>
 
         
-        <h2 className="ability-scores--header header-default">Ability Scores</h2>
+        
 
         
-                    
-        <div className="container ability-score-container"> 
 
+        <h2 className="ability-scores--header header-default">Ability Scores</h2>
+        
+        <div className="container ability-score-container"> 
+        
+        {this.state.pointBuy > 0 && <div className="point-buy">Point Buy: {this.state.pointBuy}</div>}
             
         <div className="ability-score-name">
                 
@@ -418,16 +433,22 @@ render() {
             style={{'textDecoration': 
             this.state.primeReq === "strength" || this.state.primeReq2 === "strength" ? 'underline' : ''}}
             >STRENGTH</h2>
+
+            {(this.state.primeReq === "strength" ||
+            this.state.primeReq2 === "strength") &&
+            <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
             
         </div>
 
             
-            <div className="ability-score">{this.state.strength}
+            <div className="ability-score"
+                
+            >{this.state.strength}
 
                 {this.state.strength > 10 &&
                     <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("strength") }}>
                          <div className="arrow-down"></div>
-                    
+
                     </button>}
                 
                 {this.state.pointBuy > 0 && (this.state.primeReq === "strength" || this.state.primeReq2 === "strength" || this.state.strength < this.state.strengthOriginal) && this.state.strength < 18 &&
@@ -448,6 +469,11 @@ render() {
             style={{'textDecoration': 
             this.state.primeReq === "intelligence" || this.state.primeReq2 === "intelligence" ? 'underline' : ''}}
             >INTELLIGENCE</h2>
+
+
+            {(this.state.primeReq === "intelligence" ||
+            this.state.primeReq2 === "intelligence") &&
+            <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
                 
             </div>     
             <div className="ability-score">{this.state.intelligence} 
@@ -476,6 +502,11 @@ render() {
                 style={{'textDecoration': 
                 this.state.primeReq === "wisdom" || this.state.primeReq2 === "wisdom" ? 'underline' : ''}}
                 >WISDOM</h2>
+
+                {(this.state.primeReq === "wisdom" ||
+                this.state.primeReq2 === "wisdom") &&
+                <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
+
             </div> 
             <div className="ability-score">{this.state.wisdom}
                 {this.state.wisdom > 10 &&
@@ -498,6 +529,10 @@ render() {
                 this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity" ? 'underline' : ''}}
                 >DEXTERITY</h2>
 
+                {(this.state.primeReq === "dexterity" ||
+                this.state.primeReq2 === "dexterity") &&
+                <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}   
+
             </div>
 
             <div className="ability-score">{this.state.dexterity} 
@@ -506,6 +541,7 @@ render() {
                 <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("dexterity") }}>
                     <div className="arrow-up"></div>    
                 </button>}
+
             </div>
 
             <div className="ability-mod">
@@ -525,6 +561,10 @@ render() {
                 style={{'textDecoration': 
                 this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution" ? 'underline' : ''}}
                 >CONSTITUTION</h2>
+
+                {(this.state.primeReq === "constitution" ||
+                this.state.primeReq2 === "constitution") &&
+                <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
             </div>
             <div className="ability-score"> {this.state.constitution}
                 {this.state.pointBuy > 0 && (this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution") && this.state.constitution < 18 &&
@@ -542,7 +582,12 @@ render() {
                 style={{'textDecoration': 
                 this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma" ? 'underline' : ''}}
                 >CHARISMA</h2>
+
+                {(this.state.primeReq === "charisma" ||
+                this.state.primeReq2 === "charisma") &&
+                <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
             </div>
+
             <div className="ability-score"> {this.state.charisma} 
                 {this.state.pointBuy > 0 && (this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma") && this.state.charisma < 18 &&
                 <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("charisma") }}>
@@ -565,13 +610,9 @@ render() {
 
             </div>
 
-        <div className="point-buy">Point Buy: {this.state.pointBuy}</div>
-        <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>
-
-        {this.state.strength && <button onClick={this.resetCharacter}>Reset</button>}
-
         {this.state.strength && this.state.characterClass !== null && <div>
-                <button onClick={this.showClassScreen}>Class Options</button> </div>}
+                <button className="button button--class-option" 
+                onClick={this.showClassScreen}>Go to Class Options</button> </div>}
             
         </div>}
 
@@ -589,10 +630,18 @@ render() {
         <EquipmentScreen 
         characterClass={this.state.characterClass}
         showAbilityScreen={this.showAbilityScreen} 
+        showDetailsScreen={this.showDetailsScreen}
         gold={this.state.goldStarting} 
         />}
+
+        {this.state.detailsScreen &&
+        <DetailsScreen>
+
+        </DetailsScreen>}
         
         </div>
+
+
 
     </div>
     )

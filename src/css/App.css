@@ -301,7 +301,7 @@
   flex-direction: column;
   width: 80%;
   margin: auto;
-  border-bottom: 1px solid black;
+  margin-bottom: 10px;
 }
 
 .class-ability-menu>.class-ability-menu--header {
@@ -550,6 +550,13 @@ div>.class-options-container>.button:disabled {
   margin-top: 1rem;
 }
 
+.button--character-details {
+
+  width: min-content;
+  margin: auto;
+  margin-top: 20px;
+}
+
 .header {
   text-align: center;
   min-height: 4rem;
@@ -594,6 +601,7 @@ div>.class-options-container>.button:disabled {
   font-size: 3rem;
   padding: 2rem;
   padding-top: 4rem;
+  max-width: 340px;
   width: 80%;
   margin: auto;
   margin-bottom: 2rem;
@@ -633,8 +641,24 @@ div>.class-options-container>.button:disabled {
   max-height: 12rem;
 }
 
-.point-buy {
-  margin-bottom: 1rem;
+.ability-score-container > .point-buy {
+  position: absolute;
+  font-size: 1.2rem;
+  font-weight: normal;
+  font-style: italic;
+  left: 50%;
+  transform: translate(-50%);
+  top: -2rem;
+  text-align: center;
+
+}
+
+.prime-req {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .saving-throws-menu {

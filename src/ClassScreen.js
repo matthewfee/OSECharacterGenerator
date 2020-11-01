@@ -146,8 +146,10 @@ class ClassScreen extends React.Component {
 
             </div>
             
-            <button onClick={this.props.showAbilityScreen()}>Go Back</button>
-            <button onClick={this.props.showEquipmentScreen()}>Equipment</button>
+            
+            {this.state.hitPoints > 0 &&
+            <button className="button button--equipment-options"
+            onClick={this.props.showEquipmentScreen()}>Go to Equipment</button>}
             
             
         </div>

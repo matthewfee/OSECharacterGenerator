@@ -414,10 +414,6 @@ class EquipmentScreen extends React.Component {
     };
 
 
-
-    
-
-
     render() {
 
     var characterClass = classOptionsData.find(obj => obj.name === this.props.characterClass) 
@@ -561,8 +557,6 @@ return (
 
         </div>
 
-        </div>}
-
         <h3 className="header-default"> Inventory </h3>
 
         <div className="backpack-container">
@@ -575,19 +569,21 @@ return (
             {this.weaponsBackpack()}
         </div>}
 
-        <div className="gear-backpack">
+        {this.state.equipment.length > 0 &&<div className="gear-backpack">
             {this.equipmentBackpack()}
-        </div>
+        </div>}
 
         </div>
+    
+        {this.state.gold &&
+        <button 
+        className="button button--character-details" 
+        onClick={this.props.showDetailsScreen}>
+            Go to Character Details
+        </button>}
 
-        
+        </div>}
 
-        
-
-
-
-        <button onClick={this.props.showAbilityScreen}>Go Back</button>
     </div>
 
 )
