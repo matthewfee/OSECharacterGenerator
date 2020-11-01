@@ -310,6 +310,20 @@
 
 .class-ability-menu>.class-ability-menu--abilities {
   font-size: 1.2rem;
+  margin: auto;
+  width: 80%;
+}
+
+.class-ability {
+  padding-left: 10px;
+  list-style: square;
+}
+
+.class-ability-list {
+  font-size: 1.4rem;
+  text-align: left;
+  width: fit-content;
+  margin: auto;
 }
 
 
@@ -629,12 +643,10 @@ div>.class-options-container>.button:disabled {
   width: 80%;
   margin: auto;
   border-bottom: 1px solid black;
-  margin-bottom: 2rem;
 }
 
 .saving-throws-menu--header {
   font-size: 2rem;
-  width: auto;
   margin: auto;
   margin-bottom: 4rem;
 }
@@ -701,7 +713,7 @@ div>.class-options-container>.button:disabled {
 
 .saving-throws.container>.saving-throw--paralysis {
   top: 105%;
-  left: 45%;
+  left: 50%;
 }
 
 .saving-throws.container>.saving-throw--paralysis--value {
@@ -720,7 +732,7 @@ div>.class-options-container>.button:disabled {
 }
 
 .saving-throws.container>.saving-throw--spells {
-  top: 38%;
+  top: 36%;
   left: -90%;
 }
 

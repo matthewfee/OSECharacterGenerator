@@ -130,12 +130,16 @@ class ClassScreen extends React.Component {
 
             <div className="class-ability-menu">
 
-                <h5 className="saving-throws-menu--header"> {this.props.characterClass} Abilities
+                <h5 className="class-ability-menu--header"> {this.props.characterClass} Abilities
                 </h5>
 
                 <div className="class-ability-menu--abilities">
-                    <ul>
-                        <li>{obj.abilities}</li>
+                    <ul className="class-ability-list">
+                        {obj.abilities.map((item) => {
+                            return (
+                                <li className="class-ability"> {item} </li>
+                            )
+                        })}
                     </ul>
 
                 </div>

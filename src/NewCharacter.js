@@ -168,8 +168,6 @@ class NewCharacter extends React.Component {
             charismaModLoyalty: loyalty[CHA],
         
         }
-        console.log("SOME NEW MODS")
-        console.table(newMods)
 
         this.setState(newMods, () => {this.getPrimeReqMod()})
     }
@@ -186,8 +184,6 @@ class NewCharacter extends React.Component {
         if (abilityScore2 < abilityScore) {
             abilityScore = abilityScore2
         }
-        console.log("UPDATING PRIME REQ")
-        console.log(modArr[abilityScore])
         
         this.setState({primeReqMod: modArr[abilityScore]})
 
@@ -371,13 +367,14 @@ class NewCharacter extends React.Component {
 
 render() {
 
+
     console.log("Parent State", this.state)
 
     return (
 
     <div className="wrapper">
 
-        <header className="header" style={{'margin-top': !this.state.strength ? '30rem' : ''}}>
+        <header className="header" style={{'marginTop': !this.state.strength ? '30rem' : ''}}>
 
         <h2 className="title">OSR Character Generator</h2>
 
@@ -417,7 +414,10 @@ render() {
             
         <div className="ability-score-name">
                 
-            <h2>STRENGTH</h2>
+            <h2 
+            style={{'textDecoration': 
+            this.state.primeReq === "strength" || this.state.primeReq2 === "strength" ? 'underline' : ''}}
+            >STRENGTH</h2>
             
         </div>
 
@@ -444,7 +444,10 @@ render() {
 
             <div className="ability-score-name">
                 
-                <h2>INTELLIGENCE</h2>
+            <h2 
+            style={{'textDecoration': 
+            this.state.primeReq === "intelligence" || this.state.primeReq2 === "intelligence" ? 'underline' : ''}}
+            >INTELLIGENCE</h2>
                 
             </div>     
             <div className="ability-score">{this.state.intelligence} 
@@ -468,7 +471,11 @@ render() {
 
             
             <div className="ability-score-name">
-                <h2>WISDOM</h2>  
+
+                <h2 
+                style={{'textDecoration': 
+                this.state.primeReq === "wisdom" || this.state.primeReq2 === "wisdom" ? 'underline' : ''}}
+                >WISDOM</h2>
             </div> 
             <div className="ability-score">{this.state.wisdom}
                 {this.state.wisdom > 10 &&
@@ -486,9 +493,13 @@ render() {
 
             
             <div className="ability-score-name">
-                <h2>DEXTERITY</h2>
+                <h2 
+                style={{'textDecoration': 
+                this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity" ? 'underline' : ''}}
+                >DEXTERITY</h2>
 
             </div>
+
             <div className="ability-score">{this.state.dexterity} 
                     
                 {this.state.pointBuy > 0 && (this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity") && this.state.dexterity < 18 &&
@@ -496,6 +507,7 @@ render() {
                     <div className="arrow-up"></div>    
                 </button>}
             </div>
+
             <div className="ability-mod">
                 <span> AC: {this.state.dexterityModAC}
                 </span>
@@ -509,7 +521,10 @@ render() {
 
 
             <div className="ability-score-name">
-                <h2>CONSTITUTION</h2>
+                <h2 
+                style={{'textDecoration': 
+                this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution" ? 'underline' : ''}}
+                >CONSTITUTION</h2>
             </div>
             <div className="ability-score"> {this.state.constitution}
                 {this.state.pointBuy > 0 && (this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution") && this.state.constitution < 18 &&
@@ -523,7 +538,10 @@ render() {
             </div>
 
             <div className="ability-score-name">
-                <h2>CHARISMA</h2> 
+                <h2 
+                style={{'textDecoration': 
+                this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma" ? 'underline' : ''}}
+                >CHARISMA</h2>
             </div>
             <div className="ability-score"> {this.state.charisma} 
                 {this.state.pointBuy > 0 && (this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma") && this.state.charisma < 18 &&
