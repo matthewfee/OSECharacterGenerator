@@ -66,6 +66,8 @@ class ClassScreen extends React.Component {
 
         <div className="class-options-screen"> 
 
+            <h3 className="header-default">Class Options</h3>
+
             {!this.state.HPResult &&
             <button className="button button-primary button--hp" onClick={() => setTimeout(this.getHitPoints(), 200)}> Roll HP</button>}
 
@@ -149,7 +151,7 @@ class ClassScreen extends React.Component {
             
             {this.state.hitPoints > 0 &&
             <button className="button button--equipment-options"
-            onClick={this.props.showEquipmentScreen()}>Go to Equipment</button>}
+            onClick={this.props.showEquipmentScreen}>Go to Equipment</button>}
             
             
         </div>

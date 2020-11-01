@@ -306,6 +306,11 @@
 
 .class-ability-menu>.class-ability-menu--header {
   margin-top: 2rem;
+  font-size: 2rem;
+  color: rgb(34, 34, 34);
+
+  
+
 }
 
 .class-ability-menu>.class-ability-menu--abilities {
@@ -665,6 +670,7 @@ div>.class-options-container>.button:disabled {
   display: flex;
   flex-direction: column;
   width: 80%;
+  max-width: 340px;
   margin: auto;
   border-bottom: 1px solid black;
 }

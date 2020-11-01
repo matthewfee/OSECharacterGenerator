@@ -16,7 +16,7 @@ class DetailsScreen extends React.Component {
 
 
         return (
-            <h1>Details Screen</h1>
+            <h3 className="header-default">Character Details</h3>
             )
 
 

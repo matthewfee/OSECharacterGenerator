@@ -375,6 +375,10 @@ class NewCharacter extends React.Component {
             )
     }
 
+    updateParentState = (object) => {
+        this.setState(object)
+    }
+
 
 render() {
 
@@ -604,7 +608,7 @@ render() {
                 <span>
                     Loyalty: {this.state.charismaModLoyalty}
                 </span>
-                </div>
+            </div>
             
  
 
@@ -619,8 +623,8 @@ render() {
       
         {this.state.classScreen && 
         <ClassScreen 
-        showEquipmentScreen={() => this.showEquipmentScreen}
-        showAbilityScreen={() => this.showAbilityScreen} 
+        showEquipmentScreen={this.showEquipmentScreen}
+        showAbilityScreen={this.showAbilityScreen} 
         characterClass={this.state.characterClass} 
         conMod={parseInt(this.state.constitutionMod)} 
         d={this.d}>
