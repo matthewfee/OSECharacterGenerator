@@ -22,7 +22,7 @@ class ClassScreen extends React.Component {
         var HPResult = this.props.d(1, this.state.hitDie)
         var totalHP = HPResult + this.props.conMod
         if (totalHP < 1) 
-            {return totalHP = 1}
+            {totalHP = 1}
         this.setState(
             {hitPoints: totalHP,
             conModifier: this.props.conMod,

@@ -295,6 +295,63 @@
 
 }
 
+.character-details-form {
+  font-size: 1.4rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.character-details-form > .form-label {
+  align-items: center;
+  width: 80%;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+}
+
+.form-label > .form-text {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-weight: bold;
+
+}
+
+
+.button--alignment--selected {
+  color: #FF0000 !important;
+  
+}
+
+ .button--alignment:hover {
+  color: #FF0000 !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.form-label > .form-input {
+  font-size: 1.8rem;
+  text-align: center;
+  font-weight: normal;
+}
+
+.form-label > .details-result {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  min-width: 140px;
+  height: 38px;
+  margin-bottom: 10px;
+}
+
+.details-result > .details-result--data {
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: right;
+}
+
+
 
 .class-ability-menu {
   display: flex;
@@ -456,8 +513,8 @@ div.character-menu {
   width: auto;
   padding: 0;
   margin: 0;
-  color: red;
-  background-color: rgba(0, 0, 0, 0.05)
+  color: #FF0000;
+  background-color: rgba(0, 0, 0, 0.05),
 }
 
 .class-options-container>.button-class-option:focus {
@@ -465,7 +522,7 @@ div.character-menu {
   width: auto;
   padding: 0;
   margin: 0;
-  color: red;
+  color:#FF0000;
 }
 
 div.ability-mod {

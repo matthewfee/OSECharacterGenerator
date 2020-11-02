@@ -70,6 +70,7 @@ class NewCharacter extends React.Component {
         }
         return total;
     }
+    
 
    choose = (array) => {
         return array[Math.floor(Math.random() * array.length)]
@@ -132,11 +133,11 @@ class NewCharacter extends React.Component {
         var INT = this.state.intelligence
         var WIS = this.state.wisdom
         var DEX = this.state.dexterity
-        var CON = this.state.constitution
+        var CON = parseInt(this.state.constitution)
         var CHA = this.state.charisma
         
 
-        const abilityMod = ['-3', '-2', '-2', '-1', '-1',
+        const abilityMod = [null, null, null, '-3', '-2', '-2', '-1', '-1',
         '-1', '0', '0', '0', '0', '+1', '+1', '+1',
         '+2', '+2', '+3'];
 
@@ -186,6 +187,27 @@ class NewCharacter extends React.Component {
         if (abilityScore2 < abilityScore) {
             abilityScore = abilityScore2
         }
+
+
+        if (this.state.characterClass === "Elf") {
+            if (this.state.intellience > 15 && this.state.strength > 12) {
+                return this.setState({primeReqMod: "+10%"})
+            } else if (this.state.intellience > 12 && this.state.strength > 12) {
+                return this.setState({primeReqMod: "+5%"})
+            } else {
+                return this.setState({primeReqMod: "+0%"})
+            }
+        }
+
+        if (this.state.characterClass === "Halfling") {
+            if (this.state.dexterity > 12 && this.state.strength > 12) {
+                return this.setState({primeReqMod: "+10%"})
+            } else if (this.state.dexterity > 12 || this.state.strength > 12) {
+                return this.setState({primeReqMod: "+5%" })
+            }
+        }
+
+
         
         this.setState({primeReqMod: modArr[abilityScore]})
 
@@ -311,7 +333,6 @@ class NewCharacter extends React.Component {
             })
         };
 
-        this.getPrimeReqMod();
     }
 
 
@@ -382,7 +403,7 @@ class NewCharacter extends React.Component {
 
 render() {
 
-    var classNames = require('classnames')
+    
 
     console.log("Parent State", this.state)
 
