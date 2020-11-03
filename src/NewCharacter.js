@@ -5,6 +5,7 @@ import EquipmentScreen from './EquipmentScreen.js';
 import ClassDescription from './ClassDescription.js';
 import ClassScreen from './ClassScreen.js'
 import DetailsScreen from './DetailsScreen.js'
+import CharacterSheetScreen from './CharacterSheetScreen.js';
 
 
 class NewCharacter extends React.Component {
@@ -38,6 +39,7 @@ class NewCharacter extends React.Component {
             abilityScreen: true,
             classScreen: false,
             detailsScreen: false,
+            characterSheetScreen: false,
             goldStarting: undefined,
             randomNumbers: [],
  
@@ -378,6 +380,14 @@ class NewCharacter extends React.Component {
         })
     }
 
+    showCharacterSheetScreen = () => {
+        this.setState({
+            detailsScreen: false,
+            characterSheetScreen: true,
+        })
+
+    }
+
     getClassInfo = () => {
         
         if (this.state.characterClass === null) {return "choose your class"}
@@ -397,6 +407,7 @@ class NewCharacter extends React.Component {
     }
 
     updateParentState = (object) => {
+        console.log(object, "PARENT STATE UPDATE")
         this.setState(object)
     }
 
@@ -411,9 +422,15 @@ render() {
 
     <div className="wrapper">
 
-        <header className="header" style={{'marginTop': !this.state.strength ? '30rem' : ''}}>
+        <header className={this.state.strength ? 'header' : 'header header--initial'} style={{'marginTop': !this.state.strength ? '300px' : ''}}>
 
-        <h2 className="title">OSR Character Generator</h2>
+        
+        <h2 className="title"
+            style={{'font-size': this.state.strength ? '2rem' : ''}}
+        >
+            D&D Character Generator
+        
+        </h2>
 
         {this.state.abilityScreen && !this.state.strength &&
         <button className={`button button--roll button-primary`} 
@@ -430,7 +447,7 @@ render() {
 
         <div className="ability-screen container">
                       
-        <h2 className="header-default">Character Class</h2>  
+       {/* <h2 className="header-default">Character Class</h2>   */}
 
         <div className="class-options-container container">
 
@@ -470,7 +487,7 @@ render() {
                 
             >{this.state.strength}
 
-                {this.state.strength > 10 &&
+                {this.state.strength > 10 && this.state.characterClass !== "Thief" &&
                     <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("strength") }}>
                          <div className="arrow-down"></div>
 
@@ -644,6 +661,7 @@ render() {
       
         {this.state.classScreen && 
         <ClassScreen 
+        updateParentState={this.updateParentState}
         showEquipmentScreen={this.showEquipmentScreen}
         showAbilityScreen={this.showAbilityScreen} 
         characterClass={this.state.characterClass} 
@@ -653,6 +671,7 @@ render() {
 
         {this.state.equipmentScreen &&
         <EquipmentScreen 
+        updateParentState={this.updateParentState}
         characterClass={this.state.characterClass}
         showAbilityScreen={this.showAbilityScreen} 
         showDetailsScreen={this.showDetailsScreen}
@@ -660,9 +679,21 @@ render() {
         />}
 
         {this.state.detailsScreen &&
-        <DetailsScreen>
+        <DetailsScreen
+        showCharacterSheetScreen={this.showCharacterSheetScreen}
+        updateParentState={this.updateParentState}
+        parentState={this.state}
+        >
 
         </DetailsScreen>}
+
+        
+        {this.state.characterSheetScreen && <CharacterSheetScreen
+        parentState={this.state}
+        >
+            
+        
+        </CharacterSheetScreen>}
         
         </div>
 

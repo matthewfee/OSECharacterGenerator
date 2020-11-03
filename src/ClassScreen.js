@@ -51,16 +51,17 @@ class ClassScreen extends React.Component {
         return obj.savingThrows
     }
 
-    
+        
 
     
     render()
-    
-        
+
     
             {
 
-        var obj = classOptionsData.find(obj => obj.name === this.props.characterClass)    
+        var obj = classOptionsData.find(obj => obj.name === this.props.characterClass)   
+        
+        let stateObject = {hitPoints: this.state.hitPoints}
 
         return (
 
@@ -107,7 +108,8 @@ class ClassScreen extends React.Component {
                 </div>    
               
             </div>
-
+            
+            {this.state.hitPoints &&
                 
             <div className="saving-throws-menu">
 
@@ -128,8 +130,9 @@ class ClassScreen extends React.Component {
                 </div> 
 
 
-            </div>
-
+            </div>}
+            
+            {this.state.hitPoints &&
             <div className="class-ability-menu">
 
                 <h5 className="class-ability-menu--header"> {this.props.characterClass} Abilities
@@ -146,12 +149,18 @@ class ClassScreen extends React.Component {
 
                 </div>
 
-            </div>
+            </div>}
             
             
             {this.state.hitPoints > 0 &&
             <button className="button button--equipment-options"
-            onClick={this.props.showEquipmentScreen}>Go to Equipment</button>}
+            onClick={() => {
+                this.props.updateParentState(stateObject)
+                this.props.showEquipmentScreen();
+            }}
+            >Go to Equipment</button>}
+
+            
             
             
         </div>

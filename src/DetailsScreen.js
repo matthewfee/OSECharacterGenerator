@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import jsPDF from 'jspdf'
 import domtoimage from 'dom-to-image';
 
@@ -168,7 +168,7 @@ class DetailsScreen extends React.Component {
                     <input className="form-input" type="text" value={this.state.name} onChange={this.handleName} />
                     <button className="button button--random-name" 
                     onClick={this.getName}
-                    type="button">Random</button>
+                    type="button">Random Name</button>
                 </label>
 
                 <div className="form-label form-label--alignment">
@@ -248,7 +248,8 @@ class DetailsScreen extends React.Component {
                         <span className="details-result--name">Background:</span> 
                         <span className="details-result--data">{this.state.background}</span>
 
-                        </div>}
+                    </div>}
+
                 </div>
 
                
@@ -256,6 +257,23 @@ class DetailsScreen extends React.Component {
                 
 
             </div>
+
+            <button 
+            className="button button--character-sheet" 
+            onClick={() => {
+
+                let stateObject = {
+                    name: this.state.name,
+                    alignment: this.state.alignment,
+                    apperance: this.state.appearance,
+                    background: this.state.background,
+                    personality: this.state.personality,
+                }
+                this.props.updateParentState(stateObject)
+                this.props.showCharacterSheetScreen();
+            }}>
+            Go to Character Sheet
+            </button>
 
 
 

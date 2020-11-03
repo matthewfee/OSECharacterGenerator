@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 * {
   margin: 0;
   padding: 0;
@@ -30,9 +32,11 @@
   grid-template-rows: repeat(6, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
-  width: 100%;
+  max-width: 400px;
+  margin: auto;
   position: relative;
   margin-top: 25px;
+  margin-bottom: 20px;
 
 }
 
@@ -48,17 +52,23 @@
 
 }
 
+.ability-score-container > .ability-mod {
+  padding-left: 3rem;
+  justify-self: center;
+  width: 14rem;
+}
+
 .ability-score-container>.ability-score {
   justify-self: center;
   text-align: center;
-  font-size: 4rem;
+  font-size: 2.6rem;
   color: black;
   border-radius: 10px;
   background-color: rgba(2, 0, 106, 0.153);
   width: auto;
   height: auto;
-  height: 6rem;
-  width: 6rem;
+  height: 5rem;
+  width: 5rem;
 
 }
 
@@ -70,11 +80,12 @@
 }
 
 .ability-score-container>.ability-score-name>h2 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bold;
   padding-left: 0rem;
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 0rem;
+
 
 }
 
@@ -87,11 +98,10 @@
 
 
 .ability-score-container>div>span {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-right: 0.4rem;
-  text-align: right;
+  text-align: left;
   font-weight: normal;
-  text-transform: uppercase;
 }
 
 
@@ -176,6 +186,10 @@
 .armour-radio > .form-check-input {
   vertical-align: center;
   margin-top: 4px;
+}
+
+.inventory {
+  min-height: 180px;
 }
 
 .backpack-container {
@@ -271,7 +285,7 @@
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
-  border-top: 2.2rem solid rgba(255, 0, 0, 0.5);
+  border-top: 2.2rem solid rgba(255, 0, 0, 0.8);
 
 }
 
@@ -300,14 +314,24 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+  width: 80%;
+  margin: auto;
 }
 
 .character-details-form > .form-label {
-  align-items: center;
+  align-items: left;
   width: 80%;
   display: flex;
   flex-flow: column nowrap;
-  text-align: center;
+
+}
+
+.character-details-form > .form-label--optional-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .form-label > .form-text {
@@ -339,9 +363,9 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  min-width: 140px;
+  width: 220px;
   height: 38px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .details-result > .details-result--data {
@@ -408,12 +432,12 @@
 .class-details>.class-details--arrow {
   width: 0;
   height: 0;
-  margin: 1rem;
+  margin: 0.8rem;
   margin-left: 1rem;
   margin-right: 1rem;
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
-  border-bottom: 1rem solid #E50000;
+  border-bottom: 1.0rem solid #E50000;
   ;
 }
 
@@ -432,6 +456,7 @@ div.ability-screen {
 
   display: inline-block;
   width: 100vw;
+  min-height: 630px;
   max-width: 600px;
   position: relative;
   padding: 0;
@@ -506,6 +531,11 @@ div.character-menu {
     height: 6rem;
   }
 
+  .header--initial {
+    background-image: none;
+  }
+
+
 }
 
 .class-options-container>.button-class-option:hover {
@@ -514,7 +544,7 @@ div.character-menu {
   padding: 0;
   margin: 0;
   color: #FF0000;
-  background-color: rgba(0, 0, 0, 0.05),
+  background-color: rgba(0, 0, 0, 0.025) !important
 }
 
 .class-options-container>.button-class-option:focus {
@@ -525,10 +555,7 @@ div.character-menu {
   color:#FF0000;
 }
 
-div.ability-mod {
-  font-size: 1.0rem;
-  padding-right: 0.8rem;
-}
+
 
 div>.class-options-container {
   display: grid;
@@ -584,7 +611,7 @@ div>.class-options-container>.button:disabled {
   text-align: center;
   left: 0;
   right: 0;
-  border-radius: 2px;
+  border-radius: 0px;
   opacity: 1;
   width: 100%;
   height: 100%;
@@ -596,7 +623,6 @@ div>.class-options-container>.button:disabled {
   text-transform: uppercase;
   font-family: Helvetica, sans-serif;
   font-size: 24px;
-  border-radius: 4px;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: .1rem;
@@ -619,9 +645,13 @@ div>.class-options-container>.button:disabled {
   margin-top: 20px;
 }
 
+.button--character-sheet {
+  margin-top: 20px;
+}
+
 .header {
   text-align: center;
-  min-height: 4rem;
+  min-height: 6rem;
   color: whitesmoke;
   display: inline-block;
   width: 100%;
@@ -636,7 +666,7 @@ div>.class-options-container>.button:disabled {
   color: #FF0000;
   background-color: black;
   width: 10rem;
-  margin-top: 0.5rem;
+  margin-top: 30px;
   margin-bottom: 0.5rem;
   padding: 0;
   border: none;
@@ -650,7 +680,6 @@ div>.class-options-container>.button:disabled {
 
 .header>.button--roll:hover {
   color: #E50000;
-  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   width: 10rem;
   padding: 0;
@@ -841,15 +870,17 @@ div>.class-options-container>.button:disabled {
 
 
 .title {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 2rem;
+  
+  font-size: 5rem;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  letter-spacing: .2rem;
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  font-weight: normal;
   background-color: rgba(0, 0, 0, 0);
   border-radius: 4px;
   padding: 2rem;

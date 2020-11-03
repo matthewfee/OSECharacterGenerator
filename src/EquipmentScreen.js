@@ -446,7 +446,7 @@ return (
 
     <div className="armour-container-parent">
 
-    <div className="equipment-container--header">Armour</div>
+    <div className="equipment-container--header">{this.props.characterClass} Armour</div>
 
     <div className="equipment-restrictions">Allowed Armour: {characterClass.armour}</div>
     
@@ -518,13 +518,14 @@ return (
     value="Buy" 
     onClick={this.buySelectedArmour} 
     price = {null}
+    disabled = {this.state.armourSelected ? false : true}
     />
         
         </div>
     
     </div>}
 
-        <div className="equipment-container--header">Weapons</div>
+        <div className="equipment-container--header">{this.props.characterClass} Weapons</div>
 
         <div className="equipment-restrictions">Allowed Weapons: {characterClass.weapons}</div>
 
@@ -557,6 +558,8 @@ return (
 
         </div>
 
+        <div className="inventory">
+
         <h3 className="header-default"> Inventory </h3>
 
         <div className="backpack-container">
@@ -574,13 +577,29 @@ return (
         </div>}
 
         </div>
+
+        </div>
     
+
         {this.state.gold &&
         <button 
         className="button button--character-details" 
-        onClick={this.props.showDetailsScreen}>
-            Go to Character Details
+        onClick={() => {
+
+            let stateObject = {
+                gold: this.state.gold,
+                equipment: this.state.equipment, 
+                armour: this.state.armour,
+                weapons: this.state.weapons
+            }
+            this.props.updateParentState(stateObject)
+            this.props.showDetailsScreen();
+        }}>
+           Go to Character Details
         </button>}
+
+
+        
 
         </div>}
 
