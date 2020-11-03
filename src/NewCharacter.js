@@ -145,7 +145,7 @@ class NewCharacter extends React.Component {
 
         const openDoors = [null, null, null, "1-in-6", "1-in-6", "1-in-6", "1-in-6", "1-in-6", "1-in-6", "2-in-6", "2-in-6", "2-in-6", "2-in-6", "3-in-6",  "3-in-6",  "3-in-6",  "4-in-6", "4-in-6", 
         ]
-        const spokenLanguages = [null, null, null, "Broken speech", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "Native +1", "Native +1", "Native +1 ","Native +2", "Native +2", "Native +3"]
+        const spokenLanguages = [null, null, null, "Broken speech", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "Native", "+1", "+1", "+1 ","+2", "+2", "+3"]
 
         const literacy = [null, null, null, "Illiterate", "Illiterate", "Illiterate", "Basic", "Basic", "Basic", "Literate", "Literate", "Literate", "Literate", "Literate", "Literate", "Literate", "Literate", "Literate", "Literate" ]
 
@@ -160,7 +160,7 @@ class NewCharacter extends React.Component {
         const newMods = {
             
             strengthModMelee: abilityMod[STR],
-            strenghtModDoors: openDoors[STR],
+            strengthModDoors: openDoors[STR],
             intelligenceModLanguages: spokenLanguages[INT], 
             intelligenceModLiteracy: literacy[INT],
             wisdomMod: abilityMod[WIS],
@@ -414,9 +414,8 @@ class NewCharacter extends React.Component {
 
 render() {
 
-    
 
-    console.log("Parent State", this.state)
+    const redFail = "#730505"
 
     return (
 
@@ -483,9 +482,13 @@ render() {
         </div>
 
             
-            <div className="ability-score"
+            <div 
+            className={this.state.strength > 15 ? 'ability-score ability-score--high' : 'ability-score'}
+            style={{'color': this.state.strength < 6 ? redFail : ''}}
+            >
                 
-            >{this.state.strength}
+            
+                {this.state.strength}
 
                 {this.state.strength > 10 && this.state.characterClass !== "Thief" &&
                     <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("strength") }}>
@@ -516,9 +519,15 @@ render() {
             {(this.state.primeReq === "intelligence" ||
             this.state.primeReq2 === "intelligence") &&
             <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
-                
-            </div>     
-            <div className="ability-score">{this.state.intelligence} 
+            </div> 
+
+
+            <div 
+            className={this.state.intelligence > 15 ? 'ability-score ability-score--high' : 'ability-score'}
+            style={{'color': this.state.intelligence < 6 ? redFail : ''}}
+            >
+                {this.state.intelligence} 
+
                 {this.state.intelligence > 10 &&
                 <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("intelligence") }}>
                     
@@ -550,7 +559,13 @@ render() {
                 <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
 
             </div> 
-            <div className="ability-score">{this.state.wisdom}
+            <div 
+            style={{'color': this.state.wisdom < 6 ? redFail : ''}}
+            className={this.state.wisdom > 15 ? 'ability-score ability-score--high' : 'ability-score'}>
+                
+                {this.state.wisdom}
+
+
                 {this.state.wisdom > 10 &&
                 <button className="button button--ability button--ability--decrease"onClick={() => { this.scoreDecrease("wisdom") }}>
                     <div className="arrow-down"></div>        
@@ -577,7 +592,11 @@ render() {
 
             </div>
 
-            <div className="ability-score">{this.state.dexterity} 
+            <div className={this.state.dexterity > 15 ? 'ability-score ability-score--high' : 'ability-score'}
+                style={{'color': this.state.dexterity < 6 ? redFail : ''}}
+            >
+                
+                {this.state.dexterity} 
                     
                 {this.state.pointBuy > 0 && (this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity") && this.state.dexterity < 18 &&
                 <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("dexterity") }}>
@@ -608,7 +627,16 @@ render() {
                 this.state.primeReq2 === "constitution") &&
                 <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
             </div>
-            <div className="ability-score"> {this.state.constitution}
+
+
+            <div className={this.state.constitution > 15 ? 'ability-score ability-score--high' : 'ability-score'}
+            style={{'color': this.state.constitution < 6 ? redFail : ''}}
+            
+            > 
+            
+            {this.state.constitution}
+
+
                 {this.state.pointBuy > 0 && (this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution") && this.state.constitution < 18 &&
                 <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("constitution") }}>
                     <div className="arrow-up"></div>     
@@ -630,13 +658,20 @@ render() {
                 <div className="prime-req">Prime Req: {this.state.primeReqMod}</div>}
             </div>
 
-            <div className="ability-score"> {this.state.charisma} 
+            <div className={this.state.charisma > 15 ? 'ability-score ability-score--high' : 'ability-score'}
+            style={{'color': this.state.charisma < 6 ? redFail : ''}}
+            >
+                
+                {this.state.charisma} 
+
+
                 {this.state.pointBuy > 0 && (this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma") && this.state.charisma < 18 &&
                 <button className="button button--ability button--ability--increase"onClick={() => { this.scoreIncrease("charisma") }}>
                     <div className="arrow-up"></div>     
                     
                 </button>}
             </div>
+
             <div className="ability-mod">
                 <span> NPC Reactions: {this.state.charismaModNPCReactions}
                 </span>

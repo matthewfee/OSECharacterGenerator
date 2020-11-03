@@ -53,9 +53,9 @@
 }
 
 .ability-score-container > .ability-mod {
-  padding-left: 3rem;
+  padding-left: 2.4rem;
   justify-self: center;
-  width: 14rem;
+  min-width: 14rem;
 }
 
 .ability-score-container>.ability-score {
@@ -64,14 +64,18 @@
   font-size: 2.6rem;
   color: black;
   border-radius: 10px;
-  background-color: rgba(2, 0, 106, 0.153);
+  background-color: rgba(167, 166, 189, 0.22);
   width: auto;
   height: auto;
   height: 5rem;
   width: 5rem;
-
 }
 
+
+.ability-score-container > .ability-score--high {
+  color: #1c6400;
+
+}
 .ability-score-container>.ability-score-name {
   display: flexbox;
   text-align: center;
@@ -645,13 +649,17 @@ div>.class-options-container>.button:disabled {
   margin-top: 20px;
 }
 
+.button.button--class-option {
+  margin-bottom: 20px;
+}
+
 .button--character-sheet {
   margin-top: 20px;
 }
 
 .header {
   text-align: center;
-  min-height: 6rem;
+  min-height: 4rem;
   color: whitesmoke;
   display: inline-block;
   width: 100%;

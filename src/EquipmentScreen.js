@@ -12,6 +12,7 @@ class EquipmentScreen extends React.Component {
         super(props);
         this.state = {
             gold: null,
+            goldRolled: false,
             equipment: [],
             equipmentSelected: "Backpack",
             armour: [],
@@ -55,7 +56,7 @@ class EquipmentScreen extends React.Component {
     }
 
     getGold = () => {
-        this.setState({gold: this.props.gold})
+        this.setState({gold: this.props.gold, goldRolled: true})
     }
 
     d = (how_many, sides) => {
@@ -440,7 +441,7 @@ return (
     
     </div>
 
-    {this.state.gold && <div className="equipment-purchase-container">
+    {this.state.goldRolled && <div className="equipment-purchase-container">
 
     {!characterClass.armour.includes("none") && this.state.armour.length === 0 &&
 
@@ -581,7 +582,7 @@ return (
         </div>
     
 
-        {this.state.gold &&
+        {this.state.goldRolled &&
         <button 
         className="button button--character-details" 
         onClick={() => {
