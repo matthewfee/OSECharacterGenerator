@@ -265,7 +265,7 @@ class DetailsScreen extends React.Component {
                 let stateObject = {
                     name: this.state.name,
                     alignment: this.state.alignment,
-                    apperance: this.state.appearance,
+                    appearance: this.state.appearance,
                     background: this.state.background,
                     personality: this.state.personality,
                 }

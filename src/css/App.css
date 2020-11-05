@@ -73,7 +73,7 @@
 
 
 .ability-score-container > .ability-score--high {
-  color: #1c6400;
+  color: #206604;
 
 }
 .ability-score-container>.ability-score-name {
@@ -327,6 +327,7 @@
 .character-details-form > .form-label {
   align-items: left;
   width: 80%;
+  max-width: 20rem;
   display: flex;
   flex-flow: column nowrap;
 
@@ -340,7 +341,6 @@
 
 .form-label > .form-text {
   margin-top: 20px;
-  margin-bottom: 10px;
   padding: 10px;
   font-weight: bold;
 
@@ -369,14 +369,48 @@
   justify-content: space-between;
   width: 220px;
   height: 38px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+
+}
+
+.character-sheet {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: left;
+}
+
+.character-short {
+  font-size: 1rem;
+  text-align: left;
+  width: 60%;
+  margin: auto;
+}
+
+.character-sheet > div {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: left;
+  text-align: left;
 }
 
 .details-result > .details-result--data {
   margin-left: 10px;
+  width: 120px;
   text-transform: uppercase;
   font-style: italic;
-  text-align: right;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.details-result > .details-result--name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -532,7 +566,7 @@ div.character-menu {
     background-image: linear-gradient(to right bottom, rgba(85, 83, 83, 0.8), rgba(56, 56, 56, 0.8)),
       url(../img/header.svg);
     background-size: cover;
-    height: 6rem;
+    height: 4rem;
   }
 
   .header--initial {
@@ -712,14 +746,16 @@ div>.class-options-container>.button:disabled {
 
 .hp-container>div {
 
-
-  background-color: rgba(2, 0, 106, 0.153);
+  background-color: rgba(167, 166, 189, 0.22);
   border-radius: 10px;
-  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.6rem;
   position: relative;
   font-weight: normal;
-  width: 6rem;
-  height: 6rem
+  width: 5rem;
+  height: 5rem;
 }
 
 .hp-container>.hp-container--math {
