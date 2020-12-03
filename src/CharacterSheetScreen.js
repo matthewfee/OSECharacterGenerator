@@ -9,7 +9,6 @@ class CharacterSheetScreen extends React.Component {
     constructor(props) {
         super() 
         this.state = {
-
         }
     }
 
@@ -35,147 +34,143 @@ class CharacterSheetScreen extends React.Component {
 
         return (
 
-            <div className="character-sheet-container">
+            <div className="character-sheet-container container">
+            <h3 className="character--name">{char.name}</h3>
+            <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
 
-            <h3 className="header-default">Character Sheet</h3>
+            <div className="character-sheet">
 
+            <div className="character-top-container">
+            <div className="hit-points character-container"><span className="charsheet-value-name">Hit Points</span> <span className="charsheet-value">{char.hitPoints}</span></div>
+            <div className="armor-class character-container"><span className="charsheet-value-name">AC</span> <span className="charsheet-value">12</span></div>
+            <div className="character--alignment character-container"><span className="charsheet-value-name">Alignment</span> <span className="charsheet-value">{char.alignment}</span> </div>
+        
+            <div className="background character-container"><span className="charsheet-value-name">Background</span> <span className="charsheet-value">{char.background}</span></div>
+            <div className="appearance character-container"><span className="charsheet-value-name">Appearance</span> <span className="charsheet-value">{char.appearance}</span></div>
+            <div className="personality character-container"><span className="charsheet-value-name">Personality</span> <span className="charsheet-value">{char.personality}</span></div>
+            </div>
 
-            <div className="character-short">
-                    <h3>Name: {char.name}</h3>
-                    <h3>Level 1 {char.class}</h3>
-                    <div>Armour Class: AC ({char.armour.join("+ ")})</div>
-                    <div>Hit Points {char.hitPoints}</div>
-                    <div>Weapons: {char.weapons.join("+ ")}</div>
-                    <div>THAC0 10 [0]</div>
-                    <div>Movement Rate: 60' (20')</div>
-                    <div>Saves: D{characterClass.savingThrows[0]} 
-                    W{characterClass.savingThrows[1]}
-                    P{characterClass.savingThrows[2]}
-                    B{characterClass.savingThrows[3]}
-                    S{characterClass.savingThrows[4]}
+            
 
+            <div className="ability-scores-container">
+                <div className="strength character-container">
+                    <span className="charsheet-value-name"> Strength </span> 
+                    <span className="charsheet-value">  {char.strength} 
+                        {char.strengthModMelee !== "0" && <span> ({char.strengthModMelee})</span>} 
+                        </span> 
                     </div>
-                    <div>Alignment: {char.alignment}</div>
-                    <div>STR {char.strength} 
-                    INT {char.intelligence}
-                    WIS {char.wisdom}
-                    DEX {char.dexterity}
-                    CON {char.constitution}
-                    CHA {char.charisma}
-                    </div>
-                    <div>Equipment: {char.equipment.join(", ")}</div>
 
+                <div className="intelligence character-container">
+                    <span className="charsheet-value-name">  Intelligence </span> 
+                    <span className="charsheet-value"> {char.intelligence} </span> 
+                
+                </div>
+                
 
+                <div className="wisdom character-container">
+                    <span className="charsheet-value-name">  Wisdom </span> 
+                        <span className="charsheet-value"> {char.wisdom} 
+                        {char.wisdomMod !== "0" && <span> ({char.wisdomMod})</span>} 
+                    </span>
+                </div>
+                     
+                <div className="dexterity character-container"> 
+                    <span className="charsheet-value-name">  Dexterity </span> 
+                        <span className="charsheet-value"> {char.dexterity}
+                        {char.dexterityModMissiles !== "0" && <span> {char.dexterityModMissiles})</span>} 
+                    </span>
+                </div>
+
+                <div className="constitution character-container"> 
+                    <span className="charsheet-value-name">  Constitution </span> 
+                        <span className="charsheet-value"> {char.constitution}
+                        {char.constitutionMod !== "0" && <span> ({char.constitutionMod})</span>} 
+                    </span>
+                </div>
+
+                <div className="charisma character-container"> 
+                    <span className="charsheet-value-name">  Charisma </span> 
+                        <span className="charsheet-value"> {char.charisma}
+                {char.charismaModNPCReactions !== "0" && <span> {" "}({char.charismaModNPCReactions})</span>} 
+                    </span>
+                </div>
+        
+            <div className="saving-throws-container"> 
+                <div className="character-sheet--death">Death {characterClass.savingThrows[0]}</div>
+        
+                <div className="character-sheet--wands">Wands {characterClass.savingThrows[1]}</div>
+        
+                <div className="character-sheet--paralysis">Paralysis {characterClass.savingThrows[2]}</div>
+                
+                <div className="character-sheet--breath">Breath {characterClass.savingThrows[3]}</div>
+            
+                <div className="character-sheet--spells">Spells {characterClass.savingThrows[4]} </div>
+            </div>
+
+           
+
+            
+            <div className="character-sheet--class-ability-list">
+                {characterClass.abilities.map((item) => {
+                        return (
+                            <div className="character-sheet--class-ability"> {item} </div>
+                        )
+                })}
             </div>
 
 
-            <div className="character-sheet">
-                <div className="character--name">Name: {char.name}</div>
-                <div className="character--class">Class: {char.characterClass}</div>
-                <div className="character--level">Level: 1</div>
-                <div className="xp">XP: 0</div>
-                <div className="character--alignment">Alignment: {char.alignment} </div>
 
-                <div className="hit-points">HP: {char.hitPoints}</div>
-                <div className="hit-die">HD: d{characterClass.hd}</div>
-                <div className="armor-class">AC: AC HERE</div>
-
-
-                <div className="background">Background: {char.background}</div>
-                <div className="appearance">Appearance: {char.appearance}</div>
-                <div className="personality">Personality: {char.personality}</div>
-
-                <div className="ability-scores">
-                    <div className="strength">Strength: {char.strength}</div>
-                    <div className="strength-mod">
-                        <div>Melee {char.strengthModMelee}</div>
-                        <div>Doors {char.strengthModDoors}</div>
-                    </div>
-
-                    <div className="intelligence">Intelligence: {char.intelligence}</div>
-                    <div className="intelligence-mod">
-                        <div>Languages {char.intelligenceModLanguages}</div>
-                        <div>Literacy {char.intelligenceModLiteracy}</div>
-                    
-                    </div>
-
-                    <div className="wisdom">Wisdom: {char.wisdom}</div>
-                    <div className="wisdom-mod">Magic Saves {char.wisdomMod}</div>
-
-
-                    <div className="dexterity">Dexterity: {char.dexterity}</div>
-                    <div className="dexterity-mod">
-                        <div>Missiles & AC {char.dexterityModMissiles}</div>
-                        <div>Initiative {char.dexterityModInitiative}</div>
-                    </div>
-
-                    <div className="constitution">Constitution: {char.constitution}</div>
-                    <div className="constitution-mod">Hit Points {char.constitutionMod}</div>
-
-                    <div className="charisma">Charisma: {char.charisma}</div>
-                    <div className="charisma-mod">
-                        <div>Loyalty {char.charismaModLoyalty}</div>
-                        <div>NPC Reaction {char.charismaModNPCReactions}</div>
-                        <div>Max Retainers {char.charismaModRetainersMax}</div>
-                    </div>
-
-                <div className="character-sheet--saving-throws"> 
-                    <div className="character-sheet--death">Death {characterClass.savingThrows[0]}</div>
-            
-                    <div className="character-sheet--wands">Wands {characterClass.savingThrows[1]}</div>
-            
-                    <div className="character-sheet--paralysis">Paralysis {characterClass.savingThrows[2]}</div>
-                    
-                    <div className="character-sheet--breath">Breath {characterClass.savingThrows[3]}</div>
+            <div className="character-sheet--equipment">
                 
-                    <div className="character-sheet--spells">Spells {characterClass.savingThrows[4]} </div>
+
+                <div className="armour">
+                    {char.armour.map((item) => {
+                        return <div> {item} </div>
+                    })}
+
+                </div>
+
+
+                <div className="weapons">
+                    {char.weapons.map((item) => {
+                        return <div> {item} </div>
+                    })}
+
+                </div>
+
+                <div className="gear">
+                    {char.equipment.map((item) => {
+                        return <div> {item} </div>
+                    })}
+
+                </div>
+
+
+
                 
                 </div> 
 
-                
-                <div className="character-sheet--class-ability-list">
-                    {characterClass.abilities.map((item) => {
-                            return (
-                                <div className="character-sheet--class-ability"> {item} </div>
-                            )
-                    })}
-                </div>
-
-               <div className="character-sheet--equipment">
-                    
-
-                    <div className="armour">
-                        {char.armour.map((item) => {
-                            return <div> {item} </div>
-                        })}
-
-                    </div>
-
-
-                    <div className="weapons">
-                        {char.weapons.map((item) => {
-                            return <div> {item} </div>
-                        })}
-
-                    </div>
-
-                    <div className="gear">
-                        {char.equipment.map((item) => {
-                            return <div> {item} </div>
-                        })}
-
-                    </div>
-
-                    
-
-
-
-               </div>
 
             </div>
 
+        
 
 
+            <div className="character-short">
+                    <div>Name: {char.name}</div>
+                    <div>Class: Level 1 {char.characterClass}</div>
+                    <div>Alignment: {char.alignment}</div>
+                    <div>Armour Class: AC ({char.armour.join(", ")})</div>
+                    <div>Hit Points: {char.hitPoints}/{char.hitPoints}</div>
+                    <div>Hit Die: d{characterClass.hd}</div>
+                    <div>Weapons: {char.weapons.join(", ")}</div>
+                    <div> 
+                    Saves: D{characterClass.savingThrows[0]} W{characterClass.savingThrows[1]} P{characterClass.savingThrows[2]} B{characterClass.savingThrows[3]} S{characterClass.savingThrows[4]}
+                    </div>
+                    <div>STR {char.strength} INT {char.intelligence} WIS {char.wisdom} DEX {char.dexterity} CON {char.constitution} CHA {char.charisma}
+                    </div>
+                    <div>Equipment: {char.equipment.join(", ")}</div>
+            </div>
 
 
 

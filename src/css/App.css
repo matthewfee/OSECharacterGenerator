@@ -373,12 +373,13 @@
 
 }
 
-.character-sheet {
+.character-sheet-container.container {
   margin: auto;
-  width: 80%;
+  width: 100%;
   display: flex;
-  flex-flow: column wrap;
-  justify-content: left;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .character-short {
@@ -388,11 +389,51 @@
   margin: auto;
 }
 
-.character-sheet > div {
+.character-sheet {
   display: flex;
   flex-flow: column wrap;
+  min-width: 300px;
+}
+
+.character-top-container, .ability-scores-container {
+  font-size: 1.6rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid purple;
+  padding-top: 10px;
+  max-width: 500px;
+  min-width: 200px;
+  margin: 10px;
+
+}
+
+.character-container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
   justify-content: left;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+
+.character-container > .charsheet-value-name {
+  width: 60%;
+  max-width: 140px;
   text-align: left;
+  border-bottom: 1px solid rgba(138, 101, 101, 0.274);
+  font-weight: bold;
+}
+.character-container > .charsheet-value {
+  margin: 0px;
+  border-bottom: 1px solid rgba(138, 101, 101, 0.274);
+  text-align: left;
+  width: 50%;
+  max-width: 100px;
+
 }
 
 .details-result > .details-result--data {
@@ -419,16 +460,17 @@
   display: flex;
   flex-direction: column;
   width: 80%;
+  max-width: 340px;
   margin: auto;
   margin-bottom: 10px;
+  margin-top: 40px;
+
 }
 
 .class-ability-menu>.class-ability-menu--header {
   margin-top: 2rem;
   font-size: 2rem;
   color: rgb(34, 34, 34);
-
-  
 
 }
 
@@ -555,9 +597,7 @@ div.character-menu {
 
   .class-options-container>.button-class-option {
     max-height: 80px !important;
-
   }
-
 
 }
 
@@ -738,8 +778,6 @@ div>.class-options-container>.button:disabled {
   width: 80%;
   margin: auto;
   margin-bottom: 2rem;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
   justify-items: center;
 
 }
@@ -802,7 +840,6 @@ div>.class-options-container>.button:disabled {
   width: 80%;
   max-width: 340px;
   margin: auto;
-  border-bottom: 1px solid black;
 }
 
 .saving-throws-menu--header {
@@ -812,12 +849,11 @@ div>.class-options-container>.button:disabled {
 }
 
 .saving-throws.container {
-  position: relative;
+  position: relative !important;
   background-color: transparent;
-  width: 10rem;
-  height: 10rem;
-  margin: auto;
-  margin-bottom: 4rem;
+  width: 100px;
+  height: 100px;
+  margin: auto;   
 }
 
 .saving-throws.container::after {
@@ -830,7 +866,7 @@ div>.class-options-container>.button:disabled {
   width: 100%;
   height: 100%;
   position: absolute;
-  clip-path: polygon(50% 0%, 100% 44%, 76% 100%, 24% 100%, 0% 44%);
+  clip-path: polygon(50px 0px, 100px 44px, 76px 100px, 24px 100px, 0px 44px);
   z-index: 0;
   background-color: rgba(0, 0, 0, 0.549);
   text-align: center;
