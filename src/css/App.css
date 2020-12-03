@@ -540,6 +540,7 @@
 }
 
 
+
 .class-details>.class-details--arrow {
   width: 0;
   height: 0;
@@ -554,7 +555,7 @@
 
 
 .class-description-list {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: left;
   padding: 2rem;
 

@@ -22,7 +22,9 @@ class ClassDescription extends React.Component {
     );
     return (
       <details className="class-details">
-        <summary>{this.props.characterClass} Class Details</summary>
+        <summary className="class-summary">
+          {this.props.characterClass} Class Details
+        </summary>
 
         <ul className="class-description-list">
           <li>
