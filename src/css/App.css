@@ -53,8 +53,7 @@
 }
 
 .ability-score-container > .ability-mod {
-  padding-left: 2.4rem;
-  justify-self: center;
+  justify-self: right;
   min-width: 14rem;
 }
 
