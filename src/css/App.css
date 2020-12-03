@@ -305,11 +305,13 @@
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
   border-bottom: 2.2rem solid rgb(2, 187, 2, 0.8);
+  z-index: 2;
 
 }
 
 .button--ability--increase>.arrow-up:hover {
   border-bottom: 2.2rem solid rgb(9, 235, 2, 1);
+  z-index: 2;
 
 }
 
@@ -972,6 +974,7 @@ div>.class-options-container>.button:disabled {
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
   border-top: 1.2rem solid black;
+  z-index: 2;
 
 }
 
