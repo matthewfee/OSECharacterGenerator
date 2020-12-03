@@ -164,7 +164,8 @@ class NewCharacter extends React.Component {
       "3-in-6",
       "3-in-6",
       "4-in-6",
-      "4-in-6"
+      "4-in-6",
+      "5-in-6"
     ];
     const spokenLanguages = [
       null,

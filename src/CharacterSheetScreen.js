@@ -93,7 +93,7 @@ class CharacterSheetScreen extends React.Component {
                 {" "}
                 {char.dexterity}
                 {char.dexterityModMissiles !== "0" && (
-                  <span> {char.dexterityModMissiles})</span>
+                  <span> ({char.dexterityModMissiles})</span>
                 )}
               </span>
             </div>
