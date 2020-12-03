@@ -409,17 +409,15 @@
 
 .character-sheet {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row-reverse wrap;
   min-width: 300px;
   justify-content: center;
 }
 
 .character-top-container, .ability-scores-container, .charsheet-saving-throws-container, .character-sheet-ability-list, .character-equipment {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   display: flex;
   flex-flow: column nowrap;
-  border: 1px solid purple;
-  padding-top: 10px;
   min-width: 240px;
   margin: 20px;
 
@@ -430,8 +428,9 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: left;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 8px;
 
 }
 
@@ -452,8 +451,21 @@
 
 }
 
+.character-sheet--class-ability, .charsheet--gear-item {
+  font-size: 1rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.charsheet--gear {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 .details-result > .details-result--data {
   margin-left: 10px;
+  padding-left: 40px;
   width: 120px;
   text-transform: uppercase;
   font-style: italic;

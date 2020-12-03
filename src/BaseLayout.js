@@ -1,13 +1,9 @@
-import React from 'react'
+import React from "react";
 
 class BaseLayout extends React.Component {
-    render() {
-      return (
-          <body>
-
-          </body>
-      );
-    }
+  render() {
+    return <body></body>;
   }
+}
 
 export default BaseLayout;

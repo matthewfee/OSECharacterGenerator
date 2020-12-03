@@ -1,5 +1,4 @@
 const classOptionsData = [
-
   {
     name: "Fighter",
     requirements: null,
@@ -9,13 +8,14 @@ const classOptionsData = [
     armour: "any",
     weapons: "any",
     languages: "Alignment, Common",
-    description: "Fighters are adventurers dedicated to mastering the arts of combat and war. In a group of adventurers, the role of fighters is to battle monsters and to defend other characters.",
+    description:
+      "Fighters are adventurers dedicated to mastering the arts of combat and war. In a group of adventurers, the role of fighters is to battle monsters and to defend other characters.",
     savingThrows: [12, 13, 14, 15, 16],
     nextLevel: 2000,
     abilities: ["Stronghold"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Fighter",
     arcane: false,
-    divine: false,
+    divine: false
   },
   {
     name: "Cleric",
@@ -26,13 +26,14 @@ const classOptionsData = [
     armour: "any",
     weapons: "only blunt weapons",
     languages: "Alignment, Common",
-    description: "Clerics are adventurers who have sworn to serve a deity. They are trained for battle and channel the power of their deity.",
+    description:
+      "Clerics are adventurers who have sworn to serve a deity. They are trained for battle and channel the power of their deity.",
     savingThrows: [11, 12, 14, 16, 15],
     nextLevel: 1500,
     abilities: ["Divine Magic", "Turn Undead"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Cleric",
     arcane: false,
-    divine: true,
+    divine: true
   },
   {
     name: "Magic-User",
@@ -43,13 +44,15 @@ const classOptionsData = [
     armour: "none",
     weapons: "dagger, staff",
     languages: "Alignment, Common",
-    description: "Magic-users are adventurers whose study of arcane secrets has taught them how to cast spells. Magic-users are able to cast a greater number of increasingly powerful spells as they advance in level.",
+    description:
+      "Magic-users are adventurers whose study of arcane secrets has taught them how to cast spells. Magic-users are able to cast a greater number of increasingly powerful spells as they advance in level.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 2500,
     abilities: ["Arcane Magic"],
-    link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Magic-User",
+    link:
+      "https://oldschoolessentials.necroticgnome.com/srd/index.php/Magic-User",
     arcane: true,
-    divine: false,
+    divine: false
   },
   {
     name: "Thief",
@@ -60,13 +63,14 @@ const classOptionsData = [
     armour: "leather, no shields",
     weapons: "any",
     languages: "alignment, common",
-    description: "Thieves are adventurers who live by their skills of deception and stealth. Their range of unique skills makes them very handy companions in adventures. However, thieves are not always to be trusted.",
+    description:
+      "Thieves are adventurers who live by their skills of deception and stealth. Their range of unique skills makes them very handy companions in adventures. However, thieves are not always to be trusted.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1200,
-    abilities: ["Backstab", "Climb sheer surfaces - 87/100", "Find or remove treasure traps - 10/100", "Hide in shadows - 2-in-6", "Move silently - 20/100", "Open locks - 15/100", "Pick pockets - 20/100"],
+    abilities: ["Backstab", "Thief Skills"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Thief",
     arcane: false,
-    divine: false,
+    divine: false
   },
   {
     name: "Dwarf",
@@ -75,18 +79,22 @@ const classOptionsData = [
     hd: 8,
     maxLevel: 12,
     armour: "any",
-    weapons: "any small or normal sized, but cannot use longbows or two-handed swords",
+    weapons:
+      "any small or normal sized, but cannot use longbows or two-handed swords",
     languages: " Alignment, Common, Dwarvish, Gnomish, Goblin, Kobold",
-    description: "Dwarves are stout, bearded demihumans, about 4’ tall and weighing about 150 pounds. Dwarves typically live underground and love fine craftsmanship, gold, hearty food, and strong drink. They have skin, hair, and eye colours in earth tones. Dwarves are known for their stubbornness and practicality. They are a hardy people and have a strong resistance to magic, as reflected in their saving throws.",
+    description:
+      "Dwarves are stout, bearded demihumans, about 4’ tall and weighing about 150 pounds. Dwarves typically live underground and love fine craftsmanship, gold, hearty food, and strong drink. They have skin, hair, and eye colours in earth tones. Dwarves are known for their stubbornness and practicality. They are a hardy people and have a strong resistance to magic, as reflected in their saving throws.",
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2200,
-    abilities: ["Detect Construction Tricks 2-in-6", 
-          "Detect Room Traps 2-in-6", 
-          "Infravision 60'",
-          "Listening at Doors 2-in-6"],
+    abilities: [
+      "Detect Construction",
+      "Detect Room Traps",
+      "Infravision",
+      "Listening at Doors"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Dwarf",
     arcane: false,
-    divine: false,
+    divine: false
   },
   {
     name: "Elf",
@@ -97,19 +105,19 @@ const classOptionsData = [
     armour: "any",
     weapons: "any",
     languages: "Alignment, Common, Elvish, Gnoll, Hobgoblin, Orcish",
-    description: "Elves are slender, fey demihumans with pointed ears. They typically weigh about 120 pounds and are between 5 and 5½ feet tall. Elves are seldom met in human settlements, preferring to feast and make merry in the woods. If crossed, they are dangerous enemies, as they are masters of both sword and spell. Elves are fascinated by spells and beautifully constructed magic items and love to collect both.",
+    description:
+      "Elves are slender, fey demihumans with pointed ears. They typically weigh about 120 pounds and are between 5 and 5½ feet tall. Elves are seldom met in human settlements, preferring to feast and make merry in the woods. If crossed, they are dangerous enemies, as they are masters of both sword and spell. Elves are fascinated by spells and beautifully constructed magic items and love to collect both.",
     savingThrows: [12, 13, 13, 15, 15],
     nextLevel: 4000,
     abilities: [
-                "Arcane Magic",
-                "Detect Secret Doors 2-in-6",
-                "Immunity to Ghoul Paralysis",
-                "Infravision 60'",
-                "Listening at Doors 2-in-6"
-              ],
+      "Arcane Magic",
+      "Detect Secret Doors",
+      "Infravision",
+      "Listening at Doors"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Elf",
     arcane: true,
-    divine: false,
+    divine: false
   },
   {
     name: "Halfling",
@@ -120,24 +128,21 @@ const classOptionsData = [
     armour: "any appropriate to size",
     weapons: "any appropriate to size",
     languages: "Alignment, Common, Halfling",
-    description: "Halflings are small, rotund demihumans with furry feet and curly hair. They weigh about 60 pounds and are around 3’ tall. Halflings are a friendly and welcoming folk. Above all, they love the comforts of home and are not known for their bravery. Halflings who gain treasure through adventuring will often use their wealth in pursuit of a quiet, comfortable life.",
+    description:
+      "Halflings are small, rotund demihumans with furry feet and curly hair. They weigh about 60 pounds and are around 3’ tall. Halflings are a friendly and welcoming folk. Above all, they love the comforts of home and are not known for their bravery. Halflings who gain treasure through adventuring will often use their wealth in pursuit of a quiet, comfortable life.",
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2000,
-    abilities: ["Defensive Bonus",
-                "Hiding",
-                "Initiatve Bonus",
-                "Listening at Doors 2-in-6",
-                "Missile Attack Bonus",
-                ], 
-    link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Halfling",
+    abilities: [
+      "Defensive Bonus",
+      "Hiding",
+      "Listening at Doors",
+      "Missile Attack Bonus"
+    ],
+    link:
+      "https://oldschoolessentials.necroticgnome.com/srd/index.php/Halfling",
     arcane: false,
-    divine: false,
-  },
-
+    divine: false
+  }
 ];
 
-
-
-
-
-export default classOptionsData
+export default classOptionsData;
