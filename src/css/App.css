@@ -125,7 +125,7 @@
   left: 100%;
   top: 0;
   height: 50%;
-  width: 30%;
+  width: 30px;
 
 
 }
@@ -135,7 +135,7 @@
   left: 100%;
   bottom: 0;
   height: 50%;
-  width: 30%;
+  width: 30px;
 
 }
 
@@ -459,7 +459,7 @@
   flex-flow: column nowrap;
 }
 
-.charsheet--gear {
+.charsheet--gear, .charsheet--armour, .charsheet--weapons {
   display: flex;
   flex-flow: column nowrap;
 }
