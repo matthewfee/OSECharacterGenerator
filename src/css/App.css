@@ -30,7 +30,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(6, 1fr);
-  column-gap: 1rem;
+  column-gap: 0rem;
   row-gap: 1rem;
   max-width: 400px;
   margin: auto;
@@ -58,6 +58,7 @@
 
 .ability-score-container>.ability-score {
   justify-self: center;
+  align-self: center;
   text-align: center;
   font-size: 2.6rem;
   color: black;
@@ -538,6 +539,7 @@
   justify-content: center;
   background-color: whitesmoke;
 }
+
 
 
 
