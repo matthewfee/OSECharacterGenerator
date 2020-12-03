@@ -10,6 +10,10 @@ class CharacterSheetScreen extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    this.calculateAC();
+  }
+
   savePDF = () => {
     const input = document.getElementById("print-wrapper");
     const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
@@ -19,6 +23,35 @@ class CharacterSheetScreen extends React.Component {
         pdf.save("download.pdf");
       });
     }
+  };
+
+  calculateAC = () => {
+    let armourClass = 10;
+    let char = this.props.parentState;
+    if (char.armour.includes("Leather")) {
+      armourClass += 2;
+    }
+    if (char.armour.includes("Chainmail")) {
+      armourClass += 4;
+    }
+    if (char.armour.includes("Plate mail")) {
+      armourClass += 6;
+    }
+    if (char.armour.includes("Shield")) {
+      armourClass += 1;
+    }
+
+    let dexMod = char.dexterityModAC;
+    if (dexMod.includes("+")) {
+      dexMod = dexMod.substring(1);
+    }
+    console.log(dexMod);
+
+    dexMod = parseInt(dexMod);
+
+    armourClass += dexMod;
+
+    this.setState({ AC: armourClass });
   };
 
   render() {
@@ -40,7 +73,7 @@ class CharacterSheetScreen extends React.Component {
             </div>
             <div className="armor-class character-container">
               <span className="charsheet-value-name">AC</span>{" "}
-              <span className="charsheet-value">12</span>
+              <span className="charsheet-value">{this.state.AC}</span>
             </div>
             <div className="character--alignment character-container">
               <span className="charsheet-value-name">Alignment</span>{" "}
