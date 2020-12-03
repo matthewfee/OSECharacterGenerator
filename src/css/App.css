@@ -6,6 +6,10 @@
   box-sizing: inherit;
 }
 
+body {
+  min-width: 300px;
+}
+
 .ability-scores--header {
   margin-top: 0px;
 
@@ -863,7 +867,7 @@ div>.class-options-container>.button:disabled {
 .prime-req {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top:80%;
   width: 100%;
   text-align: center;
 }
