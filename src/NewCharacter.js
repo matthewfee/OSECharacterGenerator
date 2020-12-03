@@ -471,8 +471,6 @@ render() {
         <div className="ability-score-name">
                 
             <h2 
-            style={{'textDecoration': 
-            this.state.primeReq === "strength" || this.state.primeReq2 === "strength" ? 'underline' : ''}}
             >STRENGTH</h2>
 
             {(this.state.primeReq === "strength" ||
@@ -511,8 +509,6 @@ render() {
             <div className="ability-score-name">
                 
             <h2 
-            style={{'textDecoration': 
-            this.state.primeReq === "intelligence" || this.state.primeReq2 === "intelligence" ? 'underline' : ''}}
             >INTELLIGENCE</h2>
 
 
@@ -549,10 +545,7 @@ render() {
             
             <div className="ability-score-name">
 
-                <h2 
-                style={{'textDecoration': 
-                this.state.primeReq === "wisdom" || this.state.primeReq2 === "wisdom" ? 'underline' : ''}}
-                >WISDOM</h2>
+                <h2>WISDOM</h2>
 
                 {(this.state.primeReq === "wisdom" ||
                 this.state.primeReq2 === "wisdom") &&
@@ -581,10 +574,7 @@ render() {
 
             
             <div className="ability-score-name">
-                <h2 
-                style={{'textDecoration': 
-                this.state.primeReq === "dexterity" || this.state.primeReq2 === "dexterity" ? 'underline' : ''}}
-                >DEXTERITY</h2>
+                <h2>DEXTERITY</h2>
 
                 {(this.state.primeReq === "dexterity" ||
                 this.state.primeReq2 === "dexterity") &&
@@ -618,10 +608,7 @@ render() {
 
 
             <div className="ability-score-name">
-                <h2 
-                style={{'textDecoration': 
-                this.state.primeReq === "constitution" || this.state.primeReq2 === "constitution" ? 'underline' : ''}}
-                >CONSTITUTION</h2>
+                <h2>CONSTITUTION</h2>
 
                 {(this.state.primeReq === "constitution" ||
                 this.state.primeReq2 === "constitution") &&
@@ -648,10 +635,7 @@ render() {
             </div>
 
             <div className="ability-score-name">
-                <h2 
-                style={{'textDecoration': 
-                this.state.primeReq === "charisma" || this.state.primeReq2 === "charisma" ? 'underline' : ''}}
-                >CHARISMA</h2>
+                <h2>CHARISMA</h2>
 
                 {(this.state.primeReq === "charisma" ||
                 this.state.primeReq2 === "charisma") &&

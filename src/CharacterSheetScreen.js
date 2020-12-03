@@ -94,69 +94,130 @@ class CharacterSheetScreen extends React.Component {
                 {char.charismaModNPCReactions !== "0" && <span> {" "}({char.charismaModNPCReactions})</span>} 
                     </span>
                 </div>
-        
-            <div className="saving-throws-container"> 
-                <div className="character-sheet--death">Death {characterClass.savingThrows[0]}</div>
-        
-                <div className="character-sheet--wands">Wands {characterClass.savingThrows[1]}</div>
-        
-                <div className="character-sheet--paralysis">Paralysis {characterClass.savingThrows[2]}</div>
-                
-                <div className="character-sheet--breath">Breath {characterClass.savingThrows[3]}</div>
-            
-                <div className="character-sheet--spells">Spells {characterClass.savingThrows[4]} </div>
             </div>
+        
+        
+            <div className="charsheet-saving-throws-container">
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Death
+                    </span> 
+                    <span className="charsheet-value"> {characterClass.savingThrows[0]} 
+                    </span>
+                </div>
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Wands
+                    </span> 
+                    <span className="charsheet-value"> {characterClass.savingThrows[1]} 
+                    </span>
+                </div>
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Paralysis
+                    </span> 
+                    <span className="charsheet-value"> {characterClass.savingThrows[2]} 
+                    </span>
+                </div>
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Breath
+                    </span> 
+                    <span className="charsheet-value"> {characterClass.savingThrows[3]} 
+                    </span>
+                </div>
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Spells
+                    </span> 
+                    <span className="charsheet-value"> {characterClass.savingThrows[4]} 
+                    </span>
+                </div>
+
+            </div> 
+            
 
            
 
             
-            <div className="character-sheet--class-ability-list">
-                {characterClass.abilities.map((item) => {
+            <div className="character-sheet-ability-list">
+
+                <div className="character-container">
+                
+                <span className="charsheet-value-name">
+                    Abilities
+                </span> 
+                <span className="charsheet-value character-sheet--class-ability"> 
+                    {characterClass.abilities.map((item) => {
                         return (
-                            <div className="character-sheet--class-ability"> {item} </div>
+                            <span className="character-sheet--class-ability"> {item} </span>
                         )
-                })}
-            </div>
-
-
-
-            <div className="character-sheet--equipment">
-                
-
-                <div className="armour">
-                    {char.armour.map((item) => {
-                        return <div> {item} </div>
                     })}
+                </span>
 
                 </div>
 
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Weapons
+                    </span> 
 
-                <div className="weapons">
+                    <span className="charsheet-value charsheet--weapons"> 
                     {char.weapons.map((item) => {
-                        return <div> {item} </div>
+                        return <span className="charsheet--weapon-item"> {item} </span>
                     })}
+
+                    </span>
 
                 </div>
 
-                <div className="gear">
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Armour
+                    </span> 
+
+                    <span className="charsheet-value charsheet--armour"> 
+                    {char.armour.map((item) => {
+                        return <span className="charsheet--armour-item"> {item} </span>
+                    })}
+
+                    </span>
+
+                </div>
+
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Gear
+                    </span> 
+
+                    <span className="charsheet-value charsheet--gear"> 
                     {char.equipment.map((item) => {
-                        return <div> {item} </div>
+                        return <span className="charsheet--gear-item"> {item} </span>
                     })}
+
+                    </span>
 
                 </div>
 
+                <div className="character-container">
+                    <span className="charsheet-value-name">
+                    Gold
+                    </span> 
 
+                    <span className="charsheet-value charsheet--gold"> 
+                    {char.gold}gp
+                    </span>
 
+                </div>
                 
-                </div> 
-
-
             </div>
 
-        
-
-
-            <div className="character-short">
+            {this.state.displayShort && <div className="character-short">
                     <div>Name: {char.name}</div>
                     <div>Class: Level 1 {char.characterClass}</div>
                     <div>Alignment: {char.alignment}</div>
@@ -170,11 +231,13 @@ class CharacterSheetScreen extends React.Component {
                     <div>STR {char.strength} INT {char.intelligence} WIS {char.wisdom} DEX {char.dexterity} CON {char.constitution} CHA {char.charisma}
                     </div>
                     <div>Equipment: {char.equipment.join(", ")}</div>
-            </div>
+            </div>}
 
 
 
             </div>
+
+            <button onClick={this.savePDF}>Save as PDF</button>
 
             </div>
 

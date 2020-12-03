@@ -389,23 +389,39 @@
   margin: auto;
 }
 
-.character-sheet {
-  display: flex;
-  flex-flow: column wrap;
-  min-width: 300px;
+.character--name {
+
+  font-size: 2.6rem;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 20px;
 }
 
-.character-top-container, .ability-scores-container {
-  font-size: 1.6rem;
+.character--subheader {
+
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+  font-style: italic;
+
+}
+
+.character-sheet {
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 300px;
+  justify-content: center;
+}
+
+.character-top-container, .ability-scores-container, .charsheet-saving-throws-container, .character-sheet-ability-list, .character-equipment {
+  font-size: 1.5rem;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   border: 1px solid purple;
   padding-top: 10px;
-  max-width: 500px;
-  min-width: 200px;
-  margin: 10px;
+  min-width: 240px;
+  margin: 20px;
 
 }
 

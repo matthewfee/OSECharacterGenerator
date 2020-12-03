@@ -20,6 +20,7 @@ class EquipmentScreen extends React.Component {
             shieldSelected: false,
             weapons: [],
             weaponSelected: "Dagger",
+            armourClass: null,
         }
     }
 
