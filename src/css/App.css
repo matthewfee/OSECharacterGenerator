@@ -469,6 +469,18 @@ body {
   flex-flow: column nowrap;
 }
 
+.character-storage-screen {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: white;
+  width: 50%;
+  height: 400px;
+  top: 90%;
+  font-size: 3rem;
+}
+
 .details-result > .details-result--data {
   margin-left: 10px;
   padding-left: 40px;
@@ -1007,6 +1019,9 @@ div>.class-options-container>.button:disabled {
 }
 
 .wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   min-height: 900px;
   margin-top: 0px;
   margin-bottom: 0px;

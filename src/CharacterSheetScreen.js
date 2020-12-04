@@ -11,7 +11,19 @@ class CharacterSheetScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.calculateAC();
+    if (localStorage.getItem("characters") === null) {
+      let arr = [];
+      arr.push(this.props.parentState);
+      window.localStorage.setItem("characters", JSON.stringify(arr));
+    } else {
+      const myCharacters = JSON.parse(
+        window.localStorage.getItem("characters")
+      );
+
+      console.log(myCharacters);
+      myCharacters.push(this.props.parentState);
+      window.localStorage.setItem("characters", JSON.stringify(myCharacters));
+    }
   }
 
   savePDF = () => {
@@ -23,35 +35,6 @@ class CharacterSheetScreen extends React.Component {
         pdf.save("download.pdf");
       });
     }
-  };
-
-  calculateAC = () => {
-    let armourClass = 10;
-    let char = this.props.parentState;
-    if (char.armour.includes("Leather")) {
-      armourClass += 2;
-    }
-    if (char.armour.includes("Chainmail")) {
-      armourClass += 4;
-    }
-    if (char.armour.includes("Plate mail")) {
-      armourClass += 6;
-    }
-    if (char.armour.includes("Shield")) {
-      armourClass += 1;
-    }
-
-    let dexMod = char.dexterityModAC;
-    if (dexMod.includes("+")) {
-      dexMod = dexMod.substring(1);
-    }
-    console.log(dexMod);
-
-    dexMod = parseInt(dexMod);
-
-    armourClass += dexMod;
-
-    this.setState({ AC: armourClass });
   };
 
   render() {
@@ -72,8 +55,8 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value">{char.hitPoints}</span>
             </div>
             <div className="armor-class character-container">
-              <span className="charsheet-value-name">AC</span>{" "}
-              <span className="charsheet-value">{this.state.AC}</span>
+              <span className="charsheet-value-name">Armour Class</span>{" "}
+              <span className="charsheet-value">{char.AC}</span>
             </div>
             <div className="character--alignment character-container">
               <span className="charsheet-value-name">Alignment</span>{" "}

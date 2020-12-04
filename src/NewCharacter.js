@@ -6,6 +6,7 @@ import ClassDescription from "./ClassDescription.js";
 import ClassScreen from "./ClassScreen.js";
 import DetailsScreen from "./DetailsScreen.js";
 import CharacterSheetScreen from "./CharacterSheetScreen.js";
+import CharacterStorageScreen from "./CharacterStorageScreen.js";
 
 class NewCharacter extends React.Component {
   constructor() {
@@ -37,6 +38,7 @@ class NewCharacter extends React.Component {
       classScreen: false,
       detailsScreen: false,
       characterSheetScreen: false,
+      characterStorageScreen: true,
       goldStarting: undefined,
       randomNumbers: []
     };
@@ -973,6 +975,7 @@ class NewCharacter extends React.Component {
               showAbilityScreen={this.showAbilityScreen}
               showDetailsScreen={this.showDetailsScreen}
               gold={this.state.goldStarting}
+              dexterityModAC={this.state.dexterityModAC}
             />
           )}
 
@@ -990,6 +993,9 @@ class NewCharacter extends React.Component {
             ></CharacterSheetScreen>
           )}
         </div>
+        {this.state.characterStorageScreen && (
+          <CharacterStorageScreen></CharacterStorageScreen>
+        )}
       </div>
     );
   }
