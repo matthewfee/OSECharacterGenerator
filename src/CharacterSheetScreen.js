@@ -11,15 +11,25 @@ class CharacterSheetScreen extends React.Component {
   }
 
   componentDidMount() {
+    const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+    console.log("PARENT STATE ID", this.props.parentState.id);
+    const id = this.props.parentState.id;
+
+    if (myCharacters) {
+      const alreadyExists = myCharacters.find(obj => {
+        return obj.id === id;
+      });
+      if (alreadyExists) {
+        console.log("Duplicate ID Found");
+        return;
+      }
+    }
+
     if (localStorage.getItem("characters") === null) {
       let arr = [];
       arr.push(this.props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(arr));
     } else {
-      const myCharacters = JSON.parse(
-        window.localStorage.getItem("characters")
-      );
-
       console.log(myCharacters);
       myCharacters.push(this.props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(myCharacters));
@@ -181,9 +191,12 @@ class CharacterSheetScreen extends React.Component {
             <div className="character-container">
               <span className="charsheet-value-name">Abilities</span>
               <span className="charsheet-value character-sheet--class-ability">
-                {characterClass.abilities.map(item => {
+                {characterClass.abilities.map((item, index) => {
                   return (
-                    <span key={item} className="character-sheet--class-ability">
+                    <span
+                      key={index}
+                      className="character-sheet--class-ability"
+                    >
                       {" "}
                       {item}{" "}
                     </span>
@@ -198,9 +211,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Weapons</span>
 
               <span className="charsheet-value charsheet--weapons">
-                {char.weapons.map(item => {
+                {char.weapons.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--weapon-item">
+                    <span key={index} className="charsheet--weapon-item">
                       {" "}
                       {item}{" "}
                     </span>
@@ -213,9 +226,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Armour</span>
 
               <span className="charsheet-value charsheet--armour">
-                {char.armour.map(item => {
+                {char.armour.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--armour-item">
+                    <span key={index} className="charsheet--armour-item">
                       {" "}
                       {item}{" "}
                     </span>
@@ -228,9 +241,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Gear</span>
 
               <span className="charsheet-value charsheet--gear">
-                {char.equipment.map(item => {
+                {char.equipment.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--gear-item">
+                    <span key={index} className="charsheet--gear-item">
                       {" "}
                       {item}{" "}
                     </span>

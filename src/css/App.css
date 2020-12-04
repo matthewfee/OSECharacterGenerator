@@ -476,9 +476,9 @@ body {
   align-items: center;
   background-color: white;
   width: 50%;
-  height: 400px;
-  top: 90%;
+  top: 100%;
   font-size: 3rem;
+  border-radius: 4px;
 }
 
 .details-result > .details-result--data {

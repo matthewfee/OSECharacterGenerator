@@ -12,6 +12,7 @@ class NewCharacter extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: null,
       strength: null,
       intelligence: null,
       wisdom: null,
@@ -44,6 +45,8 @@ class NewCharacter extends React.Component {
     };
   }
 
+  id = "ID_" + new Date().getTime();
+
   componentDidMount() {
     var RandomOrg = require("random-org");
     var random = new RandomOrg({
@@ -52,6 +55,10 @@ class NewCharacter extends React.Component {
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
       this.setState({ randomNumbers: result.random.data });
     });
+
+    if (this.state.id === null) {
+      this.setState({ id: this.id });
+    }
   }
 
   getRndInteger = (min, max) => {
@@ -994,7 +1001,10 @@ class NewCharacter extends React.Component {
           )}
         </div>
         {this.state.characterStorageScreen && (
-          <CharacterStorageScreen></CharacterStorageScreen>
+          <CharacterStorageScreen
+            updateParentState={this.updateParentState}
+            parentState={this.state}
+          ></CharacterStorageScreen>
         )}
       </div>
     );
