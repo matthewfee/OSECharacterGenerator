@@ -287,6 +287,8 @@ class CharacterSheetScreen extends React.Component {
             </div>
           )}
         </div>
+
+        <button onClick={() => window.location.reload()}>Go Back</button>
       </div>
     );
   }

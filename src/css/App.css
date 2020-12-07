@@ -470,7 +470,7 @@ body {
 }
 
 .character-storage-screen {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -481,6 +481,17 @@ body {
   border-radius: 4px;
 }
 
+.character-storage-screen-main {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.92);
+  width: 50%;
+  top: 80%;
+  font-size: 3rem;
+  border-radius: 4px;
+}
 .details-result > .details-result--data {
   margin-left: 10px;
   padding-left: 40px;

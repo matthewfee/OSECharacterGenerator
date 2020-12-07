@@ -48,7 +48,13 @@ class CharacterStorageScreen extends React.Component {
 
   render() {
     return (
-      <div className="character-storage-screen">
+      <div
+        className={
+          this.props.parentState.abilityScreen
+            ? "character-storage-screen-main"
+            : "character-storage-screen"
+        }
+      >
         <details>
           <summary>Character storage</summary>
           {this.state.myCharacters

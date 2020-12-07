@@ -108,7 +108,8 @@ class NewCharacter extends React.Component {
       pointBuy: 0,
       characterClass: null,
       primeReq: undefined,
-      primeReq2: undefined
+      primeReq2: undefined,
+      characterStorageScreen: false
     };
 
     newObject.strengthOriginal = newObject.strength;
@@ -856,6 +857,17 @@ class NewCharacter extends React.Component {
                         <div className="arrow-up"></div>
                       </button>
                     )}
+
+                  {this.state.dexterity > this.state.dexterityOriginal && (
+                    <button
+                      className="button button--ability button--ability--decrease"
+                      onClick={() => {
+                        this.scoreDecrease("dexterity");
+                      }}
+                    >
+                      <div className="arrow-down"></div>
+                    </button>
+                  )}
                 </div>
 
                 <div className="ability-mod">

@@ -21,6 +21,7 @@
     "random-org": "^2.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-native-restart": "0.0.17",
     "react-scripts": "^4.0.0",
     "react-skeleton-css": "^1.1.0",
     "react-sticky": "^6.0.3"
