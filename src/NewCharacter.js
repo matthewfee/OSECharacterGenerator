@@ -39,7 +39,7 @@ class NewCharacter extends React.Component {
       classScreen: false,
       detailsScreen: false,
       characterSheetScreen: false,
-      characterStorageScreen: true,
+      characterStorageScreen: false,
       goldStarting: undefined,
       randomNumbers: []
     };
@@ -98,6 +98,7 @@ class NewCharacter extends React.Component {
     window.scrollTo(0, 0);
 
     var newObject = {
+      id: this.id,
       strength: this.d6(3),
       intelligence: this.d6(3),
       wisdom: this.d6(3),
@@ -536,7 +537,10 @@ class NewCharacter extends React.Component {
     this.setState({
       equipmentScreen: false,
       abilityScreen: true,
-      classScreen: false
+      characterSheetScreen: false,
+      classScreen: false,
+      characterStorageScreen: false,
+      strength: null
     });
     window.scrollTo(0, 0);
   };
@@ -557,13 +561,26 @@ class NewCharacter extends React.Component {
       classScreen: false,
       detailsScreen: true
     });
+    window.scrollTo(0, 0);
   };
 
   showCharacterSheetScreen = () => {
     this.setState({
       detailsScreen: false,
-      characterSheetScreen: true
+      characterSheetScreen: true,
+      characterStorageScreen: false
     });
+    window.scrollTo(0, 0);
+  };
+
+  showStorageSheetScreen = () => {
+    this.setState({
+      characterStorageScreen: true,
+      characterSheetScreen: false,
+      abilityScreen: false,
+      strength: 10
+    });
+    window.scrollTo(0, 0);
   };
 
   getClassInfo = () => {
@@ -616,6 +633,7 @@ class NewCharacter extends React.Component {
 
   render() {
     const redFail = "#730505";
+    const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
 
     return (
       <div className="wrapper">
@@ -636,6 +654,15 @@ class NewCharacter extends React.Component {
               onClick={this.reRoll}
             >
               Roll
+            </button>
+          )}
+
+          {this.state.abilityScreen && !this.state.strength && myCharacters && (
+            <button
+              className={`button button--storage button-primary`}
+              onClick={this.showStorageSheetScreen}
+            >
+              Tavern
             </button>
           )}
         </header>
@@ -1009,15 +1036,21 @@ class NewCharacter extends React.Component {
           {this.state.characterSheetScreen && (
             <CharacterSheetScreen
               parentState={this.state}
+              updateParentState={this.updateParentState}
+              showAbilityScreen={this.showAbilityScreen}
+              showStorageSheetScreen={this.showStorageSheetScreen}
             ></CharacterSheetScreen>
           )}
+
+          {this.state.characterStorageScreen && (
+            <CharacterStorageScreen
+              updateParentState={this.updateParentState}
+              parentState={this.state}
+              showAbilityScreen={this.showAbilityScreen}
+              showCharacterSheetScreen={this.showCharacterSheetScreen}
+            ></CharacterStorageScreen>
+          )}
         </div>
-        {this.state.characterStorageScreen && (
-          <CharacterStorageScreen
-            updateParentState={this.updateParentState}
-            parentState={this.state}
-          ></CharacterStorageScreen>
-        )}
       </div>
     );
   }

@@ -11,6 +11,21 @@ class CharacterSheetScreen extends React.Component {
   }
 
   componentDidMount() {
+    this.updateLocalStorage();
+  }
+
+  savePDF = () => {
+    const input = document.getElementById("print-wrapper");
+    const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
+    if (pdf) {
+      domtoimage.toPng(input).then(imgData => {
+        pdf.addImage(imgData, "PNG", 0, 0);
+        pdf.save("download.pdf");
+      });
+    }
+  };
+
+  updateLocalStorage = () => {
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
     console.log("PARENT STATE ID", this.props.parentState.id);
     const id = this.props.parentState.id;
@@ -30,21 +45,14 @@ class CharacterSheetScreen extends React.Component {
       arr.push(this.props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(arr));
     } else {
-      console.log(myCharacters);
+      console.log("MY CHARACTERS", myCharacters);
       myCharacters.push(this.props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(myCharacters));
     }
-  }
+  };
 
-  savePDF = () => {
-    const input = document.getElementById("print-wrapper");
-    const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
-    if (pdf) {
-      domtoimage.toPng(input).then(imgData => {
-        pdf.addImage(imgData, "PNG", 0, 0);
-        pdf.save("download.pdf");
-      });
-    }
+  resetPage = () => {
+    this.props.showAbilityScreen();
   };
 
   render() {
@@ -57,7 +65,6 @@ class CharacterSheetScreen extends React.Component {
       <div className="character-sheet-container container">
         <h3 className="character--name">{char.name}</h3>
         <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
-
         <div className="character-sheet">
           <div className="character-top-container">
             <div className="hit-points character-container">
@@ -287,8 +294,10 @@ class CharacterSheetScreen extends React.Component {
             </div>
           )}
         </div>
-
-        <button onClick={() => window.location.reload()}>Go Back</button>
+        <button onClick={this.props.showStorageSheetScreen}>
+          Character Storage
+        </button>
+        <button onClick={this.resetPage}>New Character</button>
       </div>
     );
   }

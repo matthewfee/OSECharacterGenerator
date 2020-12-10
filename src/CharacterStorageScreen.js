@@ -19,6 +19,7 @@ class CharacterStorageScreen extends React.Component {
     console.log(this.state.myCharacters[e.target.value]);
     let obj = this.state.myCharacters[e.target.value];
     this.props.updateParentState(obj);
+    this.props.showCharacterSheetScreen();
   };
 
   characterButton = (name, index) => {
@@ -48,21 +49,23 @@ class CharacterStorageScreen extends React.Component {
 
   render() {
     return (
-      <div
-        className={
-          this.props.parentState.abilityScreen
-            ? "character-storage-screen-main"
-            : "character-storage-screen"
-        }
-      >
-        <details>
-          <summary>Character storage</summary>
+      <div className="character-storage-screen">
+        <h3 className="header-default"> Tavern </h3>
+
+        <div className="character-storage">
           {this.state.myCharacters
             ? this.state.myCharacters.map((item, index) =>
                 this.characterButton(item.name, index)
               )
             : ""}
-        </details>
+        </div>
+
+        <button
+          className="button--new-character"
+          onClick={this.props.showAbilityScreen}
+        >
+          Back to Main
+        </button>
       </div>
     );
   }

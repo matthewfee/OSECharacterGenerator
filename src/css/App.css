@@ -474,11 +474,21 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: white;
-  width: 50%;
+  width: 80%;
+  margin: auto;
   top: 100%;
   font-size: 3rem;
   border-radius: 4px;
+}
+
+.character-storage {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+}
+
+.character-button {
+  margin: 10px;
 }
 
 .character-storage-screen-main {
@@ -792,6 +802,10 @@ div>.class-options-container>.button:disabled {
   margin-top: 20px;
 }
 
+.button--new-character {
+  margin-top: 100px;
+}
+
 .header {
   text-align: center;
   min-height: 4rem;
@@ -804,7 +818,7 @@ div>.class-options-container>.button:disabled {
 
 }
 
-.header>.button--roll {
+.header>.button--roll  {
 
   color: #FF0000;
   background-color: black;
@@ -816,6 +830,22 @@ div>.class-options-container>.button:disabled {
   position: absolute;
   position: absolute;
   top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, 200%);
+}
+
+.header>.button--storage {
+  color: #FF0000;
+  background-color: black;
+  width: 10rem;
+  margin-top: 30px;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  border: none;
+  position: absolute;
+  position: absolute;
+  top: 180%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, 200%);
