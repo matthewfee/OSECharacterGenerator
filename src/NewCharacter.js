@@ -6,11 +6,13 @@ import ClassDescription from "./ClassDescription.js";
 import ClassScreen from "./ClassScreen.js";
 import DetailsScreen from "./DetailsScreen.js";
 import CharacterSheetScreen from "./CharacterSheetScreen.js";
+import CharacterStorageScreen from "./CharacterStorageScreen.js";
 
 class NewCharacter extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: null,
       strength: null,
       intelligence: null,
       wisdom: null,
@@ -37,10 +39,13 @@ class NewCharacter extends React.Component {
       classScreen: false,
       detailsScreen: false,
       characterSheetScreen: false,
+      characterStorageScreen: false,
       goldStarting: undefined,
       randomNumbers: []
     };
   }
+
+  id = "ID_" + new Date().getTime();
 
   componentDidMount() {
     var RandomOrg = require("random-org");
@@ -50,6 +55,10 @@ class NewCharacter extends React.Component {
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
       this.setState({ randomNumbers: result.random.data });
     });
+
+    if (this.state.id === null) {
+      this.setState({ id: this.id });
+    }
   }
 
   getRndInteger = (min, max) => {
@@ -89,6 +98,7 @@ class NewCharacter extends React.Component {
     window.scrollTo(0, 0);
 
     var newObject = {
+      id: this.id,
       strength: this.d6(3),
       intelligence: this.d6(3),
       wisdom: this.d6(3),
@@ -99,7 +109,8 @@ class NewCharacter extends React.Component {
       pointBuy: 0,
       characterClass: null,
       primeReq: undefined,
-      primeReq2: undefined
+      primeReq2: undefined,
+      characterStorageScreen: false
     };
 
     newObject.strengthOriginal = newObject.strength;
@@ -526,7 +537,10 @@ class NewCharacter extends React.Component {
     this.setState({
       equipmentScreen: false,
       abilityScreen: true,
-      classScreen: false
+      characterSheetScreen: false,
+      classScreen: false,
+      characterStorageScreen: false,
+      strength: null
     });
     window.scrollTo(0, 0);
   };
@@ -547,13 +561,26 @@ class NewCharacter extends React.Component {
       classScreen: false,
       detailsScreen: true
     });
+    window.scrollTo(0, 0);
   };
 
   showCharacterSheetScreen = () => {
     this.setState({
       detailsScreen: false,
-      characterSheetScreen: true
+      characterSheetScreen: true,
+      characterStorageScreen: false
     });
+    window.scrollTo(0, 0);
+  };
+
+  showStorageSheetScreen = () => {
+    this.setState({
+      characterStorageScreen: true,
+      characterSheetScreen: false,
+      abilityScreen: false,
+      strength: 10
+    });
+    window.scrollTo(0, 0);
   };
 
   getClassInfo = () => {
@@ -606,6 +633,7 @@ class NewCharacter extends React.Component {
 
   render() {
     const redFail = "#730505";
+    const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
 
     return (
       <div className="wrapper">
@@ -626,6 +654,15 @@ class NewCharacter extends React.Component {
               onClick={this.reRoll}
             >
               Roll
+            </button>
+          )}
+
+          {this.state.abilityScreen && !this.state.strength && myCharacters && (
+            <button
+              className={`button button--storage button-primary`}
+              onClick={this.showStorageSheetScreen}
+            >
+              Tavern
             </button>
           )}
         </header>
@@ -847,6 +884,17 @@ class NewCharacter extends React.Component {
                         <div className="arrow-up"></div>
                       </button>
                     )}
+
+                  {this.state.dexterity > this.state.dexterityOriginal && (
+                    <button
+                      className="button button--ability button--ability--decrease"
+                      onClick={() => {
+                        this.scoreDecrease("dexterity");
+                      }}
+                    >
+                      <div className="arrow-down"></div>
+                    </button>
+                  )}
                 </div>
 
                 <div className="ability-mod">
@@ -973,6 +1021,7 @@ class NewCharacter extends React.Component {
               showAbilityScreen={this.showAbilityScreen}
               showDetailsScreen={this.showDetailsScreen}
               gold={this.state.goldStarting}
+              dexterityModAC={this.state.dexterityModAC}
             />
           )}
 
@@ -987,7 +1036,19 @@ class NewCharacter extends React.Component {
           {this.state.characterSheetScreen && (
             <CharacterSheetScreen
               parentState={this.state}
+              updateParentState={this.updateParentState}
+              showAbilityScreen={this.showAbilityScreen}
+              showStorageSheetScreen={this.showStorageSheetScreen}
             ></CharacterSheetScreen>
+          )}
+
+          {this.state.characterStorageScreen && (
+            <CharacterStorageScreen
+              updateParentState={this.updateParentState}
+              parentState={this.state}
+              showAbilityScreen={this.showAbilityScreen}
+              showCharacterSheetScreen={this.showCharacterSheetScreen}
+            ></CharacterStorageScreen>
           )}
         </div>
       </div>

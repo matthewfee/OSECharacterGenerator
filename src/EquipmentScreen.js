@@ -336,7 +336,9 @@ class EquipmentScreen extends React.Component {
       };
     }
 
-    this.setState(newObject);
+    this.setState(newObject, () => {
+      this.calculateAC();
+    });
 
     // adds shield if selected
   };
@@ -370,7 +372,35 @@ class EquipmentScreen extends React.Component {
       // equipment is same except for item is removed from array
       armour: newArray
     };
-    this.setState(newObject);
+    this.setState(newObject, () => {
+      this.calculateAC();
+    });
+  };
+
+  calculateAC = () => {
+    let armourClass = 10;
+    let char = this.state;
+    if (char.armour.includes("Leather")) {
+      armourClass += 2;
+    }
+    if (char.armour.includes("Chainmail")) {
+      armourClass += 4;
+    }
+    if (char.armour.includes("Plate mail")) {
+      armourClass += 6;
+    }
+    if (char.armour.includes("Shield")) {
+      armourClass += 1;
+    }
+
+    let dexMod = this.props.dexterityModAC;
+    if (dexMod.includes("+")) {
+      dexMod = dexMod.substring(1);
+    }
+    dexMod = parseInt(dexMod);
+    armourClass += dexMod;
+
+    this.setState({ AC: armourClass });
   };
 
   render() {
@@ -578,7 +608,8 @@ class EquipmentScreen extends React.Component {
                     gold: this.state.gold,
                     equipment: this.state.equipment,
                     armour: this.state.armour,
-                    weapons: this.state.weapons
+                    weapons: this.state.weapons,
+                    AC: this.state.AC
                   };
                   this.props.updateParentState(stateObject);
                   this.props.showDetailsScreen();

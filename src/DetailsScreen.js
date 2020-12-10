@@ -241,7 +241,7 @@ class DetailsScreen extends React.Component {
   };
 
   getBackground = () => {
-    var bgs = [];
+    let bgs = [];
     bgs = bgs.concat(Array(3).fill("Animal trainer"));
     bgs = bgs.concat(Array(2).fill("Armorer"));
     bgs = bgs.concat(Array(4).fill("Baker"));

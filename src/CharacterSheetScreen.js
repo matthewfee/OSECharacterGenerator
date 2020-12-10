@@ -11,7 +11,7 @@ class CharacterSheetScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.calculateAC();
+    this.updateLocalStorage();
   }
 
   savePDF = () => {
@@ -25,33 +25,34 @@ class CharacterSheetScreen extends React.Component {
     }
   };
 
-  calculateAC = () => {
-    let armourClass = 10;
-    let char = this.props.parentState;
-    if (char.armour.includes("Leather")) {
-      armourClass += 2;
-    }
-    if (char.armour.includes("Chainmail")) {
-      armourClass += 4;
-    }
-    if (char.armour.includes("Plate mail")) {
-      armourClass += 6;
-    }
-    if (char.armour.includes("Shield")) {
-      armourClass += 1;
+  updateLocalStorage = () => {
+    const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+    console.log("PARENT STATE ID", this.props.parentState.id);
+    const id = this.props.parentState.id;
+
+    if (myCharacters) {
+      const alreadyExists = myCharacters.find(obj => {
+        return obj.id === id;
+      });
+      if (alreadyExists) {
+        console.log("Duplicate ID Found");
+        return;
+      }
     }
 
-    let dexMod = char.dexterityModAC;
-    if (dexMod.includes("+")) {
-      dexMod = dexMod.substring(1);
+    if (localStorage.getItem("characters") === null) {
+      let arr = [];
+      arr.push(this.props.parentState);
+      window.localStorage.setItem("characters", JSON.stringify(arr));
+    } else {
+      console.log("MY CHARACTERS", myCharacters);
+      myCharacters.push(this.props.parentState);
+      window.localStorage.setItem("characters", JSON.stringify(myCharacters));
     }
-    console.log(dexMod);
+  };
 
-    dexMod = parseInt(dexMod);
-
-    armourClass += dexMod;
-
-    this.setState({ AC: armourClass });
+  resetPage = () => {
+    this.props.showAbilityScreen();
   };
 
   render() {
@@ -64,7 +65,6 @@ class CharacterSheetScreen extends React.Component {
       <div className="character-sheet-container container">
         <h3 className="character--name">{char.name}</h3>
         <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
-
         <div className="character-sheet">
           <div className="character-top-container">
             <div className="hit-points character-container">
@@ -72,8 +72,8 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value">{char.hitPoints}</span>
             </div>
             <div className="armor-class character-container">
-              <span className="charsheet-value-name">AC</span>{" "}
-              <span className="charsheet-value">{this.state.AC}</span>
+              <span className="charsheet-value-name">Armour Class</span>{" "}
+              <span className="charsheet-value">{char.AC}</span>
             </div>
             <div className="character--alignment character-container">
               <span className="charsheet-value-name">Alignment</span>{" "}
@@ -198,9 +198,12 @@ class CharacterSheetScreen extends React.Component {
             <div className="character-container">
               <span className="charsheet-value-name">Abilities</span>
               <span className="charsheet-value character-sheet--class-ability">
-                {characterClass.abilities.map(item => {
+                {characterClass.abilities.map((item, index) => {
                   return (
-                    <span key={item} className="character-sheet--class-ability">
+                    <span
+                      key={index}
+                      className="character-sheet--class-ability"
+                    >
                       {" "}
                       {item}{" "}
                     </span>
@@ -215,9 +218,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Weapons</span>
 
               <span className="charsheet-value charsheet--weapons">
-                {char.weapons.map(item => {
+                {char.weapons.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--weapon-item">
+                    <span key={index} className="charsheet--weapon-item">
                       {" "}
                       {item}{" "}
                     </span>
@@ -230,9 +233,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Armour</span>
 
               <span className="charsheet-value charsheet--armour">
-                {char.armour.map(item => {
+                {char.armour.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--armour-item">
+                    <span key={index} className="charsheet--armour-item">
                       {" "}
                       {item}{" "}
                     </span>
@@ -245,9 +248,9 @@ class CharacterSheetScreen extends React.Component {
               <span className="charsheet-value-name">Gear</span>
 
               <span className="charsheet-value charsheet--gear">
-                {char.equipment.map(item => {
+                {char.equipment.map((item, index) => {
                   return (
-                    <span key={item} className="charsheet--gear-item">
+                    <span key={index} className="charsheet--gear-item">
                       {" "}
                       {item}{" "}
                     </span>
@@ -291,6 +294,10 @@ class CharacterSheetScreen extends React.Component {
             </div>
           )}
         </div>
+        <button onClick={this.props.showStorageSheetScreen}>
+          Character Storage
+        </button>
+        <button onClick={this.resetPage}>New Character</button>
       </div>
     );
   }
