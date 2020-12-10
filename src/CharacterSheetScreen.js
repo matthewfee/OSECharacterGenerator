@@ -294,9 +294,7 @@ class CharacterSheetScreen extends React.Component {
             </div>
           )}
         </div>
-        <button onClick={this.props.showStorageSheetScreen}>
-          Character Storage
-        </button>
+        <button onClick={this.props.showStorageSheetScreen}>Tavern</button>
         <button onClick={this.resetPage}>New Character</button>
       </div>
     );
