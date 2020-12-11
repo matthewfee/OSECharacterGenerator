@@ -537,7 +537,7 @@ body {
   right: 0;
   left: 0;
   top: 110%;
-  width: 98%;
+  max-width: 400px;
   justify-content: center;
   background-color: whitesmoke;
 }
