@@ -14,16 +14,16 @@ class CharacterSheetScreen extends React.Component {
     this.updateLocalStorage();
   }
 
-  savePDF = () => {
-    const input = document.getElementById("print-wrapper");
-    const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
-    if (pdf) {
-      domtoimage.toPng(input).then(imgData => {
-        pdf.addImage(imgData, "PNG", 0, 0);
-        pdf.save("download.pdf");
-      });
-    }
-  };
+  // savePDF = () => {
+  //   const input = document.getElementById("print-wrapper");
+  //   const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
+  //   if (pdf) {
+  //     domtoimage.toPng(input).then((imgData) => {
+  //       pdf.addImage(imgData, "PNG", 0, 0);
+  //       pdf.save("download.pdf");
+  //     });
+  //   }
+  // };
 
   updateLocalStorage = () => {
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
@@ -294,8 +294,11 @@ class CharacterSheetScreen extends React.Component {
             </div>
           )}
         </div>
-        <button onClick={this.props.showStorageSheetScreen}>Tavern</button>
-        <button onClick={this.resetPage}>New Character</button>
+
+        <div className="button-container">
+          <button onClick={this.props.showStorageSheetScreen}>Tavern</button>
+          <button onClick={this.resetPage}>Main</button>
+        </div>
       </div>
     );
   }
