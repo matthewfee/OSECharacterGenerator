@@ -30,7 +30,7 @@ class NewCharacter extends React.Component {
       pointBuy: 0,
       characterClass: null,
       level: 1,
-      primeReq: undefined,
+      primeReq: "none",
       primeReq2: null,
       equipment: [],
       equipmentSelected: undefined,
@@ -41,15 +41,16 @@ class NewCharacter extends React.Component {
       characterSheetScreen: false,
       characterStorageScreen: false,
       goldStarting: undefined,
-      randomNumbers: []
+      randomNumbers: [],
+      showAdvancedClasses: false
     };
   }
 
   id = "ID_" + new Date().getTime();
 
   componentDidMount() {
-    var RandomOrg = require("random-org");
-    var random = new RandomOrg({
+    const RandomOrg = require("random-org");
+    const random = new RandomOrg({
       apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d"
     });
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
@@ -79,7 +80,7 @@ class NewCharacter extends React.Component {
   };
 
   d6 = how_many => {
-    //uses default random number if API doesn't load
+    //uses default JS random number seed if randomNumber API doesn't load correctly
 
     if (this.state.randomNumbers.length < 2) {
       return this.d(3, 6);
@@ -108,7 +109,7 @@ class NewCharacter extends React.Component {
       goldStarting: this.d6(3) * 10,
       pointBuy: 0,
       characterClass: null,
-      primeReq: undefined,
+      primeReq: "none",
       primeReq2: undefined,
       characterStorageScreen: false
     };
@@ -125,7 +126,7 @@ class NewCharacter extends React.Component {
     });
   };
 
-  //function that updates state with details of an ability mod for a given ability score and ability
+  //generates the appropriate modifiers for each ability score
 
   getMod = () => {
     var STR = this.state.strength;
@@ -353,13 +354,14 @@ class NewCharacter extends React.Component {
       "+10%"
     ];
 
-    var abilityScore = this.state[this.state.primeReq];
-    var abilityScore2 = this.state[this.state.primeReq2];
+    let abilityScore = this.state[this.state.primeReq.toLowerCase()];
 
-    //only counts lowest of the two prime reqs
+    if (this.state.primeReq2) {
+      let abilityScore2 = this.state[this.state.primeReq2.toLowerCase()];
 
-    if (abilityScore2 < abilityScore) {
-      abilityScore = abilityScore2;
+      if (abilityScore2 < abilityScore) {
+        abilityScore = abilityScore2;
+      }
     }
 
     if (this.state.characterClass === "Elf") {
@@ -461,45 +463,28 @@ class NewCharacter extends React.Component {
   changeCharacterClass = event => {
     this.resetCharacter();
 
-    this.setState({ primeReq2: null, characterClass: event.target.value });
+    let characterClass = classOptionsData.find(
+      obj => obj.name === event.target.value
+    );
 
-    if (event.target.value === "Magic-User") {
-      return this.setState({ primeReq: "intelligence" }, () => {
-        this.getPrimeReqMod();
-      });
-    }
-
-    if (event.target.value === "Cleric") {
-      return this.setState({ primeReq: "wisdom" }, () => {
-        this.getPrimeReqMod();
-      });
-    }
-    if (event.target.value === "Fighter") {
-      return this.setState({ primeReq: "strength" }, () => {
-        this.getPrimeReqMod();
-      });
-    }
-    if (event.target.value === "Dwarf") {
-      return this.setState({ primeReq: "strength" }, () => {
-        this.getPrimeReqMod();
-      });
-    }
-    if (event.target.value === "Thief") {
-      return this.setState({ primeReq: "dexterity" }, () => {
-        this.getPrimeReqMod();
-      });
-    }
-    if (event.target.value === "Halfling") {
+    if (characterClass.primeReq2) {
       return this.setState(
-        { primeReq: "dexterity", primeReq2: "strength" },
+        {
+          characterClass: event.target.value,
+          primeReq: characterClass.primeReq,
+          primeReq2: characterClass.primeReq2
+        },
         () => {
           this.getPrimeReqMod();
         }
       );
-    }
-    if (event.target.value === "Elf") {
-      return this.setState(
-        { primeReq: "intelligence", primeReq2: "strength" },
+    } else {
+      this.setState(
+        {
+          characterClass: event.target.value,
+          primeReq: characterClass.primeReq,
+          primeReq2: null
+        },
         () => {
           this.getPrimeReqMod();
         }
@@ -507,8 +492,8 @@ class NewCharacter extends React.Component {
     }
   };
 
-  classOptionsListButton = () =>
-    classOptionsData.map(item => (
+  classOptionsListButton = () => {
+    return classOptionsData.map(item => (
       <ClassOptionsButton
         classOption={item.name}
         requirements={item.requirements}
@@ -523,6 +508,7 @@ class NewCharacter extends React.Component {
         classFunction={this.changeCharacterClass}
       ></ClassOptionsButton>
     ));
+  };
 
   showEquipmentScreen = () => {
     this.setState({
@@ -634,6 +620,11 @@ class NewCharacter extends React.Component {
   render() {
     const redFail = "#730505";
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+    const primeReqs = this.state.primeReq2
+      ? (this.state.primeReq + " " + this.state.primeReq2).toLowerCase()
+      : this.state.primeReq.toLowerCase();
+
+    console.log("PRIMEREQS VARIABLE", primeReqs);
 
     return (
       <div className="wrapper">
@@ -699,8 +690,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>STRENGTH</h2>
 
-                  {(this.state.primeReq === "strength" ||
-                    this.state.primeReq2 === "strength") && (
+                  {primeReqs.includes("strength") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>
@@ -730,8 +720,7 @@ class NewCharacter extends React.Component {
                     )}
 
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "strength" ||
-                      this.state.primeReq2 === "strength" ||
+                    (primeReqs.includes("strength") ||
                       this.state.strength < this.state.strengthOriginal) &&
                     this.state.strength < 18 && (
                       <button
@@ -752,8 +741,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>INTELLIGENCE</h2>
 
-                  {(this.state.primeReq === "intelligence" ||
-                    this.state.primeReq2 === "intelligence") && (
+                  {primeReqs.includes("intelligence") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>
@@ -781,8 +769,7 @@ class NewCharacter extends React.Component {
                     </button>
                   )}
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "intelligence" ||
-                      this.state.primeReq2 === "intelligence" ||
+                    (primeReqs.includes("intelligence") ||
                       this.state.intelligence <
                         this.state.intelligenceOriginal) &&
                     this.state.intelligence < 18 && (
@@ -804,8 +791,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>WISDOM</h2>
 
-                  {(this.state.primeReq === "wisdom" ||
-                    this.state.primeReq2 === "wisdom") && (
+                  {primeReqs.includes("wisdom") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>
@@ -832,8 +818,7 @@ class NewCharacter extends React.Component {
                     </button>
                   )}
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "wisdom" ||
-                      this.state.primeReq2 === "wisdom" ||
+                    (primeReqs.includes("wisdom") ||
                       this.state.wisdom < this.state.wisdomOriginal) &&
                     this.state.wisdom < 18 && (
                       <button
@@ -853,8 +838,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>DEXTERITY</h2>
 
-                  {(this.state.primeReq === "dexterity" ||
-                    this.state.primeReq2 === "dexterity") && (
+                  {primeReqs.includes("dexterity") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>
@@ -906,8 +890,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>CONSTITUTION</h2>
 
-                  {(this.state.primeReq === "constitution" ||
-                    this.state.primeReq2 === "constitution") && (
+                  {primeReqs.includes("constitution") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>
@@ -945,8 +928,7 @@ class NewCharacter extends React.Component {
                 <div className="ability-score-name">
                   <h2>CHARISMA</h2>
 
-                  {(this.state.primeReq === "charisma" ||
-                    this.state.primeReq2 === "charisma") && (
+                  {primeReqs.includes("charisma") && (
                     <div className="prime-req">
                       Prime Req: {this.state.primeReqMod}
                     </div>

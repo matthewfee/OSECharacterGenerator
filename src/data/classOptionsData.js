@@ -411,7 +411,7 @@ const classOptionsData = [
     name: "Paladin",
     requirements: "Minimum CHA 9",
     primeReq: "Strength",
-    primseReq2: "Wisdom",
+    primeReq2: "Wisdom",
     hd: 8,
     maxLevel: 14,
     armour: "any",
