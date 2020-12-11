@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 * {
   margin: 0;
@@ -12,7 +12,6 @@ body {
 
 .ability-scores--header {
   margin-top: 0px;
-
 }
 
 .header-default {
@@ -21,16 +20,12 @@ body {
   text-transform: uppercase;
   font-size: 2.4rem;
   letter-spacing: 0.4rem;
-  color:  black;
+  color: black;
   margin-left: auto;
   margin-right: auto;
-
-
 }
 
-
-.container>.ability-score-container {
-
+.container > .ability-score-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(6, 1fr);
@@ -41,26 +36,23 @@ body {
   position: relative;
   margin-top: 25px;
   margin-bottom: 20px;
-
 }
 
-
-.ability-score-container>div {
+.ability-score-container > div {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   text-align: left;
-  font-size: 1.0rem;
+  font-size: 1rem;
   margin-left: 0rem;
   font-weight: bold;
-
 }
 
 .ability-score-container > .ability-mod {
   justify-self: left;
 }
 
-.ability-score-container>.ability-score {
+.ability-score-container > .ability-score {
   justify-self: center;
   align-self: center;
   text-align: center;
@@ -74,37 +66,28 @@ body {
   width: 5rem;
 }
 
-
 .ability-score-container > .ability-score--high {
   color: #206604;
-
 }
-.ability-score-container>.ability-score-name {
+.ability-score-container > .ability-score-name {
   display: flexbox;
   text-align: center;
   position: relative;
-
 }
 
-.ability-score-container>.ability-score-name>h2 {
+.ability-score-container > .ability-score-name > h2 {
   font-size: 1.4rem;
   font-weight: bold;
   padding-left: 0rem;
   text-align: center;
   margin-bottom: 0rem;
-
-
 }
 
-.ability-score-container>.ability-score {
+.ability-score-container > .ability-score {
   position: relative;
 }
 
-
-
-
-
-.ability-score-container>div>span {
+.ability-score-container > div > span {
   font-size: 1.1rem;
   margin-right: 0.4rem;
   padding-right: 10px;
@@ -112,8 +95,7 @@ body {
   font-weight: normal;
 }
 
-
-.ability-score>.button--ability {
+.ability-score > .button--ability {
   height: 50%;
   margin: 0;
   border-radius: 0;
@@ -121,32 +103,27 @@ body {
   font-size: 3rem;
   line-height: 0;
   border: none;
-
 }
 
-.ability-score>.button--ability--increase {
-
+.ability-score > .button--ability--increase {
   position: absolute;
   left: 100%;
   top: 0;
   height: 50%;
   width: 30px;
-
-
 }
 
-.ability-score>.button--ability--decrease {
+.ability-score > .button--ability--decrease {
   position: absolute;
   left: 100%;
   bottom: 0;
   height: 50%;
   width: 30px;
-
 }
 
-
-
-.armour-container, .weapons-container, .gear-container {
+.armour-container,
+.weapons-container,
+.gear-container {
   padding-top: 10px;
   display: flex;
   flex-flow: column nowrap;
@@ -159,7 +136,7 @@ body {
   align-items: center;
 }
 
- .equipment-restrictions {
+.equipment-restrictions {
   margin: auto;
   width: 80%;
   color: grey;
@@ -172,7 +149,6 @@ body {
   font-weight: bold;
   margin-top: 20px;
   font-size: 1.4rem;
-
 }
 
 .armour-container > .radio-container {
@@ -188,7 +164,6 @@ body {
   font-weight: normal;
   place-items: left;
   justify-content: left;
-  
 }
 
 .armour-radio > .form-check-input {
@@ -209,7 +184,8 @@ body {
   text-align: center;
 }
 
-.backpack-container > .armour-backpack, .backpack-container > .weapons-backpack {
+.backpack-container > .armour-backpack,
+.backpack-container > .weapons-backpack {
   display: grid;
   grid-template-columns: auto min-content min-content;
   grid-gap: 2px;
@@ -240,7 +216,8 @@ body {
   width: auto;
 }
 
-.backpack-item.backpack-item--weapon, .backpack-item.backpack-item--armour {
+.backpack-item.backpack-item--weapon,
+.backpack-item.backpack-item--armour {
   font-size: 1.4rem;
   text-transform: uppercase;
   font-weight: bold;
@@ -261,14 +238,14 @@ body {
   border-radius: 4px;
 }
 
-.backpack-item > .button--equipment:hover, 
+.backpack-item > .button--equipment:hover,
 .backpack-item > .button--equipment:focus {
   box-sizing: border-box;
   position: absolute;
-  color: #FFF;
+  color: #fff;
   font-size: 10px;
   font-weight: 600;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   line-height: 100%;
   text-transform: uppercase;
   top: 0;
@@ -277,7 +254,7 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid #E50000;
+  border: 1px solid #e50000;
   background-color: #e50000e0;
   border-radius: 4px;
   text-align: center;
@@ -286,37 +263,30 @@ body {
   z-index: 1;
 }
 
-
-
-.button--ability--decrease>.arrow-down {
+.button--ability--decrease > .arrow-down {
   width: 0;
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
   border-top: 2.2rem solid rgba(255, 0, 0, 0.8);
-
 }
 
-.button--ability--decrease>.arrow-down:hover {
+.button--ability--decrease > .arrow-down:hover {
   border-top: 2.2rem solid rgba(255, 0, 0, 1);
-
 }
 
-
-.button--ability--increase>.arrow-up {
+.button--ability--increase > .arrow-up {
   width: 0;
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
   border-bottom: 2.2rem solid rgb(2, 187, 2, 0.8);
   z-index: 2;
-
 }
 
-.button--ability--increase>.arrow-up:hover {
+.button--ability--increase > .arrow-up:hover {
   border-bottom: 2.2rem solid rgb(9, 235, 2, 1);
   z-index: 2;
-
 }
 
 .character-details-form {
@@ -336,7 +306,6 @@ body {
   max-width: 20rem;
   display: flex;
   flex-flow: column nowrap;
-
 }
 
 .character-details-form > .form-label--optional-details {
@@ -349,17 +318,14 @@ body {
   margin-top: 20px;
   padding: 10px;
   font-weight: bold;
-
 }
-
 
 .button--alignment--selected {
-  color: #FF0000 !important;
-  
+  color: #ff0000 !important;
 }
 
- .button--alignment:hover {
-  color: #FF0000 !important;
+.button--alignment:hover {
+  color: #ff0000 !important;
   background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
@@ -376,7 +342,6 @@ body {
   width: 220px;
   height: 38px;
   margin-top: 10px;
-
 }
 
 .character-sheet-container.container {
@@ -396,7 +361,6 @@ body {
 }
 
 .character--name {
-
   font-size: 2.6rem;
   font-weight: bold;
   margin: 0;
@@ -404,13 +368,11 @@ body {
 }
 
 .character--subheader {
-
   font-size: 2rem;
   padding: 0;
   margin: 0;
   font-weight: normal;
   font-style: italic;
-
 }
 
 .character-sheet {
@@ -420,13 +382,25 @@ body {
   justify-content: center;
 }
 
-.character-top-container, .ability-scores-container, .charsheet-saving-throws-container, .character-sheet-ability-list, .character-equipment {
+.character-sheet-container > .button-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.button-container > button {
+  margin-left: 10px;
+}
+
+.character-top-container,
+.ability-scores-container,
+.charsheet-saving-throws-container,
+.character-sheet-ability-list,
+.character-equipment {
   font-size: 1.2rem;
   display: flex;
   flex-flow: column nowrap;
   min-width: 240px;
   margin: 20px;
-
 }
 
 .character-container {
@@ -435,14 +409,11 @@ body {
   flex-flow: row nowrap;
   justify-content: left;
   padding-left: 4px;
-  padding-right: 4px;
   margin-top: 8px;
-
 }
 
-
 .character-container > .charsheet-value-name {
-  width: 60%;
+  width: 50%;
   max-width: 140px;
   text-align: left;
   border-bottom: 1px solid rgba(138, 101, 101, 0.274);
@@ -453,18 +424,17 @@ body {
   border-bottom: 1px solid rgba(138, 101, 101, 0.274);
   text-align: left;
   width: 50%;
-  max-width: 100px;
-
 }
 
-.character-sheet--class-ability, .charsheet--gear-item {
-  font-size: 1rem;
-
+.character-sheet--class-ability,
+.charsheet--gear-item {
   display: flex;
   flex-flow: column nowrap;
 }
 
-.charsheet--gear, .charsheet--armour, .charsheet--weapons {
+.charsheet--gear,
+.charsheet--armour,
+.charsheet--weapons {
   display: flex;
   flex-flow: column nowrap;
 }
@@ -514,7 +484,6 @@ body {
   justify-content: center;
   font-size: 1rem;
   font-weight: bold;
-
 }
 
 .details-result > .details-result--name {
@@ -522,7 +491,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 
 
 .class-ability-menu {
@@ -533,17 +501,15 @@ body {
   margin: auto;
   margin-bottom: 10px;
   margin-top: 40px;
-
 }
 
-.class-ability-menu>.class-ability-menu--header {
+.class-ability-menu > .class-ability-menu--header {
   margin-top: 2rem;
   font-size: 2rem;
   color: rgb(34, 34, 34);
-
 }
 
-.class-ability-menu>.class-ability-menu--abilities {
+.class-ability-menu > .class-ability-menu--abilities {
   font-size: 1.2rem;
   margin: auto;
   width: 80%;
@@ -561,7 +527,6 @@ body {
   margin: auto;
 }
 
-
 .class-details {
   font-size: 1.6rem;
   display: inline-flex;
@@ -577,10 +542,7 @@ body {
   background-color: whitesmoke;
 }
 
-
-
-
-.class-details>.class-details--arrow {
+.class-details > .class-details--arrow {
   width: 0;
   height: 0;
   margin: 0.8rem;
@@ -588,23 +550,16 @@ body {
   margin-right: 1rem;
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
-  border-bottom: 1.0rem solid #E50000;
-  ;
+  border-bottom: 1rem solid #e50000;
 }
-
 
 .class-description-list {
   font-size: 1.2rem;
   text-align: left;
   padding: 2rem;
-
 }
 
-
-
-
 div.ability-screen {
-
   display: inline-block;
   width: 100vw;
   min-height: 630px;
@@ -612,12 +567,9 @@ div.ability-screen {
   position: relative;
   padding: 0;
   margin: 0;
-
 }
 
-
 div.character-menu {
-
   border: 1px solid black;
   border-radius: 5px;
   display: inline-block;
@@ -631,7 +583,6 @@ div.character-menu {
   min-height: 600px;
   height: 100%;
   position: relative;
-
 }
 
 .class-info {
@@ -641,15 +592,14 @@ div.character-menu {
   border-top: 1px solid rgba(0, 0, 0, 0.501);
   border-bottom: 1px solid rgba(0, 0, 0, 0.501);
   border-radius: 15px;
-
 }
 
-.class-options-screen>.button.button--hp.button-primary {
-  background-color: #FF0000;
+.class-options-screen > .button.button--hp.button-primary {
+  background-color: #ff0000;
   margin: 2rem;
 }
 
-.class-options-container>.button-class-option {
+.class-options-container > .button-class-option {
   max-height: 40px;
   height: auto;
   width: auto;
@@ -658,23 +608,25 @@ div.character-menu {
 }
 
 @media screen and (min-width: 400px) {
-
-  .ability-screen>div.class-options-container {
+  .ability-screen > div.class-options-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
     width: 100%;
     position: relative;
   }
 
-  .class-options-container>.button-class-option {
+  .class-options-container > .button-class-option {
     max-height: 80px !important;
   }
-
 }
 
 @media screen and (max-width: 600px) {
   .header {
-    background-image: linear-gradient(to right bottom, rgba(85, 83, 83, 0.8), rgba(56, 56, 56, 0.8)),
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(85, 83, 83, 0.8),
+        rgba(56, 56, 56, 0.8)
+      ),
       url(../img/header.svg);
     background-size: cover;
     height: 4rem;
@@ -683,30 +635,26 @@ div.character-menu {
   .header--initial {
     background-image: none;
   }
-
-
 }
 
-.class-options-container>.button-class-option:hover {
+.class-options-container > .button-class-option:hover {
   height: auto;
   width: auto;
   padding: 0;
   margin: 0;
-  color: #FF0000;
-  background-color: rgba(0, 0, 0, 0.025) !important
+  color: #ff0000;
+  background-color: rgba(0, 0, 0, 0.025) !important;
 }
 
-.class-options-container>.button-class-option:focus {
+.class-options-container > .button-class-option:focus {
   height: auto;
   width: auto;
   padding: 0;
   margin: 0;
-  color:#FF0000;
+  color: #ff0000;
 }
 
-
-
-div>.class-options-container {
+div > .class-options-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
   padding-right: 2px;
@@ -716,13 +664,10 @@ div>.class-options-container {
   min-height: 80px;
   margin-bottom: 4rem;
   padding-top: 0rem;
-
 }
 
-
-div>.class-options-container>.button:disabled {
+div > .class-options-container > .button:disabled {
   color: rgba(0, 0, 0, 0.1);
-
 }
 
 .equipment-screen {
@@ -734,7 +679,7 @@ div>.class-options-container>.button:disabled {
   height: 100%;
 }
 
-.equipment-screen>.equipment-screen--header {
+.equipment-screen > .equipment-screen--header {
   display: inline-flex;
   font-size: 2rem;
   margin: auto;
@@ -774,21 +719,19 @@ div>.class-options-container>.button:disabled {
   font-size: 24px;
   font-weight: 600;
   line-height: 38px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   white-space: nowrap;
   height: 38px;
   width: 100px;
-  background-color: #F2D649;
-  color:#2a2a2d;
-
+  background-color: #f2d649;
+  color: #2a2a2d;
 }
 
-.equipment-screen>.armour-container {
+.equipment-screen > .armour-container {
   margin-top: 1rem;
 }
 
 .button--character-details {
-
   width: min-content;
   margin: auto;
   margin-top: 20px;
@@ -815,12 +758,10 @@ div>.class-options-container>.button:disabled {
   position: relative;
   padding: 0;
   margin: 0;
-
 }
 
-.header>.button--roll  {
-
-  color: #FF0000;
+.header > .button--roll {
+  color: #ff0000;
   background-color: black;
   width: 10rem;
   margin-top: 30px;
@@ -835,8 +776,8 @@ div>.class-options-container>.button:disabled {
   transform: translate(-50%, 200%);
 }
 
-.header>.button--storage {
-  color: #FF0000;
+.header > .button--storage {
+  color: #ff0000;
   background-color: black;
   width: 10rem;
   margin-top: 30px;
@@ -851,15 +792,14 @@ div>.class-options-container>.button:disabled {
   transform: translate(-50%, 200%);
 }
 
-.header>.button--roll:hover {
-  color: #E50000;
+.header > .button--roll:hover {
+  color: #e50000;
   margin-bottom: 0.5rem;
   width: 10rem;
   padding: 0;
 }
 
-.character-menu>div>.hp-container {
-
+.character-menu > div > .hp-container {
   display: grid;
   grid-template-columns: 6rem auto 6rem auto 6rem;
   font-size: 3rem;
@@ -870,11 +810,9 @@ div>.class-options-container>.button:disabled {
   margin: auto;
   margin-bottom: 2rem;
   justify-items: center;
-
 }
 
-.hp-container>div {
-
+.hp-container > div {
   background-color: rgba(167, 166, 189, 0.22);
   border-radius: 10px;
   display: flex;
@@ -887,13 +825,13 @@ div>.class-options-container>.button:disabled {
   height: 5rem;
 }
 
-.hp-container>.hp-container--math {
+.hp-container > .hp-container--math {
   border: none;
   background-color: transparent;
   width: 2rem;
 }
 
-.hp-container>div>div {
+.hp-container > div > div {
   font-size: 1.2rem;
   text-transform: uppercase;
   position: absolute;
@@ -914,13 +852,12 @@ div>.class-options-container>.button:disabled {
   transform: translate(-50%);
   top: -2rem;
   text-align: center;
-
 }
 
 .prime-req {
   position: absolute;
   left: 0;
-  top:80%;
+  top: 80%;
   width: 100%;
   text-align: center;
 }
@@ -944,7 +881,7 @@ div>.class-options-container>.button:disabled {
   background-color: transparent;
   width: 100px;
   height: 100px;
-  margin: auto;   
+  margin: auto;
 }
 
 .saving-throws.container::after {
@@ -961,10 +898,9 @@ div>.class-options-container>.button:disabled {
   z-index: 0;
   background-color: rgba(0, 0, 0, 0.549);
   text-align: center;
-
 }
 
-.saving-throws.container>div {
+.saving-throws.container > div {
   position: absolute;
   font-size: 1.2rem;
   text-transform: uppercase;
@@ -973,57 +909,57 @@ div>.class-options-container>.button:disabled {
   z-index: 1;
 }
 
-.saving-throws.container>.saving--value {
+.saving-throws.container > .saving--value {
   color: white;
   font-size: 1.6rem;
 }
 
-.saving-throws.container>.saving-throw--death {
+.saving-throws.container > .saving-throw--death {
   top: -20%;
   left: -10%;
 }
 
-.saving-throws.container>.saving-throw--death--value {
+.saving-throws.container > .saving-throw--death--value {
   top: 5%;
   left: -10%;
 }
 
-.saving-throws.container>.saving-throw--wands {
+.saving-throws.container > .saving-throw--wands {
   top: 36%;
   left: 68%;
 }
 
-.saving-throws.container>.saving-throw--wands--value {
+.saving-throws.container > .saving-throw--wands--value {
   top: 36%;
   left: 22%;
 }
 
-.saving-throws.container>.saving-throw--paralysis {
+.saving-throws.container > .saving-throw--paralysis {
   top: 105%;
   left: 50%;
 }
 
-.saving-throws.container>.saving-throw--paralysis--value {
+.saving-throws.container > .saving-throw--paralysis--value {
   bottom: -2%;
   right: -26%;
 }
 
-.saving-throws.container>.saving-throw--breath {
+.saving-throws.container > .saving-throw--breath {
   top: 105%;
   left: -65%;
 }
 
-.saving-throws.container>.saving-throw--breath--value {
+.saving-throws.container > .saving-throw--breath--value {
   bottom: -2%;
   left: -28%;
 }
 
-.saving-throws.container>.saving-throw--spells {
+.saving-throws.container > .saving-throw--spells {
   top: 36%;
   left: -90%;
 }
 
-.saving-throws.container>.saving-throw--spells--value {
+.saving-throws.container > .saving-throw--spells--value {
   top: 36%;
   left: -45%;
 }
@@ -1036,17 +972,13 @@ div>.class-options-container>.button:disabled {
   border-right: 0.6rem solid transparent;
   border-top: 1.2rem solid black;
   z-index: 2;
-
 }
 
-
-
 .title {
-  
   font-size: 5rem;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: bold;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -1068,7 +1000,11 @@ div>.class-options-container>.button:disabled {
   margin-bottom: 0px;
   text-align: center;
   font-size: 1rem;
-  background-image: linear-gradient(to right bottom, rgba(85, 83, 83, 0.8), rgba(56, 56, 56, 0.8)),
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(85, 83, 83, 0.8),
+      rgba(56, 56, 56, 0.8)
+    ),
     url(../img/header.svg);
   background-size: cover;
   background-position: bottom;
