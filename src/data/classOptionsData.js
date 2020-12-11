@@ -384,7 +384,7 @@ const classOptionsData = [
     illusionSpells: true
   },
   {
-    name: "Illusionist",
+    name: "Knight",
     requirements: "Minimum CON 9, minimum DEX 9",
     primeReq: "Strength",
     hd: 8,
@@ -484,7 +484,7 @@ const classOptionsData = [
       "Using Magic Items"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
-    arcane: true,
+    arcane: false,
     divine: false
   }
 ];
