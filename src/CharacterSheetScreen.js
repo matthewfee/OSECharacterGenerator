@@ -101,7 +101,13 @@ class CharacterSheetScreen extends React.Component {
         <div className="button-container">
           <button onClick={this.props.showStorageSheetScreen}>Tavern</button>
           <button onClick={this.resetPage}>Main</button>
-          <button onClick={() => exportComponentAsPNG(this.componentRef)}>
+          <button
+            onClick={() =>
+              exportComponentAsPNG(this.componentRef, {
+                fileName: char.name + " the " + char.characterClass
+              })
+            }
+          >
             Export As PNG
           </button>
         </div>
