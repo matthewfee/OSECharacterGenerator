@@ -156,42 +156,28 @@ class CharacterSheetScreen extends React.Component {
 
           <div className="charsheet-saving-throws-container">
             <div className="character-container">
-              <span className="charsheet-value-name">Death</span>
-              <span className="charsheet-value">
-                {" "}
-                {characterClass.savingThrows[0]}
-              </span>
-            </div>
-
-            <div className="character-container">
-              <span className="charsheet-value-name">Wands</span>
-              <span className="charsheet-value">
-                {" "}
-                {characterClass.savingThrows[1]}
-              </span>
-            </div>
-
-            <div className="character-container">
-              <span className="charsheet-value-name">Paralysis</span>
-              <span className="charsheet-value">
-                {" "}
-                {characterClass.savingThrows[2]}
-              </span>
-            </div>
-
-            <div className="character-container">
-              <span className="charsheet-value-name">Breath</span>
-              <span className="charsheet-value">
-                {" "}
-                {characterClass.savingThrows[3]}
-              </span>
-            </div>
-
-            <div className="character-container">
-              <span className="charsheet-value-name">Spells</span>
-              <span className="charsheet-value">
-                {" "}
-                {characterClass.savingThrows[4]}
+              <span className="charsheet-value-name">Saving Throws</span>
+              <span className="charsheet-value charsheet-value--saving-throws">
+                <div>
+                  <span>Death</span>{" "}
+                  <span>{characterClass.savingThrows[0]}</span>
+                </div>
+                <div>
+                  <span>Wands</span>{" "}
+                  <span>{characterClass.savingThrows[1]}</span>
+                </div>
+                <div>
+                  <span>Paralysis</span>{" "}
+                  <span>{characterClass.savingThrows[2]}</span>
+                </div>
+                <div>
+                  <span>Breath</span>{" "}
+                  <span>{characterClass.savingThrows[3]}</span>
+                </div>
+                <div>
+                  <span>Spells</span>{" "}
+                  <span>{characterClass.savingThrows[4]}</span>
+                </div>
               </span>
             </div>
 

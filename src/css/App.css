@@ -413,6 +413,7 @@ body {
   margin: 0;
   font-weight: normal;
   font-style: italic;
+  color: rgba(78, 5, 5, 0.841)
 }
 
 .character-sheet {
@@ -464,6 +465,14 @@ body {
   border-bottom: 1px solid rgba(138, 101, 101, 0.274);
   text-align: left;
   width: 50%;
+  text-transform: capitalize;
+}
+
+.charsheet-value--saving-throws > div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  max-width: 90px;
 }
 
 .character-sheet--class-ability,
@@ -493,18 +502,44 @@ body {
 
 .character-storage {
   display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
+  flex-flow: row wrap;
+  justify-content: left;
 }
 
 .character-storage > .character-button {
-  margin: 10px;
-  height: 100px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin: 5px;
+  min-height: 100px;
   text-transform: none;
+  line-height: 20px;
+  letter-spacing: 0;
+  width: 140px;
+  padding: 10px;
+  white-space: normal;
+  height: auto;
 }
 
 .character-button > .character-button--name {
-  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: rgba(0, 0, 0, 0.767);
+}
+
+.character-button > .character-button--level {
+  font-style: italic;
+  color: rgba(78, 5, 5, 0.841);
+  font-size: 1.2rem;
+}
+
+.character-button--ability-scores {
+  margin-top: 10px;
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: justify;
+
 }
 
 .character-storage-screen-main {
@@ -622,7 +657,7 @@ div.ability-screen {
 div.character-menu {
   border: 1px solid black;
   border-radius: 5px;
-  display: inline-block;
+  display: flex;
   background-color: rgba(255, 255, 255, 0.92);
   padding: 0px 0px;
   margin: 0;

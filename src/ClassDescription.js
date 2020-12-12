@@ -42,7 +42,7 @@ class ClassDescription extends React.Component {
             <b>Weapons:</b> {obj.weapons}
           </li>
           <li>
-            <b>Special Abilities:</b> {obj.abilities}
+            <b>Special Abilities:</b> {obj.abilities.join(", ")}
           </li>
           <li>
             <b>Languages:</b> {obj.languages}

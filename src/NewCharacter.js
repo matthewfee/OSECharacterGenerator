@@ -44,8 +44,8 @@ class NewCharacter extends React.Component {
       randomNumbers: [],
       showAdvancedClasses: false,
 
-      basicCharData: null,
-      advCharData: null
+      basicCharData: "Character Data Not Loaded",
+      advCharData: "Advanced Character Data Not Loaded"
     };
   }
 
@@ -624,7 +624,9 @@ class NewCharacter extends React.Component {
       characterSheetScreen: false,
       classScreen: false,
       characterStorageScreen: false,
-      strength: null
+      strength: null,
+      basicCharData: "Character Data Not Loaded",
+      advCharData: "Advanced Character Data Not Loaded"
     });
     window.scrollTo(0, 0);
   };
@@ -765,7 +767,7 @@ class NewCharacter extends React.Component {
           className={`character-menu container`}
           style={{ display: this.state.strength ? "inline-block" : "none" }}
         >
-          {this.state.abilityScreen && (
+          {this.state.abilityScreen && this.state.strength && (
             <div className="ability-screen container">
               <h2 className="header-default">Character Class</h2>
 
@@ -783,9 +785,6 @@ class NewCharacter extends React.Component {
                     onChange={this.toggleAdvanced}
                   ></input>
                 </h3>
-                {/* {this.state.abilityScreen
-                  ? this.advancedClassesListButton()
-                  : ""} */}
                 {this.state.showAdvancedClasses && this.state.advCharData}
                 {this.state.strength && (
                   <ClassDescription

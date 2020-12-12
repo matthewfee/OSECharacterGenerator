@@ -359,7 +359,7 @@ const classOptionsData = [
       "Half-orcs are the rare offspring of orcs and humans. They are human-like in stature and appearance, but usually have at least one feature that marks their orcish heritage (e.g. fangs or a pig-like snout). Due to the common animosity between orcs and humans, half-orcs are typically outcasts from both their parent cultures, living on the fringes of society and making a living by whatever means they can. Half-orc adventurers are capable combatants and have some skill as thieves.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1800,
-    abilities: ["Back-stab", "Infravision", "Thieving Skills"],
+    abilities: ["Backstab", "Infravision", "Thieving Skills"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false
