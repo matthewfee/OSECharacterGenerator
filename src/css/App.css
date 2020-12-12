@@ -693,7 +693,7 @@ div.character-menu {
   margin: 2rem;
 }
 
-.class-options-container > .button-class-option {
+div > .button-class-option {
   max-height: 40px;
   height: auto;
   width: auto;
@@ -702,14 +702,15 @@ div.character-menu {
 }
 
 @media screen and (min-width: 400px) {
-  .ability-screen > div.class-options-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    width: 90%;
-    position: relative;
+
+  .basic-class-container, .advanced-class-container {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)) !important;
+    width: 90% !important;
+    max-width: 1000px !important;
   }
 
-  .class-options-container > .button-class-option {
+
+   .button-class-option {
     max-height: 80px !important;
   }
 }
@@ -748,14 +749,19 @@ div.character-menu {
 }
 
 div > .class-options-container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  align-items: center;
+
+}
+
+.basic-class-container, .advanced-class-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-  padding-right: 2px;
-  grid-column-gap: 0rem;
-  grid-row-gap: 0rem;
-  max-width: 100%;
-  min-height: 80px;
-  padding-top: 0rem;
+  width: 100%;
+  position: relative;
+  max-width: 400px;
 }
 
 div > .class-options-container > .button:disabled {

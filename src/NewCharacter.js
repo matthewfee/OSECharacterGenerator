@@ -774,7 +774,9 @@ class NewCharacter extends React.Component {
               <div className="class-options-container container">
                 <h3 className="basic-classes-header">Core Classes</h3>
 
-                {this.state.basicCharData}
+                <div className="basic-class-container">
+                  {this.state.basicCharData}
+                </div>
                 <h3 className="advanced-classes-header">
                   Advanced Classes{" "}
                   <input
@@ -785,7 +787,10 @@ class NewCharacter extends React.Component {
                     onChange={this.toggleAdvanced}
                   ></input>
                 </h3>
-                {this.state.showAdvancedClasses && this.state.advCharData}
+                <div className="advanced-class-container">
+                  {this.state.showAdvancedClasses && this.state.advCharData}
+                </div>
+
                 {this.state.strength && (
                   <ClassDescription
                     characterClass={this.state.characterClass}
