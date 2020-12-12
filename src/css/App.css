@@ -426,6 +426,7 @@ body {
 .character-sheet-container > .button-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 .button-container > button {
@@ -516,13 +517,14 @@ body {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
+  align-items: center;
   margin: 5px;
   min-height: 100px;
   text-transform: none;
   line-height: 20px;
   letter-spacing: 0;
   width: 140px;
-  padding: 10px;
+  padding: 4px;
   white-space: normal;
   height: auto;
 }
@@ -545,6 +547,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: justify;
+  grid-gap: 10px;
 
 }
 
