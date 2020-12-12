@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import jsPDF from "jspdf";
-import domtoimage from "dom-to-image";
 
 class DetailsScreen extends React.Component {
   constructor(props) {
@@ -14,17 +12,6 @@ class DetailsScreen extends React.Component {
 
   choose = array => {
     return array[Math.floor(Math.random() * array.length)];
-  };
-
-  savePDF = () => {
-    const input = document.getElementById("print-wrapper");
-    const pdf = new jsPDF("1", "mm", [158.75, 158.75]);
-    if (pdf) {
-      domtoimage.toPng(input).then(imgData => {
-        pdf.addImage(imgData, "PNG", 0, 0);
-        pdf.save("download.pdf");
-      });
-    }
   };
 
   handleName = event => {
