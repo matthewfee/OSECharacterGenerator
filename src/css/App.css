@@ -503,7 +503,7 @@ body {
 .character-storage {
   display: flex;
   flex-flow: row wrap;
-  justify-content: left;
+  justify-content: center;
 }
 
 .character-storage > .character-button {
