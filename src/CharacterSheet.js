@@ -45,6 +45,11 @@ class CharacterSheet extends React.Component {
               <span className="charsheet-value-name">Personality</span>{" "}
               <span className="charsheet-value">{char.personality}</span>
             </div>
+
+            <div className="misfortune character-container">
+              <span className="charsheet-value-name">Misfortune</span>{" "}
+              <span className="charsheet-value">{char.misfortune}</span>
+            </div>
           </div>
 
           <div className="ability-scores-container">

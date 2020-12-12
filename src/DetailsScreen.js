@@ -53,8 +53,10 @@ class DetailsScreen extends React.Component {
       "Florian",
       "Fox",
       "Godwin",
+      "Giles",
       "Hannibal",
       "Jasper",
+      "Joffrey",
       "Jiles",
       "Silas",
       "Stilton",
@@ -325,12 +327,20 @@ class DetailsScreen extends React.Component {
       "honorable",
       "loyal",
       "shrewd",
-      "pure"
+      "pure",
+      "jealous",
+      "vengeful",
+      "shrewd",
+      "impulsive",
+      "charitable",
+      "daring",
+      "reckless",
+      "ambitious"
     ];
-    var num = 2;
-    var selected = [];
+    let num = 2;
+    let selected = [];
     for (let i = 0; i < num; i++) {
-      var trait = this.choose(traits);
+      let trait = this.choose(traits);
       selected.push(trait);
       traits = traits.filter(k => k !== trait);
     }
@@ -338,6 +348,58 @@ class DetailsScreen extends React.Component {
     console.log(selected, selected.join(", "));
 
     this.setState({ personality: selected.join(", ") });
+  };
+
+  getMisfortune = () => {
+    const misfortunes = [
+      "abandoned",
+      "addicted",
+      "blackmailed",
+      "burgled",
+      "challenged",
+      "framed",
+      "haunted",
+      "humiliated",
+      "impoverished",
+      "kidnapped",
+      "lost",
+      "condemned",
+      "cursed",
+      "injured",
+      "defrauded",
+      "demoted",
+      "depressed",
+      "mobbed",
+      "overworked",
+      "unemployed",
+      "poisoned",
+      "pursued",
+      "rejected",
+      "discredited",
+      "dismissed",
+      "disowned",
+      "exiled",
+      "famished",
+      "forgotten",
+      "replaced",
+      "robbed",
+      "sick",
+      "sued",
+      "suspected",
+      "transformed",
+      "shunned",
+      "forsaken",
+      "damned",
+      "murdered",
+      "followed",
+      "misunderstood",
+      "unappreciated",
+      "unpopular",
+      "destitute"
+    ];
+
+    let randomMisfortune = this.choose(misfortunes);
+    this.setState({ misfortune: randomMisfortune });
   };
 
   render() {
@@ -467,6 +529,25 @@ class DetailsScreen extends React.Component {
                   </span>
                 </div>
               )}
+
+              {!this.state.misfortune && (
+                <button
+                  type="button"
+                  className="button button--optional-details"
+                  onClick={this.getMisfortune}
+                >
+                  Roll Misfortune
+                </button>
+              )}
+
+              {this.state.misfortune && (
+                <div className="details-result">
+                  <span className="details-result--name">Misfortune:</span>
+                  <span className="details-result--data">
+                    {this.state.misfortune}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -478,7 +559,8 @@ class DetailsScreen extends React.Component {
                 alignment: this.state.alignment,
                 appearance: this.state.appearance,
                 background: this.state.background,
-                personality: this.state.personality
+                personality: this.state.personality,
+                misfortune: this.state.misfortune
               };
               this.props.updateParentState(stateObject);
               this.props.showCharacterSheetScreen();
