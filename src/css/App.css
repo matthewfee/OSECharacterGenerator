@@ -497,8 +497,14 @@ body {
   justify-content: center;
 }
 
-.character-button {
+.character-storage > .character-button {
   margin: 10px;
+  height: 100px;
+  text-transform: none;
+}
+
+.character-button > .character-button--name {
+  text-transform: uppercase;
 }
 
 .character-storage-screen-main {

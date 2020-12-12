@@ -361,18 +361,61 @@ class NewCharacter extends React.Component {
       "+10%"
     ];
 
-    let abilityScore = this.state[this.state.primeReq.toLowerCase()];
+    let abilityScoreMax = this.state[this.state.primeReq.toLowerCase()];
 
     if (this.state.primeReq2) {
       let abilityScore2 = this.state[this.state.primeReq2.toLowerCase()];
 
-      if (abilityScore2 < abilityScore) {
-        abilityScore = abilityScore2;
+      if (abilityScore2 > abilityScoreMax) {
+        abilityScoreMax = abilityScore2;
+      }
+    }
+
+    if (this.state.characterClass === "Barbarian") {
+      if (this.state.constitution > 15 && this.state.strength > 15) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.constitution > 12 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
+      }
+    }
+
+    if (this.state.characterClass === "Drow") {
+      if (this.state.wisdom > 15 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.wisdom > 12 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
       }
     }
 
     if (this.state.characterClass === "Elf") {
       if (this.state.intellience > 15 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.intellience > 12 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
+      }
+    }
+
+    if (this.state.characterClass === "Gnome") {
+      if (this.state.intelligence > 15 && this.state.dexterity > 12) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.intelligence > 12 && this.state.dexterity > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
+      }
+    }
+
+    if (this.state.characterClass === "Half-Elf") {
+      if (
+        (this.state.intelligence > 15 && this.state.strength > 12) ||
+        (this.state.intelligence > 12 && this.state.strength > 15)
+      ) {
         return this.setState({ primeReqMod: "+10%" });
       } else if (this.state.intellience > 12 && this.state.strength > 12) {
         return this.setState({ primeReqMod: "+5%" });
@@ -389,7 +432,27 @@ class NewCharacter extends React.Component {
       }
     }
 
-    this.setState({ primeReqMod: modArr[abilityScore] });
+    if (this.state.characterClass === "Half-Orc") {
+      if (this.state.dexterity > 15 && this.state.strength > 15) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.dexterity > 12 && this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
+      }
+    }
+
+    if (this.state.characterClass === "Paladin") {
+      if (this.state.wisdom > 15 && this.state.strength > 15) {
+        return this.setState({ primeReqMod: "+10%" });
+      } else if (this.state.wisdom > 12 || this.state.strength > 12) {
+        return this.setState({ primeReqMod: "+5%" });
+      } else {
+        return this.setState({ primeReqMod: "+0%" });
+      }
+    }
+
+    this.setState({ primeReqMod: modArr[abilityScoreMax] });
   };
 
   resetCharacter = () => {
@@ -911,8 +974,7 @@ class NewCharacter extends React.Component {
                   {this.state.dexterity}
 
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "dexterity" ||
-                      this.state.primeReq2 === "dexterity") &&
+                    primeReqs.includes("dexterity") &&
                     this.state.dexterity < 18 && (
                       <button
                         className="button button--ability button--ability--increase"
@@ -963,8 +1025,7 @@ class NewCharacter extends React.Component {
                   {this.state.constitution}
 
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "constitution" ||
-                      this.state.primeReq2 === "constitution") &&
+                    primeReqs.includes("constitution") &&
                     this.state.constitution < 18 && (
                       <button
                         className="button button--ability button--ability--increase"
@@ -1001,8 +1062,7 @@ class NewCharacter extends React.Component {
                   {this.state.charisma}
 
                   {this.state.pointBuy > 0 &&
-                    (this.state.primeReq === "charisma" ||
-                      this.state.primeReq2 === "charisma") &&
+                    primeReqs.includes("charisma") &&
                     this.state.charisma < 18 && (
                       <button
                         className="button button--ability button--ability--increase"

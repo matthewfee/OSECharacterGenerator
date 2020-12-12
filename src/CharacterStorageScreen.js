@@ -22,8 +22,8 @@ class CharacterStorageScreen extends React.Component {
     this.props.showCharacterSheetScreen();
   };
 
-  characterButton = (name, index) => {
-    if (name.length < 1) {
+  characterButton = (char, index) => {
+    if (char.name.length < 1) {
       return (
         <button
           className="character-button"
@@ -42,7 +42,8 @@ class CharacterStorageScreen extends React.Component {
         onClick={this.handleCharacter}
         value={index}
       >
-        {name}
+        <div className="character-button--name">{char.name}</div>
+        <div className="character-button--level">{char.characterClass}</div>
       </button>
     );
   };
@@ -55,7 +56,7 @@ class CharacterStorageScreen extends React.Component {
         <div className="character-storage">
           {this.state.myCharacters
             ? this.state.myCharacters.map((item, index) =>
-                this.characterButton(item.name, index)
+                this.characterButton(item, index)
               )
             : ""}
         </div>

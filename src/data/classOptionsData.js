@@ -258,7 +258,7 @@ const classOptionsData = [
     weapons: "Club, dagger, sling, spear, staff",
     languages: "Alignment, Common, the secret druidic tongue",
     description:
-      "Druids are priests of nature, protecting wild lands from the encroachment of “civilised” Law and the corrupting touch of Chaos. They worship the force of nature itself, personified in the form of various nature deities. Alignment: Druids regard the ways of the natural world as the ideal state of things. They see the concepts of Law and Chaos as extremes that are both equally against nature. Thus, druids must be neutral in alignment.",
+      "Druids are priests of nature, protecting wild lands from the encroachment of “civilised” Law and the corrupting touch of Chaos. They worship the force of nature itself, personified in the form of various nature deities.",
     savingThrows: [11, 12, 14, 16, 15],
     nextLevel: 2000,
     abilities: [
@@ -283,7 +283,7 @@ const classOptionsData = [
     languages:
       "Alignment, Common, Deepcommon, Dwarvish, Gnomish, Goblin, Kobold",
     description:
-      "Duergars (also known as grey dwarves) are short, scrawny, bearded demihumans with grey skin and hair and ugly visages. They are around 4’ tall, weigh about 120 pounds, and have life spans of up to 500 years.  metals and stones and for their xenophobia toward other races. Duergars have a naturally strong constitution and are highly resistant to magic.",
+      "Duergars (also known as grey dwarves) are short, scrawny, bearded demihumans with grey skin and hair and ugly visages. They are around 4’ tall, weigh about 120 pounds, and have life spans of up to 500 years. Duergars dwell in strongholds and cities deep underground. They are renowned for their greed and for metals and stones and for their xenophobia toward other races. Duergars have a naturally strong constitution and are highly resistant to magic.",
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2800,
     abilities: [
@@ -393,7 +393,7 @@ const classOptionsData = [
     weapons: "melee weapons",
     languages: "Alignment, Common",
     description:
-      "Knights are warriors who serve a noble house or knightly order, carrying out their liege’s command and combat, preferring the lance above all other weapons. Knights are often members of the noble classes, but a person of lowlier origin may be initiated as a knight as a reward for noble deeds. Knighthood: Knights of 1st and 2nd level are known as “squires” and are not yet regarded as true knights. Upon reaching 3rd level, the character is knighted by their liege and gains the right to bear a coat of arms (typically emblazoned upon the knight’s shield). Alignment: A knight must have the same alignment as their liege.",
+      "Knights are warriors who serve a noble house or knightly order, carrying out their liege’s command and combat, preferring the lance above all other weapons. Knights are often members of the noble classes, but a person of lowlier origin may be initiated as a knight as a reward for noble deeds.",
     savingThrows: [12, 13, 14, 15, 16],
     nextLevel: 2500,
     abilities: [
@@ -418,7 +418,7 @@ const classOptionsData = [
     weapons: "any",
     languages: "Alignment, Common",
     description:
-      "Paladins are warriors sworn by sacred oath to the service of a Lawful holy order. Alignment: A paladin must be lawful. If the character’s alignment ever changes (for any reason), they lose all class abilities and become a fighter of the same level. The referee may allow the character to perform a quest of atonement in order to regain their status as a paladin.",
+      "Paladins are warriors sworn by sacred oath to the service of a Lawful holy order.",
     savingThrows: [10, 11, 12, 13, 14],
     nextLevel: 2750,
     abilities: [
@@ -442,7 +442,7 @@ const classOptionsData = [
     weapons: "any",
     languages: "Alignment, Common",
     description:
-      "Rangers are members of a secret society which protects their native lands from invasion and the influence of Chaos. They are skilled warriors who are adapted to life in the wilds. At higher levels, their connection with nature grants them the ability to cast spells. Alignment: As protectors, rangers may only be lawful or neutral. If a ranger ever changes alignment to chaotic, they lose all special class abilities and become a fighter of the same level. The character may be able to regain their ranger status by performing a special quest.",
+      "Rangers are members of a secret society which protects their native lands from invasion and the influence of Chaos. They are skilled warriors who are adapted to life in the wilds. At higher levels, their connection with nature grants them the ability to cast spells.",
     savingThrows: [12, 13, 14, 15, 16],
     nextLevel: 2250,
     abilities: [
