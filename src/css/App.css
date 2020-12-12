@@ -421,6 +421,7 @@ body {
   flex-flow: row-reverse wrap;
   min-width: 300px;
   justify-content: center;
+  padding-left: 30px;
 }
 
 .character-sheet-container > .button-container {
@@ -442,12 +443,12 @@ body {
   display: flex;
   flex-flow: column nowrap;
   width: 260px;
-  margin: 10px;
+  margin: 0px;
   margin-top: 40px;
 }
 
 .character-sheet-component {
-  width: 95%;
+  width: 98%;
   margin-bottom: 40px;
 }
 

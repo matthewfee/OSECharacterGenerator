@@ -54,7 +54,7 @@ class NewCharacter extends React.Component {
   componentDidMount() {
     const RandomOrg = require("random-org");
     const random = new RandomOrg({
-      apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d"
+      apiKey: process.env.REACT_APP_API_KEY
     });
 
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
@@ -86,11 +86,11 @@ class NewCharacter extends React.Component {
   d6 = how_many => {
     //uses default JS random number seed if randomNumber API doesn't load correctly
 
-    if (this.state.randomNumbers.length < 2) {
+    if (!this.state.randomNumbers) {
       return this.d(3, 6);
     }
 
-    var sum = 0;
+    let sum = 0;
 
     for (let i = 0; i < how_many; i++) {
       sum = sum + this.choose(this.state.randomNumbers);
