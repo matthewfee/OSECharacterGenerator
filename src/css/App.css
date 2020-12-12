@@ -18,7 +18,7 @@ body {
   padding-top: 20px;
   font-weight: normal;
   text-transform: uppercase;
-  font-size: 2.4rem;
+  font-size: 2rem;
   letter-spacing: 0.4rem;
   color: black;
   margin-left: auto;
@@ -329,6 +329,45 @@ body {
   background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
+.checkbox-container {
+  display: flex;
+  flex-flow: row;
+  align-items: baseline;
+  justify-content: center;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  font-size: 1.4rem;
+  margin-top: 12px;
+}
+
+
+.advanced-classes-header, .basic-classes-header {
+  font-size: 1.2rem;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  margin-top: 20px;
+}
+
+.basic-classes-header {
+  margin-top: 40px;
+}
+
+.advanced-classes-header {
+  margin-left: 40px;
+}
+
+.checkbox {
+  margin: auto 0 auto 10px;
+}
+
+.checkbox-container > label {
+  padding-right: 10px;
+}
+
+.checkbox-container > input {
+  margin-right: 10px;
+}
+
 .form-label > .form-input {
   font-size: 1.8rem;
   text-align: center;
@@ -528,7 +567,7 @@ body {
 }
 
 .class-details {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   display: inline-flex;
   position: absolute;
   border-radius: 4px;
@@ -536,10 +575,12 @@ body {
   margin: auto;
   right: 0;
   left: 0;
-  top: 110%;
+  top: 0;
   max-width: 400px;
+  width: 80%;
   justify-content: center;
   background-color: whitesmoke;
+  border: 1px solid black;
 }
 
 .class-details > .class-details--arrow {
@@ -550,7 +591,7 @@ body {
   margin-right: 1rem;
   border-left: 0.6rem solid transparent;
   border-right: 0.6rem solid transparent;
-  border-bottom: 1rem solid #e50000;
+  border-top: 1rem solid #e50000;
 }
 
 .class-description-list {
@@ -560,7 +601,9 @@ body {
 }
 
 div.ability-screen {
-  display: inline-block;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   width: 100vw;
   min-height: 630px;
   max-width: 600px;
@@ -611,7 +654,7 @@ div.character-menu {
   .ability-screen > div.class-options-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    width: 100%;
+    width: 90%;
     position: relative;
   }
 
@@ -628,7 +671,6 @@ div.character-menu {
         rgba(56, 56, 56, 0.8)
       ),
       url(../img/header.svg);
-    background-size: cover;
     height: 4rem;
   }
 
@@ -662,7 +704,6 @@ div > .class-options-container {
   grid-row-gap: 0rem;
   max-width: 100%;
   min-height: 80px;
-  margin-bottom: 4rem;
   padding-top: 0rem;
 }
 
@@ -1009,4 +1050,5 @@ div > .class-options-container > .button:disabled {
   background-size: cover;
   background-position: bottom;
   height: 100%;
+  min-height: 1200px;
 }

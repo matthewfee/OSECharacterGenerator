@@ -493,21 +493,54 @@ class NewCharacter extends React.Component {
   };
 
   classOptionsListButton = () => {
-    return classOptionsData.map(item => (
-      <ClassOptionsButton
-        classOption={item.name}
-        requirements={item.requirements}
-        primeReq={item.primeReq}
-        strength={this.state.strengthOriginal}
-        intelligence={this.state.intelligenceOriginal}
-        wisdom={this.state.wisdomOriginal}
-        dexterity={this.state.dexterityOriginal}
-        constitution={this.state.constitutionOriginal}
-        charisma={this.state.charismaOriginal}
-        key={item.name}
-        classFunction={this.changeCharacterClass}
-      ></ClassOptionsButton>
-    ));
+    let basicCharacters = [];
+    for (let i = 0; i < 7; i++) {
+      let item = classOptionsData[i];
+      console.log(item, "ITEM", i);
+      basicCharacters.push(
+        <ClassOptionsButton
+          classOption={item.name}
+          requirements={item.requirements}
+          primeReq={item.primeReq}
+          strength={this.state.strengthOriginal}
+          intelligence={this.state.intelligenceOriginal}
+          wisdom={this.state.wisdomOriginal}
+          dexterity={this.state.dexterityOriginal}
+          constitution={this.state.constitutionOriginal}
+          charisma={this.state.charismaOriginal}
+          key={item.name}
+          classFunction={this.changeCharacterClass}
+        ></ClassOptionsButton>
+      );
+    }
+    return basicCharacters;
+  };
+
+  advancedClassesListButton = () => {
+    if (!this.state.showAdvancedClasses) {
+      return;
+    }
+    let advancedCharacters = [];
+    for (let i = 7; i < classOptionsData.length; i++) {
+      let item = classOptionsData[i];
+      console.log(item, "ITEM", i);
+      advancedCharacters.push(
+        <ClassOptionsButton
+          classOption={item.name}
+          requirements={item.requirements}
+          primeReq={item.primeReq}
+          strength={this.state.strengthOriginal}
+          intelligence={this.state.intelligenceOriginal}
+          wisdom={this.state.wisdomOriginal}
+          dexterity={this.state.dexterityOriginal}
+          constitution={this.state.constitutionOriginal}
+          charisma={this.state.charismaOriginal}
+          key={item.name}
+          classFunction={this.changeCharacterClass}
+        ></ClassOptionsButton>
+      );
+    }
+    return advancedCharacters;
   };
 
   showEquipmentScreen = () => {
@@ -567,6 +600,14 @@ class NewCharacter extends React.Component {
       strength: 10
     });
     window.scrollTo(0, 0);
+  };
+
+  toggleAdvanced = () => {
+    if (this.state.showAdvancedClasses) {
+      this.setState({ showAdvancedClasses: false });
+    } else {
+      this.setState({ showAdvancedClasses: true });
+    }
   };
 
   getClassInfo = () => {
@@ -664,11 +705,22 @@ class NewCharacter extends React.Component {
         >
           {this.state.abilityScreen && (
             <div className="ability-screen container">
-              {/* <h2 className="header-default">Character Class</h2>   */}
+              <h2 className="header-default">Character Class</h2>
 
               <div className="class-options-container container">
+                <h3 className="basic-classes-header">Core Classes</h3>
                 {this.classOptionsListButton()}
-
+                <h3 className="advanced-classes-header">
+                  Advanced Classes{" "}
+                  <input
+                    type="checkbox"
+                    value="Advanced Classes"
+                    className="checkbox"
+                    checked={this.state.showAdvancedClasses}
+                    onChange={this.toggleAdvanced}
+                  ></input>
+                </h3>
+                {this.advancedClassesListButton()}
                 {this.state.strength && (
                   <ClassDescription
                     characterClass={this.state.characterClass}

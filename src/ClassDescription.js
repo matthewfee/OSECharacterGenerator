@@ -11,9 +11,8 @@ class ClassDescription extends React.Component {
   render() {
     if (this.props.characterClass === null) {
       return (
-        <div className="class-details">
-          <div className="class-details--arrow"></div>Choose Your Class
-          <div className="class-details--arrow"></div>
+        <div className="class-details" style={{ border: "none" }}>
+          Choose Your Class
         </div>
       );
     }
