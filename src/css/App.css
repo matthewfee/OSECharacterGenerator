@@ -437,11 +437,17 @@ body {
 .charsheet-saving-throws-container,
 .character-sheet-ability-list,
 .character-equipment {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   display: flex;
   flex-flow: column nowrap;
-  min-width: 240px;
-  margin: 20px;
+  width: 260px;
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.character-sheet-component {
+  width: 95%;
+  margin-bottom: 40px;
 }
 
 .character-container {
@@ -454,8 +460,7 @@ body {
 }
 
 .character-container > .charsheet-value-name {
-  width: 50%;
-  max-width: 140px;
+  width: 38%;
   text-align: left;
   border-bottom: 1px solid rgba(138, 101, 101, 0.274);
   font-weight: bold;
@@ -464,7 +469,8 @@ body {
   margin: 0px;
   border-bottom: 1px solid rgba(138, 101, 101, 0.274);
   text-align: left;
-  width: 50%;
+  max-width: 62%;
+  padding-left: 20px;
   text-transform: capitalize;
 }
 
@@ -472,7 +478,7 @@ body {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  max-width: 90px;
+  width: 100px;
 }
 
 .character-sheet--class-ability,

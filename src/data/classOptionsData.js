@@ -198,7 +198,7 @@ const classOptionsData = [
       "Barbarians are tribal warriors from wild lands. They are formidable fighters with many useful survival skills but have a deep mistrust of the arcane",
     savingThrows: [10, 13, 12, 15, 16],
     nextLevel: 2500,
-    abilities: ["Barbarian Skills", "Cure Poison", "Foragin and Hunting"],
+    abilities: ["Barbarian Skills", "Cure Poison", "Foraging", "Hunting"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false
