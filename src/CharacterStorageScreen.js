@@ -15,15 +15,15 @@ class CharacterStorageScreen extends React.Component {
   }
 
   handleCharacter = e => {
-    console.log(e.target.value);
-    console.log(this.state.myCharacters[e.target.value]);
-    let obj = this.state.myCharacters[e.target.value];
+    console.log(e.currentTarget.value);
+    console.log(this.state.myCharacters[e.currentTarget.value]);
+    let obj = this.state.myCharacters[e.currentTarget.value];
     this.props.updateParentState(obj);
     this.props.showCharacterSheetScreen();
   };
 
-  characterButton = (name, index) => {
-    if (name.length < 1) {
+  characterButton = (char, index) => {
+    if (char.name.length < 1) {
       return (
         <button
           className="character-button"
@@ -42,8 +42,31 @@ class CharacterStorageScreen extends React.Component {
         onClick={this.handleCharacter}
         value={index}
       >
-        {name}
+        <div className="character-button--name" value={index}>
+          {char.name}
+        </div>
+        <div className="character-button--level" value={index}>
+          {char.characterClass}
+        </div>
+        <div className="character-button--ability-scores">
+          <div>STR {char.strength}</div>
+          <div>INT {char.intelligence}</div>
+          <div>WIS {char.wisdom}</div>
+          <div>DEX {char.dexterity}</div>
+          <div>CON {char.constitution}</div>
+          <div>CHA {char.charisma}</div>
+        </div>
       </button>
+      // <button
+      //   className="character-button"
+      //   key={index}
+      //   onClick={this.handleCharacter}
+      //   value={index}
+      // >
+      //   {char.name} <br></br>
+      //   {char.characterClass} <br></br>
+
+      // </button>
     );
   };
 
@@ -55,7 +78,7 @@ class CharacterStorageScreen extends React.Component {
         <div className="character-storage">
           {this.state.myCharacters
             ? this.state.myCharacters.map((item, index) =>
-                this.characterButton(item.name, index)
+                this.characterButton(item, index)
               )
             : ""}
         </div>

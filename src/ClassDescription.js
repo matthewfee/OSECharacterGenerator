@@ -11,9 +11,8 @@ class ClassDescription extends React.Component {
   render() {
     if (this.props.characterClass === null) {
       return (
-        <div className="class-details">
-          <div className="class-details--arrow"></div>Choose Your Class
-          <div className="class-details--arrow"></div>
+        <div className="class-details" style={{ border: "none" }}>
+          Choose Your Class
         </div>
       );
     }
@@ -43,7 +42,7 @@ class ClassDescription extends React.Component {
             <b>Weapons:</b> {obj.weapons}
           </li>
           <li>
-            <b>Special Abilities:</b> {obj.abilities}
+            <b>Special Abilities:</b> {obj.abilities.join(", ")}
           </li>
           <li>
             <b>Languages:</b> {obj.languages}
