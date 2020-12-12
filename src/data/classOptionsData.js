@@ -5,7 +5,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 8,
     maxLevel: 14,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages: "Alignment, Common",
     description:
@@ -23,7 +23,7 @@ const classOptionsData = [
     primeReq: "Wisdom",
     hd: 6,
     maxLevel: 14,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "only blunt weapons",
     languages: "Alignment, Common",
     description:
@@ -61,7 +61,7 @@ const classOptionsData = [
     primeReq: "Dexterity",
     hd: 4,
     maxLevel: 0,
-    armour: "leather, no shields",
+    armour: "leather",
     weapons: "any",
     languages: "alignment, common",
     description:
@@ -79,7 +79,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 8,
     maxLevel: 12,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons:
       "any small or normal sized, but cannot use longbows or two-handed swords",
     languages: " Alignment, Common, Dwarvish, Gnomish, Goblin, Kobold",
@@ -103,7 +103,7 @@ const classOptionsData = [
     primeReq: "Intelligence, Strength",
     hd: 6,
     maxLevel: 10,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages: "Alignment, Common, Elvish, Gnoll, Hobgoblin, Orcish",
     description:
@@ -127,7 +127,7 @@ const classOptionsData = [
     primeReq: "Dexterity, Strength",
     hd: 6,
     maxLevel: 8,
-    armour: "any appropriate to size",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any appropriate to size",
     languages: "Alignment, Common, Halfling",
     description:
@@ -151,7 +151,7 @@ const classOptionsData = [
     primeReq: "Dexterity",
     hd: 4,
     maxLevel: 14,
-    armour: "leather, no shields",
+    armour: "leather",
     weapons:
       "missile weapons, dagger, sword, short sword, polearm, spear, staff",
     languages: "Alignment, Common",
@@ -209,7 +209,7 @@ const classOptionsData = [
     primeReq: "Charisma",
     hd: 6,
     maxLevel: 14,
-    armour: "leather, chainmail, no shields",
+    armour: "leather, chainmail",
     weapons: "missile weapons, one-handed melee weapons",
     languages: "Alignment, Common",
     description:
@@ -228,7 +228,7 @@ const classOptionsData = [
     primeReq2: "Wisdom",
     hd: 6,
     maxLevel: 14,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages:
       "Alignment, Common, Deepcommon, Elvish, Gnomish, the secret language of spiders",
@@ -254,7 +254,7 @@ const classOptionsData = [
     primeReq: "Wisdom",
     hd: 6,
     maxLevel: 14,
-    armour: "Leather, wooden shields",
+    armour: "leather, wooden shields",
     weapons: "Club, dagger, sling, spear, staff",
     languages: "Alignment, Common, the secret druidic tongue",
     description:
@@ -278,7 +278,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 6,
     maxLevel: 10,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "small or normal sized",
     languages:
       "Alignment, Common, Deepcommon, Dwarvish, Gnomish, Goblin, Kobold",
@@ -305,7 +305,7 @@ const classOptionsData = [
     primeReq2: "Intelligence",
     hd: 4,
     maxLevel: 8,
-    armour: "Leather, shields",
+    armour: "leather, shields",
     weapons: "any appropriate to size",
     languages:
       "Alignment, Common, Deepcommon, Dwarvish, Gnomish, Goblin, Kobold",
@@ -333,7 +333,7 @@ const classOptionsData = [
     primeReq2: "Strength",
     hd: 6,
     maxLevel: 12,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages: "Alignment, Common, Elvish",
     description:
@@ -389,7 +389,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 8,
     maxLevel: 14,
-    armour: "Chainmail, plate mail, shields",
+    armour: "any chainmail, plate mail, shields",
     weapons: "melee weapons",
     languages: "Alignment, Common",
     description:
@@ -414,7 +414,7 @@ const classOptionsData = [
     primeReq2: "Wisdom",
     hd: 8,
     maxLevel: 14,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages: "Alignment, Common",
     description:
@@ -438,7 +438,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 8,
     maxLevel: 14,
-    armour: "Leather, chainmail, shields",
+    armour: "leather, chainmail, shields",
     weapons: "any",
     languages: "Alignment, Common",
     description:
@@ -464,7 +464,7 @@ const classOptionsData = [
     primeReq: "Strength",
     hd: 6,
     maxLevel: 8,
-    armour: "any",
+    armour: "any leather, chainmail, plate, shields",
     weapons: "any",
     languages:
       "Alignment, Common, Deepcommon, Gnomish, Dwarvish, Kobold, the language of earth elementals",

@@ -139,6 +139,7 @@ body {
 .equipment-restrictions {
   margin: auto;
   width: 80%;
+  max-width: 200px;
   color: grey;
   font-style: italic;
 }

@@ -42,7 +42,10 @@ class NewCharacter extends React.Component {
       characterStorageScreen: false,
       goldStarting: undefined,
       randomNumbers: [],
-      showAdvancedClasses: false
+      showAdvancedClasses: false,
+
+      basicCharData: null,
+      advCharData: null
     };
   }
 
@@ -53,6 +56,7 @@ class NewCharacter extends React.Component {
     const random = new RandomOrg({
       apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d"
     });
+
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
       this.setState({ randomNumbers: result.random.data });
     });
@@ -129,6 +133,9 @@ class NewCharacter extends React.Component {
   //generates the appropriate modifiers for each ability score
 
   getMod = () => {
+    this.classOptionsListButton();
+    this.advancedClassesListButton();
+
     var STR = this.state.strength;
     var INT = this.state.intelligence;
     var WIS = this.state.wisdom;
@@ -496,7 +503,6 @@ class NewCharacter extends React.Component {
     let basicCharacters = [];
     for (let i = 0; i < 7; i++) {
       let item = classOptionsData[i];
-      console.log(item, "ITEM", i);
       basicCharacters.push(
         <ClassOptionsButton
           classOption={item.name}
@@ -513,17 +519,13 @@ class NewCharacter extends React.Component {
         ></ClassOptionsButton>
       );
     }
-    return basicCharacters;
+    return this.setState({ basicCharData: basicCharacters });
   };
 
   advancedClassesListButton = () => {
-    if (!this.state.showAdvancedClasses) {
-      return;
-    }
     let advancedCharacters = [];
     for (let i = 7; i < classOptionsData.length; i++) {
       let item = classOptionsData[i];
-      console.log(item, "ITEM", i);
       advancedCharacters.push(
         <ClassOptionsButton
           classOption={item.name}
@@ -540,7 +542,7 @@ class NewCharacter extends React.Component {
         ></ClassOptionsButton>
       );
     }
-    return advancedCharacters;
+    return this.setState({ advCharData: advancedCharacters });
   };
 
   showEquipmentScreen = () => {
@@ -654,7 +656,6 @@ class NewCharacter extends React.Component {
   };
 
   updateParentState = object => {
-    console.log(object, "PARENT STATE UPDATE");
     this.setState(object);
   };
 
@@ -665,8 +666,6 @@ class NewCharacter extends React.Component {
       ? (this.state.primeReq + " " + this.state.primeReq2).toLowerCase()
       : this.state.primeReq.toLowerCase();
 
-    console.log("PRIMEREQS VARIABLE", primeReqs);
-
     return (
       <div className="wrapper">
         <header
@@ -675,7 +674,7 @@ class NewCharacter extends React.Component {
         >
           <h2
             className="title"
-            style={{ "font-size": this.state.strength ? "1.2rem" : "" }}
+            style={{ fontSize: this.state.strength ? "1.2rem" : "" }}
           >
             D&D Character Generator
           </h2>
@@ -709,7 +708,8 @@ class NewCharacter extends React.Component {
 
               <div className="class-options-container container">
                 <h3 className="basic-classes-header">Core Classes</h3>
-                {this.classOptionsListButton()}
+
+                {this.state.basicCharData}
                 <h3 className="advanced-classes-header">
                   Advanced Classes{" "}
                   <input
@@ -720,7 +720,10 @@ class NewCharacter extends React.Component {
                     onChange={this.toggleAdvanced}
                   ></input>
                 </h3>
-                {this.advancedClassesListButton()}
+                {/* {this.state.abilityScreen
+                  ? this.advancedClassesListButton()
+                  : ""} */}
+                {this.state.showAdvancedClasses && this.state.advCharData}
                 {this.state.strength && (
                   <ClassDescription
                     characterClass={this.state.characterClass}

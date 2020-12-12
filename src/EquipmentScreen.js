@@ -85,35 +85,7 @@ class EquipmentScreen extends React.Component {
   };
 
   weaponsList = () => {
-    var characterClass = classOptionsData.find(
-      obj => obj.name === this.props.characterClass
-    );
-
-    if (characterClass.weapons.includes("any")) {
-      return weaponsData.map(item => this.weaponsOptions(item));
-    }
-
-    if (characterClass.weapons.includes("dagger")) {
-      console.table(weaponsData);
-
-      return weaponsData
-        .filter(weapon => {
-          if (weapon.name.includes("Staff")) {
-            return true;
-          }
-          return weapon.name.includes("agger") ? true : false;
-        })
-        .map(item => this.weaponsOptions(item));
-    }
-
-    if (characterClass.weapons.includes("blunt")) {
-      let bluntWeapons = weaponsData.filter(weapon => {
-        return weapon.qualities.includes("Blunt");
-      });
-      return bluntWeapons.map(item => this.weaponsOptions(item));
-    }
-
-    weaponsData.map(item => this.weaponsOptions(item));
+    return weaponsData.map(item => this.weaponsOptions(item));
   };
 
   equipmentBackpack = () =>
@@ -442,26 +414,28 @@ class EquipmentScreen extends React.Component {
 
                   <div className="armour-container">
                     <div className="radio-container">
-                      <label className="armour-radio">
-                        <input
-                          type="radio"
-                          value="Leather"
-                          className="form-check-input"
-                          checked={this.state.armourSelected === "Leather"}
-                          onChange={this.handleOptionChange}
-                          disabled={
-                            characterClass.armour.includes("none")
-                              ? true
-                              : false
-                          }
-                        />
+                      {characterClass.armour.includes("leather") && (
+                        <label className="armour-radio">
+                          <input
+                            type="radio"
+                            value="Leather"
+                            className="form-check-input"
+                            checked={this.state.armourSelected === "Leather"}
+                            onChange={this.handleOptionChange}
+                            disabled={
+                              characterClass.armour.includes("leather")
+                                ? false
+                                : true
+                            }
+                          />
 
-                        <span className="radio--label">
-                          Leather - AC 7 [12] - 20 gp
-                        </span>
-                      </label>
+                          <span className="radio--label">
+                            Leather - AC 7 [12] - 20 gp
+                          </span>
+                        </label>
+                      )}
 
-                      {characterClass.armour.includes("any") && (
+                      {characterClass.armour.includes("chainmail") && (
                         <label className="armour-radio">
                           <input
                             type="radio"
@@ -470,7 +444,7 @@ class EquipmentScreen extends React.Component {
                             checked={this.state.armourSelected === "Chainmail"}
                             onChange={this.handleOptionChange}
                             disabled={
-                              characterClass.armour.includes("any")
+                              characterClass.armour.includes("chainmail")
                                 ? false
                                 : true
                             }
@@ -481,7 +455,7 @@ class EquipmentScreen extends React.Component {
                         </label>
                       )}
 
-                      {characterClass.armour.includes("any") && (
+                      {characterClass.armour.includes("plate") && (
                         <label className="armour-radio">
                           <input
                             type="radio"
@@ -490,7 +464,7 @@ class EquipmentScreen extends React.Component {
                             checked={this.state.armourSelected === "Plate mail"}
                             onChange={this.handleOptionChange}
                             disabled={
-                              characterClass.armour.includes("any")
+                              characterClass.armour.includes("plate")
                                 ? false
                                 : true
                             }
@@ -501,7 +475,7 @@ class EquipmentScreen extends React.Component {
                         </label>
                       )}
 
-                      {characterClass.armour.includes("any") && (
+                      {characterClass.armour.includes("shield") && (
                         <label className="armour-radio">
                           <input
                             type="checkbox"
@@ -510,7 +484,7 @@ class EquipmentScreen extends React.Component {
                             checked={this.state.shieldSelected === true}
                             onChange={this.handleShieldChange}
                             disabled={
-                              characterClass.armour.includes("any")
+                              characterClass.armour.includes("shields")
                                 ? false
                                 : true
                             }
