@@ -307,11 +307,11 @@ p {
 /* Links
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-    color: #1EAEDB;
+    color: inherit;
 }
 
 a:hover {
-    color: #0FA0CE;
+    color: #ce0f0f;
 }
 
 

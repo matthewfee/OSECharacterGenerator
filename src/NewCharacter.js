@@ -7,11 +7,21 @@ import ClassScreen from "./ClassScreen.js";
 import DetailsScreen from "./DetailsScreen.js";
 import CharacterSheetScreen from "./CharacterSheetScreen.js";
 import CharacterStorageScreen from "./CharacterStorageScreen.js";
+import { css } from "@emotion/react";
+import ClipLoader from "react-spinners/ClipLoader";
+import CircleLoader from "react-spinners/CircleLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 class NewCharacter extends React.Component {
   constructor() {
     super();
     this.state = {
+      loading: true,
       id: null,
       strength: null,
       intelligence: null,
@@ -58,7 +68,7 @@ class NewCharacter extends React.Component {
     });
 
     random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
-      this.setState({ randomNumbers: result.random.data });
+      this.setState({ randomNumbers: result.random.data, loading: false });
     });
 
     if (this.state.id === null) {
@@ -735,7 +745,6 @@ class NewCharacter extends React.Component {
       <div className="wrapper">
         <header
           className={this.state.strength ? "header" : "header header--initial"}
-          style={{ marginTop: !this.state.strength ? "300px" : "" }}
         >
           <h2
             className="title"
@@ -748,8 +757,17 @@ class NewCharacter extends React.Component {
             <button
               className={`button button--roll button-primary`}
               onClick={this.reRoll}
+              disabled={this.state.loading ? true : false}
             >
-              Roll
+              {!this.state.loading && <div>Roll</div>}
+              <div className="sweet-loading">
+                <CircleLoader
+                  css={override}
+                  size={30}
+                  color={"black"}
+                  loading={this.state.loading}
+                />
+              </div>
             </button>
           )}
 
@@ -760,6 +778,14 @@ class NewCharacter extends React.Component {
             >
               Tavern
             </button>
+          )}
+
+          {this.state.abilityScreen && !this.state.strength && (
+            <div className={`main-page--subheader`}>
+              Designed for use with the 1981 B/X edition of Dungeons and
+              Dragons. All dice values are generated from{" "}
+              <a href="https://www.random.org/">RANDOM.ORG</a>.
+            </div>
           )}
         </header>
 

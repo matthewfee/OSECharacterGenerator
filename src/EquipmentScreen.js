@@ -27,6 +27,8 @@ class EquipmentScreen extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
 
+    this.calculateAC();
+
     // update auto selectedWeapon to one appropriate for class
 
     if (this.props.characterClass === "Cleric") {
