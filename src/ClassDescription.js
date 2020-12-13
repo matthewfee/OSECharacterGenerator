@@ -10,11 +10,7 @@ class ClassDescription extends React.Component {
 
   render() {
     if (this.props.characterClass === null) {
-      return (
-        <div className="class-details" style={{ border: "none" }}>
-          Choose Your Class
-        </div>
-      );
+      return <div className="class-details" style={{ border: "none" }}></div>;
     }
     let obj = classOptionsData.find(
       obj => obj.name === this.props.characterClass

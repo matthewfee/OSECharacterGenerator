@@ -42,7 +42,7 @@ a {
   padding-top: 20px;
   font-weight: normal;
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 1.4rem;
   letter-spacing: 0.4rem;
   color: black;
   margin-left: auto;
@@ -166,9 +166,10 @@ a {
 
 .equipment-restrictions {
   margin: auto;
-  width: 80%;
-  max-width: 200px;
-  color: grey;
+  width: 100%;
+  font-size: 1.2rem;
+  max-width: 180px;
+  color: rgb(63, 63, 63);
   font-style: italic;
 }
 
@@ -624,7 +625,7 @@ a {
 
 .class-ability-menu > .class-ability-menu--header {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: rgb(34, 34, 34);
 }
 
@@ -984,7 +985,7 @@ div > .class-options-container {
 }
 
 .saving-throws-menu--header {
-  font-size: 2rem;
+  font-size: 1.4rem;
   margin: auto;
   margin-bottom: 4rem;
 }
