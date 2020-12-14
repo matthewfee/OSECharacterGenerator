@@ -3,7 +3,7 @@ import "./css/App.css";
 import "./css/normalize.css";
 import "./css/skeleton.css";
 import "./img/header.jpg";
-import NewCharacter from "./NewCharacter.js";
+import NewCharacter from "./components/NewCharacter";
 
 class App extends React.Component {
   render() {

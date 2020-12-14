@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import classOptionsData from "./data/classOptionsData";
+import classOptionsData from "../data/classOptionsData";
 import CharacterSheet from "./CharacterSheet";
 import {
   exportComponentAsJPEG,

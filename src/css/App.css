@@ -552,7 +552,8 @@ a {
   line-height: 20px;
   letter-spacing: 0;
   width: 140px;
-  padding: 4px;
+  padding: 0px;
+  padding-top: 4px;
   white-space: normal;
   height: auto;
 }

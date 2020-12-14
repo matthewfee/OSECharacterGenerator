@@ -210,7 +210,7 @@
   html is set to 62.5% so that all the REM measurements are based on 10px sizing. */
 html {
     font-size: 62.5%;
-    scroll-behavior: smooth;
+
 }
 
 body {

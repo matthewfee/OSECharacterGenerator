@@ -8,7 +8,7 @@ class ClassOptionsButton extends React.Component {
   }
 
   render() {
-    //disabling class option if minimum required ability score is not met
+    //disabling class option if minimum required ability score is not met for the class to be chosen
 
     if (this.props.requirements) {
       if (

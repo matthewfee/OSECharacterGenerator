@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import equipmentData from "./data/equipmentData.js";
-import weaponsData from "./data/weaponsData.js";
-import armourData from "./data/armourData.js";
-import classOptionsData from "./data/classOptionsData";
-import EquipmentOptions from "./EquipmentOptions.js";
-import EquipmentBackpack from "./EquipmentBackpack.js";
+import equipmentData from "../data/equipmentData";
+import weaponsData from "../data/weaponsData";
+import armourData from "../data/armourData";
+import classOptionsData from "../data/classOptionsData";
+import EquipmentOptions from "./EquipmentOptions";
+import EquipmentBackpack from "./EquipmentBackpack";
 
 class EquipmentScreen extends React.Component {
   constructor(props) {
@@ -27,9 +27,11 @@ class EquipmentScreen extends React.Component {
   componentDidMount() {
     window.scrollTo(0, 0);
 
+    //calculate base armour class
+
     this.calculateAC();
 
-    // update auto selectedWeapon to one appropriate for class
+    // update default selectedWeapon to one appropriate for class
 
     if (this.props.characterClass === "Cleric") {
       this.setState({ weaponSelected: "Mace" });
