@@ -64,8 +64,7 @@ class NewCharacter extends React.Component {
   componentDidMount() {
     const RandomOrg = require("random-org");
     const random = new RandomOrg({
-      // apiKey: process.env.REACT_APP_API_KEY
-      apiKey: "Jeff"
+      apiKey: process.env.REACT_APP_API_KEY
     });
 
     random
