@@ -64,12 +64,19 @@ class NewCharacter extends React.Component {
   componentDidMount() {
     const RandomOrg = require("random-org");
     const random = new RandomOrg({
-      apiKey: process.env.REACT_APP_API_KEY
+      // apiKey: process.env.REACT_APP_API_KEY
+      apiKey: "Jeff"
     });
 
-    random.generateIntegers({ min: 1, max: 6, n: 40 }).then(result => {
-      this.setState({ randomNumbers: result.random.data, loading: false });
-    });
+    random
+      .generateIntegers({ min: 1, max: 6, n: 40 })
+      .then(result => {
+        this.setState({ randomNumbers: result.random.data, loading: false });
+      })
+      .catch(error => {
+        this.setState({ loading: false });
+        console.error(error);
+      });
 
     if (this.state.id === null) {
       this.setState({ id: this.id });
@@ -81,8 +88,8 @@ class NewCharacter extends React.Component {
   };
 
   d = (how_many, sides) => {
-    var total = 0;
-    var i;
+    let total = 0;
+    let i;
     for (i = 0; i < how_many; i++) {
       total += this.getRndInteger(1, sides);
     }
@@ -96,7 +103,8 @@ class NewCharacter extends React.Component {
   d6 = how_many => {
     //uses default JS random number seed if randomNumber API doesn't load correctly
 
-    if (!this.state.randomNumbers) {
+    if (this.state.randomNumbers.length < 2) {
+      console.log("ROLLING WITHOUT API");
       return this.d(3, 6);
     }
 
@@ -110,9 +118,10 @@ class NewCharacter extends React.Component {
   };
 
   reRoll = () => {
+    console.log("CHARACTER ROLLED");
     window.scrollTo(0, 0);
 
-    var newObject = {
+    let newObject = {
       id: this.id,
       strength: this.d6(3),
       intelligence: this.d6(3),
@@ -127,6 +136,8 @@ class NewCharacter extends React.Component {
       primeReq2: undefined,
       characterStorageScreen: false
     };
+
+    console.log(newObject);
 
     newObject.strengthOriginal = newObject.strength;
     newObject.intelligenceOriginal = newObject.intelligence;
