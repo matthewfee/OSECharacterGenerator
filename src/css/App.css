@@ -661,7 +661,7 @@ a {
   max-width: 400px;
   width: 80%;
   justify-content: center;
-  background-color: whitesmoke;
+  background-color: #ececec;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
