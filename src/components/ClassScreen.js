@@ -75,13 +75,10 @@ class ClassScreen extends React.Component {
           </button>
         )}
 
-        {this.state.HPResult && (
+        {this.state.HPResult && this.state.canReroll && (
           <button
             className="button button-primary button--hp"
             onClick={() => setTimeout(this.reRoll(), 4000)}
-            style={{
-              opacity: this.state.HPResult < 3 && this.state.canReroll ? 1 : 0
-            }}
             disabled={!this.state.canReroll}
           >
             {" "}

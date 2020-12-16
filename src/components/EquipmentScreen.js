@@ -405,109 +405,110 @@ class EquipmentScreen extends React.Component {
 
         {this.state.goldRolled && (
           <div className="equipment-purchase-container">
-            {!characterClass.armour.includes("none") && (
-              <div className="armour-container-parent">
-                <div className="equipment-container--header">
-                  {this.props.characterClass} Armour
-                </div>
-
-                <div className="equipment-restrictions">
-                  Allowed Armour: {characterClass.armour}
-                </div>
-
-                <div className="armour-container">
-                  <div className="radio-container">
-                    {characterClass.armour.includes("leather") && (
-                      <label className="armour-radio">
-                        <input
-                          type="radio"
-                          value="Leather"
-                          className="form-check-input"
-                          checked={this.state.armourSelected === "Leather"}
-                          onChange={this.handleOptionChange}
-                          disabled={
-                            characterClass.armour.includes("leather")
-                              ? false
-                              : true
-                          }
-                        />
-
-                        <span className="radio--label">
-                          Leather - AC 7 [12] - 20 gp
-                        </span>
-                      </label>
-                    )}
-
-                    {characterClass.armour.includes("chainmail") && (
-                      <label className="armour-radio">
-                        <input
-                          type="radio"
-                          value="Chainmail"
-                          className="form-check-input"
-                          checked={this.state.armourSelected === "Chainmail"}
-                          onChange={this.handleOptionChange}
-                          disabled={
-                            characterClass.armour.includes("chainmail")
-                              ? false
-                              : true
-                          }
-                        />
-                        <span className="radio--label">
-                          Chainmail - AC 5 [14] - 40 gp
-                        </span>
-                      </label>
-                    )}
-
-                    {characterClass.armour.includes("plate") && (
-                      <label className="armour-radio">
-                        <input
-                          type="radio"
-                          value="Plate mail"
-                          className="form-check-input"
-                          checked={this.state.armourSelected === "Plate mail"}
-                          onChange={this.handleOptionChange}
-                          disabled={
-                            characterClass.armour.includes("plate")
-                              ? false
-                              : true
-                          }
-                        />
-                        <span className="radio--label">
-                          Plate mail - AC 3 [16] - 60 gp
-                        </span>
-                      </label>
-                    )}
-
-                    {characterClass.armour.includes("shield") && (
-                      <label className="armour-radio">
-                        <input
-                          type="checkbox"
-                          value="Shield"
-                          className="form-check-input"
-                          checked={this.state.shieldSelected === true}
-                          onChange={this.handleShieldChange}
-                          disabled={
-                            characterClass.armour.includes("shields")
-                              ? false
-                              : true
-                          }
-                        />
-                        Shield (AC +1 bonus) - 10gp
-                      </label>
-                    )}
+            {!characterClass.armour.includes("none") &&
+              this.state.armour.length < 1 && (
+                <div className="armour-container-parent">
+                  <div className="equipment-container--header">
+                    {this.props.characterClass} Armour
                   </div>
 
-                  <input
-                    className="button--buy-armour"
-                    type="submit"
-                    value="Buy"
-                    onClick={this.buySelectedArmour}
-                    price={null}
-                    disabled={this.state.armourSelected ? false : true}
-                  />
+                  <div className="equipment-restrictions">
+                    Allowed Armour: {characterClass.armour}
+                  </div>
+
+                  <div className="armour-container">
+                    <div className="radio-container">
+                      {characterClass.armour.includes("leather") && (
+                        <label className="armour-radio">
+                          <input
+                            type="radio"
+                            value="Leather"
+                            className="form-check-input"
+                            checked={this.state.armourSelected === "Leather"}
+                            onChange={this.handleOptionChange}
+                            disabled={
+                              characterClass.armour.includes("leather")
+                                ? false
+                                : true
+                            }
+                          />
+
+                          <span className="radio--label">
+                            Leather - AC 7 [12] - 20 gp
+                          </span>
+                        </label>
+                      )}
+
+                      {characterClass.armour.includes("chainmail") && (
+                        <label className="armour-radio">
+                          <input
+                            type="radio"
+                            value="Chainmail"
+                            className="form-check-input"
+                            checked={this.state.armourSelected === "Chainmail"}
+                            onChange={this.handleOptionChange}
+                            disabled={
+                              characterClass.armour.includes("chainmail")
+                                ? false
+                                : true
+                            }
+                          />
+                          <span className="radio--label">
+                            Chainmail - AC 5 [14] - 40 gp
+                          </span>
+                        </label>
+                      )}
+
+                      {characterClass.armour.includes("plate") && (
+                        <label className="armour-radio">
+                          <input
+                            type="radio"
+                            value="Plate mail"
+                            className="form-check-input"
+                            checked={this.state.armourSelected === "Plate mail"}
+                            onChange={this.handleOptionChange}
+                            disabled={
+                              characterClass.armour.includes("plate")
+                                ? false
+                                : true
+                            }
+                          />
+                          <span className="radio--label">
+                            Plate mail - AC 3 [16] - 60 gp
+                          </span>
+                        </label>
+                      )}
+
+                      {characterClass.armour.includes("shield") && (
+                        <label className="armour-radio">
+                          <input
+                            type="checkbox"
+                            value="Shield"
+                            className="form-check-input"
+                            checked={this.state.shieldSelected === true}
+                            onChange={this.handleShieldChange}
+                            disabled={
+                              characterClass.armour.includes("shields")
+                                ? false
+                                : true
+                            }
+                          />
+                          Shield (AC +1 bonus) - 10gp
+                        </label>
+                      )}
+                    </div>
+
+                    <input
+                      className="button--buy-armour"
+                      type="submit"
+                      value="Buy"
+                      onClick={this.buySelectedArmour}
+                      price={null}
+                      disabled={this.state.armourSelected ? false : true}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
             <div className="equipment-container--header">
               {this.props.characterClass} Weapons
