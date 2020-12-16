@@ -657,12 +657,16 @@ a {
   margin: auto;
   right: 0;
   left: 0;
-  top: 100%;
+  top: -20px;
   max-width: 400px;
   width: 80%;
   justify-content: center;
   background-color: #ececec;
+}
+
+.class-details > .class-description-list {
   border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .class-details > .class-details--arrow {
@@ -692,6 +696,10 @@ div.ability-screen {
   position: relative;
   padding: 0;
   margin: 0;
+}
+
+div.ability-screen > .character-class-header {
+  margin-bottom: 30px;
 }
 
 div.character-menu {
@@ -783,7 +791,6 @@ div > .button-class-option {
   flex-flow: column;
   width: 100%;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .basic-class-container,
@@ -798,6 +805,10 @@ div > .button-class-option {
 .basic-class-container > .button:disabled,
 .advanced-class-container > .button:disabled {
   color: rgba(0, 0, 0, 0.2);
+}
+
+.advanced-class-container {
+  margin-bottom: 10px;
 }
 
 .equipment-screen {
