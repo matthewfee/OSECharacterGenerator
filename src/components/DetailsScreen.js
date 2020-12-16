@@ -429,42 +429,44 @@ class DetailsScreen extends React.Component {
             <div className="form-label form-label--alignment">
               <div className="form-text">Select Alignment:</div>
 
-              <button
-                type="button"
-                value="lawful"
-                className={
-                  this.state.alignment === "lawful"
-                    ? "button button--alignment button--alignment--selected"
-                    : "button button--alignment"
-                }
-                onClick={e => this.handleAlignment(e, "value")}
-              >
-                Lawful
-              </button>
-              <button
-                type="button"
-                value="neutral"
-                className={
-                  this.state.alignment === "neutral"
-                    ? "button button--alignment button--alignment--selected"
-                    : "button button--alignment"
-                }
-                onClick={e => this.handleAlignment(e, "value")}
-              >
-                Neutral
-              </button>
-              <button
-                type="button"
-                value="chaotic"
-                className={
-                  this.state.alignment === "chaotic"
-                    ? "button button--alignment button--alignment--selected"
-                    : "button button--alignment"
-                }
-                onClick={e => this.handleAlignment(e, "value")}
-              >
-                Chaotic
-              </button>
+              <div className="alignment-button-container">
+                <button
+                  type="button"
+                  value="lawful"
+                  className={
+                    this.state.alignment === "lawful"
+                      ? "button button--alignment button--alignment--selected"
+                      : "button button--alignment"
+                  }
+                  onClick={e => this.handleAlignment(e, "value")}
+                >
+                  Lawful
+                </button>
+                <button
+                  type="button"
+                  value="neutral"
+                  className={
+                    this.state.alignment === "neutral"
+                      ? "button button--alignment button--alignment--selected"
+                      : "button button--alignment"
+                  }
+                  onClick={e => this.handleAlignment(e, "value")}
+                >
+                  Neutral
+                </button>
+                <button
+                  type="button"
+                  value="chaotic"
+                  className={
+                    this.state.alignment === "chaotic"
+                      ? "button button--alignment button--alignment--selected"
+                      : "button button--alignment"
+                  }
+                  onClick={e => this.handleAlignment(e, "value")}
+                >
+                  Chaotic
+                </button>
+              </div>
             </div>
 
             <div className="form-label form-label--optional-details">
