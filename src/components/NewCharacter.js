@@ -136,8 +136,6 @@ class NewCharacter extends React.Component {
       characterStorageScreen: false
     };
 
-    console.log(newObject);
-
     newObject.strengthOriginal = newObject.strength;
     newObject.intelligenceOriginal = newObject.intelligence;
     newObject.wisdomOriginal = newObject.wisdom;
@@ -527,20 +525,20 @@ class NewCharacter extends React.Component {
 
   scoreDecrease = key => {
     const keyOriginal = key + "Original";
-    var value = this.state[key];
-    var decrement = -2;
+    const value = this.state[key];
+    let decrement = -2;
 
     if (value > this.state[keyOriginal]) {
       decrement = -1;
     }
 
-    var newPointBuy = this.state.pointBuy + 1;
+    let newPointBuy = this.state.pointBuy + 1;
 
     if (this.state[key] <= 10) {
       return;
     }
 
-    var newObject = {
+    let newObject = {
       [key]: value + decrement,
       pointBuy: newPointBuy
     };
@@ -697,49 +695,6 @@ class NewCharacter extends React.Component {
     }
   };
 
-  getClassInfo = () => {
-    if (this.state.characterClass === null) {
-      return "choose your class";
-    }
-    let obj = classOptionsData.find(
-      obj => obj.name === this.state.characterClass
-    );
-    return (
-      <ul className="class-description-list">
-        <li>
-          <b>Description:</b> {obj.description}
-        </li>
-        <li>
-          <b>Hit Dice:</b> d{obj.hd}
-        </li>
-        <li>
-          <b>Armour:</b> {obj.armour}
-        </li>
-        <li>
-          <b>Weapons:</b> {obj.weapons}
-        </li>
-        <li>
-          <b>Languages:</b> {obj.languages}
-        </li>
-        <li>
-          <b>XP to level 2:</b> {obj.nextLevel}
-        </li>
-        <li>
-          <b>Maximium Level:</b> {obj.maxLevel}{" "}
-        </li>
-        <li>
-          <b>Saving Throws:</b>{" "}
-          <span>
-            {" "}
-            Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis{" "}
-            {obj.savingThrows[2]}, Breath Attacks {obj.savingThrows[3]},
-            Spells/rods/staves {obj.savingThrows[4]}
-          </span>
-        </li>
-      </ul>
-    );
-  };
-
   updateParentState = object => {
     this.setState(object);
   };
@@ -805,10 +760,12 @@ class NewCharacter extends React.Component {
         >
           {this.state.abilityScreen && this.state.strength && (
             <div className="ability-screen container">
-              <h2 className="header-default">Character Class</h2>
+              <h2 className="header-default character-class-header">
+                Character Class
+              </h2>
 
               <div className="class-options-container container">
-                <h3 className="basic-classes-header">Core Classes</h3>
+                {/* <h3 className="basic-classes-header">Core Classes</h3> */}
 
                 <div className="basic-class-container">
                   {this.state.basicCharData}

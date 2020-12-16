@@ -5,11 +5,10 @@
   padding: 0;
   box-sizing: inherit;
 }
- 
+
 html {
   scroll-behavior: smooth;
-
-} 
+}
 
 body {
   min-width: 300px;
@@ -21,16 +20,18 @@ a {
 }
 
 .ability-scores--header {
-  margin-top: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
 }
 
 .header-default {
-  padding-top: 20px;
-  font-weight: normal;
+  padding-top: 10px;
+  font-weight: bold;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   letter-spacing: 0.4rem;
-  color: black;
+  color: rgba(0, 0, 0, 0.95);
   margin-left: auto;
   margin-right: auto;
 }
@@ -367,21 +368,24 @@ a {
   margin-top: 12px;
 }
 
-
-.advanced-classes-header, .basic-classes-header {
-  font-size: 1.4rem;
+.advanced-classes-header,
+.basic-classes-header {
+  font-size: 1.2rem;
   grid-column-start: 1;
   grid-column-end: 5;
-  margin-top: 20px;
   letter-spacing: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  text-align: right;
 }
 
 .basic-classes-header {
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 .advanced-classes-header {
-  margin-left: 40px;
+  /* margin-left: 40px; */
 }
 
 .checkbox {
@@ -440,7 +444,7 @@ a {
   margin: 0;
   font-weight: normal;
   font-style: italic;
-  color: rgba(78, 5, 5, 0.841)
+  color: rgba(78, 5, 5, 0.841);
 }
 
 .character-sheet {
@@ -577,7 +581,6 @@ a {
   grid-template-columns: 1fr 1fr 1fr;
   text-align: justify;
   grid-gap: 10px;
-
 }
 
 .character-storage-screen-main {
@@ -610,7 +613,6 @@ a {
   align-items: center;
   justify-content: center;
 }
-
 
 .class-ability-menu {
   display: flex;
@@ -655,12 +657,12 @@ a {
   margin: auto;
   right: 0;
   left: 0;
-  top: 0;
+  top: 100%;
   max-width: 400px;
   width: 80%;
   justify-content: center;
   background-color: whitesmoke;
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .class-details > .class-details--arrow {
@@ -731,15 +733,14 @@ div > .button-class-option {
 }
 
 @media screen and (min-width: 400px) {
-
-  .basic-class-container, .advanced-class-container {
+  .basic-class-container,
+  .advanced-class-container {
     grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)) !important;
     width: 90% !important;
     max-width: 1000px !important;
   }
 
-
-   .button-class-option {
+  .button-class-option {
     max-height: 80px !important;
   }
 }
@@ -777,15 +778,16 @@ div > .button-class-option {
   color: #ff0000;
 }
 
-div > .class-options-container {
+.ability-screen > .class-options-container {
   display: flex;
   flex-flow: column;
   width: 100%;
   align-items: center;
-
+  margin-bottom: 20px;
 }
 
-.basic-class-container, .advanced-class-container {
+.basic-class-container,
+.advanced-class-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
   width: 100%;
@@ -793,7 +795,8 @@ div > .class-options-container {
   max-width: 400px;
 }
 
-.basic-class-container > .button:disabled, .advanced-class-container > .button:disabled {
+.basic-class-container > .button:disabled,
+.advanced-class-container > .button:disabled {
   color: rgba(0, 0, 0, 0.2);
 }
 
@@ -877,8 +880,7 @@ div > .class-options-container {
 }
 
 .wrapper > .header {
-
-  min-height: 4rem;
+  min-height: 30px;
   color: whitesmoke;
   display: flex;
   flex-flow: column;
@@ -1095,7 +1097,7 @@ div > .class-options-container {
   margin: 0;
   position: relative;
   border-radius: 4px;
-  padding: 2rem;
+  padding: 4px;
   color: white;
 }
 
@@ -1107,7 +1109,6 @@ div > .class-options-container {
   text-align: center;
   padding-left: 40px;
   max-width: 440px;
-
 }
 
 .wrapper {
