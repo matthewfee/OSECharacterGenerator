@@ -18,7 +18,7 @@ class ClassDescription extends React.Component {
     return (
       <details className="class-details">
         <summary className="class-summary">
-          {this.props.characterClass} Class Details
+          {this.props.characterClass} Details
         </summary>
 
         <ul className="class-description-list">

@@ -525,7 +525,7 @@ class DetailsScreen extends React.Component {
 
               {this.state.background && (
                 <div className="details-result">
-                  <span className="details-result--name">Failed Career:</span>
+                  <span className="details-result--name">Background:</span>
                   <span className="details-result--data">
                     {this.state.background}
                   </span>
