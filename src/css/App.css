@@ -19,7 +19,7 @@
 
 html {
   scroll-behavior: smooth;
-  animation: opacity-fadeIn 0.4s linear;
+  animation: opacity-fadeIn 0.2s linear;
 }
 
 body {
@@ -173,6 +173,7 @@ a {
 .button--buy-armour,
 .button--buy-gear {
   width: 100px;
+  margin-left: auto;
 }
 
 .armour-container {
@@ -218,6 +219,7 @@ a {
 
 .inventory {
   min-height: 180px;
+  width: 80%;
 }
 
 .backpack-container {
@@ -848,6 +850,12 @@ div > .button-class-option {
   position: relative;
   font-size: 1.4rem;
   height: 100%;
+}
+
+.equipment-purchase-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .equipment-screen > .equipment-screen--header {
