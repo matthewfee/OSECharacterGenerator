@@ -7,7 +7,8 @@ class ClassScreen extends React.Component {
     super();
     this.state = {
       hitPoints: null,
-      canReroll: true
+      canReroll: true,
+      HPRolls: 0
     };
   }
 
@@ -19,15 +20,22 @@ class ClassScreen extends React.Component {
   };
 
   getHitPoints = () => {
-    var HPResult = this.props.d(1, this.state.hitDie);
-    var totalHP = HPResult + this.props.conMod;
+    let HPResult = this.props.d(1, this.state.hitDie);
+    let totalHP = HPResult + this.props.conMod;
+    let HPRolls = this.state.HPRolls + 1;
+
     if (totalHP < 1) {
       totalHP = 1;
     }
+    if (HPResult > 2 || HPRolls === 2) {
+      this.setState({ canReroll: false });
+    }
+
     this.setState({
       hitPoints: totalHP,
       conModifier: this.props.conMod,
-      HPResult: HPResult
+      HPResult: HPResult,
+      HPRolls: HPRolls
     });
   };
 
@@ -65,17 +73,16 @@ class ClassScreen extends React.Component {
       <div className="class-options-screen">
         <h3 className="header-default">Class Options</h3>
 
-        {!this.state.HPResult && (
+        {this.state.canReroll && (
           <button
             className="button button-primary button--hp"
             onClick={() => setTimeout(this.getHitPoints(), 200)}
           >
-            {" "}
-            Roll HP
+            {this.state.HPRolls === 0 ? "Roll HP" : "Reroll?"}
           </button>
         )}
 
-        {this.state.HPResult && this.state.canReroll && (
+        {/* {this.state.HPResult && this.state.canReroll && (
           <button
             className="button button-primary button--hp"
             onClick={() => setTimeout(this.reRoll(), 4000)}
@@ -84,7 +91,7 @@ class ClassScreen extends React.Component {
             {" "}
             ReRoll ?{" "}
           </button>
-        )}
+        )} */}
 
         <div className="hp-container container">
           <div className="hp-container--hit-die">

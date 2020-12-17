@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: inherit;
   animation: inherit;
-  /* transition: inherit;  */
+  transition: inherit;
 }
 
 @keyframes opacity-fadeIn {
@@ -19,7 +19,7 @@
 
 html {
   scroll-behavior: smooth;
-  animation: opacity-fadeIn 0.4s linear;
+  animation: opacity-fadeIn 0.2s linear;
 }
 
 body {
@@ -154,9 +154,26 @@ a {
   padding-top: 10px;
   display: flex;
   flex-flow: column nowrap;
-  align-items: center;
-  width: 80%;
+  align-items: end;
+  width: 250px;
   margin: auto;
+}
+
+.weapons-select,
+.gear-select,
+.armour-select {
+  width: 250px;
+}
+
+.button--buy-armour {
+  align-self: end;
+}
+
+.button--buy-weapon,
+.button--buy-armour,
+.button--buy-gear {
+  width: 100px;
+  margin-left: auto;
 }
 
 .armour-container {
@@ -202,6 +219,7 @@ a {
 
 .inventory {
   min-height: 180px;
+  width: 80%;
 }
 
 .backpack-container {
@@ -674,6 +692,10 @@ a {
   background-color: #ececec;
 }
 
+/* .class-details > .class-summary {
+  text-transform: uppercase;
+} */
+
 .class-details > .class-description-list {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -830,6 +852,12 @@ div > .button-class-option {
   height: 100%;
 }
 
+.equipment-purchase-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
 .equipment-screen > .equipment-screen--header {
   display: inline-flex;
   font-size: 2rem;
@@ -874,9 +902,9 @@ div > .button-class-option {
   height: 38px;
   width: 100px;
   z-index: 3;
-  background-color: #f2d649fd !important;
+  background-color: #f2d649fd;
   color: #2a2a2d;
-  animation: none !important;
+  border-radius: 4px;
 }
 
 .equipment-screen > .armour-container {
