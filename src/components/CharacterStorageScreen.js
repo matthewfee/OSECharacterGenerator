@@ -1,35 +1,28 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class CharacterStorageScreen extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      myCharacters: []
-    };
-  }
+export default function CharacterStorageScreen(props) {
+  const [myCharacters, setMyCharacters] = useState(undefined);
 
-  componentDidMount() {
+  useEffect(() => {
     const characters = JSON.parse(window.localStorage.getItem("characters"));
-    this.setState({ myCharacters: characters });
-  }
+    setMyCharacters(characters);
+  }, []);
 
-  handleCharacter = e => {
-    console.log(e.currentTarget.value);
-    console.log(this.state.myCharacters[e.currentTarget.value]);
-    let obj = this.state.myCharacters[e.currentTarget.value];
-    this.props.updateParentState(obj);
-    this.props.showCharacterSheetScreen();
+  const handleCharacter = e => {
+    let obj = myCharacters[e.currentTarget.value];
+    props.updateParentState(obj);
+    props.showCharacterSheetScreen();
   };
 
-  characterButton = (char, index) => {
+  const characterButton = (char, index) => {
     if (char.name.length < 1) {
       return (
         <button
           className="character-button"
           key={index}
           value={index}
-          onClick={this.handleCharacter}
+          onClick={handleCharacter}
         >
           Unnamed
         </button>
@@ -39,7 +32,7 @@ class CharacterStorageScreen extends React.Component {
       <button
         className="character-button"
         key={index}
-        onClick={this.handleCharacter}
+        onClick={handleCharacter}
         value={index}
       >
         <div className="character-button--name" value={index}>
@@ -57,41 +50,27 @@ class CharacterStorageScreen extends React.Component {
           <div>CHA {char.charisma}</div>
         </div>
       </button>
-      // <button
-      //   className="character-button"
-      //   key={index}
-      //   onClick={this.handleCharacter}
-      //   value={index}
-      // >
-      //   {char.name} <br></br>
-      //   {char.characterClass} <br></br>
-
-      // </button>
     );
   };
 
-  render() {
-    return (
-      <div className="character-storage-screen">
-        <h3 className="header-default"> Tavern </h3>
+  return (
+    <div className="character-storage-screen">
+      <h3 className="header-default"> Tavern </h3>
 
-        <div className="character-storage">
-          {this.state.myCharacters
-            ? this.state.myCharacters.map((item, index) =>
-                this.characterButton(item, index)
-              )
-            : ""}
-        </div>
-
-        <button
-          className="button--new-character"
-          onClick={this.props.showAbilityScreen}
-        >
-          Back to Main
-        </button>
+      <div className="character-storage">
+        {myCharacters
+          ? myCharacters.map((item, index) => characterButton(item, index))
+          : ""}
       </div>
-    );
-  }
+
+      <button
+        className="button--new-character"
+        onClick={props.showAbilityScreen}
+      >
+        Back to Main
+      </button>
+    </div>
+  );
 }
 
-export default CharacterStorageScreen;
+// /* eslint-disable react/prop-types */
