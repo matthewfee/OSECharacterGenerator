@@ -2,14 +2,16 @@
 import React from "react";
 import classOptionsData from "../data/classOptionsData";
 
-export default function CharacterSheet(props) {
+// export default function
+
+const CharacterSheet = React.forwardRef((props, ref) => {
   let char = props.parentState;
   let characterClass = classOptionsData.find(
     obj => obj.name === props.parentState.characterClass
   );
 
   return (
-    <div className="character-sheet-component">
+    <div ref={ref} className="character-sheet-component">
       <h3 className="character--name">{char.name}</h3>
       <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
       <div className="character-sheet">
@@ -203,4 +205,8 @@ export default function CharacterSheet(props) {
       </div>
     </div>
   );
-}
+});
+
+CharacterSheet.displayName = "Character Sheet";
+
+export default CharacterSheet;

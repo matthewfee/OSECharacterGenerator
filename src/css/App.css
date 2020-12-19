@@ -450,6 +450,8 @@ a {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  animation: none !important;
+  background-color: #ececec;
 }
 
 .character-short {
@@ -480,7 +482,6 @@ a {
   flex-flow: row-reverse wrap;
   min-width: 300px;
   justify-content: center;
-  padding-left: 30px;
 }
 
 .character-sheet-container > .button-container {
@@ -507,7 +508,7 @@ a {
 }
 
 .character-sheet-component {
-  width: 98%;
+  width: 90%;
   padding-bottom: 40px;
 }
 
