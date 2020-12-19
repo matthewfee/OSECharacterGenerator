@@ -474,16 +474,17 @@ class NewCharacter extends React.Component {
   };
 
   resetCharacter = () => {
-    var newObject = {};
-    newObject.strength = this.state.strengthOriginal;
-    newObject.intelligence = this.state.intelligenceOriginal;
-    newObject.wisdom = this.state.wisdomOriginal;
-    newObject.dexterity = this.state.dexterityOriginal;
-    newObject.constitution = this.state.constitutionOriginal;
-    newObject.charisma = this.state.charismaOriginal;
-    newObject.pointBuy = 0;
+    const newStateObject = {
+      strength: this.state.strengthOriginal,
+      intelligence: this.state.intelligenceOriginal,
+      wisdom: this.state.wisdomOriginal,
+      dexterity: this.state.dexterityOriginal,
+      constitution: this.state.constitutionOriginal,
+      charisma: this.state.charismaOriginal,
+      pointBuy: 0
+    };
 
-    this.setState(newObject);
+    this.setState(newStateObject);
   };
 
   scoreIncrease = key => {
