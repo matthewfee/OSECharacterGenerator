@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import equipmentData from "../data/equipmentData";
 import weaponsData from "../data/weaponsData";
 import armourData from "../data/armourData";
@@ -7,71 +7,70 @@ import classOptionsData from "../data/classOptionsData";
 import EquipmentOptions from "./EquipmentOptions";
 import EquipmentBackpack from "./EquipmentBackpack";
 
-class EquipmentScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gold: null,
-      goldRolled: false,
-      equipment: [],
-      equipmentSelected: "Backpack",
-      armour: [],
-      armourSelected: null,
-      shieldSelected: false,
-      weapons: [],
-      weaponSelected: "Dagger",
-      armourClass: null
-    };
-  }
+export default function EquipmentScreen(props) {
+  const [gold, setGold] = useState(null);
+  const [goldRolled, setGoldRolled] = useState(false);
+  const [equipment, setEquipment] = useState([]);
+  const [equipmentSelected, setEquipmentSelected] = useState("Backpack");
+  const [armour, setArmour] = useState([]);
+  const [shieldSelected, setShieldSelected] = useState(false);
+  const [weapons, setWeapons] = useState([]);
+  const [weaponSelected, setWeaponSelected] = useState("Dagger");
+  const [armourClass, setArmourClass] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     window.scrollTo(0, 0);
 
     //calculate base armour class
 
-    this.calculateAC();
+    calculateAC();
 
     // update default selectedWeapon to one appropriate for class
 
-    if (this.props.characterClass === "Cleric") {
-      this.setState({ weaponSelected: "Mace" });
+    if (props.characterClass === "Cleric") {
+      setWeaponSelected("Mace");
     }
 
-    if (this.props.characterClass === "Fighter") {
-      this.setState({ weaponSelected: "Sword" });
+    if (props.characterClass === "Fighter") {
+      setWeaponSelected("Sword");
     }
 
-    if (this.props.characterClass === "Elf") {
-      this.setState({ weaponSelected: "Long bow" });
+    if (props.characterClass === "Elf") {
+      setWeaponSelected("Long bow");
     }
 
-    if (this.props.characterClass === "Dwarf") {
-      this.setState({ weaponSelected: "Battle axe" });
+    if (props.characterClass === "Dwarf") {
+      setWeaponSelected("Battle axe");
     }
 
-    if (this.props.characterClass === "Halfling") {
-      this.setState({ weaponSelected: "Sling" });
+    if (props.characterClass === "Halfling") {
+      setWeaponSelected("Sling");
     }
-  }
+  }, []);
 
-  getRndInteger = (min, max) => {
+  useEffect(() => {
+    calculateAC();
+  }, [armour]);
+
+  const getRndInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  getGold = () => {
-    this.setState({ gold: this.props.gold, goldRolled: true });
+  const getGold = () => {
+    setGold(props.gold);
+    setGoldRolled(true);
   };
 
-  d = (how_many, sides) => {
+  const d = (how_many, sides) => {
     var total = 0;
     var i;
     for (i = 0; i < how_many; i++) {
-      total += this.getRndInteger(1, sides);
+      total += getRndInteger(1, sides);
     }
     return total;
   };
 
-  equipmentList = () =>
+  const equipmentList = () =>
     equipmentData.map(item => (
       <EquipmentOptions
         price={item.price}
@@ -80,7 +79,7 @@ class EquipmentScreen extends React.Component {
       ></EquipmentOptions>
     ));
 
-  weaponsOptions = item => {
+  const weaponsOptions = item => {
     return (
       <option value={item.name} price={item.price} damage={item.damage}>
         {item.name} ({item.damage}) - {item.price} gp
@@ -88,21 +87,21 @@ class EquipmentScreen extends React.Component {
     );
   };
 
-  weaponsList = () => {
-    return weaponsData.map(item => this.weaponsOptions(item));
+  const weaponsList = () => {
+    return weaponsData.map(item => weaponsOptions(item));
   };
 
-  equipmentBackpack = () =>
-    this.state.equipment.map((item, index) => (
+  const equipmentBackpack = () =>
+    equipment.map((item, index) => (
       <EquipmentBackpack
         name={item}
-        sellSelectedEquipment={this.sellSelectedEquipment}
+        sellSelectedEquipment={sellSelectedEquipment}
         key={index}
       ></EquipmentBackpack>
     ));
 
-  weaponsBackpack = () =>
-    this.state.weapons.map((item, index) => {
+  const weaponsBackpack = () =>
+    weapons.map((item, index) => {
       return (
         <li
           className="backpack-item backpack-item--weapon"
@@ -113,7 +112,7 @@ class EquipmentScreen extends React.Component {
           <button
             className="button button--equipment button--weapon"
             value={item}
-            onClick={() => this.sellSelectedWeapon(item)}
+            onClick={() => sellSelectedWeapon(item)}
           >
             Sell
           </button>
@@ -122,7 +121,7 @@ class EquipmentScreen extends React.Component {
     });
 
   armourBackpack = () =>
-    this.state.armour.map((item, index) => {
+    armour.map((item, index) => {
       return (
         <li
           className="backpack-item backpack-item--armour"
@@ -133,7 +132,7 @@ class EquipmentScreen extends React.Component {
           <button
             className="button button--equipment button--armour"
             value={item}
-            onClick={() => this.sellSelectedArmour(item)}
+            onClick={() => sellSelectedArmour(item)}
           >
             Sell
           </button>
@@ -141,199 +140,164 @@ class EquipmentScreen extends React.Component {
       );
     });
 
-  updateSelectedEquipment = event => {
-    this.setState({ equipmentSelected: event.target.value });
+  const updateSelectedEquipment = event => {
+    setEquipmentSelected(event.target.value);
   };
 
-  buySelectedEquipment = () => {
-    var equipmentSelected = this.state.equipmentSelected;
+  const findEquipment = object => {
+    return object.name === equipmentSelected;
+  };
 
-    function findItem(object) {
-      return object.name === equipmentSelected;
-    }
+  const buySelectedEquipment = () => {
+    const equipmentObject = equipmentData.find(findEquipment);
 
-    var itemObject = equipmentData.find(findItem);
-
-    if (itemObject.price > this.state.gold) {
+    if (equipmentObject.price > gold) {
       return console.log("Insufficient funds");
     }
 
     //updates state with new equipment item
 
-    var newObject = {
-      gold: this.state.gold - itemObject.price,
-      equipment: this.state.equipment.concat(itemObject.name)
-    };
-
-    this.setState(newObject);
+    setGold(prevGold => {
+      prevGold - equipmentObject.price;
+    });
+    setEquipment(prevEquipment => {
+      equipment.concat(equipmentObject.name);
+    });
   };
 
-  sellSelectedEquipment = itemName => {
-    function findItem(object) {
-      return object.name === itemName;
-    }
+  const sellSelectedEquipment = itemName => {
+    let equipmentObject = equipmentData.find(findEquipment);
 
-    var itemObject = equipmentData.find(findItem);
+    let itemsRemoved = 0;
 
-    var counter = 0;
-
-    const removeTheItem = item => {
-      if (counter > 0) {
+    const removeOneItem = item => {
+      if (itemsRemoved > 0) {
         return true;
       }
 
-      if (itemObject.name === item) {
-        counter++;
+      if (equipmentObject.name === item) {
+        itemsRemoved++;
         return false;
       }
 
       return true;
     };
 
-    var newArray = this.state.equipment.filter(removeTheItem);
+    const newEquipmentArray = equipment.filter(removeOneItem);
 
-    var newObject = {
-      gold: this.state.gold + itemObject.price,
-      // equipment is same except for item is removed from array
-      equipment: newArray
-    };
-    this.setState(newObject);
+    setEquipment(newEquipmentArray);
+
+    setGold(prevGold => {
+      prevGold + equipmentObject.price;
+    });
   };
 
   updateSelectedWeapon = event => {
-    this.setState({ weaponSelected: event.target.value });
+    setSelectedWeapon(event.target.value);
+  };
+
+  const findWeapon = object => {
+    return object.name === weaponSelected;
   };
 
   buySelectedWeapon = () => {
-    var equipmentSelected = this.state.weaponSelected;
+    const weaponObject = weaponsData.find(findWeapon);
 
-    function findItem(object) {
-      return object.name === equipmentSelected;
-    }
-
-    var itemObject = weaponsData.find(findItem);
-
-    if (itemObject.price > this.state.gold) {
+    if (weaponObject.price > gold) {
       return console.log("Insufficient funds");
     }
 
-    //updates state with new equipment item
+    //updates state with new equipment item\
 
-    var newObject = {
-      gold: this.state.gold - itemObject.price,
-      weapons: this.state.weapons.concat(itemObject.name)
-    };
-
-    this.setState(newObject);
+    setGold(prevGold => {
+      prevGold - weaponObject.price;
+    });
+    setWeapons(prevWeapons => {
+      prevWeapons.concat(weaponObject.name);
+    });
   };
 
   sellSelectedWeapon = itemName => {
-    function findItem(object) {
-      return object.name === itemName;
-    }
+    const weaponObject = weaponsData.find(findWeapon);
 
-    var itemObject = weaponsData.find(findItem);
-
-    var counter = 0;
+    let itemsRemoved = 0;
 
     const removeTheItem = item => {
-      if (counter > 0) {
+      if (itemsRemoved > 0) {
         return true;
       }
 
-      if (itemObject.name === item) {
-        counter++;
+      if (weaponObject.name === item) {
+        itemsRemoved++;
         return false;
       }
 
       return true;
     };
 
-    var newArray = this.state.weapons.filter(removeTheItem);
+    let newWeaponsArray = weapons.filter(removeTheItem);
 
-    var newObject = {
-      gold: this.state.gold + itemObject.price,
-      // equipment is same except for item is removed from array
-      weapons: newArray
-    };
-    this.setState(newObject);
-  };
-
-  handleOptionChange = event => {
-    this.setState({
-      armourSelected: event.target.value
+    setGold(prevGold => {
+      prevGold + weaponObject.price;
     });
+    setWeapons(newWeaponsArray);
   };
 
-  handleShieldChange = () => {
-    if (!this.state.shieldSelected === true) {
-      this.setState({
-        shieldSelected: true
+  const handleOptionChange = event => {
+    setArmourSelected(event.target.value);
+  };
+
+  const handleShieldChange = () => {
+    if (!shieldSelected === true) {
+      setShieldSelected(true);
+    } else {
+      setShieldSelected(false);
+    }
+  };
+
+  const findArmour = object => {
+    return object.name === armourSelected;
+  };
+
+  const buySelectedArmour = () => {
+    const armourObject = armourData.find(findArmour);
+
+    if (armourObject.price > gold) {
+      return console.log("Insufficient funds");
+    }
+
+    if (shieldSelected && armourObject.price + 10 > gold) {
+      return console.log("Insufficient funds");
+    }
+
+    if (shieldSelected) {
+      setGold(prevGold => {
+        gold - armourObject.price - 10;
+      });
+      setArmour(prevArmour => {
+        prevArmour.concat(armourObject.name).concat("Shield");
       });
     } else {
-      this.setState({
-        shieldSelected: false
+      setGold(prevGold => {
+        prevGold - armourObject.price;
+      });
+      setArmour(prevArmour => {
+        prevArmour.concat(armourObject.name);
       });
     }
   };
 
-  buySelectedArmour = () => {
-    var equipmentSelected = this.state.armourSelected;
+  const sellSelectedArmour = itemName => {
+    const armourObject = armourData.find(findArmour);
 
-    if (equipmentSelected === "none") {
-      return;
-    }
-
-    function findItem(object) {
-      return object.name === equipmentSelected;
-    }
-
-    var itemObject = armourData.find(findItem);
-
-    if (itemObject.price > this.state.gold) {
-      return console.log("Insufficient funds");
-    }
-
-    if (this.state.shieldSelected && itemObject.price + 10 > this.state.gold) {
-      return console.log("Insufficient funds");
-    }
-
-    //updates state with new equipment item
-
-    var newObject = {
-      gold: this.state.gold - itemObject.price,
-      armour: this.state.armour.concat(itemObject.name)
-    };
-
-    if (this.state.shieldSelected) {
-      newObject = {
-        gold: this.state.gold - itemObject.price - 10,
-        armour: this.state.armour.concat(itemObject.name).concat("Shield")
-      };
-    }
-
-    this.setState(newObject, () => {
-      this.calculateAC();
-    });
-
-    // adds shield if selected
-  };
-
-  sellSelectedArmour = itemName => {
-    function findItem(object) {
-      return object.name === itemName;
-    }
-
-    var itemObject = armourData.find(findItem);
-
-    var counter = 0;
+    let counter = 0;
 
     const removeTheItem = item => {
       if (counter > 0) {
         return true;
       }
 
-      if (itemObject.name === item) {
+      if (armourObject.name === item) {
         counter++;
         return false;
       }
@@ -341,266 +305,252 @@ class EquipmentScreen extends React.Component {
       return true;
     };
 
-    var newArray = this.state.armour.filter(removeTheItem);
+    const newArmourArray = armour.filter(removeTheItem);
 
-    var newObject = {
-      gold: this.state.gold + itemObject.price,
-      // equipment is same except for item is removed from array
-      armour: newArray
-    };
-    this.setState(newObject, () => {
-      this.calculateAC();
+    setGold(prevGold => {
+      prevGold + armourObject.price;
     });
+
+    setArmour(newArmourArray);
   };
 
-  calculateAC = () => {
+  const calculateAC = () => {
     let armourClass = 10;
-    let char = this.state;
-    if (char.armour.includes("Leather")) {
+
+    if (armour.includes("Leather")) {
       armourClass += 2;
     }
-    if (char.armour.includes("Chainmail")) {
+    if (armour.includes("Chainmail")) {
       armourClass += 4;
     }
-    if (char.armour.includes("Plate mail")) {
+    if (armour.includes("Plate mail")) {
       armourClass += 6;
     }
-    if (char.armour.includes("Shield")) {
+    if (armour.includes("Shield")) {
       armourClass += 1;
     }
 
-    let dexMod = this.props.dexterityModAC;
+    let dexMod = props.dexterityModAC;
     if (dexMod.includes("+")) {
       dexMod = dexMod.substring(1);
     }
     dexMod = parseInt(dexMod);
     armourClass += dexMod;
 
-    this.setState({ AC: armourClass });
+    setArmourClass(armourClass);
   };
 
-  render() {
-    var characterClass = classOptionsData.find(
-      obj => obj.name === this.props.characterClass
-    );
+  const characterClass = classOptionsData.find(
+    obj => obj.name === props.characterClass
+  );
 
-    return (
-      <div className="equipment-screen">
-        <h3 className="header-default"> Equipment </h3>
+  return (
+    <div className="equipment-screen">
+      <h3 className="header-default"> Equipment </h3>
 
-        <div className="gold-container">
-          <h5 className="gold">
-            {" "}
-            {this.state.gold} gp
-            {this.state.gold === null && (
-              <button
-                className="button button-primary button--gold"
-                onClick={() => setTimeout(this.getGold(), 200)}
-              >
-                Roll Gold
-              </button>
-            )}
-          </h5>
-        </div>
+      <div className="gold-container">
+        <h5 className="gold">
+          {" "}
+          {gold} gp
+          {gold === null && (
+            <button
+              className="button button-primary button--gold"
+              onClick={() => setTimeout(getGold(), 200)}
+            >
+              Roll Gold
+            </button>
+          )}
+        </h5>
+      </div>
 
-        {this.state.goldRolled && (
-          <div className="equipment-purchase-container">
-            {!characterClass.armour.includes("none") &&
-              this.state.armour.length < 1 && (
-                <div className="armour-container-parent">
-                  <div className="equipment-container--header">
-                    {this.props.characterClass} Armour
-                  </div>
+      {goldRolled && (
+        <div className="equipment-purchase-container">
+          {!characterClass.armour.includes("none") && armour.length < 1 && (
+            <div className="armour-container-parent">
+              <div className="equipment-container--header">
+                {props.characterClass} Armour
+              </div>
 
-                  <div className="equipment-restrictions">
-                    Allowed Armour: {characterClass.armour}
-                  </div>
+              <div className="equipment-restrictions">
+                Allowed Armour: {characterClass.armour}
+              </div>
 
-                  <div className="armour-container">
-                    <div className="radio-container">
-                      {characterClass.armour.includes("leather") && (
-                        <label className="armour-radio">
-                          <input
-                            type="radio"
-                            value="Leather"
-                            className="form-check-input"
-                            checked={this.state.armourSelected === "Leather"}
-                            onChange={this.handleOptionChange}
-                            disabled={
-                              characterClass.armour.includes("leather")
-                                ? false
-                                : true
-                            }
-                          />
+              <div className="armour-container">
+                <div className="radio-container">
+                  {characterClass.armour.includes("leather") && (
+                    <label className="armour-radio">
+                      <input
+                        type="radio"
+                        value="Leather"
+                        className="form-check-input"
+                        checked={armourSelected === "Leather"}
+                        onChange={handleOptionChange}
+                        disabled={
+                          characterClass.armour.includes("leather")
+                            ? false
+                            : true
+                        }
+                      />
 
-                          <span className="radio--label">
-                            Leather - AC 7 [12] - 20 gp
-                          </span>
-                        </label>
-                      )}
+                      <span className="radio--label">
+                        Leather - AC 7 [12] - 20 gp
+                      </span>
+                    </label>
+                  )}
 
-                      {characterClass.armour.includes("chainmail") && (
-                        <label className="armour-radio">
-                          <input
-                            type="radio"
-                            value="Chainmail"
-                            className="form-check-input"
-                            checked={this.state.armourSelected === "Chainmail"}
-                            onChange={this.handleOptionChange}
-                            disabled={
-                              characterClass.armour.includes("chainmail")
-                                ? false
-                                : true
-                            }
-                          />
-                          <span className="radio--label">
-                            Chainmail - AC 5 [14] - 40 gp
-                          </span>
-                        </label>
-                      )}
+                  {characterClass.armour.includes("chainmail") && (
+                    <label className="armour-radio">
+                      <input
+                        type="radio"
+                        value="Chainmail"
+                        className="form-check-input"
+                        checked={armourSelected === "Chainmail"}
+                        onChange={handleOptionChange}
+                        disabled={
+                          characterClass.armour.includes("chainmail")
+                            ? false
+                            : true
+                        }
+                      />
+                      <span className="radio--label">
+                        Chainmail - AC 5 [14] - 40 gp
+                      </span>
+                    </label>
+                  )}
 
-                      {characterClass.armour.includes("plate") && (
-                        <label className="armour-radio">
-                          <input
-                            type="radio"
-                            value="Plate mail"
-                            className="form-check-input"
-                            checked={this.state.armourSelected === "Plate mail"}
-                            onChange={this.handleOptionChange}
-                            disabled={
-                              characterClass.armour.includes("plate")
-                                ? false
-                                : true
-                            }
-                          />
-                          <span className="radio--label">
-                            Plate mail - AC 3 [16] - 60 gp
-                          </span>
-                        </label>
-                      )}
+                  {characterClass.armour.includes("plate") && (
+                    <label className="armour-radio">
+                      <input
+                        type="radio"
+                        value="Plate mail"
+                        className="form-check-input"
+                        checked={armourSelected === "Plate mail"}
+                        onChange={handleOptionChange}
+                        disabled={
+                          characterClass.armour.includes("plate") ? false : true
+                        }
+                      />
+                      <span className="radio--label">
+                        Plate mail - AC 3 [16] - 60 gp
+                      </span>
+                    </label>
+                  )}
 
-                      {characterClass.armour.includes("shield") && (
-                        <label className="armour-radio">
-                          <input
-                            type="checkbox"
-                            value="Shield"
-                            className="form-check-input"
-                            checked={this.state.shieldSelected === true}
-                            onChange={this.handleShieldChange}
-                            disabled={
-                              characterClass.armour.includes("shields")
-                                ? false
-                                : true
-                            }
-                          />
-                          Shield (AC +1 bonus) - 10gp
-                        </label>
-                      )}
-                    </div>
-
-                    <input
-                      className="button--buy-armour"
-                      type="submit"
-                      value="Buy"
-                      onClick={this.buySelectedArmour}
-                      price={null}
-                      disabled={this.state.armourSelected ? false : true}
-                    />
-                  </div>
+                  {characterClass.armour.includes("shield") && (
+                    <label className="armour-radio">
+                      <input
+                        type="checkbox"
+                        value="Shield"
+                        className="form-check-input"
+                        checked={shieldSelected === true}
+                        onChange={handleShieldChange}
+                        disabled={
+                          characterClass.armour.includes("shields")
+                            ? false
+                            : true
+                        }
+                      />
+                      Shield (AC +1 bonus) - 10gp
+                    </label>
+                  )}
                 </div>
-              )}
 
-            <div className="equipment-container--header">
-              {this.props.characterClass} Weapons
-            </div>
-
-            <div className="equipment-restrictions">
-              Allowed Weapons: {characterClass.weapons}
-            </div>
-
-            <div className="weapons-container">
-              <select
-                className="weapons-select"
-                value={this.state.weaponSelected}
-                onChange={this.updateSelectedWeapon}
-              >
-                {this.weaponsList()}
-              </select>
-
-              <input
-                className="button--buy-weapon"
-                type="submit"
-                value="Buy"
-                onClick={this.buySelectedWeapon}
-                price={null}
-              />
-            </div>
-
-            <div className="equipment-container--header">Adventuring Gear</div>
-
-            <div className="gear-container">
-              <select
-                className="gear-select"
-                value={this.state.equipmentSelected}
-                onChange={this.updateSelectedEquipment}
-                price={null}
-              >
-                {this.equipmentList()}
-              </select>
-
-              <input
-                className="button--buy-gear"
-                type="submit"
-                value="Buy"
-                onClick={this.buySelectedEquipment}
-              />
-            </div>
-
-            <div className="inventory">
-              <h3 className="header-default"> Inventory </h3>
-
-              <div className="backpack-container">
-                {this.state.armour.length > 0 && (
-                  <div className="armour-backpack">{this.armourBackpack()}</div>
-                )}
-
-                {this.state.weapons.length > 0 && (
-                  <div className="weapons-backpack">
-                    {this.weaponsBackpack()}
-                  </div>
-                )}
-
-                {this.state.equipment.length > 0 && (
-                  <div className="gear-backpack">
-                    {this.equipmentBackpack()}
-                  </div>
-                )}
+                <input
+                  className="button--buy-armour"
+                  type="submit"
+                  value="Buy"
+                  onClick={buySelectedArmour}
+                  price={null}
+                  disabled={armourSelected ? false : true}
+                />
               </div>
             </div>
+          )}
 
-            {this.state.goldRolled && (
-              <button
-                className="button button--character-details"
-                onClick={() => {
-                  let stateObject = {
-                    gold: this.state.gold,
-                    equipment: this.state.equipment,
-                    armour: this.state.armour,
-                    weapons: this.state.weapons,
-                    AC: this.state.AC
-                  };
-                  this.props.updateParentState(stateObject);
-                  this.props.showDetailsScreen();
-                }}
-              >
-                Go to Character Details
-              </button>
-            )}
+          <div className="equipment-container--header">
+            {props.characterClass} Weapons
           </div>
-        )}
-      </div>
-    );
-  }
-}
 
-export default EquipmentScreen;
+          <div className="equipment-restrictions">
+            Allowed Weapons: {characterClass.weapons}
+          </div>
+
+          <div className="weapons-container">
+            <select
+              className="weapons-select"
+              value={weaponSelected}
+              onChange={updateSelectedWeapon}
+            >
+              {weaponsList()}
+            </select>
+
+            <input
+              className="button--buy-weapon"
+              type="submit"
+              value="Buy"
+              onClick={buySelectedWeapon}
+              price={null}
+            />
+          </div>
+
+          <div className="equipment-container--header">Adventuring Gear</div>
+
+          <div className="gear-container">
+            <select
+              className="gear-select"
+              value={equipmentSelected}
+              onChange={updateSelectedEquipment}
+              price={null}
+            >
+              {equipmentList()}
+            </select>
+
+            <input
+              className="button--buy-gear"
+              type="submit"
+              value="Buy"
+              onClick={buySelectedEquipment}
+            />
+          </div>
+
+          <div className="inventory">
+            <h3 className="header-default"> Inventory </h3>
+
+            <div className="backpack-container">
+              {armour.length > 0 && (
+                <div className="armour-backpack">{armourBackpack()}</div>
+              )}
+
+              {weapons.length > 0 && (
+                <div className="weapons-backpack">{weaponsBackpack()}</div>
+              )}
+
+              {equipment.length > 0 && (
+                <div className="gear-backpack">{equipmentBackpack()}</div>
+              )}
+            </div>
+          </div>
+
+          {goldRolled && (
+            <button
+              className="button button--character-details"
+              onClick={() => {
+                let stateObject = {
+                  gold: gold,
+                  equipment: equipment,
+                  armour: armour,
+                  weapons: weapons,
+                  AC: AC
+                };
+                props.updateParentState(stateObject);
+                props.showDetailsScreen();
+              }}
+            >
+              Go to Character Details
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
