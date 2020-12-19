@@ -3,7 +3,7 @@
 import React from "react";
 
 export default function ClassOptionsButton(props) {
-  if (this.props.requirements) {
+  if (props.requirements) {
     if (
       (props.requirements.includes("STR") && props.strength < 9) ||
       (props.requirements.includes("INT") && props.intelligence < 9) ||
@@ -29,11 +29,11 @@ export default function ClassOptionsButton(props) {
   return (
     <button
       className="button button-class-option"
-      value={this.props.classOption}
-      key={this.props.classOption}
-      onClick={this.props.classFunction}
+      value={props.classOption}
+      key={props.classOption}
+      onClick={props.classFunction}
     >
-      {this.props.classOption}
+      {props.classOption}
     </button>
   );
 }
