@@ -82,17 +82,6 @@ class ClassScreen extends React.Component {
           </button>
         )}
 
-        {/* {this.state.HPResult && this.state.canReroll && (
-          <button
-            className="button button-primary button--hp"
-            onClick={() => setTimeout(this.reRoll(), 4000)}
-            disabled={!this.state.canReroll}
-          >
-            {" "}
-            ReRoll ?{" "}
-          </button>
-        )} */}
-
         <div className="hp-container container">
           <div className="hp-container--hit-die">
             {this.state.hitPoints && <span>{this.state.HPResult}</span>}
