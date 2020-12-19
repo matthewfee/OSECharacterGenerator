@@ -16,7 +16,9 @@ export default function CharacterStorageScreen(props) {
   };
 
   const characterButton = (char, index) => {
-    if (char.name.length < 1) {
+    let characterStorageName = char.characterName || char.name;
+
+    if (characterStorageName.length < 1) {
       return (
         <button
           className="character-button"
@@ -36,7 +38,7 @@ export default function CharacterStorageScreen(props) {
         value={index}
       >
         <div className="character-button--name" value={index}>
-          {char.name}
+          {characterStorageName}
         </div>
         <div className="character-button--level" value={index}>
           {char.characterClass}

@@ -59,7 +59,7 @@ export default function CharacterSheetScreen(props) {
 
       {/* {state.displayShort && (
         <div className="character-short">
-          <div>Name: {char.name}</div>
+          <div>Name: {char.characterName}</div>
           <div>Class: Level 1 {char.characterClass}</div>
           <div>Alignment: {char.alignment}</div>
           <div>Armour Class: AC ({char.armour.join(", ")})</div>
@@ -87,7 +87,7 @@ export default function CharacterSheetScreen(props) {
         <button
           onClick={() =>
             exportComponentAsPNG(componentRef, {
-              fileName: char.name + " the " + char.characterClass
+              fileName: char.characterName + " the " + char.characterClass
             })
           }
         >

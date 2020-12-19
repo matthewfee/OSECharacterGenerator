@@ -54,6 +54,8 @@ class NewCharacter extends React.Component {
       randomNumbers: [],
       showAdvancedClasses: false,
 
+      name: null,
+
       basicCharData: "Character Data Not Loaded",
       advCharData: "Advanced Character Data Not Loaded"
     };

@@ -12,7 +12,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} className="character-sheet-component">
-      <h3 className="character--name">{char.name}</h3>
+      <h3 className="character--name">{char.characterName}</h3>
       <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
       <div className="character-sheet">
         <div className="character-top-container">

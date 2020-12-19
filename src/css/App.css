@@ -510,6 +510,7 @@ a {
 .character-sheet-component {
   width: 90%;
   padding-bottom: 40px;
+  margin-left: 20px;
 }
 
 .character-container {
