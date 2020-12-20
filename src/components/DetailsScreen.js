@@ -1,31 +1,27 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 
-class DetailsScreen extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      name: "",
-      alignment: null
-    };
-  }
+export default function DetailsScreen(props) {
+  const [characterName, setCharacterName] = useState(null);
+  const [alignment, setAlignment] = useState(null);
+  const [appearance, setAppearance] = useState(null);
+  const [personality, setPersonality] = useState(null);
+  const [background, setBackground] = useState(null);
+  const [misfortune, setMisfortune] = useState(null);
 
-  choose = array => {
+  const choose = array => {
     return array[Math.floor(Math.random() * array.length)];
   };
 
-  handleName = event => {
-    this.setState({ name: event.currentTarget.value });
+  const handleName = event => {
+    setCharacterName(event.currentTarget.value);
   };
 
-  handleAlignment = event => {
-    console.log(event.currentTarget.value);
-    this.setState({ alignment: event.currentTarget.value });
-
-    // this.setState({alignment: "neutral"})
+  const handleAlignment = event => {
+    setAlignment(event.currentTarget.value);
   };
 
-  getName = () => {
+  const getName = () => {
     const firstNames = [
       "Balthazar",
       "Basil",
@@ -178,14 +174,12 @@ class DetailsScreen extends React.Component {
       "Villin"
     ];
 
-    let fullName = `${this.choose(firstNames)} ${this.choose(lastNames)}`;
+    let fullName = `${choose(firstNames)} ${choose(lastNames)}`;
 
-    this.setState({ name: fullName });
+    setCharacterName(fullName);
   };
 
-  getAppearance = () => {
-    console.log("APPEARANCE BUTTON CLICKED");
-
+  const getAppearance = () => {
     const appearances = [
       "aquiline",
       "athletic",
@@ -225,11 +219,10 @@ class DetailsScreen extends React.Component {
       "wrinkly"
     ];
 
-    let object = { appearance: this.choose(appearances) };
-    this.setState(object);
+    setAppearance(choose(appearances));
   };
 
-  getBackground = () => {
+  const getBackground = () => {
     let bgs = [];
     bgs = bgs.concat(Array(3).fill("Animal trainer"));
     bgs = bgs.concat(Array(2).fill("Armorer"));
@@ -263,12 +256,11 @@ class DetailsScreen extends React.Component {
     bgs = bgs.concat(Array(3).fill("Lumberjack"));
     bgs = bgs.concat(Array(2).fill("Vinter"));
     bgs = bgs.concat(Array(1).fill("Noble bastard"));
-    let object = { background: this.choose(bgs) };
 
-    this.setState(object);
+    setBackground(choose(bgs));
   };
 
-  getPersonality = () => {
+  const getPersonality = () => {
     var traits = [
       "boorish",
       "aggressive",
@@ -338,19 +330,17 @@ class DetailsScreen extends React.Component {
       "ambitious"
     ];
     let num = 2;
-    let selected = [];
+    let selectedPersonalities = [];
     for (let i = 0; i < num; i++) {
-      let trait = this.choose(traits);
-      selected.push(trait);
+      let trait = choose(traits);
+      selectedPersonalities.push(trait);
       traits = traits.filter(k => k !== trait);
     }
 
-    console.log(selected, selected.join(", "));
-
-    this.setState({ personality: selected.join(", ") });
+    setPersonality(selectedPersonalities.join(", "));
   };
 
-  getMisfortune = () => {
+  const getMisfortune = () => {
     const misfortunes = [
       "abandoned",
       "addicted",
@@ -398,182 +388,169 @@ class DetailsScreen extends React.Component {
       "destitute"
     ];
 
-    let randomMisfortune = this.choose(misfortunes);
-    this.setState({ misfortune: randomMisfortune });
+    let randomMisfortune = choose(misfortunes);
+    setMisfortune(randomMisfortune);
   };
 
-  render() {
-    return (
-      <div className="details-screen-container">
-        <div id="print-wrapper">
-          <h3 className="header-default">Character Details</h3>
+  return (
+    <div className="details-screen-container">
+      <div id="print-wrapper">
+        <h3 className="header-default">Character Details</h3>
 
-          <div className="character-details-form">
-            <label className="form-label form-label--name">
-              <div className="form-text">Choose Name:</div>
-              <input
-                className="form-input"
-                type="text"
-                value={this.state.name}
-                onChange={this.handleName}
-              />
+        <div className="character-details-form">
+          <label className="form-label form-label--name">
+            <div className="form-text">Choose Name:</div>
+            <input
+              className="form-input"
+              type="text"
+              value={characterName}
+              onChange={handleName}
+            />
+            <button
+              className="button button--random-name"
+              onClick={getName}
+              type="button"
+            >
+              Random Name
+            </button>
+          </label>
+
+          <div className="form-label form-label--alignment">
+            <div className="form-text">Select Alignment:</div>
+
+            <div className="alignment-button-container">
               <button
-                className="button button--random-name"
-                onClick={this.getName}
                 type="button"
+                value="lawful"
+                className={
+                  alignment === "lawful"
+                    ? "button button--alignment button--alignment--selected"
+                    : "button button--alignment"
+                }
+                onClick={e => handleAlignment(e, "value")}
               >
-                Random Name
+                Lawful
               </button>
-            </label>
-
-            <div className="form-label form-label--alignment">
-              <div className="form-text">Select Alignment:</div>
-
-              <div className="alignment-button-container">
-                <button
-                  type="button"
-                  value="lawful"
-                  className={
-                    this.state.alignment === "lawful"
-                      ? "button button--alignment button--alignment--selected"
-                      : "button button--alignment"
-                  }
-                  onClick={e => this.handleAlignment(e, "value")}
-                >
-                  Lawful
-                </button>
-                <button
-                  type="button"
-                  value="neutral"
-                  className={
-                    this.state.alignment === "neutral"
-                      ? "button button--alignment button--alignment--selected"
-                      : "button button--alignment"
-                  }
-                  onClick={e => this.handleAlignment(e, "value")}
-                >
-                  Neutral
-                </button>
-                <button
-                  type="button"
-                  value="chaotic"
-                  className={
-                    this.state.alignment === "chaotic"
-                      ? "button button--alignment button--alignment--selected"
-                      : "button button--alignment"
-                  }
-                  onClick={e => this.handleAlignment(e, "value")}
-                >
-                  Chaotic
-                </button>
-              </div>
-            </div>
-
-            <div className="form-label form-label--optional-details">
-              <div type="button" className="form-text">
-                Optional Details
-              </div>
-
-              {!this.state.appearance && (
-                <button
-                  type="button"
-                  className="button button--optional-details"
-                  onClick={this.getAppearance}
-                >
-                  Roll Appearance
-                </button>
-              )}
-
-              {this.state.appearance && (
-                <div className="details-result">
-                  <span className="details-result--name"> Appearance: </span>
-                  <span className="details-result--data">
-                    {" "}
-                    {this.state.appearance}
-                  </span>
-                </div>
-              )}
-
-              {!this.state.personality && (
-                <button
-                  type="button"
-                  className="button button--optional-details"
-                  onClick={this.getPersonality}
-                >
-                  Roll Personality
-                </button>
-              )}
-
-              {this.state.personality && (
-                <div className="details-result">
-                  <span className="details-result--name">Personality:</span>
-                  <span className="details-result--data">
-                    {this.state.personality}
-                  </span>
-                </div>
-              )}
-
-              {!this.state.background && (
-                <button
-                  type="button"
-                  className="button button--optional-details"
-                  onClick={this.getBackground}
-                >
-                  Roll Background
-                </button>
-              )}
-
-              {this.state.background && (
-                <div className="details-result">
-                  <span className="details-result--name">Background:</span>
-                  <span className="details-result--data">
-                    {this.state.background}
-                  </span>
-                </div>
-              )}
-
-              {!this.state.misfortune && (
-                <button
-                  type="button"
-                  className="button button--optional-details"
-                  onClick={this.getMisfortune}
-                >
-                  Roll Misfortune
-                </button>
-              )}
-
-              {this.state.misfortune && (
-                <div className="details-result">
-                  <span className="details-result--name">Misfortune:</span>
-                  <span className="details-result--data">
-                    {this.state.misfortune}
-                  </span>
-                </div>
-              )}
+              <button
+                type="button"
+                value="neutral"
+                className={
+                  alignment === "neutral"
+                    ? "button button--alignment button--alignment--selected"
+                    : "button button--alignment"
+                }
+                onClick={e => handleAlignment(e, "value")}
+              >
+                Neutral
+              </button>
+              <button
+                type="button"
+                value="chaotic"
+                className={
+                  alignment === "chaotic"
+                    ? "button button--alignment button--alignment--selected"
+                    : "button button--alignment"
+                }
+                onClick={e => handleAlignment(e, "value")}
+              >
+                Chaotic
+              </button>
             </div>
           </div>
 
-          <button
-            className="button button--character-sheet"
-            onClick={() => {
-              let stateObject = {
-                name: this.state.name,
-                alignment: this.state.alignment,
-                appearance: this.state.appearance,
-                background: this.state.background,
-                personality: this.state.personality,
-                misfortune: this.state.misfortune
-              };
-              this.props.updateParentState(stateObject);
-              this.props.showCharacterSheetScreen();
-            }}
-          >
-            Go to Character Sheet
-          </button>
-        </div>
-      </div>
-    );
-  }
-}
+          <div className="form-label form-label--optional-details">
+            <div type="button" className="form-text">
+              Optional Details
+            </div>
 
-export default DetailsScreen;
+            {!appearance && (
+              <button
+                type="button"
+                className="button button--optional-details"
+                onClick={getAppearance}
+              >
+                Roll Appearance
+              </button>
+            )}
+
+            {appearance && (
+              <div className="details-result">
+                <span className="details-result--name"> Appearance: </span>
+                <span className="details-result--data"> {appearance}</span>
+              </div>
+            )}
+
+            {!personality && (
+              <button
+                type="button"
+                className="button button--optional-details"
+                onClick={getPersonality}
+              >
+                Roll Personality
+              </button>
+            )}
+
+            {personality && (
+              <div className="details-result">
+                <span className="details-result--name">Personality:</span>
+                <span className="details-result--data">{personality}</span>
+              </div>
+            )}
+
+            {!background && (
+              <button
+                type="button"
+                className="button button--optional-details"
+                onClick={getBackground}
+              >
+                Roll Background
+              </button>
+            )}
+
+            {background && (
+              <div className="details-result">
+                <span className="details-result--name">Background:</span>
+                <span className="details-result--data">{background}</span>
+              </div>
+            )}
+
+            {!misfortune && (
+              <button
+                type="button"
+                className="button button--optional-details"
+                onClick={getMisfortune}
+              >
+                Roll Misfortune
+              </button>
+            )}
+
+            {misfortune && (
+              <div className="details-result">
+                <span className="details-result--name">Misfortune:</span>
+                <span className="details-result--data">{misfortune}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <button
+          className="button button--character-sheet"
+          onClick={() => {
+            let stateObject = {
+              characterName: characterName,
+              alignment: alignment,
+              appearance: appearance,
+              background: background,
+              personality: personality,
+              misfortune: misfortune
+            };
+            props.updateParentState(stateObject);
+            props.showCharacterSheetScreen();
+          }}
+        >
+          Go to Character Sheet
+        </button>
+      </div>
+    </div>
+  );
+}

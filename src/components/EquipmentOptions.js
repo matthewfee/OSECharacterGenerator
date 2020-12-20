@@ -1,19 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-class EquipmentOptions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <option value={this.props.name} price={this.props.price}>
-        {this.props.name} - {this.props.price} gp
-      </option>
-    );
-  }
+export default function EquipmentOptions(props) {
+  return (
+    <option value={props.name} price={props.price}>
+      {props.name} - {props.price} gp
+    </option>
+  );
 }
-
-export default EquipmentOptions;
