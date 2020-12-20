@@ -13,10 +13,11 @@ export default function EquipmentScreen(props) {
   const [equipment, setEquipment] = useState([]);
   const [equipmentSelected, setEquipmentSelected] = useState("Backpack");
   const [armour, setArmour] = useState([]);
+  const [armourSelected, setArmourSelected] = useState(null);
   const [shieldSelected, setShieldSelected] = useState(false);
   const [weapons, setWeapons] = useState([]);
   const [weaponSelected, setWeaponSelected] = useState("Dagger");
-  const [armourClass, setArmourClass] = useState(null);
+  const [armourClass, setArmourClass] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,22 +63,23 @@ export default function EquipmentScreen(props) {
   };
 
   const d = (how_many, sides) => {
-    var total = 0;
-    var i;
+    let total = 0;
+    let i;
     for (i = 0; i < how_many; i++) {
       total += getRndInteger(1, sides);
     }
     return total;
   };
 
-  const equipmentList = () =>
-    equipmentData.map(item => (
+  const equipmentList = () => {
+    return equipmentData.map(item => (
       <EquipmentOptions
         price={item.price}
         name={item.name}
         key={item.name}
       ></EquipmentOptions>
     ));
+  };
 
   const weaponsOptions = item => {
     return (
@@ -91,17 +93,26 @@ export default function EquipmentScreen(props) {
     return weaponsData.map(item => weaponsOptions(item));
   };
 
-  const equipmentBackpack = () =>
-    equipment.map((item, index) => (
-      <EquipmentBackpack
-        name={item}
-        sellSelectedEquipment={sellSelectedEquipment}
-        key={index}
-      ></EquipmentBackpack>
-    ));
+  const equipmentBackpack = () => {
+    if (!equipment) {
+      return;
+    }
 
-  const weaponsBackpack = () =>
-    weapons.map((item, index) => {
+    console.log(equipment, "EQUIPMENT");
+
+    if (equipment.length > 0) {
+      return equipment.map((item, index) => (
+        <EquipmentBackpack
+          name={item}
+          sellSelectedEquipment={sellSelectedEquipment}
+          key={index}
+        ></EquipmentBackpack>
+      ));
+    }
+  };
+
+  const weaponsBackpack = () => {
+    return weapons.map((item, index) => {
       return (
         <li
           className="backpack-item backpack-item--weapon"
@@ -119,9 +130,10 @@ export default function EquipmentScreen(props) {
         </li>
       );
     });
+  };
 
-  armourBackpack = () =>
-    armour.map((item, index) => {
+  const armourBackpack = () => {
+    return armour.map((item, index) => {
       return (
         <li
           className="backpack-item backpack-item--armour"
@@ -139,6 +151,7 @@ export default function EquipmentScreen(props) {
         </li>
       );
     });
+  };
 
   const updateSelectedEquipment = event => {
     setEquipmentSelected(event.target.value);
@@ -155,14 +168,13 @@ export default function EquipmentScreen(props) {
       return console.log("Insufficient funds");
     }
 
-    //updates state with new equipment item
+    console.log(equipmentObject);
+    if (!equipmentObject) {
+      console.error(equipmentObject);
+    }
 
-    setGold(prevGold => {
-      prevGold - equipmentObject.price;
-    });
-    setEquipment(prevEquipment => {
-      equipment.concat(equipmentObject.name);
-    });
+    setGold(gold - equipmentObject.price);
+    setEquipment(oldEquipment => [...oldEquipment, equipmentObject.name]);
   };
 
   const sellSelectedEquipment = itemName => {
@@ -187,20 +199,18 @@ export default function EquipmentScreen(props) {
 
     setEquipment(newEquipmentArray);
 
-    setGold(prevGold => {
-      prevGold + equipmentObject.price;
-    });
+    setGold(gold + equipmentObject.price);
   };
 
-  updateSelectedWeapon = event => {
-    setSelectedWeapon(event.target.value);
+  const updateSelectedWeapon = event => {
+    setWeaponSelected(event.target.value);
   };
 
   const findWeapon = object => {
     return object.name === weaponSelected;
   };
 
-  buySelectedWeapon = () => {
+  const buySelectedWeapon = () => {
     const weaponObject = weaponsData.find(findWeapon);
 
     if (weaponObject.price > gold) {
@@ -209,15 +219,12 @@ export default function EquipmentScreen(props) {
 
     //updates state with new equipment item\
 
-    setGold(prevGold => {
-      prevGold - weaponObject.price;
-    });
-    setWeapons(prevWeapons => {
-      prevWeapons.concat(weaponObject.name);
-    });
+    setGold(gold - weaponObject.price);
+
+    setWeapons(oldWeapons => [...oldWeapons, weaponObject.name]);
   };
 
-  sellSelectedWeapon = itemName => {
+  const sellSelectedWeapon = itemName => {
     const weaponObject = weaponsData.find(findWeapon);
 
     let itemsRemoved = 0;
@@ -237,9 +244,7 @@ export default function EquipmentScreen(props) {
 
     let newWeaponsArray = weapons.filter(removeTheItem);
 
-    setGold(prevGold => {
-      prevGold + weaponObject.price;
-    });
+    setGold(gold + weaponObject.price);
     setWeapons(newWeaponsArray);
   };
 
@@ -271,34 +276,30 @@ export default function EquipmentScreen(props) {
     }
 
     if (shieldSelected) {
-      setGold(prevGold => {
-        gold - armourObject.price - 10;
-      });
-      setArmour(prevArmour => {
-        prevArmour.concat(armourObject.name).concat("Shield");
-      });
+      setGold(gold - armourObject.price - 10);
+      setArmour(oldArmour => [...oldArmour, armourObject.name, "Shield"]);
     } else {
-      setGold(prevGold => {
-        prevGold - armourObject.price;
-      });
-      setArmour(prevArmour => {
-        prevArmour.concat(armourObject.name);
-      });
+      setGold(gold - armourObject.price);
+      setArmour(oldArmour => [...oldArmour, armourObject.name]);
     }
   };
 
   const sellSelectedArmour = itemName => {
-    const armourObject = armourData.find(findArmour);
+    const findArmourToSell = object => {
+      return object.name === itemName;
+    };
 
-    let counter = 0;
+    const armourObject = armourData.find(findArmourToSell);
+
+    let itemsRemoved = 0;
 
     const removeTheItem = item => {
-      if (counter > 0) {
+      if (itemsRemoved > 0) {
         return true;
       }
 
       if (armourObject.name === item) {
-        counter++;
+        itemsRemoved++;
         return false;
       }
 
@@ -307,15 +308,24 @@ export default function EquipmentScreen(props) {
 
     const newArmourArray = armour.filter(removeTheItem);
 
-    setGold(prevGold => {
-      prevGold + armourObject.price;
-    });
-
+    setGold(gold + armourObject.price);
     setArmour(newArmourArray);
   };
 
   const calculateAC = () => {
     let armourClass = 10;
+
+    let dexMod = props.dexterityModAC;
+    if (dexMod.includes("+")) {
+      dexMod = dexMod.substring(1);
+    }
+    dexMod = parseInt(dexMod);
+    armourClass += dexMod;
+
+    if (!armour) {
+      setArmourClass(armourClass);
+      return;
+    }
 
     if (armour.includes("Leather")) {
       armourClass += 2;
@@ -329,13 +339,6 @@ export default function EquipmentScreen(props) {
     if (armour.includes("Shield")) {
       armourClass += 1;
     }
-
-    let dexMod = props.dexterityModAC;
-    if (dexMod.includes("+")) {
-      dexMod = dexMod.substring(1);
-    }
-    dexMod = parseInt(dexMod);
-    armourClass += dexMod;
 
     setArmourClass(armourClass);
   };
@@ -365,7 +368,7 @@ export default function EquipmentScreen(props) {
 
       {goldRolled && (
         <div className="equipment-purchase-container">
-          {!characterClass.armour.includes("none") && armour.length < 1 && (
+          {!characterClass.armour.includes("none") && armour.length === 0 && (
             <div className="armour-container-parent">
               <div className="equipment-container--header">
                 {props.characterClass} Armour
@@ -517,15 +520,15 @@ export default function EquipmentScreen(props) {
             <h3 className="header-default"> Inventory </h3>
 
             <div className="backpack-container">
-              {armour.length > 0 && (
+              {armour && (
                 <div className="armour-backpack">{armourBackpack()}</div>
               )}
 
-              {weapons.length > 0 && (
+              {weapons && (
                 <div className="weapons-backpack">{weaponsBackpack()}</div>
               )}
 
-              {equipment.length > 0 && (
+              {equipment && (
                 <div className="gear-backpack">{equipmentBackpack()}</div>
               )}
             </div>
@@ -540,7 +543,7 @@ export default function EquipmentScreen(props) {
                   equipment: equipment,
                   armour: armour,
                   weapons: weapons,
-                  AC: AC
+                  AC: armourClass
                 };
                 props.updateParentState(stateObject);
                 props.showDetailsScreen();
