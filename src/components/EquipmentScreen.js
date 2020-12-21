@@ -18,6 +18,7 @@ export default function EquipmentScreen(props) {
   const [weapons, setWeapons] = useState([]);
   const [weaponSelected, setWeaponSelected] = useState("Dagger");
   const [armourClass, setArmourClass] = useState();
+  const [unarmouredAC, setUnarmouredAC] = useState();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -327,6 +328,8 @@ export default function EquipmentScreen(props) {
       return;
     }
 
+    setUnarmouredAC(armourClass);
+
     if (armour.includes("Leather")) {
       armourClass += 2;
     }
@@ -543,7 +546,8 @@ export default function EquipmentScreen(props) {
                   equipment: equipment,
                   armour: armour,
                   weapons: weapons,
-                  AC: armourClass
+                  AC: armourClass,
+                  unarmouredAC: unarmouredAC
                 };
                 props.updateParentState(stateObject);
                 props.showDetailsScreen();

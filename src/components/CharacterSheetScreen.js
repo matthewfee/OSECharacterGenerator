@@ -124,7 +124,7 @@ export default function CharacterSheetScreen(props) {
     const XPLevelField = form.getTextField("XP for Next Level");
     const primeReqField = form.getTextField("PR XP Bonus");
     const attackBonusField = form.getTextField("Attack Bonus");
-    const baseAC = "frog";
+    const baseAC = char.unarmouredAC || `10 + ${char.dexterityModAC}`;
 
     characterClassField.setText(char.characterClass);
     alignmentField.setText(char.alignment.toUpperCase());
@@ -149,7 +149,7 @@ export default function CharacterSheetScreen(props) {
     maxHPField.setText(char.hitPoints.toString());
     ACField.setText(char.AC.toString());
     CONModField.setText(char.constitutionMod.toString());
-    unarmouredACField.setText(baseAC);
+    unarmouredACField.setText(baseAC.toString());
     DEXACField.setText(char.dexterityModAC.toString());
     STRMeleeField.setText(char.strengthModMelee.toString());
     DEXMissileField.setText(char.dexterityModMissiles.toString());
