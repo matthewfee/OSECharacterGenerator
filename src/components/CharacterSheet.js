@@ -146,6 +146,15 @@ const CharacterSheet = React.forwardRef((props, ref) => {
               })}
             </span>
           </div>
+
+          {char.hasSpells && (
+            <div className="character-container">
+              <span className="charsheet-value-name">Spells</span>
+              <span className="charsheet-value character-sheet--class-ability">
+                {char.spells}
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="character-sheet-ability-list">

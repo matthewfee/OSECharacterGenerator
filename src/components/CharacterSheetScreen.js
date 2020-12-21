@@ -124,6 +124,8 @@ export default function CharacterSheetScreen(props) {
     const XPLevelField = form.getTextField("XP for Next Level");
     const primeReqField = form.getTextField("PR XP Bonus");
     const attackBonusField = form.getTextField("Attack Bonus");
+    const notesField = form.getTextField("Notes");
+
     const baseAC = char.unarmouredAC || `10 + ${char.dexterityModAC}`;
 
     characterClassField.setText(char.characterClass);
@@ -162,6 +164,9 @@ export default function CharacterSheetScreen(props) {
     XPLevelField.setText(characterClass.nextLevel.toString());
     primeReqField.setText(char.primeReqMod.toString());
     attackBonusField.setText("0");
+
+    const spellText = char.hasSpells ? `Spells: ${char.spells}` : "";
+    notesField.setText(spellText);
 
     const pdfBytes = await pdfDoc.save();
 

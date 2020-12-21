@@ -578,15 +578,15 @@ a {
 .character-storage > .character-button {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin: 10px;
   min-height: 100px;
   text-transform: none;
   line-height: 20px;
   letter-spacing: 0;
-  width: 140px;
-  padding: 0px;
+  width: 100px;
+  padding: 5px;
   padding-top: 4px;
   white-space: normal;
   height: auto;
@@ -660,10 +660,37 @@ a {
   color: rgb(34, 34, 34);
 }
 
+.class-ability-menu--header {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: rgb(34, 34, 34);
+}
+
 .class-ability-menu > .class-ability-menu--abilities {
   font-size: 1.2rem;
   margin: auto;
   width: 80%;
+}
+
+.spell-selection-menu {
+  display: flex;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
+  width: 160px;
+  margin: 0 auto;
+}
+
+.spell-selection-menu > .class-ability-menu--header {
+  width: 100%;
+}
+
+.spell-selection-menu > .button--random-spell {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.spell-selection-menu > .spells-select {
+  font-size: 1.4rem;
 }
 
 .class-ability {

@@ -381,7 +381,7 @@ const classOptionsData = [
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
     divine: false,
-    illusionSpells: true
+    illusionistSpells: true
   },
   {
     name: "Knight",

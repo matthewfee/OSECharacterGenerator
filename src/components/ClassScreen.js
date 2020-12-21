@@ -8,6 +8,7 @@ export default function ClassScreen(props) {
   const [canReroll, setCanReroll] = useState(true);
   const [HPRolls, setHPRolls] = useState(0);
   const [hitDie, setHitDie] = useState(null);
+  const [spellSelected, setSpellSelected] = useState("");
 
   useEffect(() => {
     getHitDie();
@@ -38,7 +39,120 @@ export default function ClassScreen(props) {
     setHPRolls(HPRollsNew);
   };
 
-  let stateObject = { hitPoints: hitPoints };
+  const choose = array => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+
+  const chooseSpells = () => {
+    let characterClass = classOptionsData.find(
+      obj => obj.name === props.characterClass
+    );
+
+    if (characterClass.arcaneSpells) {
+      return choose(magicUserSpells);
+    }
+
+    if (characterClass.druidSpells) {
+      return choose(druidSpells);
+    }
+
+    if (characterClass.illusionistSpells) {
+      return choose(illusionistSpells);
+    }
+
+    return "No Spells Found";
+  };
+
+  const magicUserSpells = [
+    "Charm Person",
+    "Detect Magic",
+    "Floating Disc",
+    "Hold Portal",
+    "Light",
+    "Magic Missile",
+    "Protection from Evil",
+    "Read Languages",
+    "Read Magic",
+    "Shield",
+    "Sleep",
+    "Ventriloquism"
+  ];
+
+  const druidSpells = [
+    "Animal Friendship",
+    "Detect Danger",
+    "Entangle",
+    "Faerie Fire",
+    "Invisibility to Animals",
+    "Locate Plant or Animal",
+    "Predict Weather",
+    "Speak with Aniamls"
+  ];
+
+  const illusionistSpells = [
+    "Auditory Illusions",
+    "Chromatic Orb",
+    "Colour Spray",
+    "Dancing Lights",
+    "Detect Illusion",
+    "Glamour",
+    "Hypnotism",
+    "Light",
+    "Phantasmal Force",
+    "Read Magic",
+    "Spook",
+    "Wall of Fog"
+  ];
+
+  const spellOption = spell => {
+    return <option value={spell}>{spell}</option>;
+  };
+
+  const spellsList = () => {
+    let spellList = "";
+
+    let characterClass = classOptionsData.find(
+      obj => obj.name === props.characterClass
+    );
+
+    if (characterClass.arcaneSpells) {
+      spellList = magicUserSpells.map(spell => {
+        return spellOption(spell);
+      });
+    }
+
+    if (characterClass.druidSpells) {
+      spellList = druidSpells.map(spell => {
+        return spellOption(spell);
+      });
+    }
+
+    if (characterClass.illusionistSpells) {
+      spellList = illusionistSpells.map(spell => {
+        return spellOption(spell);
+      });
+    }
+
+    return spellList;
+  };
+
+  const handleSpellChange = event => {
+    setSpellSelected(event.target.value);
+  };
+
+  let stateObject = {
+    hitPoints: hitPoints,
+    spells: spellSelected,
+    hasSpells: false
+  };
+
+  if (spellSelected.length > 1) {
+    stateObject = {
+      hitPoints: hitPoints,
+      spells: spellSelected,
+      hasSpells: true
+    };
+  }
 
   return (
     <div className="class-options-screen">
@@ -133,6 +247,30 @@ export default function ClassScreen(props) {
               })}
             </ul>
           </div>
+        </div>
+      )}
+
+      {hitPoints && (
+        <div className="spell-selection-menu">
+          <h5 className="class-ability-menu--header">
+            {props.characterClass} Spells
+          </h5>
+          <select
+            className="spells-select"
+            value={spellSelected}
+            onChange={handleSpellChange}
+          >
+            <option value="" disabled>
+              Select Spell
+            </option>
+            {spellsList()}
+          </select>
+          <button
+            className="button--random-spell"
+            onClick={() => setSpellSelected(chooseSpells())}
+          >
+            Random Spell
+          </button>
         </div>
       )}
 
