@@ -30,7 +30,7 @@ const classOptionsData = [
       "Clerics are adventurers who have sworn to serve a deity. They are trained for battle and channel the power of their deity.",
     savingThrows: [11, 12, 14, 16, 15],
     nextLevel: 1500,
-    abilities: ["Divine Magic", "Turn Undead"],
+    abilities: ["Divine Magic", "Turning the Undead"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Cleric",
     arcane: false,
     divine: true
@@ -68,7 +68,12 @@ const classOptionsData = [
       "Thieves are adventurers who live by their skills of deception and stealth. Their range of unique skills makes them very handy companions in adventures. However, thieves are not always to be trusted.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1200,
-    abilities: ["Backstab", "Thief Skills"],
+    abilities: [
+      "Backstab",
+      "Thief Skills (climb sheer surfaces, find or remove treasure traps, hear noise, hide in shadows, move silently, open locks, pick pockets)",
+      "Read Lanuages (level 4)",
+      "Scroll Use (level 10)"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Thief",
     arcane: false,
     divine: false
@@ -88,7 +93,7 @@ const classOptionsData = [
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2200,
     abilities: [
-      "Detect Construction",
+      "Detect Construction Tricks",
       "Detect Room Traps",
       "Infravision",
       "Listening at Doors"
@@ -114,7 +119,8 @@ const classOptionsData = [
       "Arcane Magic",
       "Detect Secret Doors",
       "Infravision",
-      "Listening at Doors"
+      "Listening at Doors",
+      "Immunity to Ghoul Paralysis"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Elf",
     arcane: true,
@@ -138,7 +144,9 @@ const classOptionsData = [
       "Defensive Bonus",
       "Hiding",
       "Listening at Doors",
-      "Missile Attack Bonus"
+      "Missile Attack Bonus",
+      "Initiative Bonus (optional)",
+      "Stronghold"
     ],
     link:
       "https://oldschoolessentials.necroticgnome.com/srd/index.php/Halfling",
@@ -159,7 +167,12 @@ const classOptionsData = [
       "Acrobats are trained in skills of balance, gymnastics, and stealth. They often work in conjunction with thieves and may belong to a Thieves’ Guild.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1200,
-    abilities: ["Acrobat Skills", "Evasion", "Jumping", "Tumbling Attack"],
+    abilities: [
+      "Acrobat Skills (climb sheer surfaces, falling, hide in shadows, move silently, tightrope walking)",
+      "Evasion",
+      "Jumping",
+      "Tumbling Attack"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false,
@@ -178,7 +191,12 @@ const classOptionsData = [
       "Assassins are adventurers who specialise in the arts of infiltration and killing by stealth. They sometimes form guilds whereby their illicit services may be hired.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1500,
-    abilities: ["Assassin Skills", "Disguise", "Poison"],
+    abilities: [
+      "Assassin Skills (assassination, climb sheer suraces, hear noise, hide in shadows, move silently)",
+      "Disguise",
+      "Poison",
+      "Assassin Hirelings (level 4)"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false,
@@ -198,7 +216,15 @@ const classOptionsData = [
       "Barbarians are tribal warriors from wild lands. They are formidable fighters with many useful survival skills but have a deep mistrust of the arcane",
     savingThrows: [10, 13, 12, 15, 16],
     nextLevel: 2500,
-    abilities: ["Barbarian Skills", "Cure Poison", "Foraging", "Hunting"],
+    abilities: [
+      "Barbarian Skills (climb sheer surfaces, hiding in undergrowth, move silently)",
+      "Cure Poison",
+      "Foraging",
+      "Hunting",
+      "Fear of Magic",
+      "Agile Fighting (level 4)",
+      "Strike Invulnerable Monsters (level 4)"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false
@@ -216,7 +242,13 @@ const classOptionsData = [
       "Bards are members of a sect of minstrels and warrior poets associated with the druids. Like druids, bards worship the force of nature and the myriad deities that personify it. Their strengths lie in their deep knowledge of myth and legend, the magic that they wield on behalf of their gods, and the enchanting power of their music.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 2000,
-    abilities: ["Anti-Charm", "Divine Magic", "Enchantment"],
+    abilities: [
+      "Anti-Charm",
+      "Divine Magic",
+      "Enchantment",
+      "Languages (level 4)",
+      "Lore (level 2)"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: true
@@ -242,7 +274,9 @@ const classOptionsData = [
       "Divine Magic",
       "Infravision",
       "Light Sensitivity",
-      "Spider Affinity"
+      "Spider Affinity",
+      "Immunity to Ghoul Paralysis",
+      "Spell: Light (Darkness)"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
@@ -265,7 +299,10 @@ const classOptionsData = [
       "Divine Magic",
       "Energy Resistance",
       "Identification",
-      "Path-Finding"
+      "Path-Finding",
+      "Sylvan Languages (level 3)",
+      "Shape Change (level 7)",
+      "Charm Immunity (level 7)"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
@@ -287,11 +324,11 @@ const classOptionsData = [
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2800,
     abilities: [
-      "Detect Construction",
+      "Detect Construction Tricks",
       "Detect Room Traps",
       "Infravision",
       "Light-Sensitivity",
-      "Mental Powers",
+      "Mental Powers (enlargment, invisibility, shrinking, heat)",
       "Stealth"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
@@ -319,7 +356,8 @@ const classOptionsData = [
       "Detect Construction Tricks",
       "Hiding",
       "Infravision",
-      "Listening at Doors"
+      "Listening at Doors",
+      "Speak with Burrowing Mammals"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
@@ -359,7 +397,11 @@ const classOptionsData = [
       "Half-orcs are the rare offspring of orcs and humans. They are human-like in stature and appearance, but usually have at least one feature that marks their orcish heritage (e.g. fangs or a pig-like snout). Due to the common animosity between orcs and humans, half-orcs are typically outcasts from both their parent cultures, living on the fringes of society and making a living by whatever means they can. Half-orc adventurers are capable combatants and have some skill as thieves.",
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 1800,
-    abilities: ["Backstab", "Infravision", "Thieving Skills"],
+    abilities: [
+      "Backstab",
+      "Infravision",
+      "Thieving Skills (hide in shadows, move silently, pick pockets)"
+    ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false
@@ -398,10 +440,12 @@ const classOptionsData = [
     nextLevel: 2500,
     abilities: [
       "Chivalic Code",
-      "Horse Expertise",
-      "Hospitality",
+      "Horsemanship",
       "Mounted Combat",
-      "Strength of Will"
+      "Strength of Will",
+      "Hospitality (level 3)",
+      "Stronghold (level 3)",
+      "Flying Mounts (level 5)"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
@@ -425,8 +469,9 @@ const classOptionsData = [
       "Divine Magic",
       "Holy Resistance",
       "Laying on Hands",
-      "Turn Undead",
-      "Vow of Humility"
+      "Turning the Undead",
+      "Vow of Humility",
+      "War Horse (level 4)"
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
