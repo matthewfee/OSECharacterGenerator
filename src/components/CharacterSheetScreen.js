@@ -54,7 +54,7 @@ export default function CharacterSheetScreen(props) {
 
   async function fillForm() {
     const formUrl =
-      "https://eviltables.github.io/OSECharacterServer/public/CharacterSheetTemplate6.pdf";
+      "https://eviltables.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
     const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
 
     const char = props.parentState;
@@ -164,24 +164,11 @@ export default function CharacterSheetScreen(props) {
     attackBonusField.setText("0");
 
     const pdfBytes = await pdfDoc.save();
-    download(pdfBytes, "pdf-lib_form_creation_example.pdf", "application/pdf");
+
+    let fileName = `${nameInfo} the ${char.characterClass}.pdf`;
+
+    download(pdfBytes, fileName, "application/pdf");
   }
-
-  // function FillPDFForm() {
-  //   const fillForm = async () => {
-  //     await fetch("https://ose-character-server.herokuapp.com/", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify(reqBody)
-  //     })
-  //       .then(res => res.blob())
-  //       .then(showFile);
-  //   };
-
-  //   fillForm();
-  // }
 
   return (
     <div className="character-sheet-container container">
