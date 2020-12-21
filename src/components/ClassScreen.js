@@ -154,6 +154,10 @@ export default function ClassScreen(props) {
     };
   }
 
+  let charClass = classOptionsData.find(
+    obj => obj.name === props.characterClass
+  );
+
   return (
     <div className="class-options-screen">
       <h3 className="header-default">Class Options</h3>
@@ -250,29 +254,32 @@ export default function ClassScreen(props) {
         </div>
       )}
 
-      {hitPoints && (
-        <div className="spell-selection-menu">
-          <h5 className="class-ability-menu--header">
-            {props.characterClass} Spells
-          </h5>
-          <select
-            className="spells-select"
-            value={spellSelected}
-            onChange={handleSpellChange}
-          >
-            <option value="" disabled>
-              Select Spell
-            </option>
-            {spellsList()}
-          </select>
-          <button
-            className="button--random-spell"
-            onClick={() => setSpellSelected(chooseSpells())}
-          >
-            Random Spell
-          </button>
-        </div>
-      )}
+      {hitPoints &&
+        (charClass.arcaneSpells ||
+          charClass.druidSpells ||
+          charClass.illusionistSpells) && (
+          <div className="spell-selection-menu">
+            <h5 className="class-ability-menu--header">
+              {props.characterClass} Spells
+            </h5>
+            <select
+              className="spells-select"
+              value={spellSelected}
+              onChange={handleSpellChange}
+            >
+              <option value="" disabled>
+                Select Spell
+              </option>
+              {spellsList()}
+            </select>
+            <button
+              className="button--random-spell"
+              onClick={() => setSpellSelected(chooseSpells())}
+            >
+              Random Spell
+            </button>
+          </div>
+        )}
 
       {hitPoints > 0 && (
         <button
