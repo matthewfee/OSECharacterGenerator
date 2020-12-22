@@ -13,6 +13,7 @@ export default function DetailsScreen(props) {
   const [languageSelected, setLanguageSelected] = useState("");
   const [languageCount, setLanguageCount] = useState();
   const [classLanguageCount, setClassLanguageCount] = useState(0);
+  const [hasLanguages, setHasLanguages] = useState(true);
 
   const characterClass = classOptionsData.find(
     obj => obj.name === props.parentState.characterClass
@@ -22,6 +23,9 @@ export default function DetailsScreen(props) {
     let classLanguages = [];
 
     if (characterClass.languages.length <= 17) {
+      if (props.parentState.languageCount < 1) {
+        setHasLanguages(false);
+      }
       return;
     } else {
       const arr = characterClass.languages.substring(19).split(", ");
@@ -664,7 +668,8 @@ export default function DetailsScreen(props) {
               background: background,
               personality: personality,
               misfortune: misfortune,
-              languages: languages
+              languages: languages,
+              hasLanguages: hasLanguages
             };
             props.updateParentState(stateObject);
             props.showCharacterSheetScreen();

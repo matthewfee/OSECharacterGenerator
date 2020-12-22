@@ -56,7 +56,7 @@ export default function CharacterSheetScreen(props) {
     ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
     : "Alignment";
 
-  const languageText = char.languages
+  const languageText = char.hasLanguages
     ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
     : `${alignmentCapitalized}, Common`;
 
