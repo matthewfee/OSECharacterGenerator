@@ -229,7 +229,7 @@ export default function CharacterSheetScreen(props) {
 
         <button onClick={() => fillForm()}>Save PDF</button>
 
-        <button
+        {/* <button
           onClick={() =>
             exportComponentAsPNG(componentRef, {
               fileName: char.characterName + " the " + char.characterClass
@@ -237,7 +237,7 @@ export default function CharacterSheetScreen(props) {
           }
         >
           Save PNG
-        </button>
+        </button> */}
       </div>
     </div>
   );
