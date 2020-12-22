@@ -226,7 +226,9 @@ export default function CharacterSheetScreen(props) {
         <button onClick={props.showStorageSheetScreen}>Tavern</button>
         <button onClick={resetPage}>Main</button>
 
-        {/* <button
+        <button onClick={() => fillForm()}>Save PDF</button>
+
+        <button
           onClick={() =>
             exportComponentAsPNG(componentRef, {
               fileName: char.characterName + " the " + char.characterClass
@@ -234,9 +236,7 @@ export default function CharacterSheetScreen(props) {
           }
         >
           Save PNG
-        </button> */}
-
-        <button onClick={() => fillForm()}>Save As PDF</button>
+        </button>
       </div>
     </div>
   );

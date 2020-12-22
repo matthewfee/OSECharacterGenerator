@@ -522,10 +522,12 @@ a {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  padding: 0;
 }
 
 .button-container > button {
   margin-left: 10px;
+  width: 120px;
 }
 
 .character-top-container,
