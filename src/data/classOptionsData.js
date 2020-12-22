@@ -87,7 +87,7 @@ const classOptionsData = [
     armour: "any leather, chainmail, plate, shields",
     weapons:
       "any small or normal sized, but cannot use longbows or two-handed swords",
-    languages: " Alignment, Common, Dwarvish, Gnomish, Goblin, Kobold",
+    languages: "Alignment, Common, Dwarvish, Gnomish, Goblin, Kobold",
     description:
       "Dwarves are stout, bearded demihumans, about 4’ tall and weighing about 150 pounds. Dwarves typically live underground and love fine craftsmanship, gold, hearty food, and strong drink. They have skin, hair, and eye colours in earth tones. Dwarves are known for their stubbornness and practicality. They are a hardy people and have a strong resistance to magic, as reflected in their saving throws.",
     savingThrows: [8, 9, 10, 13, 12],

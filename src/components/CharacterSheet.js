@@ -16,14 +16,6 @@ const CharacterSheet = React.forwardRef((props, ref) => {
       <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
       <div className="character-sheet">
         <div className="character-top-container">
-          <div className="hit-points character-container">
-            <span className="charsheet-value-name">Hit Points</span>{" "}
-            <span className="charsheet-value">{char.hitPoints}</span>
-          </div>
-          <div className="armor-class character-container">
-            <span className="charsheet-value-name">Armour Class</span>{" "}
-            <span className="charsheet-value">{char.AC}</span>
-          </div>
           <div className="character--alignment character-container">
             <span className="charsheet-value-name">Alignment</span>{" "}
             <span className="charsheet-value">{char.alignment}</span>{" "}
@@ -45,6 +37,16 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           <div className="misfortune character-container">
             <span className="charsheet-value-name">Misfortune</span>{" "}
             <span className="charsheet-value">{char.misfortune}</span>
+          </div>
+
+          <div className="languages character-container">
+            <span className="charsheet-value-name">Languages</span>{" "}
+            <span className="charsheet-value">
+              {`${char.alignment ? `${char.alignment},` : "Alignment,"}`}{" "}
+              {char.languages
+                ? `Common, ${char.languages.join(", ")}`
+                : "Common"}
+            </span>
           </div>
         </div>
 
@@ -136,14 +138,16 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           <div className="character-container">
             <span className="charsheet-value-name">Abilities</span>
             <span className="charsheet-value character-sheet--class-ability">
-              {characterClass.abilities.map((item, index) => {
-                return (
-                  <span key={index} className="character-sheet--class-ability">
-                    {" "}
-                    {item}{" "}
-                  </span>
-                );
-              })}
+              <ul>
+                {characterClass.abilities.map((item, index) => {
+                  return (
+                    <li key={index} className="character-sheet--class-ability">
+                      {" "}
+                      {item}{" "}
+                    </li>
+                  );
+                })}
+              </ul>
             </span>
           </div>
 
@@ -158,6 +162,14 @@ const CharacterSheet = React.forwardRef((props, ref) => {
         </div>
 
         <div className="character-sheet-ability-list">
+          <div className="hit-points character-container">
+            <span className="charsheet-value-name">Hit Points</span>{" "}
+            <span className="charsheet-value">{char.hitPoints}</span>
+          </div>
+          <div className="armor-class character-container">
+            <span className="charsheet-value-name">Armour Class</span>{" "}
+            <span className="charsheet-value">{char.AC}</span>
+          </div>
           <div className="character-container">
             <span className="charsheet-value-name">Weapons</span>
 

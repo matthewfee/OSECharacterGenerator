@@ -126,10 +126,16 @@ export default function CharacterSheetScreen(props) {
     const attackBonusField = form.getTextField("Attack Bonus");
     const notesField = form.getTextField("Notes");
 
+    const languagesField = form.getTextField("Languages 2");
+    const literacyField = form.getCheckBox("Literacy 2");
+
     const baseAC = char.unarmouredAC || `10 + ${char.dexterityModAC}`;
+    const alignmentCapitalized = char.alignment
+      ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
+      : "Alignment";
 
     characterClassField.setText(char.characterClass);
-    alignmentField.setText(char.alignment.toUpperCase());
+    alignmentField.setText(alignmentCapitalized);
     nameField.setText(nameInfo);
     levelField.setText("1");
 
@@ -167,6 +173,16 @@ export default function CharacterSheetScreen(props) {
 
     const spellText = char.hasSpells ? `Spells: ${char.spells}` : "";
     notesField.setText(spellText);
+
+    const languageText = char.languages
+      ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
+      : `${alignmentCapitalized}, Common`;
+
+    languagesField.setText(languageText);
+
+    if (char.intelligence > 8) {
+      literacyField.check();
+    }
 
     const pdfBytes = await pdfDoc.save();
 

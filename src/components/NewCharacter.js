@@ -228,6 +228,28 @@ class NewCharacter extends React.Component {
       "+3"
     ];
 
+    const extraLanguageCount = [
+      null,
+      null,
+      null,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      2,
+      2,
+      3
+    ];
+
     const literacy = [
       null,
       null,
@@ -342,6 +364,7 @@ class NewCharacter extends React.Component {
       strengthModMelee: abilityMod[STR],
       strengthModDoors: openDoors[STR],
       intelligenceModLanguages: spokenLanguages[INT],
+      languageCount: extraLanguageCount[INT],
       intelligenceModLiteracy: literacy[INT],
       wisdomMod: abilityMod[WIS],
       dexterityModAC: abilityMod[DEX],

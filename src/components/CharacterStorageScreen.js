@@ -18,7 +18,7 @@ export default function CharacterStorageScreen(props) {
   const characterButton = (char, index) => {
     let characterStorageName = char.characterName || char.name;
 
-    if (characterStorageName.length < 1) {
+    if (characterStorageName === "") {
       return (
         <button
           className="character-button"

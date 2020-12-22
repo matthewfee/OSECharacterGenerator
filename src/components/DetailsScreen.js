@@ -1,13 +1,42 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import classOptionsData from "../data/classOptionsData";
 
 export default function DetailsScreen(props) {
-  const [characterName, setCharacterName] = useState(null);
-  const [alignment, setAlignment] = useState(null);
-  const [appearance, setAppearance] = useState(null);
-  const [personality, setPersonality] = useState(null);
-  const [background, setBackground] = useState(null);
-  const [misfortune, setMisfortune] = useState(null);
+  const [characterName, setCharacterName] = useState("");
+  const [alignment, setAlignment] = useState("");
+  const [appearance, setAppearance] = useState("");
+  const [personality, setPersonality] = useState("");
+  const [background, setBackground] = useState("");
+  const [misfortune, setMisfortune] = useState("");
+  const [languages, setLanguages] = useState([]);
+  const [languageSelected, setLanguageSelected] = useState("");
+  const [languageCount, setLanguageCount] = useState();
+  const [classLanguageCount, setClassLanguageCount] = useState(0);
+
+  const characterClass = classOptionsData.find(
+    obj => obj.name === props.parentState.characterClass
+  );
+
+  useEffect(() => {
+    let classLanguages = [];
+
+    if (characterClass.languages.length <= 17) {
+      return;
+    } else {
+      const arr = characterClass.languages.substring(19).split(",");
+
+      const classLanguageNumber = parseInt(arr.length);
+      setClassLanguageCount(classLanguageNumber);
+      setLanguages(arr);
+    }
+  }, []);
+
+  useEffect(() => {
+    setLanguageCount(
+      props.parentState.languageCount + classLanguageCount - languages.length
+    );
+  }, [languages]);
 
   const choose = array => {
     return array[Math.floor(Math.random() * array.length)];
@@ -392,6 +421,59 @@ export default function DetailsScreen(props) {
     setMisfortune(randomMisfortune);
   };
 
+  const languagesArray = [
+    "Bugbear",
+    "Doppelganger",
+    "Dragon",
+    "Dwarvish",
+    "Elvish",
+    "Gargoyle",
+    "Gnoll",
+    "Gnomish",
+    "Goblin",
+    "Halfling",
+    "Harpy",
+    "Hobgoblin",
+    "Kobold",
+    "Lizard man",
+    "Medusa",
+    "Minotaur",
+    "Ogre",
+    "Orcish",
+    "Pixie",
+    "Human dialect"
+  ];
+
+  const languageOption = item => {
+    return (
+      <option key={item} value={item}>
+        {item}
+      </option>
+    );
+  };
+
+  const languagesList = () => {
+    return languagesArray.map(item => {
+      return languageOption(item);
+    });
+  };
+
+  const chooseLanguage = () => {
+    setLanguageSelected(choose(languagesArray));
+  };
+
+  const handleLanguageChange = event => {
+    setLanguageSelected(event.target.value);
+  };
+
+  const addLanguage = () => {
+    if (languages.includes(languageSelected) || languageSelected === "") {
+      console.log("Language already selected");
+      return;
+    }
+    setLanguages(oldArray => [...oldArray, languageSelected]);
+  };
+
   return (
     <div className="details-screen-container">
       <div id="print-wrapper">
@@ -416,7 +498,7 @@ export default function DetailsScreen(props) {
           </label>
 
           <div className="form-label form-label--alignment">
-            <div className="form-text">Select Alignment:</div>
+            <div className="form-text">Select Alignment</div>
 
             <div className="alignment-button-container">
               <button
@@ -456,6 +538,44 @@ export default function DetailsScreen(props) {
                 Chaotic
               </button>
             </div>
+          </div>
+
+          <div className="form-label form-label--languages">
+            <div className="form-text">
+              {languageCount > 0 ? `Select ${languageCount}` : ""} Languages
+            </div>
+
+            <div className="language-container">
+              {`${alignment ? alignment : "Alignment"}, Common, `}
+              {languages ? languages.join(", ") : ""}{" "}
+            </div>
+
+            {languageCount > 0 && (
+              <div className="language-select-container">
+                <select
+                  className="spells-select"
+                  value={languageSelected}
+                  onChange={handleLanguageChange}
+                >
+                  <option value="" disabled>
+                    Select Language
+                  </option>
+                  {languagesList()}
+                </select>
+                <button
+                  className="button--random-language"
+                  onClick={() => chooseLanguage()}
+                >
+                  Random
+                </button>
+                <button
+                  className="button--add-language"
+                  onClick={() => addLanguage()}
+                >
+                  Add
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="form-label form-label--optional-details">
@@ -542,7 +662,8 @@ export default function DetailsScreen(props) {
               appearance: appearance,
               background: background,
               personality: personality,
-              misfortune: misfortune
+              misfortune: misfortune,
+              languages: languages
             };
             props.updateParentState(stateObject);
             props.showCharacterSheetScreen();
