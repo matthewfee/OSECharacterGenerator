@@ -390,7 +390,6 @@ a {
 }
 
 .language-select-container {
-  border: 1px solid red;
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: center;
