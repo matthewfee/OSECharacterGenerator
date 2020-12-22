@@ -10,6 +10,14 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     obj => obj.name === props.parentState.characterClass
   );
 
+  const alignmentCapitalized = char.alignment
+    ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
+    : "Alignment";
+
+  const languageText = char.languages
+    ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
+    : `${alignmentCapitalized}, Common`;
+
   return (
     <div ref={ref} className="character-sheet-component">
       <h3 className="character--name">{char.characterName}</h3>
@@ -18,7 +26,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
         <div className="character-top-container">
           <div className="character--alignment character-container">
             <span className="charsheet-value-name">Alignment</span>{" "}
-            <span className="charsheet-value">{char.alignment}</span>{" "}
+            <span className="charsheet-value">{alignmentCapitalized}</span>{" "}
           </div>
 
           <div className="background character-container">
@@ -41,12 +49,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 
           <div className="languages character-container">
             <span className="charsheet-value-name">Languages</span>{" "}
-            <span className="charsheet-value">
-              {`${char.alignment ? `${char.alignment},` : "Alignment,"}`}{" "}
-              {char.languages
-                ? `Common, ${char.languages.join(", ")}`
-                : "Common"}
-            </span>
+            <span className="charsheet-value">{languageText}</span>
           </div>
         </div>
 

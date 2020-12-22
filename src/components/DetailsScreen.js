@@ -24,7 +24,7 @@ export default function DetailsScreen(props) {
     if (characterClass.languages.length <= 17) {
       return;
     } else {
-      const arr = characterClass.languages.substring(19).split(",");
+      const arr = characterClass.languages.substring(19).split(", ");
 
       const classLanguageNumber = parseInt(arr.length);
       setClassLanguageCount(classLanguageNumber);
@@ -546,8 +546,9 @@ export default function DetailsScreen(props) {
             </div>
 
             <div className="language-container">
-              {`${alignment ? alignment : "Alignment"}, Common, `}
-              {languages ? languages.join(", ") : ""}{" "}
+              {`${alignment ? alignment : "Alignment"}, Common${
+                languages.length > 0 ? ", " + languages.join(", ") : ""
+              }`}
             </div>
 
             {languageCount > 0 && (

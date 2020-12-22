@@ -52,6 +52,14 @@ export default function CharacterSheetScreen(props) {
     obj => obj.name === props.parentState.characterClass
   );
 
+  const alignmentCapitalized = char.alignment
+    ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
+    : "Alignment";
+
+  const languageText = char.languages
+    ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
+    : `${alignmentCapitalized}, Common`;
+
   async function fillForm() {
     const formUrl =
       "https://eviltables.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
@@ -130,9 +138,6 @@ export default function CharacterSheetScreen(props) {
     const literacyField = form.getCheckBox("Literacy 2");
 
     const baseAC = char.unarmouredAC || `10 + ${char.dexterityModAC}`;
-    const alignmentCapitalized = char.alignment
-      ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
-      : "Alignment";
 
     characterClassField.setText(char.characterClass);
     alignmentField.setText(alignmentCapitalized);
@@ -173,10 +178,6 @@ export default function CharacterSheetScreen(props) {
 
     const spellText = char.hasSpells ? `Spells: ${char.spells}` : "";
     notesField.setText(spellText);
-
-    const languageText = char.languages
-      ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
-      : `${alignmentCapitalized}, Common`;
 
     languagesField.setText(languageText);
 
