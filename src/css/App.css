@@ -399,10 +399,6 @@ a {
   width: 180px;
 }
 
-.language-select-container > button {
-  width: 180px;
-}
-
 .language-container--text {
   margin: 10px 0;
 }
@@ -528,6 +524,7 @@ a {
 .button-container > button {
   margin-left: 10px;
   width: 120px;
+  padding: 0;
 }
 
 .character-top-container,

@@ -371,7 +371,7 @@ export default function EquipmentScreen(props) {
 
       {goldRolled && (
         <div className="equipment-purchase-container">
-          {!characterClass.armour.includes("none") && armour.length === 0 && (
+          {!characterClass.armour.includes("none") && (
             <div className="armour-container-parent">
               <div className="equipment-container--header">
                 {props.characterClass} Armour
