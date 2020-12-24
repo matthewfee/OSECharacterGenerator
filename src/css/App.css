@@ -693,6 +693,7 @@ a {
   margin-top: 2rem;
   font-size: 1.4rem;
   color: rgb(34, 34, 34);
+  font-weight: bold;
 }
 
 .class-ability-menu--header {
@@ -738,6 +739,7 @@ a {
   text-align: left;
   width: fit-content;
   margin: auto;
+  padding-left: 40px;
 }
 
 .class-details {
@@ -1103,6 +1105,7 @@ div > .button-class-option {
   font-size: 1.4rem;
   margin: auto;
   margin-bottom: 4rem;
+  font-weight: bold;
 }
 
 .saving-throws.container {
@@ -1133,7 +1136,6 @@ div > .button-class-option {
   position: absolute;
   font-size: 1.2rem;
   text-transform: uppercase;
-  font-weight: bold;
   width: 12rem;
   z-index: 1;
 }
@@ -1141,6 +1143,7 @@ div > .button-class-option {
 .saving-throws.container > .saving--value {
   color: white;
   font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .saving-throws.container > .saving-throw--death {
