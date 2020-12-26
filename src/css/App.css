@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text");
 
 * {
   margin: 0;
@@ -976,7 +977,7 @@ div > .button-class-option {
   position: sticky;
   top: 0;
   text-transform: uppercase;
-  font-family: Helvetica, sans-serif;
+  /* font-family: Helvetica, sans-serif; */
   font-size: 24px;
   font-weight: 600;
   line-height: 38px;
@@ -1222,7 +1223,7 @@ div > .button-class-option {
 
 .title {
   font-size: 5rem;
-  font-family: "Montserrat";
+  /* font-family: "Montserrat"; */
   font-weight: bold;
   letter-spacing: 0.2rem;
   margin: 0;

@@ -24,6 +24,8 @@
 - Media Queries
 */
 
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text");
+
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
@@ -218,8 +220,8 @@ body {
   /* currently ems cause chrome bug misinterpreting rems on body element */
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  font-family: "Crimson Text", "HelveticaNeue", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
   color: #222;
 }
 
