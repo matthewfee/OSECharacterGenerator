@@ -741,7 +741,7 @@ class NewCharacter extends React.Component {
             className="title"
             style={{ fontSize: this.state.strength ? "1.2rem" : "" }}
           >
-            D&D Character Generator
+            OSE Character Generator
           </h2>
 
           {this.state.abilityScreen && !this.state.strength && (

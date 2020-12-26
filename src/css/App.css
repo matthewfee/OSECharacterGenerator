@@ -120,7 +120,8 @@ a {
 }
 
 .ability-score-container > div > span {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
   margin-right: 0.4rem;
   padding-right: 10px;
   text-align: left;
@@ -163,10 +164,12 @@ a {
 .gear-container {
   padding-top: 10px;
   display: flex;
+  font-size: 1.6rem;
   flex-flow: column nowrap;
   align-items: end;
   width: 250px;
   margin: auto;
+  margin-top: 10px;
 }
 
 .weapons-select,
@@ -193,7 +196,7 @@ a {
 .equipment-restrictions {
   margin: auto;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   max-width: 180px;
   color: rgb(63, 63, 63);
   font-style: italic;
@@ -204,7 +207,7 @@ a {
   margin: auto;
   font-weight: bold;
   margin-top: 20px;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
 }
 
 .armour-container > .radio-container {
@@ -264,9 +267,11 @@ a {
 
 .backpack-item {
   text-align: center;
-  vertical-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 100%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   position: relative;
   list-style: none;
   padding: 5px;
@@ -378,6 +383,7 @@ a {
   margin-top: 20px;
   padding: 10px;
   font-weight: bold;
+  font-size: 1.8rem;
 }
 
 .form-label--alignment {
@@ -451,6 +457,7 @@ a {
 .advanced-classes-header,
 .basic-classes-header {
   font-size: 1.2rem;
+  font-family: Arial, Helvetica, sans-serif;
   grid-column-start: 1;
   grid-column-end: 5;
   letter-spacing: 1px;
@@ -678,7 +685,7 @@ a {
 }
 .details-result > .details-result--data {
   margin-left: 10px;
-  padding-left: 40px;
+
   width: 120px;
   text-transform: uppercase;
   font-style: italic;
@@ -709,14 +716,15 @@ a {
 
 .class-ability-menu > .class-ability-menu--header {
   margin-top: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   color: rgb(34, 34, 34);
   font-weight: bold;
 }
 
 .class-ability-menu--header {
   margin-top: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
+  font-weight: bold;
   color: rgb(34, 34, 34);
 }
 
@@ -1117,7 +1125,7 @@ div > .button-class-option {
 }
 
 .saving-throws-menu--header {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   margin: auto;
   margin-bottom: 4rem;
   font-weight: bold;
@@ -1145,6 +1153,10 @@ div > .button-class-option {
   z-index: 0;
   background-color: var(--main-bg-color);
   text-align: center;
+}
+
+.saving-throw-name {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .saving-throws.container > div {
@@ -1234,13 +1246,13 @@ div > .button-class-option {
 }
 
 .main-page--subheader {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   width: auto;
   padding: 10px;
   margin-top: 40px;
   text-align: center;
   padding-left: 40px;
-  max-width: 440px;
+  max-width: 460px;
 }
 
 .wrapper {

@@ -502,7 +502,7 @@ export default function DetailsScreen(props) {
           </label>
 
           <div className="form-label form-label--alignment">
-            <div className="form-text">Select Alignment</div>
+            <div className="form-text">Select Alignment:</div>
 
             <div className="alignment-button-container">
               <button
@@ -546,7 +546,8 @@ export default function DetailsScreen(props) {
 
           <div className="form-label form-label--languages">
             <div className="form-text">
-              {languageCount > 0 ? `Select ${languageCount}` : ""} Languages
+              {languageCount > 0 ? `Select ${languageCount} Additional` : ""}{" "}
+              Languages:
             </div>
 
             <div className="language-container">
