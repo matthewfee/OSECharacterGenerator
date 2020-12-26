@@ -546,8 +546,9 @@ export default function DetailsScreen(props) {
 
           <div className="form-label form-label--languages">
             <div className="form-text">
-              {languageCount > 0 ? `Select ${languageCount} Additional` : ""}{" "}
-              Languages:
+              {languageCount > 0
+                ? `Additional Languages (${languageCount}):`
+                : "Languages:"}{" "}
             </div>
 
             <div className="language-container">

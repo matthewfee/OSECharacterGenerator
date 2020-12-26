@@ -755,7 +755,7 @@ class NewCharacter extends React.Component {
                 <CircleLoader
                   css={override}
                   size={30}
-                  color={"black"}
+                  color={"white"}
                   loading={this.state.loading}
                 />
               </div>
