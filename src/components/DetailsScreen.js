@@ -336,6 +336,11 @@ export default function DetailsScreen(props) {
 
   const getPersonality = () => {
     let traits = [
+      "stoic",
+      "doomed",
+      "proud",
+      "stern",
+      "sociable",
       "admirable",
       "calm",
       "dramatic",
@@ -457,6 +462,10 @@ export default function DetailsScreen(props) {
 
   const getMisfortune = () => {
     const misfortunes = [
+      "rejected",
+      "accused",
+      "debt",
+      "hunted",
       "abandoned",
       "addicted",
       "blackmailed",

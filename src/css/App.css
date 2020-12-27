@@ -504,7 +504,6 @@ a {
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   align-items: center;
   animation: none !important;
   background-color: #ececec;
@@ -543,7 +542,7 @@ a {
 
 .character-sheet-container > .button-container {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
   justify-content: center;
   padding: 0;
 }
@@ -552,6 +551,15 @@ a {
   margin-left: 10px;
   width: 120px;
   padding: 0;
+}
+
+.button-container > .header-pdf {
+  font-size: 1.4rem;
+}
+
+.pdf-export-container {
+  display: flex;
+  flex-flow: column;
 }
 
 .character-top-container,
@@ -695,17 +703,15 @@ a {
   border-radius: 4px;
 }
 .details-result > .details-result--data {
-  margin-left: 10px;
-
-  width: 140px;
+  margin-left: 40px;
+  width: 160px;
   text-transform: uppercase;
-  font-style: italic;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--main-text-color);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bold;
 }
 
@@ -887,22 +893,12 @@ div > .button-class-option {
     max-height: 80px !important;
   }
 }
-/* 
-@media screen and (max-width: 600px) {
-  .header {
-    background-image: linear-gradient(
-        to right bottom,
-        rgba(85, 83, 83, 0.8),
-        rgba(56, 56, 56, 0.8)
-      ),
-      url(../img/header.svg);
-    height: 4rem;
-  }
 
-  .header--initial {
-    background-image: none;
+@media screen and (max-width: 600px) {
+  .character-sheet-container.container {
+    height: 1800px;
   }
-} */
+}
 
 .class-options-container > .button-class-option:hover {
   height: auto;
@@ -1125,6 +1121,8 @@ div > .button-class-option {
   top: 80%;
   width: 100%;
   text-align: center;
+  font-weight: normal;
+  font-size: 1.2rem;
 }
 
 .saving-throws-menu {
