@@ -213,7 +213,36 @@ export default function DetailsScreen(props) {
   };
 
   const getAppearance = () => {
-    const appearances = [
+    let appearances = [
+      "stylish",
+      "tattooed",
+      "thin",
+      "slippery",
+      "sunburned",
+      "grimy",
+      "slender",
+      "charming",
+      "rugged",
+      "rough",
+      "clean-cut",
+      "aged",
+      "elderly",
+      "young",
+      "seasoned",
+      "youthful",
+      "burly",
+      "sturdy",
+      "malodorous",
+      "luminous",
+      "cloudy",
+      "obscure",
+      "mysterious",
+      "hooded",
+      "shadowy",
+      "radiant",
+      "affluent",
+      "ghostly",
+      "nimble",
       "aquiline",
       "athletic",
       "barrel-chested",
@@ -245,6 +274,10 @@ export default function DetailsScreen(props) {
       "square-jawed",
       "statuesque",
       "towering",
+      "tall",
+      "short",
+      "muscular",
+      "scrawny",
       "trim",
       "weathered",
       "willowy",
@@ -252,7 +285,15 @@ export default function DetailsScreen(props) {
       "wrinkly"
     ];
 
-    setAppearance(choose(appearances));
+    let num = 2;
+    let selectedAppearances = [];
+    for (let i = 0; i < num; i++) {
+      let appearance = choose(appearances);
+      selectedAppearances.push(appearance);
+      appearances = appearances.filter(k => k !== appearance);
+    }
+
+    setAppearance(selectedAppearances.join(", "));
   };
 
   const getBackground = () => {
@@ -294,7 +335,47 @@ export default function DetailsScreen(props) {
   };
 
   const getPersonality = () => {
-    var traits = [
+    let traits = [
+      "admirable",
+      "calm",
+      "dramatic",
+      "unforgiving",
+      "dishonest",
+      "logical",
+      "impatient",
+      "romantic",
+      "scholarly",
+      "sentimental",
+      "sophisticated",
+      "wise",
+      "contradictory",
+      "dreamy",
+      "earthy",
+      "folksy",
+      "abrasive",
+      "inquisitive",
+      "old-fashioned",
+      "mystical",
+      "mellow",
+      "experimental",
+      "cute",
+      "determined",
+      "artful",
+      "absentminded",
+      "self-conscious",
+      "anxious",
+      "calculating",
+      "desperate",
+      "respectful",
+      "extravagant",
+      "forgetful",
+      "fiery",
+      "gloomy",
+      "decisive",
+      "messy",
+      "weak-willed",
+      "wishful",
+      "reliable",
       "boorish",
       "aggressive",
       "arrogant",
@@ -367,6 +448,7 @@ export default function DetailsScreen(props) {
     for (let i = 0; i < num; i++) {
       let trait = choose(traits);
       selectedPersonalities.push(trait);
+
       traits = traits.filter(k => k !== trait);
     }
 

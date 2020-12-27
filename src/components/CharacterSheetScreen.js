@@ -7,7 +7,7 @@ import {
   exportComponentAsPDF,
   exportComponentAsPNG
 } from "react-component-export-image";
-import { PDFDocument } from "pdf-lib";
+import { PDFDocument, StandardFonts, PDFTextField } from "pdf-lib";
 import download from "downloadjs";
 
 export default function CharacterSheetScreen(props) {
@@ -94,9 +94,14 @@ export default function CharacterSheetScreen(props) {
 
     const pdfDoc = await PDFDocument.load(formPdfBytes);
 
+    // pdfDoc.save({ updateFieldAppearances: false });
+
     const form = pdfDoc.getForm();
 
     const nameField = form.getTextField("Name 2");
+
+    // nameField.defaultUpdateAppearances(courier);
+
     const alignmentField = form.getTextField("Alignment 2");
     const characterClassField = form.getTextField("Character Class 2");
     const levelField = form.getTextField("Level 2");
@@ -144,6 +149,10 @@ export default function CharacterSheetScreen(props) {
     nameField.setText(nameInfo);
     levelField.setText("1");
 
+    // const timesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+
+    // nameField.defaultUpdateAppearances(timesRoman);
+
     STRField.setText(char.strength.toString());
     INTField.setText(char.intelligence.toString());
     DEXField.setText(char.dexterity.toString());
@@ -184,6 +193,19 @@ export default function CharacterSheetScreen(props) {
     if (char.intelligence > 8) {
       literacyField.check();
     }
+
+    const fields = form.getFields();
+
+    // pdfDoc.save({ updateFieldAppearances: false });
+
+    // const textField = fields.find(f => f instanceof PDFTextField);
+
+    // if (textField != null) {
+    //   textField.defaultUpdateAppearances(timesRoman);
+    //   textField.setText("TimesRoman");
+    // }
+
+    // form.updateFieldAppearances(timesRoman);
 
     const pdfBytes = await pdfDoc.save();
 

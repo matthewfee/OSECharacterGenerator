@@ -368,7 +368,7 @@ a {
 .character-details-form > .form-label {
   align-items: left;
   width: 80%;
-  max-width: 20rem;
+  max-width: 240px;
   display: flex;
   flex-flow: column nowrap;
 }
@@ -406,6 +406,7 @@ a {
   padding-left: 4px;
   text-transform: capitalize;
   margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 .language-select-container {
@@ -491,7 +492,11 @@ a {
   justify-content: space-between;
   width: 220px;
   height: 38px;
-  margin-top: 10px;
+  margin-top: 40px;
+}
+
+.button--optional-details {
+  margin-top: 40px;
 }
 
 .character-sheet-container.container {
@@ -580,13 +585,13 @@ a {
 .character-container > .charsheet-value-name {
   width: 38%;
   text-align: left;
-  border-bottom: 1px solid rgba(138, 101, 101, 0.274);
+  border-bottom: 1px solid rgba(101, 138, 110, 0.274);
   font-weight: bold;
   color: black;
 }
 .character-container > .charsheet-value {
   margin: 0px;
-  border-bottom: 1px solid rgba(138, 101, 101, 0.274);
+  border-bottom: 1px solid rgba(101, 138, 110, 0.274);
   text-align: left;
   max-width: 62%;
   padding-left: 40px;
@@ -607,10 +612,12 @@ a {
 
 .character-sheet--class-ability,
 .charsheet--gear-item {
-  display: flex;
-  flex-flow: column nowrap;
   margin-bottom: 4px;
   text-transform: none;
+}
+
+.character-sheet--class-ability {
+  list-style-type: square;
 }
 
 .charsheet--gear,
@@ -690,15 +697,15 @@ a {
 .details-result > .details-result--data {
   margin-left: 10px;
 
-  width: 120px;
+  width: 140px;
   text-transform: uppercase;
   font-style: italic;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary-bg-color);
-  font-size: 1.2rem;
+  color: var(--main-text-color);
+  font-size: 1.6rem;
   font-weight: bold;
 }
 
@@ -706,6 +713,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.6rem;
 }
 
 .class-ability-menu {
