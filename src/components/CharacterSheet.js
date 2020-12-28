@@ -10,6 +10,29 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     obj => obj.name === props.parentState.characterClass
   );
 
+  const joinDuplicates = array => {
+    let stuff = {};
+    for (let i = 0; i < array.length; i++) {
+      if (stuff.hasOwnProperty(array[i])) {
+        stuff[array[i]] += 1;
+      } else {
+        stuff[array[i]] = 1;
+      }
+    }
+    let consolidated = [];
+    const keys = Object.keys(stuff);
+    for (const key of keys) {
+      if (stuff[key] > 1) {
+        consolidated.push(`${key} (x${stuff[key]})`);
+      } else {
+        consolidated.push(key);
+      }
+    }
+
+    console.log("CONSOLIDATED ARRAY", consolidated);
+    return consolidated;
+  };
+
   const alignmentCapitalized = char.alignment
     ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
     : "Alignment";
@@ -177,7 +200,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Weapons</span>
 
             <span className="charsheet-value charsheet--weapons">
-              {char.weapons.map((item, index) => {
+              {joinDuplicates(char.weapons).map((item, index) => {
                 return (
                   <span key={index} className="charsheet--weapon-item">
                     {" "}
@@ -207,7 +230,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Gear</span>
 
             <span className="charsheet-value charsheet--gear">
-              {char.equipment.map((item, index) => {
+              {joinDuplicates(char.equipment).map((item, index) => {
                 return (
                   <span key={index} className="charsheet--gear-item">
                     {" "}

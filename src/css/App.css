@@ -305,8 +305,7 @@ a {
   border-radius: 4px;
 }
 
-.backpack-item > .button--equipment:hover,
-.backpack-item > .button--equipment:focus {
+.backpack-item > .button--equipment:hover {
   box-sizing: border-box;
   position: absolute;
   color: #fff;

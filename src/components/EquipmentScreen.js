@@ -104,10 +104,8 @@ export default function EquipmentScreen(props) {
       return;
     }
 
-    console.log(equipment, "EQUIPMENT BACKPACK");
-
     if (equipment.length > 0) {
-      return equipment.map((item, index) => (
+      return joinDuplicates(equipment).map((item, index) => (
         <EquipmentBackpack
           name={item}
           sellSelectedEquipment={sellSelectedEquipment}
@@ -118,7 +116,7 @@ export default function EquipmentScreen(props) {
   };
 
   const weaponsBackpack = () => {
-    return weapons.map((item, index) => {
+    return joinDuplicates(weapons).map((item, index) => {
       return (
         <li
           className="backpack-item backpack-item--weapon"
@@ -185,7 +183,7 @@ export default function EquipmentScreen(props) {
 
   const sellSelectedEquipment = itemName => {
     let equipmentObject = equipmentData.find(object => {
-      return object.name === itemName;
+      return itemName.includes(object.name);
     });
 
     // const findEquipment = object => {
@@ -251,7 +249,7 @@ export default function EquipmentScreen(props) {
 
   const sellSelectedWeapon = itemName => {
     const weaponObject = weaponsData.find(object => {
-      return object.name === itemName;
+      return itemName.includes(object.name);
     });
 
     let itemsRemoved = 0;
@@ -389,6 +387,29 @@ export default function EquipmentScreen(props) {
   const selectRandomGear = () => {
     let randomGear = choose(equipmentData);
     setEquipmentSelected(randomGear.name);
+  };
+
+  const joinDuplicates = array => {
+    let stuff = {};
+    for (let i = 0; i < array.length; i++) {
+      if (stuff.hasOwnProperty(array[i])) {
+        stuff[array[i]] += 1;
+      } else {
+        stuff[array[i]] = 1;
+      }
+    }
+    let consolidated = [];
+    const keys = Object.keys(stuff);
+    for (const key of keys) {
+      if (stuff[key] > 1) {
+        consolidated.push(`${key} (x${stuff[key]})`);
+      } else {
+        consolidated.push(key);
+      }
+    }
+
+    console.log("CONSOLIDATED ARRAY", consolidated);
+    return consolidated;
   };
 
   return (
