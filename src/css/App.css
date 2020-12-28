@@ -165,8 +165,8 @@ a {
   padding-top: 10px;
   display: flex;
   font-size: 1.6rem;
-  flex-flow: column nowrap;
-  align-items: end;
+  flex-flow: row wrap;
+  justify-content: center;
   width: 250px;
   margin: auto;
   margin-top: 10px;
@@ -175,7 +175,7 @@ a {
 .weapons-select,
 .gear-select,
 .armour-select {
-  width: 250px;
+  width: 238px;
 }
 
 .button--buy-armour {
@@ -186,7 +186,11 @@ a {
 .button--buy-armour,
 .button--buy-gear {
   width: 100px;
-  margin-left: auto;
+}
+
+.button--buy-weapon,
+.button--buy-gear {
+  margin-left: 20px;
 }
 
 .armour-container {

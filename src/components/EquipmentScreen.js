@@ -84,7 +84,12 @@ export default function EquipmentScreen(props) {
 
   const weaponsOptions = item => {
     return (
-      <option value={item.name} price={item.price} damage={item.damage}>
+      <option
+        value={item.name}
+        price={item.price}
+        damage={item.damage}
+        key={item.name}
+      >
         {item.name} ({item.damage}) - {item.price} gp
       </option>
     );
@@ -99,7 +104,7 @@ export default function EquipmentScreen(props) {
       return;
     }
 
-    console.log(equipment, "EQUIPMENT");
+    console.log(equipment, "EQUIPMENT BACKPACK");
 
     if (equipment.length > 0) {
       return equipment.map((item, index) => (
@@ -174,21 +179,33 @@ export default function EquipmentScreen(props) {
       console.error(equipmentObject);
     }
 
-    setGold(gold - equipmentObject.price);
     setEquipment(oldEquipment => [...oldEquipment, equipmentObject.name]);
+    setGold(gold - equipmentObject.price);
   };
 
   const sellSelectedEquipment = itemName => {
-    let equipmentObject = equipmentData.find(findEquipment);
+    let equipmentObject = equipmentData.find(object => {
+      return object.name === itemName;
+    });
+
+    // const findEquipment = object => {
+    //   return object.name === equipmentSelected;
+    // };
+
+    console.log("Current Equipment Object", equipmentObject);
 
     let itemsRemoved = 0;
 
     const removeOneItem = item => {
+      console.log("removeOneItem parameter item", item);
+
       if (itemsRemoved > 0) {
+        console.log(item, "DUPLICATE FOUND");
         return true;
       }
 
       if (equipmentObject.name === item) {
+        console.log("ITEM REMOVED", item);
         itemsRemoved++;
         return false;
       }
@@ -197,6 +214,13 @@ export default function EquipmentScreen(props) {
     };
 
     const newEquipmentArray = equipment.filter(removeOneItem);
+
+    console.log(
+      "New Equipment Array",
+      newEquipmentArray,
+      "ItemsRemoved:",
+      itemsRemoved
+    );
 
     setEquipment(newEquipmentArray);
 
@@ -226,16 +250,20 @@ export default function EquipmentScreen(props) {
   };
 
   const sellSelectedWeapon = itemName => {
-    const weaponObject = weaponsData.find(findWeapon);
+    const weaponObject = weaponsData.find(object => {
+      return object.name === itemName;
+    });
 
     let itemsRemoved = 0;
 
     const removeTheItem = item => {
       if (itemsRemoved > 0) {
+        console.log("DUPLICATE FOUND");
         return true;
       }
 
       if (weaponObject.name === item) {
+        console.log(item, "ITEM REMOVED");
         itemsRemoved++;
         return false;
       }
@@ -244,9 +272,8 @@ export default function EquipmentScreen(props) {
     };
 
     let newWeaponsArray = weapons.filter(removeTheItem);
-
-    setGold(gold + weaponObject.price);
     setWeapons(newWeaponsArray);
+    setGold(gold + weaponObject.price);
   };
 
   const handleOptionChange = event => {
@@ -349,6 +376,20 @@ export default function EquipmentScreen(props) {
   const characterClass = classOptionsData.find(
     obj => obj.name === props.characterClass
   );
+
+  const choose = array => {
+    return array[Math.floor(Math.random() * array.length)];
+  };
+
+  const selectRandomWeapon = () => {
+    let randomWeapon = choose(weaponsData);
+    setWeaponSelected(randomWeapon.name);
+  };
+
+  const selectRandomGear = () => {
+    let randomGear = choose(equipmentData);
+    setEquipmentSelected(randomGear.name);
+  };
 
   return (
     <div className="equipment-screen">
@@ -490,6 +531,13 @@ export default function EquipmentScreen(props) {
               {weaponsList()}
             </select>
 
+            <button
+              className="button--random-weapon"
+              onClick={selectRandomWeapon}
+            >
+              Random
+            </button>
+
             <input
               className="button--buy-weapon"
               type="submit"
@@ -510,6 +558,13 @@ export default function EquipmentScreen(props) {
             >
               {equipmentList()}
             </select>
+
+            <button
+              className="button--random-weapon"
+              onClick={selectRandomGear}
+            >
+              Random
+            </button>
 
             <input
               className="button--buy-gear"
