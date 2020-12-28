@@ -60,6 +60,29 @@ export default function CharacterSheetScreen(props) {
     ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
     : `${alignmentCapitalized}, Common`;
 
+  const joinDuplicates = array => {
+    let stuff = {};
+    for (let i = 0; i < array.length; i++) {
+      if (stuff.hasOwnProperty(array[i])) {
+        stuff[array[i]] += 1;
+      } else {
+        stuff[array[i]] = 1;
+      }
+    }
+    let consolidated = [];
+    const keys = Object.keys(stuff);
+    for (const key of keys) {
+      if (stuff[key] > 1) {
+        consolidated.push(`${key} (x${stuff[key]})`);
+      } else {
+        consolidated.push(key);
+      }
+    }
+
+    console.log("CONSOLIDATED ARRAY", consolidated);
+    return consolidated;
+  };
+
   async function fillForm() {
     const formUrl =
       "https://eviltables.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
@@ -71,16 +94,16 @@ export default function CharacterSheetScreen(props) {
     );
 
     const abilitiesInfo = `
-    Weapons: ${char.weapons.join(", ") || ""}
+    Weapons: ${joinDuplicates(char.weapons).join(", ") || ""}
     Abilities: ${characterClass.abilities.join(", ")}`;
 
     const weaponsInfo = `
-    Weapons: ${char.weapons.join(", ") || ""}
+    Weapons: ${joinDuplicates(char.weapons).join(", ") || ""}
     Armour: ${char.armour.join(", ") || ""}
     `;
 
     const equipmentInfo = `
-    ${char.equipment.join(", ") || ""}
+    ${joinDuplicates(char.equipment).join(", ") || ""}
     `;
 
     const descriptionInfo = `
@@ -240,11 +263,11 @@ export default function CharacterSheetScreen(props) {
     ${spellText}`;
 
     const weaponsInfo = `
-    Weapons: ${char.weapons.join(", ") || ""}
+    Weapons: ${joinDuplicates(char.weapons).join(", ") || ""}
     Armour: ${char.armour.join(", ") || ""}
     `;
 
-    const equipmentInfo = `${char.equipment.join(", ") || ""}`;
+    const equipmentInfo = `${joinDuplicates(char.equipment).join(", ") || ""}`;
 
     const descriptionInfo = `${char.background}, ${char.personality}, ${char.misfortune}`;
 
