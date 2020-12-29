@@ -1,13 +1,17 @@
+## About
+
+This is a character generator for B/X Dungeons and Dragons, and designed for use with Old School Essentials. Allows you to create a character and export to a PDF character sheet.
+
 ## Working On
 
--Adding Advanced classes
--Export to PDF/image/text
--Adding spell selection
+-Export to image/text
 
 ## Additional Features
 
 -One click generation
--Integration with server and databse
+-Integration with server and database
+-Advanced character creation option
+-Additional classes from zine
 
 ## Available Scripts
 
