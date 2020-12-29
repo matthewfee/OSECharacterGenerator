@@ -107,7 +107,14 @@ const weaponsData = [
     price: 2,
     weight: 20,
     damage: "1d6",
-    qualities: ["Blunt", "Melee", "Missile (5’–20’ / 21’–40’ / 41’–60’)"]
+    qualities: ["Blunt", "Missile (5’–40’ / 41’–80’ / 81’–160’)"]
+  },
+  {
+    name: "Spear",
+    price: 4,
+    weight: 30,
+    damage: "1d6",
+    qualities: ["Brace", "Melee", "Missile (5’–20’ / 21’–40’ / 41’–60’)"]
   },
   {
     name: "Staff",
