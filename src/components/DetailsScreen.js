@@ -806,7 +806,7 @@ export default function DetailsScreen(props) {
 
             {background && (
               <div className="details-result">
-                <span className="details-result--name">Background:</span>
+                <span className="details-result--name">Skill:</span>
                 <span className="details-result--data">{background}</span>
               </div>
             )}
