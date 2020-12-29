@@ -108,7 +108,7 @@ export default function CharacterSheetScreen(props) {
 
     const descriptionInfo = `
     Appearance: ${char.appearance}
-    Background: ${char.background}
+    Background Skill: ${char.background}
     Personality: ${char.personality}
     Misfortune: ${char.misfortune}
     `;
