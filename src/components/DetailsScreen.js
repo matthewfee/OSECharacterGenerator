@@ -800,13 +800,13 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getBackground}
               >
-                Background
+                Background Skill
               </button>
             )}
 
             {background && (
               <div className="details-result">
-                <span className="details-result--name">Skill:</span>
+                <span className="details-result--name">Background Skill:</span>
                 <span className="details-result--data">{background}</span>
               </div>
             )}

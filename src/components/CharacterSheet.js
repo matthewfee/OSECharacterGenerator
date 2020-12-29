@@ -53,7 +53,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="background character-container">
-            <span className="charsheet-value-name">Skill</span>{" "}
+            <span className="charsheet-value-name">Background Skill</span>{" "}
             <span className="charsheet-value">{char.background}</span>
           </div>
           <div className="appearance character-container">
