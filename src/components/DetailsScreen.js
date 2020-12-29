@@ -766,7 +766,7 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getAppearance}
               >
-                Roll Appearance
+                Appearance
               </button>
             )}
 
@@ -783,7 +783,7 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getPersonality}
               >
-                Roll Personality
+                Personality
               </button>
             )}
 
@@ -800,7 +800,7 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getBackground}
               >
-                Roll Background
+                Background
               </button>
             )}
 
@@ -817,7 +817,7 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getMisfortune}
               >
-                Roll Misfortune
+                Misfortune
               </button>
             )}
 
