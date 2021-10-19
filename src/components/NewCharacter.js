@@ -773,8 +773,12 @@ class NewCharacter extends React.Component {
 
           {this.state.abilityScreen && !this.state.strength && (
             <div className={`main-page--subheader`}>
-              Designed for use with the 1981 B/X edition of Dungeons and
-              Dragons. All dice values are generated from{" "}
+              Designed for use with{" "}
+              <a href="https://necroticgnome.com/"> Old School Essentials</a>.{" "}
+              OSE Advanced Fantasy classes included with the permission of
+              Necrotic Gnome.
+              <br></br>
+              All dice values are generated from{" "}
               <a href="https://www.random.org/">RANDOM.ORG</a>.
             </div>
           )}
