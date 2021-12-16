@@ -15,6 +15,16 @@ export default function CharacterStorageScreen(props) {
     props.showCharacterSheetScreen();
   };
 
+  const deleteCharacter = e => {
+    e.stopPropagation();
+    let index = e.currentTarget.value;
+    let newStorage = [...myCharacters];
+    newStorage.splice(index, 1);
+    console.log("ORIGINAL STORAGE", myCharacters, "NEW STORAGE", newStorage);
+    localStorage.setItem("characters", JSON.stringify(newStorage));
+    setMyCharacters(newStorage);
+  };
+
   const characterButton = (char, index) => {
     let characterStorageName = char.characterName || char.name;
 
@@ -51,6 +61,14 @@ export default function CharacterStorageScreen(props) {
           <div>CON {char.constitution}</div>
           <div>CHA {char.charisma}</div>
         </div> */}
+        <div
+          onClick={deleteCharacter}
+          className="character-button--delete"
+          key={index}
+          value={index}
+        >
+          x
+        </div>
       </button>
     );
   };

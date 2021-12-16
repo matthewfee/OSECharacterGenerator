@@ -21,7 +21,7 @@
     "prettier": "^1.19.1",
     "random-org": "^2.1.0",
     "react": "^16.13.1",
-    "react-component-export-image": "^1.0.5",
+    "react-component-export-image": "^1.0.6",
     "react-dom": "^16.13.1",
     "react-native-restart": "0.0.17",
     "react-scripts": "^4.0.0",

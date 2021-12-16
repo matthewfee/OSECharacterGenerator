@@ -121,9 +121,10 @@ class NewCharacter extends React.Component {
   reRoll = () => {
     console.log("CHARACTER ROLLED");
     window.scrollTo(0, 0);
+    const newID = "ID_" + new Date().getTime();
 
     let newObject = {
-      id: this.id,
+      id: newID,
       strength: this.d6(3),
       intelligence: this.d6(3),
       wisdom: this.d6(3),

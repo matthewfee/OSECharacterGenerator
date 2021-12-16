@@ -670,6 +670,7 @@ a {
   padding: 5px;
   padding-top: 4px;
   white-space: normal;
+  position: relative;
   height: auto;
 }
 
@@ -683,6 +684,39 @@ a {
   font-style: italic;
   color: var(--secondary-text-color);
   font-size: 1.2rem;
+}
+
+.character-button > .character-button--delete {
+  height: 20px;
+  width: 20px;
+  background-color: rgba(167, 0, 0, 0);
+  padding: 0;
+  border-radius: 2px;
+  border: solid 2px #fff;
+  position: absolute;
+  line-height: 0;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: solid 5px rgba(255, 255, 255, 0);
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.character-button .character-button--delete {
+  display: none;
+}
+
+.character-button:hover .character-button--delete {
+  display: flex;
+}
+
+.character-button > .character-button--delete:hover {
+  color: #ff0000;
 }
 
 .character-button--ability-scores {
