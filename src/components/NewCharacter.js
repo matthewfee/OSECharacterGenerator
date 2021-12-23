@@ -780,7 +780,19 @@ class NewCharacter extends React.Component {
               Necrotic Gnome.
               <br></br>
               All dice values are generated from{" "}
-              <a href="https://www.random.org/">RANDOM.ORG</a>.
+              <a href="https://www.random.org/">RANDOM.ORG</a>. <br></br>{" "}
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <br></br>
+              <a
+                href="https://eviltables.dev/ose-character-generator/"
+                className="main-page--subheadername"
+              >
+                Created by EvilTables
+              </a>
             </div>
           )}
         </header>

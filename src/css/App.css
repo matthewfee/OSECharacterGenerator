@@ -1301,6 +1301,10 @@ div > .button-class-option {
   max-width: 460px;
 }
 
+.main-page--subheader > .main-page--subheadername {
+  font-size: 1.2rem;
+}
+
 .wrapper {
   position: relative;
   width: 100%;
