@@ -248,9 +248,18 @@ export default function EquipmentScreen(props) {
   };
 
   const sellSelectedWeapon = itemName => {
+    if (itemName.includes(" (x")) {
+      let itemNameNonConsolidated = itemName.split(" (x");
+      itemName = itemNameNonConsolidated[0];
+    } else {
+      console.log("NON CONSOLIDATED ITEM");
+    }
+
     const weaponObject = weaponsData.find(object => {
-      return itemName.includes(object.name);
+      return object.name === itemName;
     });
+
+    console.log("WEAPONS OBJECT", weaponObject);
 
     let itemsRemoved = 0;
 
@@ -408,7 +417,6 @@ export default function EquipmentScreen(props) {
       }
     }
 
-    console.log("CONSOLIDATED ARRAY", consolidated);
     return consolidated;
   };
 
