@@ -57,7 +57,9 @@ class NewCharacter extends React.Component {
       name: null,
 
       basicCharData: "Character Data Not Loaded",
-      advCharData: "Advanced Character Data Not Loaded"
+      advCharData: "Advanced Character Data Not Loaded",
+
+      rollButtonHover: false
     };
   }
 
@@ -136,7 +138,8 @@ class NewCharacter extends React.Component {
       characterClass: null,
       primeReq: "none",
       primeReq2: undefined,
-      characterStorageScreen: false
+      characterStorageScreen: false,
+      rollButtonHover: false
     };
 
     newObject.strengthOriginal = newObject.strength;
@@ -734,12 +737,16 @@ class NewCharacter extends React.Component {
       : this.state.primeReq.toLowerCase();
 
     return (
-      <div className="wrapper">
+      <div
+        className={`${
+          this.state.rollButtonHover ? "wrapper wrapper-alt" : "wrapper"
+        }`}
+      >
         <header
           className={this.state.strength ? "header" : "header header--initial"}
         >
           <h2
-            className="title"
+            className={this.state.rollButtonHover ? "title fade" : "title"}
             style={{ fontSize: this.state.strength ? "1.2rem" : "" }}
           >
             OSE Character Generator
@@ -750,6 +757,8 @@ class NewCharacter extends React.Component {
               className={`button button--roll button-primary`}
               onClick={this.reRoll}
               disabled={this.state.loading ? true : false}
+              onMouseEnter={() => this.setState({ rollButtonHover: true })}
+              onMouseLeave={() => this.setState({ rollButtonHover: false })}
             >
               {!this.state.loading && <div>Roll</div>}
               <div className="sweet-loading">
@@ -765,7 +774,9 @@ class NewCharacter extends React.Component {
 
           {this.state.abilityScreen && !this.state.strength && myCharacters && (
             <button
-              className={`button button--storage button-primary`}
+              className={`button button--storage button-primary ${
+                this.state.rollButtonHover ? "fade" : ""
+              }`}
               onClick={this.showStorageSheetScreen}
             >
               Tavern
@@ -773,7 +784,11 @@ class NewCharacter extends React.Component {
           )}
 
           {this.state.abilityScreen && !this.state.strength && (
-            <div className={`main-page--subheader`}>
+            <div
+              className={`main-page--subheader ${
+                this.state.rollButtonHover ? "fade" : ""
+              } `}
+            >
               Designed for use with{" "}
               <a href="https://necroticgnome.com/"> Old School Essentials</a>.{" "}
               OSE Advanced Fantasy classes included with the permission of

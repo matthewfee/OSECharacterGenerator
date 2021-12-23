@@ -17,6 +17,15 @@
   }
 }
 
+@keyframes opacity-fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   animation: opacity-fadeIn 0.4s linear;
@@ -34,6 +43,11 @@ body {
 a {
   color: white;
   text-decoration: none;
+}
+
+.fade {
+  animation: opacity-fadeOut 0.2s linear;
+  opacity: 0;
 }
 
 .ability-scores--header {
@@ -1091,10 +1105,18 @@ div > .button-class-option {
   border: none;
 }
 
-.header > .button--roll:hover {
+.header > .button--roll:hover.button{
   margin-bottom: 0.5rem;
   width: 10rem;
   padding: 0;
+  background-color: black !important;
+  color: rgb(255, 255, 255) !important;
+  height: 10rem;
+}
+
+.header > .button {
+  height:10rem;
+  font-size: 2rem;
 }
 
 .character-menu > div > .hp-container {
@@ -1316,19 +1338,38 @@ div > .button-class-option {
   margin-bottom: 0px;
   text-align: center;
   font-size: 1rem;
-  background-image: linear-gradient(
+    background-image: linear-gradient(
       to right bottom,
       rgba(12, 12, 12, 0.75),
       rgba(0, 0, 0, 0.95)
     ),
     url(../img/header.svg);
-    /* background-image: linear-gradient(
-      to right bottom,
-      rgba(0, 0, 0, 0),
-      rgba(255, 255, 255, 0)
-    ),
-    url(../img//backgroundsmoke.jpeg); */
   background-size: cover;
   background-position: top;
   min-height: 100vh;
+  transition: all 4s ease;
+}
+
+.wrapper-alt  {
+
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  min-height: 900px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 1rem;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(0, 48, 20, 0.75),
+    rgba(0, 0, 0, 0.9)
+  ),
+  url(../img/header.svg) !important;
+  background-size: cover;
+  background-position: top;
+  min-height: 100vh;
+  transition: all 4s ease;
 }
