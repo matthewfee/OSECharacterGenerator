@@ -922,7 +922,17 @@ div.character-menu {
 .class-options-screen > .button.button--hp.button-primary {
   background-color: var(--main-bg-color);
   margin: 2rem;
+  height:10rem;
+  width: 10rem;
+  font-size: 1.6rem;
+  padding: 10px;
+  white-space: wrap;
 }
+
+.class-options-screen > .button.button--hp.button-primary:hover {
+  background-color: black;
+}
+
 
 div > .button-class-option {
   max-height: 40px;
@@ -1034,9 +1044,18 @@ div > .button-class-option {
   text-align: center;
   left: 0;
   right: 0;
-  border-radius: 0px;
   width: 100%;
   height: 100%;
+  width: 10rem;
+  height: 10rem;
+  font-size: 2rem;
+  white-space: normal;
+  line-height: normal;
+}
+
+.gold > .button--gold:hover.button {
+background-color: black;
+color: gold;
 }
 
 .gold {
@@ -1116,7 +1135,7 @@ div > .button-class-option {
 
 .header > .button {
   height:10rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .character-menu > div > .hp-container {
@@ -1150,6 +1169,38 @@ div > .button-class-option {
   background-color: transparent;
   width: 2rem;
 }
+
+.hp-container > .hp-container--hit-points, .hp-container > .hp-container--hit-die {
+  font-weight: bold;
+}
+
+.hp-container > .hp-container--hit-die {
+  background-color: white;
+  color: black;
+}
+
+.hp-container > .hp-container--hit-die {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.hp-container > .hp-container--hit-points {
+  font-size: 3rem;
+  background-color: var(--main-bg-color);
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.hp-container--hit-points > .hp-container--hit-points-name {
+  color: black;
+}
+
+.hp-container > .hp-container--con-mod {
+  font-size: 3rem;
+  background-color: var(--tertiary-bg-color);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 
 .hp-container > div > div {
   font-size: 1.6rem;
