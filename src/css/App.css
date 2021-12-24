@@ -1415,7 +1415,7 @@ color: gold;
   font-size: 1rem;
   background-image: linear-gradient(
     to right bottom,
-    rgba(0, 48, 20, 0.75),
+    rgba(100, 98, 0, 0.4),
     rgba(0, 0, 0, 0.9)
   ),
   url(../img/header.svg) !important;
