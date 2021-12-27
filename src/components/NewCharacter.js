@@ -764,7 +764,7 @@ class NewCharacter extends React.Component {
               <div className="sweet-loading">
                 <CircleLoader
                   css={override}
-                  size={30}
+                  size={50}
                   color={"white"}
                   loading={this.state.loading}
                 />
@@ -1142,13 +1142,17 @@ class NewCharacter extends React.Component {
                 </div>
               </div>
 
-              {this.state.strength && this.state.characterClass !== null && (
+              {this.state.strength && (
                 <div>
                   <button
                     className="button button--class-option"
                     onClick={this.showClassScreen}
+                    disabled={this.state.characterClass === null ? true : false}
+                    style={
+                      this.state.characterClass === null ? { opacity: 0.4 } : {}
+                    }
                   >
-                    Go to Class Options
+                    Class Options
                   </button>{" "}
                 </div>
               )}

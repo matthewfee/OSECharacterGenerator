@@ -19,6 +19,8 @@ export default function CharacterStorageScreen(props) {
     e.stopPropagation();
     let index = e.currentTarget.value;
     let newStorage = [...myCharacters];
+    console.log("INDEX", index);
+    console.log("EVENT", e, "VALUE", e.currentTarget.value);
     newStorage.splice(index, 1);
     console.log("ORIGINAL STORAGE", myCharacters, "NEW STORAGE", newStorage);
     localStorage.setItem("characters", JSON.stringify(newStorage));
@@ -61,14 +63,14 @@ export default function CharacterStorageScreen(props) {
           <div>CON {char.constitution}</div>
           <div>CHA {char.charisma}</div>
         </div> */}
-        <div
+        <button
           onClick={deleteCharacter}
           className="character-button--delete"
           key={index}
           value={index}
         >
           x
-        </div>
+        </button>
       </button>
     );
   };
