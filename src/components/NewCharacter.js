@@ -439,9 +439,9 @@ class NewCharacter extends React.Component {
     }
 
     if (this.state.characterClass === "Elf") {
-      if (this.state.intellience > 15 && this.state.strength > 12) {
+      if (this.state.intelligence > 15 && this.state.strength > 12) {
         return this.setState({ primeReqMod: "+10%" });
-      } else if (this.state.intellience > 12 && this.state.strength > 12) {
+      } else if (this.state.intelligence > 12 && this.state.strength > 12) {
         return this.setState({ primeReqMod: "+5%" });
       } else {
         return this.setState({ primeReqMod: "+0%" });
