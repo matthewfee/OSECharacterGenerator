@@ -9,23 +9,40 @@ export default function CharacterStorageScreen(props) {
     setMyCharacters(characters);
   }, []);
 
-  const handleCharacter = e => {
-    let obj = myCharacters[e.currentTarget.value];
-    props.updateParentState(obj);
-    props.showCharacterSheetScreen();
+  const handleCharacter = (e, index, action) => {
+    // let index = e.currentTarget.value;
+    // let name = e.currentTarget.name;
+    e.stopPropagation();
+    console.log("index", index, "action", action);
+
+    switch (action) {
+      case "setActiveCharacter":
+        let obj = myCharacters[index];
+        props.updateParentState(obj);
+        props.showCharacterSheetScreen();
+
+      case "deleteCharacter":
+        let newStorage = [...myCharacters];
+        newStorage.splice(index, 1);
+        localStorage.setItem("characters", JSON.stringify(newStorage));
+        setMyCharacters(newStorage);
+
+      default:
+        return console.log("CASE MISMATCH", e, index, action);
+    }
   };
 
-  const deleteCharacter = e => {
-    e.stopPropagation();
-    let index = e.currentTarget.value;
-    let newStorage = [...myCharacters];
-    console.log("INDEX", index);
-    console.log("EVENT", e, "VALUE", e.currentTarget.value);
-    newStorage.splice(index, 1);
-    console.log("ORIGINAL STORAGE", myCharacters, "NEW STORAGE", newStorage);
-    localStorage.setItem("characters", JSON.stringify(newStorage));
-    setMyCharacters(newStorage);
-  };
+  // const deleteCharacter = e => {
+  //   e.stopPropagation();
+  //   let index = e.currentTarget.value;
+  //   let newStorage = [...myCharacters];
+  //   console.log("INDEX", index);
+  //   console.log("EVENT", e, "VALUE", e.currentTarget.value);
+  //   newStorage.splice(index, 1);
+  //   console.log("ORIGINAL STORAGE", myCharacters, "NEW STORAGE", newStorage);
+  //   localStorage.setItem("characters", JSON.stringify(newStorage));
+  //   setMyCharacters(newStorage);
+  // };
 
   const characterButton = (char, index) => {
     let characterStorageName = char.characterName || char.name;
@@ -36,7 +53,9 @@ export default function CharacterStorageScreen(props) {
           className="character-button"
           key={index}
           value={index}
-          onClick={handleCharacter}
+          name="setActiveCharacter"
+          // eslint-disable-next-line prettier/prettier
+          onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
         >
           Unnamed
         </button>
@@ -46,8 +65,10 @@ export default function CharacterStorageScreen(props) {
       <button
         className="character-button"
         key={index}
-        onClick={handleCharacter}
+        // eslint-disable-next-line prettier/prettier
+        onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
         value={index}
+        name="setActiveCharacter"
       >
         <div className="character-button--name" value={index}>
           {characterStorageName}
@@ -64,10 +85,12 @@ export default function CharacterStorageScreen(props) {
           <div>CHA {char.charisma}</div>
         </div> */}
         <div
-          onClick={deleteCharacter}
+          // eslint-disable-next-line prettier/prettier
+          onClick={(e) => handleCharacter(e, index, "deleteCharacter")}
           className="character-button--delete"
           key={index}
           value={index}
+          name="deleteCharacter"
         >
           x
         </div>
