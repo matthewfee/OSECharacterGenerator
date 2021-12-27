@@ -63,14 +63,14 @@ export default function CharacterStorageScreen(props) {
           <div>CON {char.constitution}</div>
           <div>CHA {char.charisma}</div>
         </div> */}
-        <button
+        <div
           onClick={deleteCharacter}
           className="character-button--delete"
           key={index}
           value={index}
         >
           x
-        </button>
+        </div>
       </button>
     );
   };
