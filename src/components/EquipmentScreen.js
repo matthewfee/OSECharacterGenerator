@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import equipmentData from "../data/equipmentData";
 import weaponsData from "../data/weaponsData";

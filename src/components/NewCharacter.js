@@ -72,7 +72,7 @@ class NewCharacter extends React.Component {
     });
 
     random
-      .generateIntegers({ min: 1, max: 6, n: 40 })
+      .generateIntegers({ min: 1, max: 6, n: 100 })
       .then(result => {
         this.setState({ randomNumbers: result.random.data, loading: false });
       })
@@ -122,7 +122,6 @@ class NewCharacter extends React.Component {
 
   reRoll = () => {
     console.log("CHARACTER ROLLED");
-    window.scrollTo(0, 0);
     const newID = "ID_" + new Date().getTime();
 
     let newObject = {
@@ -160,12 +159,12 @@ class NewCharacter extends React.Component {
     this.classOptionsListButton();
     this.advancedClassesListButton();
 
-    var STR = this.state.strength;
-    var INT = this.state.intelligence;
-    var WIS = this.state.wisdom;
-    var DEX = this.state.dexterity;
-    var CON = parseInt(this.state.constitution);
-    var CHA = this.state.charisma;
+    let STR = this.state.strength;
+    let INT = this.state.intelligence;
+    let WIS = this.state.wisdom;
+    let DEX = this.state.dexterity;
+    let CON = parseInt(this.state.constitution);
+    let CHA = this.state.charisma;
 
     const abilityMod = [
       null,
@@ -1144,6 +1143,12 @@ class NewCharacter extends React.Component {
 
               {this.state.strength && (
                 <div>
+                  <button
+                    className="button button--reroll"
+                    onClick={this.reRoll}
+                  >
+                    Reroll
+                  </button>
                   <button
                     className="button button--class-option"
                     onClick={this.showClassScreen}
