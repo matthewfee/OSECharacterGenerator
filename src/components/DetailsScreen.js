@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import classOptionsData from "../data/classOptionsData";
 
@@ -776,6 +775,13 @@ export default function DetailsScreen(props) {
               <div className="details-result">
                 <span className="details-result--name"> Appearance: </span>
                 <span className="details-result--data"> {appearance}</span>
+                <button
+                  type="button"
+                  className="button button--details-reroll"
+                  onClick={getAppearance}
+                >
+                  Reroll
+                </button>
               </div>
             )}
 
@@ -793,6 +799,13 @@ export default function DetailsScreen(props) {
               <div className="details-result">
                 <span className="details-result--name">Personality:</span>
                 <span className="details-result--data">{personality}</span>
+                <button
+                  type="button"
+                  className="button button--details-reroll"
+                  onClick={getPersonality}
+                >
+                  Reroll
+                </button>
               </div>
             )}
 
@@ -802,7 +815,7 @@ export default function DetailsScreen(props) {
                 className="button button--optional-details"
                 onClick={getBackground}
               >
-                Background Skill
+                Background
               </button>
             )}
 
@@ -810,6 +823,13 @@ export default function DetailsScreen(props) {
               <div className="details-result">
                 <span className="details-result--name">Background Skill:</span>
                 <span className="details-result--data">{background}</span>
+                <button
+                  type="button"
+                  className="button button--details-reroll"
+                  onClick={getBackground}
+                >
+                  Reroll
+                </button>
               </div>
             )}
 
@@ -827,6 +847,14 @@ export default function DetailsScreen(props) {
               <div className="details-result">
                 <span className="details-result--name">Misfortune:</span>
                 <span className="details-result--data">{misfortune}</span>
+
+                <button
+                  type="button"
+                  className="button button--details-reroll"
+                  onClick={getMisfortune}
+                >
+                  Reroll
+                </button>
               </div>
             )}
           </div>

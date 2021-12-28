@@ -507,13 +507,20 @@ a {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: 220px;
-  height: 38px;
+  align-items: center;
+  width: 400px;
+  height: 50px;
   margin-top: 40px;
 }
 
 .button--optional-details {
   margin-top: 40px;
+}
+
+.button.button--details-reroll {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
 }
 
 .character-sheet-container.container {
@@ -754,19 +761,20 @@ a {
   border-radius: 4px;
 }
 .details-result > .details-result--data {
-  margin-left: 40px;
   width: 160px;
   text-transform: uppercase;
   text-align: center;
   display: flex;
   align-items: center;
+  word-spacing: 400px;
   justify-content: center;
   color: var(--main-text-color);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
 }
 
 .details-result > .details-result--name {
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -922,7 +930,7 @@ div.character-menu {
 .class-options-screen > .button.button--hp.button-primary {
   background-color: var(--main-bg-color);
   margin: 2rem;
-  height:10rem;
+  height: 10rem;
   width: 10rem;
   font-size: 1.6rem;
   padding: 10px;
@@ -932,7 +940,6 @@ div.character-menu {
 .class-options-screen > .button.button--hp.button-primary:hover {
   background-color: black;
 }
-
 
 div > .button-class-option {
   max-height: 40px;
@@ -1054,8 +1061,8 @@ div > .button-class-option {
 }
 
 .gold > .button--gold:hover.button {
-background-color: black;
-color: gold;
+  background-color: black;
+  color: gold;
 }
 
 .gold {
@@ -1124,7 +1131,7 @@ color: gold;
   border: none;
 }
 
-.header > .button--roll:hover.button{
+.header > .button--roll:hover.button {
   margin-bottom: 0.5rem;
   width: 10rem;
   padding: 0;
@@ -1134,7 +1141,7 @@ color: gold;
 }
 
 .header > .button {
-  height:10rem;
+  height: 10rem;
   font-size: 1.8rem;
 }
 
@@ -1170,7 +1177,8 @@ color: gold;
   width: 2rem;
 }
 
-.hp-container > .hp-container--hit-points, .hp-container > .hp-container--hit-die {
+.hp-container > .hp-container--hit-points,
+.hp-container > .hp-container--hit-die {
   font-weight: bold;
 }
 
@@ -1190,7 +1198,6 @@ color: gold;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-
 .hp-container--hit-points > .hp-container--hit-points-name {
   color: black;
 }
@@ -1200,7 +1207,6 @@ color: gold;
   background-color: var(--tertiary-bg-color);
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
-
 
 .hp-container > div > div {
   font-size: 1.6rem;
@@ -1389,7 +1395,7 @@ color: gold;
   margin-bottom: 0px;
   text-align: center;
   font-size: 1rem;
-    background-image: linear-gradient(
+  background-image: linear-gradient(
       to right bottom,
       rgba(12, 12, 12, 0.75),
       rgba(0, 0, 0, 0.95)
@@ -1401,8 +1407,7 @@ color: gold;
   transition: all 4s ease;
 }
 
-.wrapper-alt  {
-
+.wrapper-alt {
   position: relative;
   width: 100%;
   display: flex;
@@ -1414,11 +1419,11 @@ color: gold;
   text-align: center;
   font-size: 1rem;
   background-image: linear-gradient(
-    to right bottom,
-    rgba(100, 98, 0, 0.4),
-    rgba(0, 0, 0, 0.9)
-  ),
-  url(../img/header.svg) !important;
+      to right bottom,
+      rgba(100, 98, 0, 0.4),
+      rgba(0, 0, 0, 0.9)
+    ),
+    url(../img/header.svg) !important;
   background-size: cover;
   background-position: top;
   min-height: 100vh;
