@@ -17,7 +17,6 @@
     "eslint-plugin-standard": "^4.0.1",
     "pdf-lib": "^1.13.0",
     "prettier": "^1.19.1",
-    "random-org": "^2.1.0",
     "react": "^16.13.1",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^16.13.1",

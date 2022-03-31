@@ -66,35 +66,37 @@ class NewCharacter extends React.Component {
   id = "ID_" + new Date().getTime();
 
   componentDidMount() {
-    const RandomOrg = require("random-org");
-    const random = new RandomOrg({
-      apiKey: process.env.REACT_APP_API_KEY
-    });
-
-    // make a request to random.org
-
-    let requestBody = {
+    const requestBody = {
       jsonrpc: "2.0",
-      method: "myMethod",
+      method: "generateIntegers",
       params: {
-        reader: 42
+        apiKey: process.env.REACT_APP_API_KEY,
+        n: "70",
+        min: "1",
+        max: "6"
       },
-      id: 42
+      id: "42"
     };
 
-    random
-      .generateIntegers({ min: 1, max: 6, n: 100 })
-      .then(result => {
-        this.setState({ randomNumbers: result.random.data, loading: false });
+    fetch("https://api.random.org/json-rpc/4/invoke", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestBody)
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          randomNumbers: data.result.random.data,
+          loading: false
+        });
       })
       .catch(error => {
-        this.setState({ loading: false });
         console.error(error);
+        this.setState({ loading: false });
       });
-
-    if (this.state.id === null) {
-      this.setState({ id: this.id });
-    }
   }
 
   getRndInteger = (min, max) => {
