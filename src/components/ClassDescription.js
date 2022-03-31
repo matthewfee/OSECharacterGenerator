@@ -14,6 +14,11 @@ export default function ClassDescription(props) {
 
       <ul className="class-description-list">
         <li>
+          <h3 className="class-description-list--header">
+            {props.characterClass}
+          </h3>
+        </li>
+        <li>
           <b>Description:</b> {obj.description}
         </li>
         <li>

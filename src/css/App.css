@@ -860,9 +860,17 @@ a {
   background-color: #ececec;
 }
 
-/* .class-details > .class-summary {
-  text-transform: uppercase;
-} */
+.class-details > .class-summary {
+  font-weight: bold;
+}
+
+.class-details > .class-summary:hover {
+  background-color: var(--tertiary-bg-color);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 160px;
+  margin: auto;
+}
 
 .class-details > .class-description-list {
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -884,6 +892,10 @@ a {
   font-size: 1.6rem;
   text-align: left;
   padding: 2rem;
+}
+
+.class-description-list--header {
+  text-align: center;
 }
 
 div.ability-screen {
