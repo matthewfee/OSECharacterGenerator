@@ -71,6 +71,17 @@ class NewCharacter extends React.Component {
       apiKey: process.env.REACT_APP_API_KEY
     });
 
+    // make a request to random.org
+
+    let requestBody = {
+      jsonrpc: "2.0",
+      method: "myMethod",
+      params: {
+        reader: 42
+      },
+      id: 42
+    };
+
     random
       .generateIntegers({ min: 1, max: 6, n: 100 })
       .then(result => {
