@@ -238,7 +238,8 @@ export default function CharacterSheetScreen(props) {
 
   async function fillFormUnderground() {
     const formUrl =
-      "https://eviltables.github.io/OSECharacterServer/public/Underground10.pdf";
+      "https://eviltables.dev/wp-content/uploads/2022/04/Underground10.pdf";
+    // "https://eviltables.github.io/OSECharacterServer/public/Underground10.pdf";
     const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
 
     const char = props.parentState;

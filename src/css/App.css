@@ -851,25 +851,26 @@ a {
   position: absolute;
   border-radius: 4px;
   z-index: 2;
-  margin: auto;
   right: 0;
   left: 0;
-  top: -26px;
-  max-width: 400px;
-  width: 80%;
+  top: -44px;
+  margin: auto;
+  width: 60%;
   background-color: #ececec;
 }
 
 .class-details > .class-summary {
+  user-select: none;
+  border-radius: 4px;
+  background-color: rgba(167, 166, 189, 0.22);
+  margin: auto;
   font-weight: bold;
+  width: 160px;
 }
 
 .class-details > .class-summary:hover {
   background-color: var(--tertiary-bg-color);
-  border-radius: 4px;
   cursor: pointer;
-  width: 160px;
-  margin: auto;
 }
 
 .class-details > .class-description-list {
@@ -978,6 +979,10 @@ div > .button-class-option {
   .character-sheet-container.container {
     height: 1800px;
   }
+}
+
+.class-options-container.container {
+  margin-top: 40px;
 }
 
 .class-options-container > .button-class-option:hover {

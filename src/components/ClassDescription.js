@@ -9,7 +9,7 @@ export default function ClassDescription(props) {
   return (
     <details className="class-details">
       <summary className="class-summary">
-        {props.characterClass} Details
+        {props.characterClass} Details{" "}
       </summary>
 
       <ul className="class-description-list">
