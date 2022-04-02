@@ -8,8 +8,9 @@ import DetailsScreen from "./DetailsScreen";
 import CharacterSheetScreen from "./CharacterSheetScreen";
 import CharacterStorageScreen from "./CharacterStorageScreen";
 import { css } from "@emotion/react";
-import ClipLoader from "react-spinners/ClipLoader";
 import CircleLoader from "react-spinners/CircleLoader";
+import Header from "./Header";
+import { UnbalancedParenthesisError } from "pdf-lib";
 
 const override = css`
   display: block;
@@ -754,75 +755,12 @@ class NewCharacter extends React.Component {
           this.state.rollButtonHover ? "wrapper wrapper-alt" : "wrapper"
         }`}
       >
-        <header
-          className={this.state.strength ? "header" : "header header--initial"}
-        >
-          <h2
-            className={this.state.rollButtonHover ? "title fade" : "title"}
-            style={{ fontSize: this.state.strength ? "1.2rem" : "" }}
-          >
-            OSE Character Generator
-          </h2>
-
-          {this.state.abilityScreen && !this.state.strength && (
-            <button
-              className={`button button--roll button-primary`}
-              onClick={this.reRoll}
-              disabled={this.state.loading ? true : false}
-              onMouseEnter={() => this.setState({ rollButtonHover: true })}
-              onMouseLeave={() => this.setState({ rollButtonHover: false })}
-            >
-              {!this.state.loading && <div>Roll</div>}
-              <div className="sweet-loading">
-                <CircleLoader
-                  css={override}
-                  size={50}
-                  color={"white"}
-                  loading={this.state.loading}
-                />
-              </div>
-            </button>
-          )}
-
-          {this.state.abilityScreen && !this.state.strength && myCharacters && (
-            <button
-              className={`button button--storage button-primary ${
-                this.state.rollButtonHover ? "fade" : ""
-              }`}
-              onClick={this.showStorageSheetScreen}
-            >
-              Tavern
-            </button>
-          )}
-
-          {this.state.abilityScreen && !this.state.strength && (
-            <div
-              className={`main-page--subheader ${
-                this.state.rollButtonHover ? "fade" : ""
-              } `}
-            >
-              Designed for use with{" "}
-              <a href="https://necroticgnome.com/"> Old School Essentials</a>.{" "}
-              OSE Advanced Fantasy classes included with the permission of
-              Necrotic Gnome.
-              <br></br>
-              All dice values are generated from{" "}
-              <a href="https://www.random.org/">RANDOM.ORG</a>. <br></br>{" "}
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <a
-                href="https://eviltables.dev/ose-character-generator/"
-                className="main-page--subheadername"
-              >
-                Created by EvilTables
-              </a>
-            </div>
-          )}
-        </header>
+        <Header
+          updateParentState={this.updateParentState}
+          showStorageSheetScreen={this.showStorageSheetScreen}
+          parentState={this.state}
+          reRoll={this.reRoll}
+        ></Header>
 
         <div
           className={`character-menu container`}
