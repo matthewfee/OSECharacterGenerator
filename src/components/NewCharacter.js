@@ -792,11 +792,9 @@ class NewCharacter extends React.Component {
                   {this.state.showAdvancedClasses && this.state.advCharData}
                 </div>
 
-                {this.state.strength && (
-                  <ClassDescription
-                    characterClass={this.state.characterClass}
-                  ></ClassDescription>
-                )}
+                <ClassDescription
+                  characterClass={this.state.characterClass}
+                ></ClassDescription>
               </div>
 
               <h2 className="ability-scores--header header-default">

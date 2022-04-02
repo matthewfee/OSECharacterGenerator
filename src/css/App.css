@@ -60,7 +60,7 @@ a {
   padding-top: 10px;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 2rem;
+  font-size: 2.2rem;
   letter-spacing: 0.4rem;
   color: rgba(0, 0, 0, 0.95);
   margin-left: auto;
@@ -122,7 +122,7 @@ a {
 }
 
 .ability-score-container > .ability-score-name > h2 {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: bold;
   padding-left: 0rem;
   text-align: center;
@@ -289,7 +289,7 @@ a {
   justify-content: center;
   align-items: center;
   line-height: 100%;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   position: relative;
   list-style: none;
   padding: 5px;
@@ -299,9 +299,8 @@ a {
 
 .backpack-item.backpack-item--weapon,
 .backpack-item.backpack-item--armour {
-  font-size: 1.4rem;
+  font-size: 2.4rem;
   text-transform: uppercase;
-  font-weight: bold;
 }
 
 .backpack-item > .button--equipment {
@@ -372,7 +371,7 @@ a {
 }
 
 .character-details-form {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -468,7 +467,7 @@ a {
   justify-content: center;
   grid-column-start: 1;
   grid-column-end: 5;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   margin-top: 12px;
 }
 
@@ -578,7 +577,7 @@ a {
 }
 
 .button-container > .header-pdf {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .pdf-export-container {
@@ -591,7 +590,7 @@ a {
 .charsheet-saving-throws-container,
 .character-sheet-ability-list,
 .character-equipment {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   display: flex;
   flex-flow: column nowrap;
   width: 260px;
@@ -829,7 +828,7 @@ a {
 }
 
 .spell-selection-menu > .spells-select {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
 }
 
 .class-ability {
@@ -838,7 +837,7 @@ a {
 }
 
 .class-ability-list {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   text-align: left;
   width: fit-content;
   margin: auto;
@@ -846,7 +845,7 @@ a {
 }
 
 .class-details {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   display: inline-flex;
   position: absolute;
   border-radius: 4px;
@@ -856,7 +855,7 @@ a {
   top: -44px;
   margin: auto;
   width: 60%;
-  background-color: #ececec;
+  background-color: var(--main-bg-white);
 }
 
 .class-details > .class-summary {
@@ -912,14 +911,15 @@ div.ability-screen {
 }
 
 div.ability-screen > .character-class-header {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 div.character-menu {
   border: 1px solid black;
   border-radius: 5px;
   display: flex;
-  background-color: rgba(255, 255, 255, 0.92);
+  /* background-color: rgba(255, 255, 255, 0.92); */
+  background-color: var(--main-bg-white);
   padding: 0px 0px;
   margin: 0;
   margin-top: -1rem;
@@ -965,7 +965,7 @@ div > .button-class-option {
 @media screen and (min-width: 400px) {
   .basic-class-container,
   .advanced-class-container {
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)) !important;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
     width: 90% !important;
     max-width: 1000px !important;
   }
@@ -1012,7 +1012,7 @@ div > .button-class-option {
 .basic-class-container,
 .advanced-class-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   width: 100%;
   position: relative;
   max-width: 400px;
@@ -1032,7 +1032,7 @@ div > .button-class-option {
   overflow: visible;
   flex-flow: column nowrap;
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   height: 100%;
 }
 
@@ -1044,7 +1044,7 @@ div > .button-class-option {
 
 .equipment-screen > .equipment-screen--header {
   display: inline-flex;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: auto;
   right: 0;
   left: 0;
@@ -1159,7 +1159,7 @@ div > .button-class-option {
 
 .header > .button {
   height: 10rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 .character-menu > div > .hp-container {
@@ -1411,7 +1411,7 @@ div > .button-class-option {
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.7rem;
   background-image: linear-gradient(
       to right bottom,
       rgba(12, 12, 12, 0.75),

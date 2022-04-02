@@ -213,6 +213,7 @@ html {
   --tertiary-bg-color: #b6c4ae;
   --main-text-color: #101726;
   --secondary-text-color: #a1ac9a;
+  --main-bg-white: rgb(255, 255, 255);
 }
 
 body {
@@ -327,7 +328,7 @@ input[type="button"] {
   padding: 0 30px;
   color: var(--main-te);
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: 0.1rem;
