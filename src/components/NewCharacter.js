@@ -8,8 +8,9 @@ import DetailsScreen from "./DetailsScreen";
 import CharacterSheetScreen from "./CharacterSheetScreen";
 import CharacterStorageScreen from "./CharacterStorageScreen";
 import { css } from "@emotion/react";
-import ClipLoader from "react-spinners/ClipLoader";
 import CircleLoader from "react-spinners/CircleLoader";
+import Header from "./Header";
+import { UnbalancedParenthesisError } from "pdf-lib";
 
 const override = css`
   display: block;
@@ -754,7 +755,13 @@ class NewCharacter extends React.Component {
           this.state.rollButtonHover ? "wrapper wrapper-alt" : "wrapper"
         }`}
       >
-        <header
+        <Header
+          updateParentState={this.updateParentState}
+          showStorageSheetScreen={this.showStorageSheetScreen}
+          parentState={this.state}
+          reRoll={this.reRoll}
+        ></Header>
+        {/* <header
           className={this.state.strength ? "header" : "header header--initial"}
         >
           <h2
@@ -822,7 +829,7 @@ class NewCharacter extends React.Component {
               </a>
             </div>
           )}
-        </header>
+        </header> */}
 
         <div
           className={`character-menu container`}
