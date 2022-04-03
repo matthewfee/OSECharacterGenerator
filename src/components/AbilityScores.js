@@ -1,4 +1,5 @@
 import React from "react";
+import AbilityScoreBox from "./AbilityScoreBox";
 
 export default function AbilityScores(props) {
   const scoreIncrease = key => {
@@ -94,42 +95,20 @@ export default function AbilityScores(props) {
         )}
       </div>
 
-      <div
-        className={
-          props.parentState.strength > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.strength}
+        abilityScoreValueOriginal={props.parentState.strengthOriginal}
+        abilityScoreName={`strength`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={
+          props.parentState.characterClass === "Thief" ? false : true
         }
-        style={{ color: props.parentState.strength < 6 ? redFail : "" }}
-      >
-        {props.parentState.strength}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
 
-        {props.parentState.strength > 10 &&
-          props.parentState.characterClass !== "Thief" && (
-            <button
-              className="button button--ability button--ability--decrease"
-              onClick={() => {
-                scoreDecrease("strength");
-              }}
-            >
-              <div className="arrow-down"></div>
-            </button>
-          )}
-
-        {props.parentState.pointBuy > 0 &&
-          (primeReqs.includes("strength") ||
-            props.parentState.strength < props.parentState.strengthOriginal) &&
-          props.parentState.strength < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("strength");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-      </div>
       <div className="ability-mod">
         <span>Melee Attacks: {props.parentState.strengthModMelee} </span>
         <span>Open Doors: {props.parentState.strengthModDoors}</span>
@@ -145,41 +124,18 @@ export default function AbilityScores(props) {
         )}
       </div>
 
-      <div
-        className={
-          props.parentState.intelligence > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
-        }
-        style={{ color: props.parentState.intelligence < 6 ? redFail : "" }}
-      >
-        {props.parentState.intelligence}
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.intelligence}
+        abilityScoreValueOriginal={props.parentState.intelligenceOriginal}
+        abilityScoreName={`intelligence`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={true}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
 
-        {props.parentState.intelligence > 10 && (
-          <button
-            className="button button--ability button--ability--decrease"
-            onClick={() => {
-              scoreDecrease("intelligence");
-            }}
-          >
-            <div className="arrow-down"></div>
-          </button>
-        )}
-        {props.parentState.pointBuy > 0 &&
-          (primeReqs.includes("intelligence") ||
-            props.parentState.intelligence <
-              props.parentState.intelligenceOriginal) &&
-          props.parentState.intelligence < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("intelligence");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-      </div>
       <div className="ability-mod ability-mod2">
         <span>Languages: {props.parentState.intelligenceModLanguages}</span>
         <span>Literacy: {props.parentState.intelligenceModLiteracy}</span>
@@ -194,40 +150,19 @@ export default function AbilityScores(props) {
           </div>
         )}
       </div>
-      <div
-        style={{ color: props.parentState.wisdom < 6 ? redFail : "" }}
-        className={
-          props.parentState.wisdom > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
-        }
-      >
-        {props.parentState.wisdom}
 
-        {props.parentState.wisdom > 10 && (
-          <button
-            className="button button--ability button--ability--decrease"
-            onClick={() => {
-              scoreDecrease("wisdom");
-            }}
-          >
-            <div className="arrow-down"></div>
-          </button>
-        )}
-        {props.parentState.pointBuy > 0 &&
-          (primeReqs.includes("wisdom") ||
-            props.parentState.wisdom < props.parentState.wisdomOriginal) &&
-          props.parentState.wisdom < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("wisdom");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-      </div>
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.wisdom}
+        abilityScoreValueOriginal={props.parentState.wisdomOriginal}
+        abilityScoreName={`wisdom`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={true}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
+
       <div className="ability-mod">
         <span>Magic Saves: {props.parentState.wisdomMod}</span>
       </div>
@@ -242,40 +177,17 @@ export default function AbilityScores(props) {
         )}
       </div>
 
-      <div
-        className={
-          props.parentState.dexterity > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
-        }
-        style={{ color: props.parentState.dexterity < 6 ? redFail : "" }}
-      >
-        {props.parentState.dexterity}
-
-        {props.parentState.pointBuy > 0 &&
-          primeReqs.includes("dexterity") &&
-          props.parentState.dexterity < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("dexterity");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-
-        {props.parentState.dexterity > props.parentState.dexterityOriginal && (
-          <button
-            className="button button--ability button--ability--decrease"
-            onClick={() => {
-              scoreDecrease("dexterity");
-            }}
-          >
-            <div className="arrow-down"></div>
-          </button>
-        )}
-      </div>
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.dexterity}
+        abilityScoreValueOriginal={props.parentState.dexterityOriginal}
+        abilityScoreName={`dexterity`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={false}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
 
       <div className="ability-mod">
         <span> AC: {props.parentState.dexterityModAC}</span>
@@ -293,29 +205,18 @@ export default function AbilityScores(props) {
         )}
       </div>
 
-      <div
-        className={
-          props.parentState.constitution > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
-        }
-        style={{ color: props.parentState.constitution < 6 ? redFail : "" }}
-      >
-        {props.parentState.constitution}
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.constitution}
+        abilityScoreValueOriginal={props.parentState.constitutionOriginal}
+        abilityScoreName={`constitution`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={false}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
 
-        {props.parentState.pointBuy > 0 &&
-          primeReqs.includes("constitution") &&
-          props.parentState.constitution < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("constitution");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-      </div>
       <div className="ability-mod">
         <span>Hit Points: {props.parentState.constitutionMod}</span>
       </div>
@@ -330,29 +231,17 @@ export default function AbilityScores(props) {
         )}
       </div>
 
-      <div
-        className={
-          props.parentState.charisma > 15
-            ? "ability-score ability-score--high"
-            : "ability-score"
-        }
-        style={{ color: props.parentState.charisma < 6 ? redFail : "" }}
-      >
-        {props.parentState.charisma}
-
-        {props.parentState.pointBuy > 0 &&
-          primeReqs.includes("charisma") &&
-          props.parentState.charisma < 18 && (
-            <button
-              className="button button--ability button--ability--increase"
-              onClick={() => {
-                scoreIncrease("charisma");
-              }}
-            >
-              <div className="arrow-up"></div>
-            </button>
-          )}
-      </div>
+      <AbilityScoreBox
+        abilityScoreValue={props.parentState.charisma}
+        abilityScoreValueOriginal={props.parentState.charismaOriginal}
+        abilityScoreName={`charisma`}
+        scoreIncrease={scoreIncrease}
+        scoreDecrease={scoreDecrease}
+        canDecrease={false}
+        characterClass={props.parentState.characterClass}
+        pointBuy={props.parentState.pointBuy}
+        primeReqs={primeReqs}
+      ></AbilityScoreBox>
 
       <div className="ability-mod">
         <span> NPC Reactions: {props.parentState.charismaModNPCReactions}</span>
