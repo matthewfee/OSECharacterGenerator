@@ -528,8 +528,6 @@ a {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  animation: none !important;
-  background-color: #ececec;
 }
 
 .character-short {

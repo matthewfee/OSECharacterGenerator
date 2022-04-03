@@ -1,77 +1,82 @@
-import React from "react"
+import React from "react";
 
 export default function AbilityScores(props) {
   const scoreIncrease = key => {
-    const keyOriginal = key + "Original"
+    const keyOriginal = key + "Original";
 
-    let value = props.parentState[key]
+    let value = props.parentState[key];
 
-    let newPointBuy = props.parentState.pointBuy - 1
+    let newPointBuy = props.parentState.pointBuy - 1;
 
-    let increment = 1
+    let increment = 1;
 
     //check if score has already been decreased
 
     if (value < props.parentState[keyOriginal]) {
-      increment = 2
+      increment = 2;
     }
 
     //checks if there's points to buy
 
     if (props.parentState.pointBuy < 1) {
-      return
+      return;
     }
 
     //maximum 18
 
     if (value === 18) {
-      return
+      return;
     }
+
+    let newValue = value + increment;
 
     let newObject = {
-      [key]: value + increment,
+      [key]: newValue,
       pointBuy: newPointBuy
-    }
+    };
 
-    props.setParentState(newObject)
-    props.getMod()
+    props.setParentState(newObject);
+    props.getModValue(key, newValue);
 
     // props.setParentState(newObject, () => {
     //   props.getMod();
     // });
-  }
+  };
 
   const scoreDecrease = key => {
-    const keyOriginal = key + "Original"
-    const value = props.parentState[key]
-    let decrement = -2
+    const keyOriginal = key + "Original";
+    const value = props.parentState[key];
+    let decrement = -2;
 
     if (value > props.parentState[keyOriginal]) {
-      decrement = -1
+      decrement = -1;
     }
 
-    let newPointBuy = props.parentState.pointBuy + 1
+    let newPointBuy = props.parentState.pointBuy + 1;
 
     if (props.parentState[key] <= 10) {
-      return
+      return;
     }
+
+    let newValue = value + decrement;
 
     let newObject = {
-      [key]: value + decrement,
+      [key]: newValue,
       pointBuy: newPointBuy
-    }
+    };
 
-    props.setParentState(newObject).then(props.getMod())
-  }
+    props.setParentState(newObject);
+    props.getModValue(key, newValue);
+  };
 
-  const redFail = "#730505"
+  const redFail = "#730505";
   const primeReqs = props.parentState.primeReq2
     ? (
         props.parentState.primeReq +
         " " +
         props.parentState.primeReq2
       ).toLowerCase()
-    : props.parentState.primeReq.toLowerCase()
+    : props.parentState.primeReq.toLowerCase();
 
   return (
     <div className="container ability-score-container">
@@ -104,7 +109,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--decrease"
               onClick={() => {
-                scoreDecrease("strength")
+                scoreDecrease("strength");
               }}
             >
               <div className="arrow-down"></div>
@@ -118,7 +123,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("strength")
+                scoreIncrease("strength");
               }}
             >
               <div className="arrow-up"></div>
@@ -154,7 +159,7 @@ export default function AbilityScores(props) {
           <button
             className="button button--ability button--ability--decrease"
             onClick={() => {
-              props.scoreDecrease("intelligence")
+              scoreDecrease("intelligence");
             }}
           >
             <div className="arrow-down"></div>
@@ -168,7 +173,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("intelligence")
+                scoreIncrease("intelligence");
               }}
             >
               <div className="arrow-up"></div>
@@ -203,7 +208,7 @@ export default function AbilityScores(props) {
           <button
             className="button button--ability button--ability--decrease"
             onClick={() => {
-              props.scoreDecrease("wisdom")
+              scoreDecrease("wisdom");
             }}
           >
             <div className="arrow-down"></div>
@@ -216,7 +221,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("wisdom")
+                scoreIncrease("wisdom");
               }}
             >
               <div className="arrow-up"></div>
@@ -253,7 +258,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("dexterity")
+                scoreIncrease("dexterity");
               }}
             >
               <div className="arrow-up"></div>
@@ -264,7 +269,7 @@ export default function AbilityScores(props) {
           <button
             className="button button--ability button--ability--decrease"
             onClick={() => {
-              props.scoreDecrease("dexterity")
+              scoreDecrease("dexterity");
             }}
           >
             <div className="arrow-down"></div>
@@ -304,7 +309,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("constitution")
+                scoreIncrease("constitution");
               }}
             >
               <div className="arrow-up"></div>
@@ -341,7 +346,7 @@ export default function AbilityScores(props) {
             <button
               className="button button--ability button--ability--increase"
               onClick={() => {
-                props.scoreIncrease("charisma")
+                scoreIncrease("charisma");
               }}
             >
               <div className="arrow-up"></div>
@@ -357,5 +362,5 @@ export default function AbilityScores(props) {
         <span>Loyalty: {props.parentState.charismaModLoyalty}</span>
       </div>
     </div>
-  )
+  );
 }

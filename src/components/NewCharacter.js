@@ -12,6 +12,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 import Header from "./Header";
 import AbilityScores from "./AbilityScores";
 import { UnbalancedParenthesisError } from "pdf-lib";
+import abilityScoreMods from "../data/abilityScoreMods";
 
 const override = css`
   display: block;
@@ -118,7 +119,7 @@ class NewCharacter extends React.Component {
     return array[Math.floor(Math.random() * array.length)];
   };
 
-  d6 = how_many => {
+  d6 = howMany => {
     //uses default JS random number seed if randomNumber API doesn't load correctly
 
     if (this.state.randomNumbers.length < 2) {
@@ -128,7 +129,7 @@ class NewCharacter extends React.Component {
 
     let sum = 0;
 
-    for (let i = 0; i < how_many; i++) {
+    for (let i = 0; i < howMany; i++) {
       sum = sum + this.choose(this.state.randomNumbers);
     }
 
@@ -164,13 +165,64 @@ class NewCharacter extends React.Component {
     newObject.charismaOriginal = newObject.charisma;
 
     this.setState(newObject, () => {
-      this.getMod();
+      this.updateMods();
     });
   };
 
   //generates the appropriate modifiers for each ability score
 
-  getMod = () => {
+  getModValue = (abilityScoreName, abilityScore) => {
+    let newAbilityModifiers = {};
+
+    switch (abilityScoreName) {
+      case "strength":
+        newAbilityModifiers = {
+          strengthModMelee: abilityScoreMods.abilityMod[abilityScore],
+          strengthModDoors: abilityScoreMods.openDoors[abilityScore]
+        };
+        break;
+      case "intelligence":
+        newAbilityModifiers = {
+          intelligenceModLanguages:
+            abilityScoreMods.spokenLanguages[abilityScore]
+        };
+        break;
+      case "dexterity":
+        newAbilityModifiers = {
+          dexterityModAC: abilityScoreMods.abilityMod[abilityScore],
+          dexterityModMissiles: abilityScoreMods.abilityMod[abilityScore],
+          dexterityModInitiative: abilityScoreMods.initiative[abilityScore]
+        };
+        break;
+      case "wisdom":
+        newAbilityModifiers = {
+          wisdomMod: abilityScoreMods.abilityMod[abilityScore]
+        };
+        break;
+      case "constitution":
+        newAbilityModifiers = {
+          constitutionMod: abilityScoreMods.abilityMod[abilityScore]
+        };
+        break;
+      case "charisma":
+        newAbilityModifiers = {
+          charismaModNPCReactions: abilityScoreMods.npcReactions[abilityScore],
+          charismaModRetainersMax: abilityScoreMods.retainersMax[abilityScore],
+          charismaModLoyalty: abilityScoreMods.loyalty[abilityScore]
+        };
+        break;
+    }
+
+    this.setState(newAbilityModifiers, () => {
+      this.getPrimeReqMod();
+    });
+
+    // this.setState(newMods, () => {
+    //   this.getPrimeReqMod();
+    // });
+  };
+
+  updateMods = () => {
     this.classOptionsListButton();
     this.advancedClassesListButton();
 
@@ -181,222 +233,27 @@ class NewCharacter extends React.Component {
     let CON = parseInt(this.state.constitution);
     let CHA = this.state.charisma;
 
-    const abilityMod = [
-      null,
-      null,
-      null,
-      "-3",
-      "-2",
-      "-2",
-      "-1",
-      "-1",
-      "-1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "+1",
-      "+1",
-      "+1",
-      "+2",
-      "+2",
-      "+3"
-    ];
-
-    const openDoors = [
-      null,
-      null,
-      null,
-      "1-in-6",
-      "1-in-6",
-      "1-in-6",
-      "1-in-6",
-      "1-in-6",
-      "1-in-6",
-      "2-in-6",
-      "2-in-6",
-      "2-in-6",
-      "2-in-6",
-      "3-in-6",
-      "3-in-6",
-      "3-in-6",
-      "4-in-6",
-      "4-in-6",
-      "5-in-6"
-    ];
-    const spokenLanguages = [
-      null,
-      null,
-      null,
-      "Broken speech",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "Native",
-      "+1",
-      "+1",
-      "+1 ",
-      "+2",
-      "+2",
-      "+3"
-    ];
-
-    const extraLanguageCount = [
-      null,
-      null,
-      null,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      1,
-      1,
-      1,
-      2,
-      2,
-      3
-    ];
-
-    const literacy = [
-      null,
-      null,
-      null,
-      "Illiterate",
-      "Illiterate",
-      "Illiterate",
-      "Basic",
-      "Basic",
-      "Basic",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate",
-      "Literate"
-    ];
-
-    const initiative = [
-      null,
-      null,
-      null,
-      "-2",
-      "-1",
-      "-1",
-      "-1",
-      "-1",
-      "-1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "+1",
-      "+1",
-      "+1",
-      "+1",
-      "+1",
-      "+2"
-    ];
-
-    const npcReactions = [
-      null,
-      null,
-      null,
-      "-2",
-      "-1",
-      "-1",
-      "-1",
-      "-1",
-      "-1",
-      "0",
-      "0",
-      "0",
-      "0",
-      "+1",
-      "+1",
-      "+1",
-      "+1",
-      "+1",
-      "+2"
-    ];
-
-    const retainersMax = [
-      null,
-      null,
-      null,
-      "1",
-      "2",
-      "2",
-      "3",
-      "3",
-      "3",
-      "4",
-      "4",
-      "4",
-      "4",
-      "5",
-      "5",
-      "5",
-      "6",
-      "6",
-      "7"
-    ];
-
-    const loyalty = [
-      null,
-      null,
-      null,
-      "4",
-      "5",
-      "5",
-      "6",
-      "6",
-      "6",
-      "7",
-      "7",
-      "7",
-      "7",
-      "8",
-      "8",
-      "8",
-      "9",
-      "9",
-      "10"
-    ];
-
     const newMods = {
-      strengthModMelee: abilityMod[STR],
-      strengthModDoors: openDoors[STR],
-      intelligenceModLanguages: spokenLanguages[INT],
-      languageCount: extraLanguageCount[INT],
-      intelligenceModLiteracy: literacy[INT],
-      wisdomMod: abilityMod[WIS],
-      dexterityModAC: abilityMod[DEX],
-      dexterityModMissiles: abilityMod[DEX],
-      dexterityModInitiative: initiative[DEX],
-      constitutionMod: abilityMod[CON],
-      charismaModNPCReactions: npcReactions[CHA],
-      charismaModRetainersMax: retainersMax[CHA],
-      charismaModLoyalty: loyalty[CHA]
+      strengthModMelee: abilityScoreMods.abilityMod[STR],
+      strengthModDoors: abilityScoreMods.openDoors[STR],
+      intelligenceModLanguages: abilityScoreMods.spokenLanguages[INT],
+      languageCount: abilityScoreMods.extraLanguageCount[INT],
+      intelligenceModLiteracy: abilityScoreMods.literacy[INT],
+      wisdomMod: abilityScoreMods.abilityMod[WIS],
+      dexterityModAC: abilityScoreMods.abilityMod[DEX],
+      dexterityModMissiles: abilityScoreMods.abilityMod[DEX],
+      dexterityModInitiative: abilityScoreMods.initiative[DEX],
+      constitutionMod: abilityScoreMods.abilityMod[CON],
+      charismaModNPCReactions: abilityScoreMods.npcReactions[CHA],
+      charismaModRetainersMax: abilityScoreMods.retainersMax[CHA],
+      charismaModLoyalty: abilityScoreMods.loyalty[CHA]
     };
 
     this.setState(newMods, () => {
       this.getPrimeReqMod();
     });
+
+    return;
   };
 
   getPrimeReqMod = () => {
@@ -527,68 +384,8 @@ class NewCharacter extends React.Component {
       pointBuy: 0
     };
 
-    this.setState(newStateObject);
-  };
-
-  scoreIncrease = key => {
-    const keyOriginal = key + "Original";
-
-    var value = this.state[key];
-
-    var newPointBuy = this.state.pointBuy - 1;
-
-    var increment = 1;
-
-    //check if score has already been decreased
-
-    if (value < this.state[keyOriginal]) {
-      increment = 2;
-    }
-
-    //checks if there's points to buy
-
-    if (this.state.pointBuy < 1) {
-      return;
-    }
-
-    //maximum 18
-
-    if (value === 18) {
-      return;
-    }
-
-    var newObject = {
-      [key]: value + increment,
-      pointBuy: newPointBuy
-    };
-
-    this.setState(newObject, () => {
-      this.getMod();
-    });
-  };
-
-  scoreDecrease = key => {
-    const keyOriginal = key + "Original";
-    const value = this.state[key];
-    let decrement = -2;
-
-    if (value > this.state[keyOriginal]) {
-      decrement = -1;
-    }
-
-    let newPointBuy = this.state.pointBuy + 1;
-
-    if (this.state[key] <= 10) {
-      return;
-    }
-
-    let newObject = {
-      [key]: value + decrement,
-      pointBuy: newPointBuy
-    };
-
-    this.setState(newObject, () => {
-      this.getMod();
+    this.setState(newStateObject, () => {
+      this.updateMods();
     });
   };
 
@@ -774,8 +571,6 @@ class NewCharacter extends React.Component {
               </h2>
 
               <div className="class-options-container container">
-                {/* <h3 className="basic-classes-header">Core Classes</h3> */}
-
                 <div className="basic-class-container">
                   {this.state.basicCharData}
                 </div>
@@ -805,9 +600,10 @@ class NewCharacter extends React.Component {
               <AbilityScores
                 parentState={this.state}
                 setParentState={this.updateParentState}
-                getMod={this.getMod}
+                updateMods={this.updateMods}
                 scoreIncrease={this.scoreIncrease}
                 scoreDecrease={this.scoreDecrease}
+                getModValue={this.getModValue}
               ></AbilityScores>
 
               {this.state.strength && (
