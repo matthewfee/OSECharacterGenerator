@@ -14,7 +14,58 @@ export default function CharacterSheetScreen(props) {
 
   useEffect(() => {
     updateLocalStorage();
+    sendCharacterToAPI();
   }, []);
+
+  let p = props.parentState;
+
+  const sendCharacterToAPI = () => {
+    const characterForAPI = {
+      AC: p.AC,
+      alignment: p.alignment,
+      appearance: p.appearance,
+      armour: p.armour,
+      background: p.background,
+      characterClass: p.characterClass,
+      name: p.characterName,
+      charisma: p.charisma,
+      constitution: p.constitution,
+      dexterity: p.dexterity,
+      equipment: p.equipment,
+      gold: p.gold,
+      hasSpells: p.hasSpells,
+      hasLanguages: p.hasLanguages,
+      hitPoints: p.hitPoints,
+      id: p.id,
+      intelligence: p.intelligence,
+      languages: p.languages,
+      level: p.level,
+      misfortune: p.misfortune,
+      personality: p.personality,
+      primeReq: p.primeReq,
+      primeReq2: p.primeReq2,
+      primeReqMod: p.primeReqMod,
+      spells: p.spells,
+      strength: p.strength,
+      unarmouredAC: p.unarmouredAC,
+      weapons: p.weapons,
+      wisdom: p.wisdom
+    };
+
+    console.log("SENDING CHARACTER TO API", characterForAPI);
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(characterForAPI)
+    };
+    fetch("https://old-school-essentials.herokuapp.com/", requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const updateLocalStorage = () => {
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
