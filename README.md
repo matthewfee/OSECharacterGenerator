@@ -4,14 +4,13 @@ This is a character generator for the 1981 Basic/Expert edition Dungeons and Dra
 
 ## Working On
 
+-Integration with Node.js server and Mongoose database
 -Export to image/text
 
 ## Additional Features
 
 -One click generation
--Integration with server and database
--Advanced character creation option
--Additional classes from zine
+-Additional classes from the Carcass Crawler zine
 
 ## Available Scripts
 
