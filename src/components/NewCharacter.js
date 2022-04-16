@@ -19,7 +19,7 @@ const override = css`
   margin: 0 auto;
   border-color: red;
 `;
-
+// These days everyone is using useState()
 class NewCharacter extends React.Component {
   constructor() {
     super();
@@ -80,7 +80,8 @@ class NewCharacter extends React.Component {
       },
       id: "42"
     };
-
+// use axios 
+// https://github.com/axios/axios
     fetch("https://api.random.org/json-rpc/4/invoke", {
       method: "POST",
       headers: {
@@ -288,7 +289,16 @@ class NewCharacter extends React.Component {
         abilityScoreMax = abilityScore2;
       }
     }
-
+    // this code is extremally unreadable
+    // You should use data structures first. It happens in many parts of the code actually
+    // The right way is to have for example object like 
+    // {
+    // className: "Barbarian"
+    // modifiers: {
+    //   primeReqMod: [10, 5, 0]
+    // }
+    // }
+    // and then once you established this structure you can code
     if (this.state.characterClass === "Barbarian") {
       if (this.state.constitution > 15 && this.state.strength > 15) {
         return this.setState({ primeReqMod: "+10%" });
@@ -683,3 +693,4 @@ class NewCharacter extends React.Component {
 }
 
 export default NewCharacter;
+// Also way to big file, chunk it down

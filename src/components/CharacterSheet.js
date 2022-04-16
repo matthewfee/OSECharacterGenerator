@@ -11,6 +11,8 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 
   const joinDuplicates = array => {
     let stuff = {};
+    // In React you rarerly use for loops
+    // use .map() .froEach() instead
     for (let i = 0; i < array.length; i++) {
       if (stuff.hasOwnProperty(array[i])) {
         stuff[array[i]] += 1;
@@ -50,7 +52,8 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Alignment</span>{" "}
             <span className="charsheet-value">{alignmentCapitalized}</span>{" "}
           </div>
-
+          {/* Whenever you have a repetetive code like this think about
+          changing it to a data structure and then rendering it with .map() */}
           <div className="background character-container">
             <span className="charsheet-value-name">Background Skill</span>{" "}
             <span className="charsheet-value">{char.background}</span>

@@ -2,6 +2,9 @@ import React from "react";
 
 export default function ClassOptionsButton(props) {
   if (props.requirements) {
+    // what is the data structure of 'requirements'? Use PropTypes
+    // this whole if statement below does not seem right. Think about other way of doing it
+    // Tip: put all the attributes like (STR) to the array, and then use one of those methods map(), find() 
     if (
       (props.requirements.includes("STR") && props.strength < 9) ||
       (props.requirements.includes("INT") && props.intelligence < 9) ||

@@ -54,6 +54,7 @@ export default function DetailsScreen(props) {
   };
 
   const getName = () => {
+    // this is data, keep it seperetly in a consts folder/file
     const firstNames = [
       "Balthazar",
       "Arthwit",
@@ -372,6 +373,8 @@ export default function DetailsScreen(props) {
 
   const getBackground = () => {
     let bgs = [];
+    // This code looks suspicious.
+    // use map() or figure out some other way
     bgs = bgs.concat(Array(3).fill("Animal trainer"));
     bgs = bgs.concat(Array(2).fill("Armorer"));
     bgs = bgs.concat(Array(4).fill("Baker"));

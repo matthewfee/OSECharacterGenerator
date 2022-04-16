@@ -27,7 +27,7 @@ export default function EquipmentScreen(props) {
     calculateAC();
 
     // update default selectedWeapon to one appropriate for class
-
+// those class names should come from constants file/folder
     if (props.characterClass === "Cleric") {
       setWeaponSelected("Mace");
     }
@@ -644,3 +644,4 @@ export default function EquipmentScreen(props) {
     </div>
   );
 }
+// The whole component is too big, find a way to chunk it into smaller components
