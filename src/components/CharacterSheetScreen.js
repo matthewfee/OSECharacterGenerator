@@ -18,6 +18,7 @@ export default function CharacterSheetScreen(props) {
 
   const updateLocalStorage = () => {
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+    // Remove console logs from your code, you may reveal sensitive data one day because of it
     console.log("PARENT STATE ID", props.parentState.id);
     const id = props.parentState.id;
 
@@ -84,6 +85,7 @@ export default function CharacterSheetScreen(props) {
 
   async function fillForm() {
     const formUrl =
+    // move all urls to consts folder/file
       "https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
     const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
 
@@ -117,7 +119,8 @@ export default function CharacterSheetScreen(props) {
     const pdfDoc = await PDFDocument.load(formPdfBytes);
 
     // pdfDoc.save({ updateFieldAppearances: false });
-
+    // Hmm Im not sure about those 122-210 lines, is there a better way to set and get thsoe values?
+    // maybe in a object format
     const form = pdfDoc.getForm();
 
     const nameField = form.getTextField("Name 2");
@@ -360,7 +363,7 @@ export default function CharacterSheetScreen(props) {
     portraitField.setText(portraitInfo);
 
     const fields = form.getFields();
-
+// Please remove commented unused code
     // pdfDoc.save({ updateFieldAppearances: false });
 
     // const textField = fields.find(f => f instanceof PDFTextField);
