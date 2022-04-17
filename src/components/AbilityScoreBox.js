@@ -3,18 +3,21 @@ import React from "react";
 // First of all please deconstruct props either by doing AbilityScoreBox({ abilityScoreValue, etc... })
 // or by adding const { abilityScoreValue, etc... } = props
 // it adds visibibility to the code + you dont need to put props. every time you want to use them
+
 export default function AbilityScoreBox(props) {
   const redFail = "#730505";
   return (
     <div
       //
-      className={
-        // Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-        // becasue ability-score stays in both conditions and only ability-score--high is the one that you want to change
-        props.abilityScoreValue > 15
-          ? "ability-score ability-score--high"
-          : "ability-score"
-      }
+      className={`ability-score ${
+        props.abilityScoreValue > 15 ? "abilityscore--high" : ``
+      }`}
+      // Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+      // becasue ability-score stays in both conditions and only ability-score--high is the one that you want to change
+      //   props.abilityScoreValue > 15
+      //     ? "ability-score ability-score--high"
+      //     : "ability-score"
+      // }
       style={{ color: props.abilityScoreValue < 6 ? redFail : "" }}
     >
       {props.abilityScoreValue}

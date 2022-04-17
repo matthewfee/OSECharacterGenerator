@@ -48,7 +48,6 @@ export default function ClassDescription(props) {
         <li>
           <b>Saving Throws:</b>{" "}
           <span>
-            {" "}
             Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis{" "}
             {obj.savingThrows[2]}, Breath Attacks {obj.savingThrows[3]},
             Spells/rods/staves {obj.savingThrows[4]}

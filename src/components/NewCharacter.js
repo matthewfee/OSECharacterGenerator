@@ -215,10 +215,6 @@ class NewCharacter extends React.Component {
     this.setState(newAbilityModifiers, () => {
       this.getPrimeReqMod();
     });
-
-    // this.setState(newMods, () => {
-    //   this.getPrimeReqMod();
-    // });
   };
 
   updateMods = () => {

@@ -184,10 +184,6 @@ export default function EquipmentScreen(props) {
       return itemName.includes(object.name);
     });
 
-    // const findEquipment = object => {
-    //   return object.name === equipmentSelected;
-    // };
-
     let itemsRemoved = 0;
 
     const removeOneItem = item => {
@@ -224,8 +220,6 @@ export default function EquipmentScreen(props) {
     if (weaponObject.price > gold) {
       return;
     }
-
-    //updates state with new equipment item\
 
     setGold(gold - weaponObject.price);
 

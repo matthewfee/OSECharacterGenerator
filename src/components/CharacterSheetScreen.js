@@ -218,17 +218,6 @@ export default function CharacterSheetScreen(props) {
 
     const fields = form.getFields();
 
-    // pdfDoc.save({ updateFieldAppearances: false });
-
-    // const textField = fields.find(f => f instanceof PDFTextField);
-
-    // if (textField != null) {
-    //   textField.defaultUpdateAppearances(timesRoman);
-    //   textField.setText("TimesRoman");
-    // }
-
-    // form.updateFieldAppearances(timesRoman);
-
     const pdfBytes = await pdfDoc.save();
 
     let fileName = `${nameInfo} the ${char.characterClass}.pdf`;
@@ -323,10 +312,6 @@ export default function CharacterSheetScreen(props) {
     nameField.setText(nameInfo);
     levelField.setText("1");
 
-    // const timesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
-
-    // nameField.defaultUpdateAppearances(timesRoman);
-
     STRField.setText(char.strength.toString());
     INTField.setText(char.intelligence.toString());
     DEXField.setText(char.dexterity.toString());
@@ -360,17 +345,6 @@ export default function CharacterSheetScreen(props) {
     portraitField.setText(portraitInfo);
 
     const fields = form.getFields();
-    // Please remove commented unused code
-    // pdfDoc.save({ updateFieldAppearances: false });
-
-    // const textField = fields.find(f => f instanceof PDFTextField);
-
-    // if (textField != null) {
-    //   textField.defaultUpdateAppearances(timesRoman);
-    //   textField.setText("TimesRoman");
-    // }
-
-    // form.updateFieldAppearances(timesRoman);
 
     const pdfBytes = await pdfDoc.save();
 
@@ -385,30 +359,6 @@ export default function CharacterSheetScreen(props) {
         parentState={props.parentState}
         ref={componentRef}
       ></CharacterSheet>
-
-      {/* {state.displayShort && (
-        <div className="character-short">
-          <div>Name: {char.characterName}</div>
-          <div>Class: Level 1 {char.characterClass}</div>
-          <div>Alignment: {char.alignment}</div>
-          <div>Armour Class: AC ({char.armour.join(", ")})</div>
-          <div>
-            Hit Points: {char.hitPoints}/{char.hitPoints}
-          </div>
-          <div>Hit Die: d{characterClass.hd}</div>
-          <div>Weapons: {char.weapons.join(", ")}</div>
-          <div>
-            Saves: D{characterClass.savingThrows[0]} W
-            {characterClass.savingThrows[1]} P{characterClass.savingThrows[2]} B
-            {characterClass.savingThrows[3]} S{characterClass.savingThrows[4]}
-          </div>
-          <div>
-            STR {char.strength} INT {char.intelligence} WIS {char.wisdom} DEX{" "}
-            {char.dexterity} CON {char.constitution} CHA {char.charisma}
-          </div>
-          <div>Equipment: {char.equipment.join(", ")}</div>
-        </div>
-      )} */}
 
       <div className="button-container">
         <h3 className="header-default header-pdf">Export to PDF</h3>
@@ -427,16 +377,6 @@ export default function CharacterSheetScreen(props) {
           <button onClick={props.showStorageSheetScreen}>Tavern</button>
           <button onClick={resetPage}>Main</button>
         </div>
-
-        {/* <button
-          onClick={() =>
-            exportComponentAsPNG(componentRef, {
-              fileName: char.characterName + " the " + char.characterClass
-            })
-          }
-        >
-          Save PNG
-        </button> */}
       </div>
     </div>
   );

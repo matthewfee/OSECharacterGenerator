@@ -9,8 +9,6 @@ export default function CharacterStorageScreen(props) {
   }, []);
 
   const handleCharacter = (e, index, action) => {
-    // let index = e.currentTarget.value;
-    // let name = e.currentTarget.name;
     e.stopPropagation();
     switch (action) {
       case "setActiveCharacter":
@@ -39,8 +37,7 @@ export default function CharacterStorageScreen(props) {
           key={index}
           value={index}
           name="setActiveCharacter"
-          // eslint-disable-next-line prettier/prettier
-          onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
+          onClick={e => handleCharacter(e, index, "setActiveCharacter")}
         >
           Unnamed
         </button>
@@ -50,8 +47,7 @@ export default function CharacterStorageScreen(props) {
       <button
         className="character-button"
         key={index}
-        // eslint-disable-next-line prettier/prettier
-        onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
+        onClick={e => handleCharacter(e, index, "setActiveCharacter")}
         value={index}
         name="setActiveCharacter"
       >
@@ -61,17 +57,9 @@ export default function CharacterStorageScreen(props) {
         <div className="character-button--level" value={index}>
           {char.characterClass}
         </div>
-        {/* <div className="character-button--ability-scores">
-          <div>STR {char.strength}</div>
-          <div>INT {char.intelligence}</div>
-          <div>WIS {char.wisdom}</div>
-          <div>DEX {char.dexterity}</div>
-          <div>CON {char.constitution}</div>
-          <div>CHA {char.charisma}</div>
-        </div> */}
+
         <div
-          // eslint-disable-next-line prettier/prettier
-          onClick={(e) => handleCharacter(e, index, "deleteCharacter")}
+          onClick={e => handleCharacter(e, index, "deleteCharacter")}
           className="character-button--delete"
           key={index}
           value={index}
@@ -102,5 +90,3 @@ export default function CharacterStorageScreen(props) {
     </div>
   );
 }
-
-// /* eslint-disable react/prop-types */

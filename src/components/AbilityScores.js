@@ -9,14 +9,11 @@ export default function AbilityScores(props) {
 
     let newPointBuy = props.parentState.pointBuy - 1;
 
-    let increment = 1;
-
     //check if score has already been decreased
     // you dont need it here, add it to the variable declaration
     // const increment = value < props.parentState[keyOriginal] ? 2 : 1
-    if (value < props.parentState[keyOriginal]) {
-      increment = 2;
-    }
+
+    const increment = value < props.parentState[keyOriginal] ? 2 : 1;
 
     //checks if there's points to buy
 
@@ -24,11 +21,13 @@ export default function AbilityScores(props) {
       return;
     }
 
+    const maximumAbilityScore = 18;
+
     //maximum 18
     // Add all those "magic numbers" to variable. oyu dont need to comment "maximum 18"
     // if you put it to the variable called maxValue = 18
     // https://en.wikipedia.org/wiki/Magic_number_(programming)
-    if (value === 18) {
+    if (value === maximumAbilityScore) {
       return;
     }
 
