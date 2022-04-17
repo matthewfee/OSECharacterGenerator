@@ -3,61 +3,79 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { css } from "@emotion/react";
 
 export default function Header(props) {
+  const {
+    characterRolled,
+    rollButtonHover,
+    setRollButtonHover,
+    loadingRandomNumbers,
+    setLoadingRandomNumbers,
+    pages,
+    setPages,
+    rollCharacter
+  } = props;
+
   const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
   `;
-  let characterRolled = props.parentState.strength ? true : false;
+
+  const showStorageSheetScreen = () => {
+    setPages(pages => {
+      return {
+        ...pages,
+        characterStorageScreen: true,
+        characterSheetScreen: false,
+        abilityScreen: false
+      };
+    });
+  };
+
   const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
 
   return (
-    <header className={characterRolled ? "header" : "header header--initial"}>
+    <header className={`header ${characterRolled ? "" : "header--initial"}`}>
       <h2
-        className={props.parentState.rollButtonHover ? "title fade" : "title"}
+        className={`title ${rollButtonHover ? "fade" : ""}`}
         style={{ fontSize: characterRolled ? "1.2rem" : "" }}
       >
         OSE Character Generator
       </h2>
-      {props.parentState.abilityScreen && !characterRolled && (
+      {pages.abilityScreen && !characterRolled && (
         <button
           className={`button button--roll button-primary`}
-          onClick={props.reRoll}
-          disabled={props.parentState.loading ? true : false}
-          onMouseEnter={() =>
-            props.updateParentState({ rollButtonHover: true })
-          }
-          onMouseLeave={() =>
-            props.updateParentState({ rollButtonHover: false })
-          }
+          onClick={rollCharacter}
+          disabled={loadingRandomNumbers ? true : false}
+          onMouseEnter={() => setRollButtonHover(true)}
+          onMouseLeave={() => setRollButtonHover(false)}
         >
-          {!props.parentState.loading && <div>Roll</div>}
+          {!loadingRandomNumbers && <div>Roll</div>}
+
           <div className="sweet-loading">
             <CircleLoader
               css={override}
               size={50}
               color={"white"}
-              loading={props.parentState.loading}
+              loading={loadingRandomNumbers}
             />
           </div>
         </button>
       )}
-      {props.parentState.abilityScreen && !characterRolled && myCharacters && (
+
+      {pages.abilityScreen && !characterRolled && myCharacters && (
         <button
           className={`button button--storage button-primary ${
-            props.parentState.rollButtonHover ? "fade" : ""
+            rollButtonHover ? "fade" : ""
           }`}
-          onClick={props.showStorageSheetScreen}
+          onClick={showStorageSheetScreen}
         >
           Tavern
         </button>
       )}
 
-      {props.parentState.abilityScreen && !characterRolled && (
+      {pages.abilityScreen && !characterRolled && (
         <div
-          className={`main-page--subheader ${
-            props.parentState.rollButtonHover ? "fade" : ""
-          } `}
+          className={`main-page--subheader ${rollButtonHover ? "fade" : ""} `}
         >
           Designed for use with{" "}
           <a href="https://necroticgnome.com/"> Old School Essentials</a>. OSE
