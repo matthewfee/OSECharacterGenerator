@@ -1,8 +1,8 @@
 //generates the appropriate modifier for an ability value
 import abilityScoreMods from "../data/abilityScoreMods";
 import {
-  primeRequisiteModifiers,
-  abilityScoreNames
+  abilityScoreNames,
+  primeRequisiteModifiers
 } from "../constants/constants";
 
 export const getModValue = (abilityScoreName, abilityScore) => {
@@ -85,7 +85,7 @@ export const d = (how_many, sides) => {
   let total = 0;
   let i;
   for (i = 0; i < how_many; i++) {
-    total += this.getRndInteger(1, sides);
+    total += getRndInteger(1, sides);
   }
   return total;
 };
@@ -108,4 +108,26 @@ export const d6 = (howMany, randomNumbersArray) => {
   }
 
   return sum;
+};
+
+export const joinDuplicates = array => {
+  let stuff = {};
+  for (let i = 0; i < array.length; i++) {
+    if (stuff.hasOwnProperty(array[i])) {
+      stuff[array[i]] += 1;
+    } else {
+      stuff[array[i]] = 1;
+    }
+  }
+  let consolidated = [];
+  const keys = Object.keys(stuff);
+  for (const key of keys) {
+    if (stuff[key] > 1) {
+      consolidated.push(`${key} (x${stuff[key]})`);
+    } else {
+      consolidated.push(key);
+    }
+  }
+
+  return consolidated;
 };

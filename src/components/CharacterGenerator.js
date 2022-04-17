@@ -16,11 +16,20 @@ import {
 import classOptionsData from "../data/classOptionsData";
 import ClassOptionsButton from "./ClassOptionsButton";
 import ClassDescription from "./ClassDescription";
+import ClassOptions from "./ClassOptions";
+import NavBar from "./NavBar";
+import ClassScreen from "./ClassScreen";
+import EquipmentScreen from "./EquipmentScreen";
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
     id: null,
-    name: null
+    name: null,
+    languages: [],
+    personality: null,
+    misfortune: null,
+    appearance: null,
+    backgroundSkill: null
   });
 
   const [abilityScores, setAbilityScores] = useState({
@@ -54,6 +63,14 @@ export default function CharacterGenerator() {
     charismaModLoyalty: 0
   });
 
+  const [characterStatistics, setCharacterStatistics] = useState({
+    hitPoints: null,
+    armourClass: null,
+    spell: null,
+    hasSpells: false,
+    unarmouredAC: null
+  });
+
   const [pointBuy, setPointBuy] = useState(0);
 
   const [characterClass, setCharacterClass] = useState({
@@ -68,6 +85,13 @@ export default function CharacterGenerator() {
     detailsScreen: false,
     characterSheetScreen: false,
     characterStorageScreen: false
+  });
+
+  const [characterEquipment, setCharacterEquipment] = useState({
+    armour: [],
+    weapons: [],
+    adventuringGear: [],
+    gold: 200
   });
 
   const override = css`
@@ -130,13 +154,6 @@ export default function CharacterGenerator() {
     }
   }, [abilityScores, characterClass]);
 
-  //   useEffect(() => {
-  //     if (characterRolled) {
-  //       const primeReqValue = getPrimeReqMod(abilityScores, characterClass);
-  //       setCharacterModifiers({ ...characterModifiers, primeReq: primeReqValue });
-  //     }
-  //   }, [abilityScores, characterClass]);
-
   const rollCharacter = () => {
     let newCharacterAbilityScores = {};
 
@@ -153,39 +170,6 @@ export default function CharacterGenerator() {
     setPointBuy(0);
   };
 
-  const listBasicClassOptions = () => {
-    let basicCharacters = [];
-    for (let i = 0; i < 7; i++) {
-      let item = classOptionsData[i];
-      basicCharacters.push(
-        <ClassOptionsButton
-          key={item.name}
-          characterClass={item}
-          abilityScores={abilityScores}
-          changeCharacterClass={changeCharacterClass}
-        ></ClassOptionsButton>
-      );
-    }
-
-    return basicCharacters;
-  };
-
-  const listAdvancedClassOptions = () => {
-    let advancedCharacters = [];
-    for (let i = 7; i < classOptionsData.length; i++) {
-      let item = classOptionsData[i];
-      advancedCharacters.push(
-        <ClassOptionsButton
-          key={item.name}
-          characterClass={item}
-          abilityScores={abilityScores}
-          changeCharacterClass={changeCharacterClass}
-        ></ClassOptionsButton>
-      );
-    }
-    return advancedCharacters;
-  };
-
   const changeCharacterClass = event => {
     //resetCharacter
 
@@ -195,35 +179,6 @@ export default function CharacterGenerator() {
 
     setCharacterClass(characterClass);
   };
-
-  //   const getPrimeReqMod = (abilityScoreValues, characterClass) => {
-  //     //generates the correct prime req by matching a class to a prime requisite
-
-  //     const firstPrimeRequisiteAbility = characterClass.primeReqs[0];
-
-  //     const primeReqAbilityScore = abilityScoreValues[firstPrimeRequisiteAbility];
-
-  //     const primeReqValue = primeRequisiteModifiers[primeReqAbilityScore];
-
-  //     return primeReqValue;
-
-  //     // setCharacterModifiers({ ...characterModifiers, primeReq: primeReqValue });
-  //   };
-
-  //   const updateAbilityModifiers = abilityScoreValues => {
-  //     let abilityModifiers = {};
-
-  //     abilityScoreNames.forEach(abilityScoreName => {
-  //       const value = abilityScoreValues[abilityScoreName];
-  //       const newModifiers = getModValue(abilityScoreName, value);
-
-  //       for (const key in newModifiers) {
-  //         abilityModifiers[key] = newModifiers[key];
-  //       }
-  //     });
-
-  //     return abilityModifiers;
-  //   };
 
   return (
     <div className={`wrapper ${rollButtonHover ? "wrapper-alt" : ""}`}>
@@ -246,31 +201,11 @@ export default function CharacterGenerator() {
             <h2 className="header-default character-class-header">
               Character Class
             </h2>
-
-            <div className="class-options-container container">
-              <div className="basic-class-container">
-                {listBasicClassOptions()}
-              </div>
-              <h3 className="advanced-classes-header">
-                Advanced Classes{" "}
-                <input
-                  type="checkbox"
-                  value="Advanced Classes"
-                  className="checkbox"
-                  checked={advancedClassesDisplay}
-                  onChange={() =>
-                    setAdvancedClassesDisplay(!advancedClassesDisplay)
-                  }
-                ></input>
-              </h3>
-              <div className="advanced-class-container">
-                {advancedClassesDisplay ? listAdvancedClassOptions() : ""}
-              </div>
-
-              <ClassDescription
-                characterClass={characterClass}
-              ></ClassDescription>
-            </div>
+            <ClassOptions
+              characterClass={characterClass}
+              abilityScores={abilityScores}
+              changeCharacterClass={changeCharacterClass}
+            ></ClassOptions>
 
             <h2 className="ability-scores--header header-default">
               Ability Scores
@@ -285,32 +220,40 @@ export default function CharacterGenerator() {
               characterModifiers={characterModifiers}
             ></AbilityScores>
 
-            {characterRolled && (
-              <div>
-                <button
-                  className="button button--reroll"
-                  onClick={rollCharacter}
-                >
-                  Reroll
-                </button>
-                <button
-                  className="button button--class-option"
-                  onClick={pages => {
-                    setPages({
-                      ...pages,
-                      equipmentScreen: false,
-                      abilityScreen: false,
-                      classScreen: true
-                    });
-                  }}
-                  disabled={characterClass.name === null ? true : false}
-                  style={characterClass.name === null ? { opacity: 0.4 } : {}}
-                >
-                  Class Options
-                </button>{" "}
-              </div>
-            )}
+            <NavBar
+              rollCharacter={rollCharacter}
+              pages={pages}
+              setPages={setPages}
+              characterClass={characterClass}
+            ></NavBar>
           </div>
+        )}
+
+        {pages.classScreen && (
+          <ClassScreen
+            pages={pages}
+            setPages={setPages}
+            characterClass={characterClass}
+            character={character}
+            setCharacter={setCharacter}
+            characterModifiers={characterModifiers}
+            characterStatistics={characterStatistics}
+            setCharacterStatistics={setCharacterStatistics}
+          ></ClassScreen>
+        )}
+
+        {pages.equipmentScreen && (
+          <EquipmentScreen
+            characterClass={characterClass}
+            pages={pages}
+            setPages={setPages}
+            characterModifiers={characterModifiers}
+            characterStatistics={characterStatistics}
+            setCharacterStatistics={setCharacterStatistics}
+            characterEquipment={characterEquipment}
+            setCharacterEquipment={setCharacterEquipment}
+            randomNumbers={randomNumbers}
+          />
         )}
       </div>
     </div>
