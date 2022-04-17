@@ -1,0 +1,111 @@
+//generates the appropriate modifier for an ability value
+import abilityScoreMods from "../data/abilityScoreMods";
+import {
+  primeRequisiteModifiers,
+  abilityScoreNames
+} from "../constants/constants";
+
+export const getModValue = (abilityScoreName, abilityScore) => {
+  let newAbilityModifiers = {};
+
+  switch (abilityScoreName) {
+    case "strength":
+      newAbilityModifiers = {
+        strengthModMelee: abilityScoreMods.abilityMod[abilityScore],
+        strengthModDoors: abilityScoreMods.openDoors[abilityScore]
+      };
+      break;
+    case "intelligence":
+      newAbilityModifiers = {
+        intelligenceModLanguages: abilityScoreMods.spokenLanguages[abilityScore]
+      };
+      break;
+    case "dexterity":
+      newAbilityModifiers = {
+        dexterityModAC: abilityScoreMods.abilityMod[abilityScore],
+        dexterityModMissiles: abilityScoreMods.abilityMod[abilityScore],
+        dexterityModInitiative: abilityScoreMods.initiative[abilityScore]
+      };
+      break;
+    case "wisdom":
+      newAbilityModifiers = {
+        wisdomMod: abilityScoreMods.abilityMod[abilityScore]
+      };
+      break;
+    case "constitution":
+      newAbilityModifiers = {
+        constitutionMod: abilityScoreMods.abilityMod[abilityScore]
+      };
+      break;
+    case "charisma":
+      newAbilityModifiers = {
+        charismaModNPCReactions: abilityScoreMods.npcReactions[abilityScore],
+        charismaModRetainersMax: abilityScoreMods.retainersMax[abilityScore],
+        charismaModLoyalty: abilityScoreMods.loyalty[abilityScore]
+      };
+      break;
+  }
+
+  return newAbilityModifiers;
+};
+
+export const updateAbilityModifiers = abilityScoreValues => {
+  // updates all ability modifiers and returns an object containing the updates
+  let abilityModifiers = {};
+
+  abilityScoreNames.forEach(abilityScoreName => {
+    const value = abilityScoreValues[abilityScoreName];
+    const newModifiers = getModValue(abilityScoreName, value);
+
+    for (const key in newModifiers) {
+      abilityModifiers[key] = newModifiers[key];
+    }
+  });
+
+  return abilityModifiers;
+};
+
+export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
+  //generates the correct prime req by matching a class to a prime requisite
+
+  const firstPrimeRequisiteAbility = characterClass.primeReqs[0];
+
+  const primeReqAbilityScore = abilityScoreValues[firstPrimeRequisiteAbility];
+
+  const primeReqValue = primeRequisiteModifiers[primeReqAbilityScore];
+
+  return primeReqValue;
+};
+
+export const getRndInteger = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export const d = (how_many, sides) => {
+  let total = 0;
+  let i;
+  for (i = 0; i < how_many; i++) {
+    total += this.getRndInteger(1, sides);
+  }
+  return total;
+};
+
+export const chooseRandomItem = array => {
+  return array[Math.floor(Math.random() * array.length)];
+};
+
+export const d6 = (howMany, randomNumbersArray) => {
+  //uses default JS random number seed if randomNumber API doesn't load correctly
+
+  if (randomNumbersArray.length < 2) {
+    return d(3, 6);
+  }
+
+  let sum = 0;
+
+  for (let i = 0; i < howMany; i++) {
+    sum = sum + chooseRandomItem(randomNumbersArray);
+  }
+
+  return sum;
+};

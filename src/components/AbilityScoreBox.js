@@ -1,9 +1,5 @@
 import React from "react";
 
-// First of all please deconstruct props either by doing AbilityScoreBox({ abilityScoreValue, etc... })
-// or by adding const { abilityScoreValue, etc... } = props
-// it adds visibibility to the code + you dont need to put props. every time you want to use them
-
 export default function AbilityScoreBox(props) {
   const {
     abilityScoreValue,
@@ -13,21 +9,38 @@ export default function AbilityScoreBox(props) {
     scoreDecrease,
     canDecrease,
     characterClass,
-    pointBuy,
-    primeReqs
+    pointBuy
   } = props;
+
   const redFail = "#730505";
+  const lowScore = 6;
+  const highScore = 15;
+  const maxScore = 18;
+  const minimumDecrementRequirement = 10;
+
+  let showIncrementButton = false;
+
+  let hasPointstoIncrease =
+    characterClass.primeReqs?.includes(abilityScoreName) ||
+    abilityScoreValue < abilityScoreValueOriginal;
+
+  if (pointBuy > 0 && hasPointstoIncrease && abilityScoreValue < maxScore) {
+    showIncrementButton = true;
+  }
+
+  const showDecreaseButton =
+    abilityScoreValue > minimumDecrementRequirement && canDecrease;
+
   return (
     <div
-      //
       className={`ability-score ${
-        abilityScoreValue > 15 ? "abilityscore--high" : ""
+        abilityScoreValue > highScore ? "abilityscore--high" : ""
       }`}
-      style={{ color: abilityScoreValue < 6 ? redFail : "" }}
+      style={{ color: abilityScoreValue < lowScore ? redFail : "" }}
     >
       {abilityScoreValue}
 
-      {abilityScoreValue > 10 && canDecrease && (
+      {showDecreaseButton && (
         <button
           className="button button--ability button--ability--decrease"
           onClick={() => {
@@ -38,19 +51,16 @@ export default function AbilityScoreBox(props) {
         </button>
       )}
 
-      {pointBuy > 0 &&
-        (primeReqs.includes(abilityScoreName) ||
-          abilityScoreValue < abilityScoreValueOriginal) &&
-        abilityScoreValue < 18 && (
-          <button
-            className="button button--ability button--ability--increase"
-            onClick={() => {
-              scoreIncrease(abilityScoreName);
-            }}
-          >
-            <div className="arrow-up"></div>
-          </button>
-        )}
+      {showIncrementButton && (
+        <button
+          className="button button--ability button--ability--increase"
+          onClick={() => {
+            scoreIncrease(abilityScoreName);
+          }}
+        >
+          <div className="arrow-up"></div>
+        </button>
+      )}
     </div>
   );
 }

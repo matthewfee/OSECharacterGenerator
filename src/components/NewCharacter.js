@@ -293,6 +293,11 @@ class NewCharacter extends React.Component {
     // }
     // }
     // and then once you established this structure you can code
+
+    //
+    //
+    //
+
     if (this.state.characterClass === "Barbarian") {
       if (this.state.constitution > 15 && this.state.strength > 15) {
         return this.setState({ primeReqMod: "+10%" });
@@ -431,6 +436,7 @@ class NewCharacter extends React.Component {
       let item = classOptionsData[i];
       basicCharacters.push(
         <ClassOptionsButton
+          characterClass={item}
           classOption={item.name}
           requirements={item.requirements}
           primeReq={item.primeReq}

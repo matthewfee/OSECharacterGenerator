@@ -7,12 +7,28 @@ export default function AbilityScores(props) {
     characterClass,
     setAbilityScores,
     pointBuy,
-    setPointBuy
+    setPointBuy,
+    characterModifiers
   } = props;
+
+  const {
+    primeReq,
+    strengthModMelee,
+    strengthModDoors,
+    intelligenceModLanguages,
+    intelligenceModLiteracy,
+    wisdomMod,
+    dexterityModAC,
+    dexterityModMissiles,
+    dexterityModInitiative,
+    constitutionMod,
+    charismaModNPCReactions,
+    charismaModRetainersMax,
+    charismaModLoyalty
+  } = characterModifiers;
 
   const scoreIncrease = key => {
     const keyOriginal = key + "Original";
-    // use const instead of let
     const value = abilityScores[key];
 
     //checks if score has already been decreased
@@ -53,9 +69,7 @@ export default function AbilityScores(props) {
   };
 
   const redFail = "#730505";
-  const primeReqs = characterClass.primeRequisites
-    ? characterClass.primeRequisites.join(" ").toLowerCase()
-    : "";
+  const primeReqs = characterClass.primeReqs?.join(" ");
 
   return (
     <div className="container ability-score-container">
@@ -66,7 +80,7 @@ export default function AbilityScores(props) {
         <h2>STRENGTH</h2>
 
         {primeReqs.includes("strength") && (
-          <div className="prime-req">Prime Req: {primeReqMod}</div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -85,17 +99,15 @@ export default function AbilityScores(props) {
       ></AbilityScoreBox>
 
       <div className="ability-mod">
-        {/* <span>Melee Attacks: {strengthModMelee} </span> */}
-        {/* <span>Open Doors: {strengthModDoors}</span> */}
+        <span>Melee Attacks: {strengthModMelee} </span>
+        <span>Open Doors: {strengthModDoors}</span>
       </div>
 
       <div className="ability-score-name">
         <h2>INTELLIGENCE</h2>
 
         {primeReqs.includes("intelligence") && (
-          <div className="prime-req">
-            Prime Req: {characterClass.primeReqMod}
-          </div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -108,19 +120,18 @@ export default function AbilityScores(props) {
         canDecrease={true}
         characterClass={characterClass}
         pointBuy={pointBuy}
-        // primeReqs={primeReqs}
       ></AbilityScoreBox>
 
       <div className="ability-mod ability-mod2">
-        {/* <span>Languages: {props.parentState.intelligenceModLanguages}</span> */}
-        {/* <span>Literacy: {props.parentState.intelligenceModLiteracy}</span> */}
+        <span>Languages: {intelligenceModLanguages}</span>
+        <span>Literacy: {intelligenceModLiteracy}</span>
       </div>
 
       <div className="ability-score-name">
         <h2>WISDOM</h2>
 
         {primeReqs.includes("wisdom") && (
-          <div className="prime-req">Prime Req: {primeReqMod}</div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -133,20 +144,17 @@ export default function AbilityScores(props) {
         canDecrease={true}
         characterClass={characterClass}
         pointBuy={pointBuy}
-        primeReqs={primeReqs}
       ></AbilityScoreBox>
 
       <div className="ability-mod">
-        {/* <span>Magic Saves: {props.parentState.wisdomMod}</span> */}
+        <span>Magic Saves: {wisdomMod}</span>
       </div>
 
       <div className="ability-score-name">
         <h2>DEXTERITY</h2>
 
         {primeReqs.includes("dexterity") && (
-          <div className="prime-req">
-            Prime Req: {characterClass.primeReqMod}
-          </div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -159,20 +167,19 @@ export default function AbilityScores(props) {
         canDecrease={false}
         characterClass={characterClass}
         pointBuy={pointBuy}
-        primeReqs={primeReqs}
       ></AbilityScoreBox>
 
       <div className="ability-mod">
-        {/* <span> AC: {dexterityModAC}</span> */}
-        {/* <span> Missile: {dexterityModMissiles}</span> */}
-        {/* <span>Initiative: {dexterityModInitiative}</span> */}
+        <span> AC: {dexterityModAC}</span>
+        <span> Missile: {dexterityModMissiles}</span>
+        <span>Initiative: {dexterityModInitiative}</span>
       </div>
 
       <div className="ability-score-name">
         <h2>CONSTITUTION</h2>
 
         {primeReqs.includes("constitution") && (
-          <div className="prime-req">Prime Req: {primeReqMod}</div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -185,20 +192,17 @@ export default function AbilityScores(props) {
         canDecrease={false}
         characterClass={characterClass}
         pointBuy={pointBuy}
-        primeReqs={primeReqs}
       ></AbilityScoreBox>
 
       <div className="ability-mod">
-        {/* <span>Hit Points: {constitutionMod}</span> */}
+        <span>Hit Points: {constitutionMod}</span>
       </div>
 
       <div className="ability-score-name">
         <h2>CHARISMA</h2>
 
         {primeReqs.includes("charisma") && (
-          <div className="prime-req">
-            Prime Req: {characterClass.primeReqMod}
-          </div>
+          <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
 
@@ -211,13 +215,12 @@ export default function AbilityScores(props) {
         canDecrease={false}
         characterClass={characterClass}
         pointBuy={pointBuy}
-        primeReqs={primeReqs}
       ></AbilityScoreBox>
 
       <div className="ability-mod">
-        {/* <span> NPC Reactions: {charismaModNPCReactions}</span>*/}
-        {/* <span>Retainers Max #: {charismaModRetainersMax}</span> */}
-        {/* <span>Loyalty: {charismaModLoyalty}</span> */}
+        <span>NPC Reactions: {charismaModNPCReactions}</span>
+        <span>Retainers Max #: {charismaModRetainersMax}</span>
+        <span>Loyalty: {charismaModLoyalty}</span>
       </div>
     </div>
   );
