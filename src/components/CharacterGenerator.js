@@ -53,6 +53,7 @@ export default function CharacterGenerator() {
     strengthModDoors: 0,
     intelligenceModLanguages: 0,
     intelligenceModLiteracy: "",
+    intelligenceModExtraLanguageCount: 0,
     wisdomMod: 0,
     dexterityModAC: 0,
     dexterityModMissiles: 0,
@@ -91,7 +92,7 @@ export default function CharacterGenerator() {
     armour: [],
     weapons: [],
     adventuringGear: [],
-    gold: 200
+    gold: null
   });
 
   const override = css`
@@ -254,6 +255,17 @@ export default function CharacterGenerator() {
             setCharacterEquipment={setCharacterEquipment}
             randomNumbers={randomNumbers}
           />
+        )}
+
+        {pages.detailsScreen && (
+          <DetailsScreen
+            pages={pages}
+            setPages={setPages}
+            character={character}
+            setCharacter={setCharacter}
+            characterClass={characterClass}
+            characterModifiers={setCharacterModifiers}
+          ></DetailsScreen>
         )}
       </div>
     </div>

@@ -82,15 +82,15 @@ export default function EquipmentScreen(props) {
     setGoldRolled(true);
   };
 
-  // const equipmentList = () => {
-  //   return equipmentData.map(item => (
-  //     <EquipmentOptions
-  //       price={item.price}
-  //       name={item.name}
-  //       key={item.name}
-  //     ></EquipmentOptions>
-  //   ));
-  // };
+  const adventuringGearList = () => {
+    return equipmentData.map(item => (
+      <EquipmentOptions
+        price={item.price}
+        name={item.name}
+        key={item.name}
+      ></EquipmentOptions>
+    ));
+  };
 
   const weaponsOptions = item => {
     return (
@@ -109,21 +109,21 @@ export default function EquipmentScreen(props) {
     return weaponsData.map(item => weaponsOptions(item));
   };
 
-  // const equipmentBackpack = () => {
-  //   if (!equipment) {
-  //     return;
-  //   }
+  const equipmentBackpack = () => {
+    if (!adventuringGear) {
+      return;
+    }
 
-  //   if (equipment.length > 0) {
-  //     return joinDuplicates(equipment).map((item, index) => (
-  //       <EquipmentBackpack
-  //         name={item}
-  //         sellSelectedEquipment={sellSelectedEquipment}
-  //         key={index}
-  //       ></EquipmentBackpack>
-  //     ));
-  //   }
-  // };
+    if (adventuringGear.length > 0) {
+      return joinDuplicates(adventuringGear).map((item, index) => (
+        <EquipmentBackpack
+          name={item}
+          sellSelectedEquipment={sellSelectedAdventuringGear}
+          key={index}
+        ></EquipmentBackpack>
+      ));
+    }
+  };
 
   const weaponsBackpack = () => {
     return joinDuplicates(weapons).map((item, index) => {
@@ -167,55 +167,56 @@ export default function EquipmentScreen(props) {
     });
   };
 
-  // const updateSelectedEquipment = event => {
-  //   setEquipmentSelected(event.target.value);
-  // };
+  const updateSelectedAdventuringGear = event => {
+    setAdventuringGearSelected(event.target.value);
+  };
 
-  // const findEquipment = object => {
-  //   return object.name === equipmentSelected;
-  // };
+  const findGear = object => {
+    return object.name === adventuringGearSelected;
+  };
 
-  // const buySelectedEquipment = () => {
-  //   const equipmentObject = equipmentData.find(findEquipment);
+  const buySelectedAdventuringGear = () => {
+    const adventuringGearObject = equipmentData.find(findGear);
 
-  //   if (equipmentObject.price > gold) {
-  //     return;
-  //   }
+    if (adventuringGearObject.price > gold) {
+      return;
+    }
 
-  //   if (!equipmentObject) {
-  //     console.error(equipmentObject);
-  //   }
+    console.log(adventuringGearObject);
 
-  //   setEquipment(oldEquipment => [...oldEquipment, equipmentObject.name]);
-  //   setGold(gold - equipmentObject.price);
-  // };
+    if (!adventuringGearObject) {
+      console.error(adventuringGearObject);
+    }
 
-  // const sellSelectedEquipment = itemName => {
-  //   let equipmentObject = equipmentData.find(object => {
-  //     return itemName.includes(object.name);
-  //   });
+    setAdventuringGear([...adventuringGear, adventuringGearObject.name]);
+    setGold(gold - adventuringGearObject.price);
+  };
 
-  //   let itemsRemoved = 0;
+  const sellSelectedAdventuringGear = itemName => {
+    let adventuringGearObject = equipmentData.find(object => {
+      return itemName.includes(object.name);
+    });
 
-  //   const removeOneItem = item => {
-  //     if (itemsRemoved > 0) {
-  //       return true;
-  //     }
+    let itemsRemoved = 0;
 
-  //     if (equipmentObject.name === item) {
-  //       itemsRemoved++;
-  //       return false;
-  //     }
+    const removeOneItem = item => {
+      if (itemsRemoved > 0) {
+        return true;
+      }
 
-  //     return true;
-  //   };
+      if (adventuringGearObject.name === item) {
+        itemsRemoved++;
+        return false;
+      }
 
-  //   const newEquipmentArray = equipment.filter(removeOneItem);
+      return true;
+    };
 
-  //   setEquipment(newEquipmentArray);
+    const newAdventuringGearArray = adventuringGear.filter(removeOneItem);
 
-  //   setGold(gold + equipmentObject.price);
-  // };
+    setAdventuringGear(newAdventuringGearArray);
+    setGold(gold + adventuringGearObject.price);
+  };
 
   const updateSelectedWeapon = event => {
     setWeaponSelected(event.target.value);
@@ -371,7 +372,7 @@ export default function EquipmentScreen(props) {
 
   const selectRandomGear = () => {
     const randomGear = chooseRandomItem(equipmentData);
-    setEquipmentSelected(randomGear.name);
+    setAdventuringGearSelected(randomGear.name);
   };
 
   return (
@@ -497,7 +498,7 @@ export default function EquipmentScreen(props) {
           )}
 
           <div className="equipment-container--header">
-            {characterClass} Weapons
+            {characterClass.name} Weapons
           </div>
 
           <div className="equipment-restrictions">
@@ -531,14 +532,14 @@ export default function EquipmentScreen(props) {
 
           <div className="equipment-container--header">Adventuring Gear</div>
 
-          {/* <div className="gear-container">
+          <div className="gear-container">
             <select
               className="gear-select"
-              value={equipmentSelected}
-              onChange={updateSelectedEquipment}
+              value={adventuringGearSelected}
+              onChange={updateSelectedAdventuringGear}
               price={null}
             >
-              {equipmentList()}
+              {adventuringGearList()}
             </select>
 
             <button
@@ -552,9 +553,9 @@ export default function EquipmentScreen(props) {
               className="button--buy-gear"
               type="submit"
               value="Buy"
-              onClick={buySelectedEquipment}
+              onClick={buySelectedAdventuringGear}
             />
-          </div> */}
+          </div>
 
           <div className="inventory">
             <h3 className="header-default"> Inventory </h3>
@@ -568,27 +569,37 @@ export default function EquipmentScreen(props) {
                 <div className="weapons-backpack">{weaponsBackpack()}</div>
               )}
 
-              {/* {equipment && (
+              {adventuringGear && (
                 <div className="gear-backpack">{equipmentBackpack()}</div>
-              )} */}
+              )}
             </div>
           </div>
 
           {goldRolled && (
             <button
               className="button button--character-details"
-              // onClick={() => {
-              //   let stateObject = {
-              //     gold: gold,
-              //     equipment: equipment,
-              //     armour: armour,
-              //     weapons: weapons,
-              //     AC: armourClass,
-              //     unarmouredAC: unarmouredAC
-              //   };
-              //   props.updateParentState(stateObject);
-              //   props.showDetailsScreen();
-              // }}
+              onClick={() => {
+                const newCharacterEquipment = {
+                  armour: armour,
+                  weapons: weapons,
+                  adventuringGear: adventuringGear,
+                  gold: gold,
+
+                  AC: armourClass,
+                  unarmouredAC: unarmouredAC
+                };
+                setCharacterEquipment(newCharacterEquipment);
+                setCharacterStatistics({
+                  ...characterStatistics,
+                  armourClass: armourClass,
+                  unarmouredAC: unarmouredAC
+                });
+                setPages({
+                  ...pages,
+                  equipmentScreen: false,
+                  detailsScreen: true
+                });
+              }}
             >
               Go to Character Details
             </button>

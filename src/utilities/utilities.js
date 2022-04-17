@@ -17,7 +17,11 @@ export const getModValue = (abilityScoreName, abilityScore) => {
       break;
     case "intelligence":
       newAbilityModifiers = {
-        intelligenceModLanguages: abilityScoreMods.spokenLanguages[abilityScore]
+        intelligenceModLanguages:
+          abilityScoreMods.spokenLanguages[abilityScore],
+        intelligenceModLiteracy: abilityScoreMods.literacy[abilityScore],
+        intelligenceModExtraLanguageCount:
+          abilityScoreMods.extraLanguageCount[abilityScore]
       };
       break;
     case "dexterity":
