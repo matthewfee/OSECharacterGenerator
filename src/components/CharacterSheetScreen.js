@@ -19,7 +19,7 @@ export default function CharacterSheetScreen(props) {
   const updateLocalStorage = () => {
     const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
     // Remove console logs from your code, you may reveal sensitive data one day because of it
-    console.log("PARENT STATE ID", props.parentState.id);
+
     const id = props.parentState.id;
 
     if (myCharacters) {
@@ -27,7 +27,6 @@ export default function CharacterSheetScreen(props) {
         return obj.id === id;
       });
       if (alreadyExists) {
-        console.log("Duplicate Character ID Found");
         return;
       }
     }
@@ -37,7 +36,6 @@ export default function CharacterSheetScreen(props) {
       arr.push(props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(arr));
     } else {
-      console.log("MY CHARACTERS", myCharacters);
       myCharacters.push(props.parentState);
       window.localStorage.setItem("characters", JSON.stringify(myCharacters));
     }
@@ -79,13 +77,12 @@ export default function CharacterSheetScreen(props) {
       }
     }
 
-    console.log("CONSOLIDATED ARRAY", consolidated);
     return consolidated;
   };
 
   async function fillForm() {
     const formUrl =
-    // move all urls to consts folder/file
+      // move all urls to consts folder/file
       "https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
     const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
 
@@ -363,7 +360,7 @@ export default function CharacterSheetScreen(props) {
     portraitField.setText(portraitInfo);
 
     const fields = form.getFields();
-// Please remove commented unused code
+    // Please remove commented unused code
     // pdfDoc.save({ updateFieldAppearances: false });
 
     // const textField = fields.find(f => f instanceof PDFTextField);

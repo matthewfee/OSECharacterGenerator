@@ -27,7 +27,7 @@ export default function EquipmentScreen(props) {
     calculateAC();
 
     // update default selectedWeapon to one appropriate for class
-// those class names should come from constants file/folder
+    // those class names should come from constants file/folder
     if (props.characterClass === "Cleric") {
       setWeaponSelected("Mace");
     }
@@ -168,10 +168,9 @@ export default function EquipmentScreen(props) {
     const equipmentObject = equipmentData.find(findEquipment);
 
     if (equipmentObject.price > gold) {
-      return console.log("Insufficient funds");
+      return;
     }
 
-    console.log(equipmentObject);
     if (!equipmentObject) {
       console.error(equipmentObject);
     }
@@ -189,20 +188,14 @@ export default function EquipmentScreen(props) {
     //   return object.name === equipmentSelected;
     // };
 
-    console.log("Current Equipment Object", equipmentObject);
-
     let itemsRemoved = 0;
 
     const removeOneItem = item => {
-      console.log("removeOneItem parameter item", item);
-
       if (itemsRemoved > 0) {
-        console.log(item, "DUPLICATE FOUND");
         return true;
       }
 
       if (equipmentObject.name === item) {
-        console.log("ITEM REMOVED", item);
         itemsRemoved++;
         return false;
       }
@@ -211,13 +204,6 @@ export default function EquipmentScreen(props) {
     };
 
     const newEquipmentArray = equipment.filter(removeOneItem);
-
-    console.log(
-      "New Equipment Array",
-      newEquipmentArray,
-      "ItemsRemoved:",
-      itemsRemoved
-    );
 
     setEquipment(newEquipmentArray);
 
@@ -236,7 +222,7 @@ export default function EquipmentScreen(props) {
     const weaponObject = weaponsData.find(findWeapon);
 
     if (weaponObject.price > gold) {
-      return console.log("Insufficient funds");
+      return;
     }
 
     //updates state with new equipment item\
@@ -250,26 +236,20 @@ export default function EquipmentScreen(props) {
     if (itemName.includes(" (x")) {
       let itemNameNonConsolidated = itemName.split(" (x");
       itemName = itemNameNonConsolidated[0];
-    } else {
-      console.log("NON CONSOLIDATED ITEM");
     }
 
     const weaponObject = weaponsData.find(object => {
       return object.name === itemName;
     });
 
-    console.log("WEAPONS OBJECT", weaponObject);
-
     let itemsRemoved = 0;
 
     const removeTheItem = item => {
       if (itemsRemoved > 0) {
-        console.log("DUPLICATE FOUND");
         return true;
       }
 
       if (weaponObject.name === item) {
-        console.log(item, "ITEM REMOVED");
         itemsRemoved++;
         return false;
       }
@@ -302,11 +282,11 @@ export default function EquipmentScreen(props) {
     const armourObject = armourData.find(findArmour);
 
     if (armourObject.price > gold) {
-      return console.log("Insufficient funds");
+      return;
     }
 
     if (shieldSelected && armourObject.price + 10 > gold) {
-      return console.log("Insufficient funds");
+      return;
     }
 
     if (shieldSelected) {

@@ -12,8 +12,6 @@ export default function CharacterStorageScreen(props) {
     // let index = e.currentTarget.value;
     // let name = e.currentTarget.name;
     e.stopPropagation();
-    console.log("index", index, "action", action);
-
     switch (action) {
       case "setActiveCharacter":
         let obj = myCharacters[index];
@@ -27,21 +25,9 @@ export default function CharacterStorageScreen(props) {
         setMyCharacters(newStorage);
 
       default:
-        return console.log("CASE MISMATCH", e, index, action);
+        return;
     }
   };
-
-  // const deleteCharacter = e => {
-  //   e.stopPropagation();
-  //   let index = e.currentTarget.value;
-  //   let newStorage = [...myCharacters];
-  //   console.log("INDEX", index);
-  //   console.log("EVENT", e, "VALUE", e.currentTarget.value);
-  //   newStorage.splice(index, 1);
-  //   console.log("ORIGINAL STORAGE", myCharacters, "NEW STORAGE", newStorage);
-  //   localStorage.setItem("characters", JSON.stringify(newStorage));
-  //   setMyCharacters(newStorage);
-  // };
 
   const characterButton = (char, index) => {
     let characterStorageName = char.characterName || char.name;

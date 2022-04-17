@@ -30,7 +30,6 @@ const CharacterSheet = React.forwardRef((props, ref) => {
       }
     }
 
-    console.log("CONSOLIDATED ARRAY", consolidated);
     return consolidated;
   };
 

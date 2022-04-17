@@ -4,7 +4,7 @@ import AbilityScoreBox from "./AbilityScoreBox";
 export default function AbilityScores(props) {
   const scoreIncrease = key => {
     const keyOriginal = key + "Original";
-// use const instead of let
+    // use const instead of let
     let value = props.parentState[key];
 
     let newPointBuy = props.parentState.pointBuy - 1;
@@ -12,8 +12,8 @@ export default function AbilityScores(props) {
     let increment = 1;
 
     //check if score has already been decreased
-// you dont need it here, add it to the variable declaration
-// const increment = value < props.parentState[keyOriginal] ? 2 : 1
+    // you dont need it here, add it to the variable declaration
+    // const increment = value < props.parentState[keyOriginal] ? 2 : 1
     if (value < props.parentState[keyOriginal]) {
       increment = 2;
     }
@@ -25,9 +25,9 @@ export default function AbilityScores(props) {
     }
 
     //maximum 18
-// Add all those "magic numbers" to variable. oyu dont need to comment "maximum 18"
-// if you put it to the variable called maxValue = 18
-// https://en.wikipedia.org/wiki/Magic_number_(programming)
+    // Add all those "magic numbers" to variable. oyu dont need to comment "maximum 18"
+    // if you put it to the variable called maxValue = 18
+    // https://en.wikipedia.org/wiki/Magic_number_(programming)
     if (value === 18) {
       return;
     }

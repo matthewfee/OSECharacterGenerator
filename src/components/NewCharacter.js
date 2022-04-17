@@ -80,8 +80,8 @@ class NewCharacter extends React.Component {
       },
       id: "42"
     };
-// use axios 
-// https://github.com/axios/axios
+    // use axios
+    // https://github.com/axios/axios
     fetch("https://api.random.org/json-rpc/4/invoke", {
       method: "POST",
       headers: {
@@ -124,7 +124,6 @@ class NewCharacter extends React.Component {
     //uses default JS random number seed if randomNumber API doesn't load correctly
 
     if (this.state.randomNumbers.length < 2) {
-      console.log("ROLLING WITHOUT API");
       return this.d(3, 6);
     }
 
@@ -138,7 +137,6 @@ class NewCharacter extends React.Component {
   };
 
   reRoll = () => {
-    console.log("CHARACTER ROLLED");
     const newID = "ID_" + new Date().getTime();
 
     let newObject = {
@@ -291,7 +289,7 @@ class NewCharacter extends React.Component {
     }
     // this code is extremally unreadable
     // You should use data structures first. It happens in many parts of the code actually
-    // The right way is to have for example object like 
+    // The right way is to have for example object like
     // {
     // className: "Barbarian"
     // modifiers: {

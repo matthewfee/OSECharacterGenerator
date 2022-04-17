@@ -646,7 +646,6 @@ export default function DetailsScreen(props) {
 
   const addLanguage = () => {
     if (languages.includes(languageSelected) || languageSelected === "") {
-      console.log("Language already selected");
       return;
     }
     setLanguages(oldArray => [...oldArray, languageSelected]);
