@@ -25,7 +25,8 @@
     "react-scripts": "^4.0.0",
     "react-skeleton-css": "^1.1.0",
     "react-spinners": "^0.9.0",
-    "react-sticky": "^6.0.3"
+    "react-sticky": "^6.0.3",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

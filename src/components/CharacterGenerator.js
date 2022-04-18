@@ -24,10 +24,11 @@ import DetailsScreen from "./DetailsScreen";
 import CharacterSheetScreen from "./CharacterSheetScreen";
 import { getRandomNumbers } from "../API/getRandomNumbers";
 import CharacterStorageScreen from "./CharacterStorageScreen";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
-    id: 24,
+    id: null,
     name: null,
     languages: [],
     hasLanguages: null,
@@ -144,6 +145,10 @@ export default function CharacterGenerator() {
       newCharacterAbilityScores[score] = dieResult;
       newCharacterAbilityScores[`${score}Original`] = dieResult;
     });
+
+    const newID = uuidv4();
+
+    setCharacter({ ...character, id: newID });
 
     setAbilityScores(newCharacterAbilityScores);
     setRollButtonHover(false);

@@ -45,7 +45,7 @@ export default function CharacterSheetScreen(props) {
 
     if (myCharacters) {
       const alreadyExists = myCharacters.find(obj => {
-        return obj.id === id;
+        return obj.character.id === id;
       });
       if (alreadyExists) {
         return;
