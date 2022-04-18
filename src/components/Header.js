@@ -32,7 +32,9 @@ export default function Header(props) {
     });
   };
 
-  const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+  const myCharacters = JSON.parse(
+    window.localStorage.getItem("characterStorage")
+  );
 
   return (
     <header className={`header ${characterRolled ? "" : "header--initial"}`}>

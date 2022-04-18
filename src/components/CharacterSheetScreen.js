@@ -18,7 +18,8 @@ export default function CharacterSheetScreen(props) {
     characterClass,
     characterEquipment,
     characterModifiers,
-    abilityScores
+    abilityScores,
+    setCharacterRolled
   } = props;
   const componentRef = useRef();
 
@@ -36,7 +37,9 @@ export default function CharacterSheetScreen(props) {
   }, []);
 
   const updateLocalStorage = () => {
-    const myCharacters = JSON.parse(window.localStorage.getItem("characters"));
+    const myCharacters = JSON.parse(
+      window.localStorage.getItem("characterStorage")
+    );
 
     const id = character.id || 0;
 
@@ -50,13 +53,16 @@ export default function CharacterSheetScreen(props) {
     }
     let arr = [];
 
-    if (localStorage.getItem("characters") === null) {
+    if (localStorage.getItem("characterStorage") === null) {
       let arr = [];
       arr.push(characterDataObject);
-      window.localStorage.setItem("characters", JSON.stringify(arr));
+      window.localStorage.setItem("characterStorage", JSON.stringify(arr));
     } else {
       myCharacters.push(characterDataObject);
-      window.localStorage.setItem("characters", JSON.stringify(myCharacters));
+      window.localStorage.setItem(
+        "characterStorage",
+        JSON.stringify(myCharacters)
+      );
     }
   };
 
@@ -273,7 +279,18 @@ export default function CharacterSheetScreen(props) {
             Tavern
           </button>
 
-          {/* {/* <button onClick={resetPage}>Main</button> */}
+          <button
+            onClick={() => {
+              setPages({
+                ...pages,
+                abilityScreen: true,
+                characterSheetScreen: false
+              });
+              setCharacterRolled(false);
+            }}
+          >
+            Main
+          </button>
         </div>
       </div>
     </div>

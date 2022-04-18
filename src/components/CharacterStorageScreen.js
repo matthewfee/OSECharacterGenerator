@@ -22,7 +22,9 @@ export default function CharacterStorageScreen(props) {
   const [myCharacters, setMyCharacters] = useState([]);
 
   useEffect(() => {
-    const characters = JSON.parse(window.localStorage.getItem("characters"));
+    const characters = JSON.parse(
+      window.localStorage.getItem("characterStorage")
+    );
     setMyCharacters(characters);
   }, []);
 
@@ -30,8 +32,7 @@ export default function CharacterStorageScreen(props) {
     e.stopPropagation();
     switch (action) {
       case "setActiveCharacter":
-        const characterObject = myCharacters[index];
-
+        let characterObject = myCharacters[index];
         setCharacter(characterObject.character);
         setCharacterStatistics(characterObject.characterStatistics);
         setCharacterClass(characterObject.characterClass);
@@ -49,7 +50,7 @@ export default function CharacterStorageScreen(props) {
       case "deleteCharacter":
         let newStorage = [...myCharacters];
         newStorage.splice(index, 1);
-        localStorage.setItem("characters", JSON.stringify(newStorage));
+        localStorage.setItem("characterStorage", JSON.stringify(newStorage));
         setMyCharacters(newStorage);
 
       default:
@@ -60,19 +61,6 @@ export default function CharacterStorageScreen(props) {
   const characterButton = (char, index) => {
     let characterStorageName = char.character.name;
 
-    // if (characterStorageName === "") {
-    //   return (
-    //     <button
-    //       className="character-button"
-    //       key={index}
-    //       value={index}
-    //       name="setActiveCharacter"
-    //       onClick={e => handleCharacter(e, index, "setActiveCharacter")}
-    //     >
-    //       Unnamed
-    //     </button>
-    //   );
-    // }
     return (
       <button
         className="character-button"
@@ -119,6 +107,7 @@ export default function CharacterStorageScreen(props) {
             abilityScreen: true,
             characterStorageScreen: false
           });
+          setCharacterRolled(false);
         }}
       >
         Back to Main

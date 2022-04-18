@@ -153,8 +153,6 @@ export default function CharacterGenerator() {
   };
 
   const changeCharacterClass = event => {
-    //resetCharacter
-
     let characterClass = classOptionsData.find(
       obj => obj.name === event.target.value
     );
@@ -260,6 +258,7 @@ export default function CharacterGenerator() {
             characterEquipment={characterEquipment}
             characterModifiers={characterModifiers}
             abilityScores={abilityScores}
+            setCharacterRolled={setCharacterRolled}
           ></CharacterSheetScreen>
         )}
 

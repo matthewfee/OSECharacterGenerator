@@ -4,6 +4,7 @@ import {
   abilityScoreNames,
   primeRequisiteModifiers
 } from "../constants/constants";
+import classOptionsData from "../data/classOptionsData";
 
 export const getModValue = (abilityScoreName, abilityScore) => {
   let newAbilityModifiers = {};
@@ -90,7 +91,13 @@ export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
     const secondAbilityName = characterClass.primeReqs[1];
     const secondAbilityScoreValue = abilityScoreValues[secondAbilityName];
 
-    primeReqPercentage = characterClass.checkPrimeReqRequirements(
+    //find data object to match class
+
+    let characterClassData = classOptionsData.find(item => {
+      return item.name === characterClass.name;
+    });
+
+    primeReqPercentage = characterClassData.checkPrimeReqRequirements(
       firstAbilityScoreValue,
       secondAbilityScoreValue
     );
