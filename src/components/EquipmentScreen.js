@@ -77,7 +77,7 @@ export default function EquipmentScreen(props) {
 
   const getGold = () => {
     const goldRolled = d6(3, randomNumbers) * 10;
-    console.log(goldRolled, "GOLD");
+
     setGold(goldRolled);
     setGoldRolled(true);
   };

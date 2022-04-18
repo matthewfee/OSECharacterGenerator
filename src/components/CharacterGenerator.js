@@ -20,16 +20,20 @@ import ClassOptions from "./ClassOptions";
 import NavBar from "./NavBar";
 import ClassScreen from "./ClassScreen";
 import EquipmentScreen from "./EquipmentScreen";
+import DetailsScreen from "./DetailsScreen";
+import CharacterSheetScreen from "./CharacterSheetScreen";
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
-    id: null,
+    id: 24,
     name: null,
     languages: [],
+    hasLanguages: null,
     personality: null,
     misfortune: null,
     appearance: null,
-    backgroundSkill: null
+    backgroundSkill: null,
+    alignment: null
   });
 
   const [abilityScores, setAbilityScores] = useState({
@@ -264,8 +268,21 @@ export default function CharacterGenerator() {
             character={character}
             setCharacter={setCharacter}
             characterClass={characterClass}
-            characterModifiers={setCharacterModifiers}
+            characterModifiers={characterModifiers}
           ></DetailsScreen>
+        )}
+
+        {pages.characterSheetScreen && (
+          <CharacterSheetScreen
+            pages={pages}
+            setPages={setPages}
+            character={character}
+            characterStatistics={characterStatistics}
+            characterClass={characterClass}
+            characterEquipment={characterEquipment}
+            characterModifiers={characterModifiers}
+            abilityScores={abilityScores}
+          ></CharacterSheetScreen>
         )}
       </div>
     </div>
