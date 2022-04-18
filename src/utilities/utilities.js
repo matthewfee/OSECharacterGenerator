@@ -72,13 +72,30 @@ export const updateAbilityModifiers = abilityScoreValues => {
 export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
   //generates the correct prime req by matching a class to a prime requisite
 
-  const firstPrimeRequisiteAbility = characterClass.primeReqs[0];
+  const firstAbilityName = characterClass.primeReqs[0];
+  const firstAbilityScoreValue = abilityScoreValues[firstAbilityName];
 
-  const primeReqAbilityScore = abilityScoreValues[firstPrimeRequisiteAbility];
+  let primeReqPercentage = 0;
 
-  const primeReqValue = primeRequisiteModifiers[primeReqAbilityScore];
+  if (characterClass.primeReqs.length === 1) {
+    const primeReqValue = primeRequisiteModifiers[firstAbilityScoreValue];
 
-  return primeReqValue;
+    primeReqPercentage = primeReqValue;
+  }
+
+  if (characterClass.primeReqs.length > 1) {
+    const secondAbilityName = characterClass.primeReqs[1];
+    const secondAbilityScoreValue = abilityScoreValues[secondAbilityName];
+
+    primeReqPercentage = characterClass.checkPrimeReqRequirements(
+      firstAbilityScoreValue,
+      secondAbilityScoreValue
+    );
+  }
+
+  primeReqPercentage = primeReqPercentage + "%";
+
+  return primeReqPercentage;
 };
 
 export const getRndInteger = (min, max) => {

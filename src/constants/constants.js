@@ -1,3 +1,14 @@
+// URLS
+
+export const CHARACTER_SHEET_PURIST_URL =
+  "https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
+
+export const CHARACTER_SHEET_UNDERGROUND_URL =
+  "https://matthewfee.github.io/OSECharacterServer/public/Underground10.pdf";
+
+export const RANDOM_NUMBERS_API_URL =
+  "https://api.random.org/json-rpc/4/invoke";
+
 export const abilityScoreNames = [
   "strength",
   "intelligence",
@@ -11,22 +22,22 @@ export const primeRequisiteModifiers = [
   null,
   null,
   null,
-  "-20%",
-  "-20%",
-  "-20%",
-  "-10%",
-  "-10%",
-  "-10%",
-  "+0%",
-  "+0%",
-  "+0%",
-  "+0%",
-  "+5%",
-  "+5%",
-  "+5%",
-  "+10%",
-  "+10%",
-  "+10%"
+  -20,
+  -20,
+  -20,
+  -10,
+  -10,
+  -10,
+  0,
+  0,
+  0,
+  0,
+  5,
+  5,
+  5,
+  10,
+  10,
+  10
 ];
 
 //strings for class names

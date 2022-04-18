@@ -1,13 +1,6 @@
-import React from "react";
+import { RANDOM_NUMBERS_API_URL } from "../constants/constants";
 
-export default function getRandomNumbers(props) {
-  const {
-    randomNumbers,
-    setRandomNumbers,
-    loadingRandomNumbers,
-    setLoadingRandomNumbers
-  } = props;
-
+export async function getRandomNumbers() {
   const requestBody = {
     jsonrpc: "2.0",
     method: "generateIntegers",
@@ -21,24 +14,25 @@ export default function getRandomNumbers(props) {
   };
   // use axios
   // https://github.com/axios/axios
-  fetch("https://api.random.org/json-rpc/4/invoke", {
+  const response = await fetch(RANDOM_NUMBERS_API_URL, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
     body: JSON.stringify(requestBody)
-  })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data.result.random.data);
-      setRandomNumbers(data.result.random.data);
-      setLoadingRandomNumbers(false);
-    })
-    .catch(error => {
-      console.error(error);
-      setLoadingRandomNumbers(false);
-    });
+  });
+
+  const data = await response.json();
+  return data.result.random.data;
+
+  // .then(res => res.json())
+  // .then(data => {
+  //   return data.result.random.data;
+  // })
+  // .catch(error => {
+  //   return console.error(error);
+  // });
 
   return;
 }

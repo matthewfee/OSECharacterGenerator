@@ -1,6 +1,7 @@
 import React from "react";
 import classOptionsData from "../data/classOptionsData";
 import { joinDuplicates } from "../utilities/utilities";
+import { abilityScoreNames } from "../constants/constants";
 
 // export default function
 
@@ -47,42 +48,16 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     });
   };
 
+  const generateAbilityScores = () => {
+    let array = abilityScoreNames;
+  };
+
   return (
     <div ref={ref} className="character-sheet-component">
       <h3 className="character--name">{character.name}</h3>
       <h4 className="character--subheader"> Level 1 {characterClass.name}</h4>
       <div className="character-sheet">
-        <div className="character-top-container">
-          {getCharacterFields()}
-          {/* <div className="alignment character-container">
-            <span className="charsheet-value-name">Alignment</span>{" "}
-            <span className="charsheet-value">{alignmentCapitalized}</span>{" "}
-          </div> */}
-          {/* Whenever you have a repetetive code like this think about
-          changing it to a data structure and then rendering it with .map() */}
-          {/* <div className="background character-container">
-            <span className="charsheet-value-name">Background Skill</span>{" "}
-            <span className="charsheet-value">{char.background}</span>
-          </div>
-          <div className="appearance character-container">
-            <span className="charsheet-value-name">Appearance</span>{" "}
-            <span className="charsheet-value">{char.appearance}</span>
-          </div>
-          <div className="personality character-container">
-            <span className="charsheet-value-name">Personality</span>{" "}
-            <span className="charsheet-value">{char.personality}</span>
-          </div>
-
-          <div className="misfortune character-container">
-            <span className="charsheet-value-name">Misfortune</span>{" "}
-            <span className="charsheet-value">{char.misfortune}</span>
-          </div>
-
-          <div className="languages character-container">
-            <span className="charsheet-value-name">Languages</span>{" "}
-            <span className="charsheet-value">{languageText}</span>
-          </div> */}
-        </div>
+        <div className="character-top-container">{getCharacterFields()}</div>
 
         <div className="ability-scores-container">
           <div className="strength character-container">

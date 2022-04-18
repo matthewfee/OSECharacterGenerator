@@ -22,6 +22,8 @@ import ClassScreen from "./ClassScreen";
 import EquipmentScreen from "./EquipmentScreen";
 import DetailsScreen from "./DetailsScreen";
 import CharacterSheetScreen from "./CharacterSheetScreen";
+import { getRandomNumbers } from "../API/getRandomNumbers";
+import CharacterStorageScreen from "./CharacterStorageScreen";
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
@@ -113,41 +115,16 @@ export default function CharacterGenerator() {
 
   const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false);
 
-  const getRandomNumbers = () => {
-    const requestBody = {
-      jsonrpc: "2.0",
-      method: "generateIntegers",
-      params: {
-        apiKey: process.env.REACT_APP_API_KEY,
-        n: "70",
-        min: "1",
-        max: "6"
-      },
-      id: "42"
-    };
-    // use axios
-    // https://github.com/axios/axios
-    fetch("https://api.random.org/json-rpc/4/invoke", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(requestBody)
-    })
-      .then(res => res.json())
-      .then(data => {
-        setRandomNumbers(data.result.random.data);
-        setLoadingRandomNumbers(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setLoadingRandomNumbers(false);
-      });
+  const loadRandomNumbers = async function() {
+    const randomNumbers = await getRandomNumbers();
+    if (randomNumbers) {
+      setRandomNumbers(randomNumbers);
+    }
+    setLoadingRandomNumbers(false);
   };
 
   useEffect(() => {
-    getRandomNumbers();
+    loadRandomNumbers();
   }, []);
 
   useEffect(() => {
@@ -283,6 +260,19 @@ export default function CharacterGenerator() {
             characterModifiers={characterModifiers}
             abilityScores={abilityScores}
           ></CharacterSheetScreen>
+        )}
+
+        {pages.characterStorageScreen && (
+          <CharacterStorageScreen
+            pages={pages}
+            setPages={setPages}
+            character={character}
+            characterStatistics={characterStatistics}
+            characterClass={characterClass}
+            characterEquipment={characterEquipment}
+            characterModifiers={characterModifiers}
+            abilityScores={abilityScores}
+          ></CharacterStorageScreen>
         )}
       </div>
     </div>
