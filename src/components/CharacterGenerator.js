@@ -170,6 +170,7 @@ export default function CharacterGenerator() {
         loadingRandomNumbers={loadingRandomNumbers}
         setLoadingRandomNumbers={setLoadingRandomNumbers}
         characterRolled={characterRolled}
+        setCharacterRolled={setCharacterRolled}
         rollCharacter={rollCharacter}
         pages={pages}
         setPages={setPages}
@@ -267,11 +268,18 @@ export default function CharacterGenerator() {
             pages={pages}
             setPages={setPages}
             character={character}
+            setCharacter={setCharacter}
             characterStatistics={characterStatistics}
+            setCharacterStatistics={setCharacterStatistics}
             characterClass={characterClass}
+            setCharacterClass={setCharacterClass}
             characterEquipment={characterEquipment}
+            setCharacterEquipment={setCharacterEquipment}
             characterModifiers={characterModifiers}
+            setCharacterModifiers={setCharacterModifiers}
             abilityScores={abilityScores}
+            setAbilityScores={setAbilityScores}
+            setCharacterRolled={setCharacterRolled}
           ></CharacterStorageScreen>
         )}
       </div>

@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from "react";
 
 export default function CharacterStorageScreen(props) {
-  const [myCharacters, setMyCharacters] = useState(undefined);
+  const {
+    pages,
+    setPages,
+    character,
+    setCharacter,
+    characterStatistics,
+    setCharacterStatistics,
+    characterClass,
+    setCharacterClass,
+    characterEquipment,
+    setCharacterEquipment,
+    characterModifiers,
+    setCharacterModifiers,
+    abilityScores,
+    setAbilityScores,
+    setCharacterRolled
+  } = props;
+
+  const [myCharacters, setMyCharacters] = useState([]);
 
   useEffect(() => {
     const characters = JSON.parse(window.localStorage.getItem("characters"));
@@ -12,9 +30,21 @@ export default function CharacterStorageScreen(props) {
     e.stopPropagation();
     switch (action) {
       case "setActiveCharacter":
-        let obj = myCharacters[index];
-        props.updateParentState(obj);
-        props.showCharacterSheetScreen();
+        const characterObject = myCharacters[index];
+
+        setCharacter(characterObject.character);
+        setCharacterStatistics(characterObject.characterStatistics);
+        setCharacterClass(characterObject.characterClass);
+        setCharacterEquipment(characterObject.characterEquipment);
+        setCharacterModifiers(characterObject.characterModifiers);
+        setAbilityScores(characterObject.abilityScores);
+        setCharacterRolled(true);
+
+        setPages({
+          ...pages,
+          characterSheetScreen: true,
+          characterStorageScreen: false
+        });
 
       case "deleteCharacter":
         let newStorage = [...myCharacters];
@@ -28,21 +58,21 @@ export default function CharacterStorageScreen(props) {
   };
 
   const characterButton = (char, index) => {
-    let characterStorageName = char.characterName || char.name;
+    let characterStorageName = char.character.name;
 
-    if (characterStorageName === "") {
-      return (
-        <button
-          className="character-button"
-          key={index}
-          value={index}
-          name="setActiveCharacter"
-          onClick={e => handleCharacter(e, index, "setActiveCharacter")}
-        >
-          Unnamed
-        </button>
-      );
-    }
+    // if (characterStorageName === "") {
+    //   return (
+    //     <button
+    //       className="character-button"
+    //       key={index}
+    //       value={index}
+    //       name="setActiveCharacter"
+    //       onClick={e => handleCharacter(e, index, "setActiveCharacter")}
+    //     >
+    //       Unnamed
+    //     </button>
+    //   );
+    // }
     return (
       <button
         className="character-button"
@@ -55,7 +85,7 @@ export default function CharacterStorageScreen(props) {
           {characterStorageName}
         </div>
         <div className="character-button--level" value={index}>
-          {char.characterClass}
+          {char.characterClass.name}
         </div>
 
         <div
@@ -83,7 +113,13 @@ export default function CharacterStorageScreen(props) {
 
       <button
         className="button--new-character"
-        onClick={props.showAbilityScreen}
+        onClick={() => {
+          setPages({
+            ...pages,
+            abilityScreen: true,
+            characterStorageScreen: false
+          });
+        }}
       >
         Back to Main
       </button>

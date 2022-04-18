@@ -5,6 +5,7 @@ import { css } from "@emotion/react";
 export default function Header(props) {
   const {
     characterRolled,
+    setCharacterRolled,
     rollButtonHover,
     setRollButtonHover,
     loadingRandomNumbers,
@@ -67,7 +68,14 @@ export default function Header(props) {
           className={`button button--storage button-primary ${
             rollButtonHover ? "fade" : ""
           }`}
-          onClick={showStorageSheetScreen}
+          onClick={() => {
+            setPages({
+              ...pages,
+              abilityScreen: false,
+              characterStorageScreen: true
+            });
+            setCharacterRolled(true);
+          }}
         >
           Tavern
         </button>

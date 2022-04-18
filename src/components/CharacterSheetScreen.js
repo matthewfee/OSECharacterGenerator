@@ -27,6 +27,7 @@ export default function CharacterSheetScreen(props) {
     characterStatistics,
     characterClass,
     characterEquipment,
+    characterModifiers,
     abilityScores
   };
 
@@ -260,8 +261,19 @@ export default function CharacterSheetScreen(props) {
         <h3 className="header-default header-pdf">Navigation</h3>
 
         <div className="navigation">
-          {/* <button onClick={props.showStorageSheetScreen}>Tavern</button> */}
-          {/* <button onClick={resetPage}>Main</button> */}
+          <button
+            onClick={() => {
+              setPages({
+                ...pages,
+                characterStorageScreen: true,
+                characterSheetScreen: false
+              });
+            }}
+          >
+            Tavern
+          </button>
+
+          {/* {/* <button onClick={resetPage}>Main</button> */}
         </div>
       </div>
     </div>

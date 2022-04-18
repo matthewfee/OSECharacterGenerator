@@ -77,11 +77,14 @@ export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
 
   let primeReqPercentage = 0;
 
+  //if class has only one prime requisite, we use the standard calculation
+
   if (characterClass.primeReqs.length === 1) {
     const primeReqValue = primeRequisiteModifiers[firstAbilityScoreValue];
-
     primeReqPercentage = primeReqValue;
   }
+
+  //if class has more than one prime requisite, then we need to check the specific class rules for calculating
 
   if (characterClass.primeReqs.length > 1) {
     const secondAbilityName = characterClass.primeReqs[1];
