@@ -5,12 +5,36 @@ import armourData from "../data/armourData";
 import classOptionsData from "../data/classOptionsData";
 import EquipmentOptions from "./EquipmentOptions";
 import EquipmentBackpack from "./EquipmentBackpack";
+import {
+  Cleric,
+  Elf,
+  Fighter,
+  Thief,
+  MagicUser,
+  Dwarf,
+  Halfling
+} from "../constants/constants";
+import { joinDuplicates, chooseRandomItem, d6 } from "../utilities/utilities";
 
 export default function EquipmentScreen(props) {
+  const {
+    characterClass,
+    pages,
+    setPages,
+    characterModifiers,
+    characterStatistics,
+    setCharacterStatistics,
+    characterEquipment,
+    setCharacterEquipment,
+    randomNumbers
+  } = props;
+
   const [gold, setGold] = useState(null);
   const [goldRolled, setGoldRolled] = useState(false);
-  const [equipment, setEquipment] = useState([]);
-  const [equipmentSelected, setEquipmentSelected] = useState("Backpack");
+  const [adventuringGear, setAdventuringGear] = useState([]);
+  const [adventuringGearSelected, setAdventuringGearSelected] = useState(
+    "Backpack"
+  );
   const [armour, setArmour] = useState([]);
   const [armourSelected, setArmourSelected] = useState(null);
   const [shieldSelected, setShieldSelected] = useState(false);
@@ -20,31 +44,29 @@ export default function EquipmentScreen(props) {
   const [unarmouredAC, setUnarmouredAC] = useState();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-
     //calculate base armour class
 
     calculateAC();
 
     // update default selectedWeapon to one appropriate for class
-    // those class names should come from constants file/folder
-    if (props.characterClass === "Cleric") {
+
+    if (characterClass.name === Cleric) {
       setWeaponSelected("Mace");
     }
 
-    if (props.characterClass === "Fighter") {
+    if (characterClass.name === Fighter) {
       setWeaponSelected("Sword");
     }
 
-    if (props.characterClass === "Elf") {
+    if (characterClass.name === Elf) {
       setWeaponSelected("Long bow");
     }
 
-    if (props.characterClass === "Dwarf") {
+    if (characterClass.name === Dwarf) {
       setWeaponSelected("Battle axe");
     }
 
-    if (props.characterClass === "Halfling") {
+    if (characterClass.name === Halfling) {
       setWeaponSelected("Sling");
     }
   }, []);
@@ -53,25 +75,14 @@ export default function EquipmentScreen(props) {
     calculateAC();
   }, [armour]);
 
-  const getRndInteger = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-
   const getGold = () => {
-    setGold(props.gold);
+    const goldRolled = d6(3, randomNumbers) * 10;
+
+    setGold(goldRolled);
     setGoldRolled(true);
   };
 
-  const d = (how_many, sides) => {
-    let total = 0;
-    let i;
-    for (i = 0; i < how_many; i++) {
-      total += getRndInteger(1, sides);
-    }
-    return total;
-  };
-
-  const equipmentList = () => {
+  const adventuringGearList = () => {
     return equipmentData.map(item => (
       <EquipmentOptions
         price={item.price}
@@ -99,15 +110,15 @@ export default function EquipmentScreen(props) {
   };
 
   const equipmentBackpack = () => {
-    if (!equipment) {
+    if (!adventuringGear) {
       return;
     }
 
-    if (equipment.length > 0) {
-      return joinDuplicates(equipment).map((item, index) => (
+    if (adventuringGear.length > 0) {
+      return joinDuplicates(adventuringGear).map((item, index) => (
         <EquipmentBackpack
           name={item}
-          sellSelectedEquipment={sellSelectedEquipment}
+          sellSelectedEquipment={sellSelectedAdventuringGear}
           key={index}
         ></EquipmentBackpack>
       ));
@@ -156,37 +167,35 @@ export default function EquipmentScreen(props) {
     });
   };
 
-  const updateSelectedEquipment = event => {
-    setEquipmentSelected(event.target.value);
+  const updateSelectedAdventuringGear = event => {
+    setAdventuringGearSelected(event.target.value);
   };
 
-  const findEquipment = object => {
-    return object.name === equipmentSelected;
+  const findGear = object => {
+    return object.name === adventuringGearSelected;
   };
 
-  const buySelectedEquipment = () => {
-    const equipmentObject = equipmentData.find(findEquipment);
+  const buySelectedAdventuringGear = () => {
+    const adventuringGearObject = equipmentData.find(findGear);
 
-    if (equipmentObject.price > gold) {
+    if (adventuringGearObject.price > gold) {
       return;
     }
 
-    if (!equipmentObject) {
-      console.error(equipmentObject);
+    console.log(adventuringGearObject);
+
+    if (!adventuringGearObject) {
+      console.error(adventuringGearObject);
     }
 
-    setEquipment(oldEquipment => [...oldEquipment, equipmentObject.name]);
-    setGold(gold - equipmentObject.price);
+    setAdventuringGear([...adventuringGear, adventuringGearObject.name]);
+    setGold(gold - adventuringGearObject.price);
   };
 
-  const sellSelectedEquipment = itemName => {
-    let equipmentObject = equipmentData.find(object => {
+  const sellSelectedAdventuringGear = itemName => {
+    let adventuringGearObject = equipmentData.find(object => {
       return itemName.includes(object.name);
     });
-
-    // const findEquipment = object => {
-    //   return object.name === equipmentSelected;
-    // };
 
     let itemsRemoved = 0;
 
@@ -195,7 +204,7 @@ export default function EquipmentScreen(props) {
         return true;
       }
 
-      if (equipmentObject.name === item) {
+      if (adventuringGearObject.name === item) {
         itemsRemoved++;
         return false;
       }
@@ -203,11 +212,10 @@ export default function EquipmentScreen(props) {
       return true;
     };
 
-    const newEquipmentArray = equipment.filter(removeOneItem);
+    const newAdventuringGearArray = adventuringGear.filter(removeOneItem);
 
-    setEquipment(newEquipmentArray);
-
-    setGold(gold + equipmentObject.price);
+    setAdventuringGear(newAdventuringGearArray);
+    setGold(gold + adventuringGearObject.price);
   };
 
   const updateSelectedWeapon = event => {
@@ -224,8 +232,6 @@ export default function EquipmentScreen(props) {
     if (weaponObject.price > gold) {
       return;
     }
-
-    //updates state with new equipment item\
 
     setGold(gold - weaponObject.price);
 
@@ -329,7 +335,7 @@ export default function EquipmentScreen(props) {
   const calculateAC = () => {
     let armourClass = 10;
 
-    let dexMod = props.dexterityModAC;
+    let dexMod = characterModifiers.dexterityModAC;
     if (dexMod.includes("+")) {
       dexMod = dexMod.substring(1);
     }
@@ -343,14 +349,14 @@ export default function EquipmentScreen(props) {
 
     setUnarmouredAC(armourClass);
 
-    if (armour.includes("Leather")) {
-      armourClass += 2;
+    if (armour.includes("Plate mail")) {
+      armourClass += 6;
     }
     if (armour.includes("Chainmail")) {
       armourClass += 4;
     }
-    if (armour.includes("Plate mail")) {
-      armourClass += 6;
+    if (armour.includes("Leather")) {
+      armourClass += 2;
     }
     if (armour.includes("Shield")) {
       armourClass += 1;
@@ -359,44 +365,14 @@ export default function EquipmentScreen(props) {
     setArmourClass(armourClass);
   };
 
-  const characterClass = classOptionsData.find(
-    obj => obj.name === props.characterClass
-  );
-
-  const choose = array => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
-
   const selectRandomWeapon = () => {
-    let randomWeapon = choose(weaponsData);
+    const randomWeapon = chooseRandomItem(weaponsData);
     setWeaponSelected(randomWeapon.name);
   };
 
   const selectRandomGear = () => {
-    let randomGear = choose(equipmentData);
-    setEquipmentSelected(randomGear.name);
-  };
-
-  const joinDuplicates = array => {
-    let stuff = {};
-    for (let i = 0; i < array.length; i++) {
-      if (stuff.hasOwnProperty(array[i])) {
-        stuff[array[i]] += 1;
-      } else {
-        stuff[array[i]] = 1;
-      }
-    }
-    let consolidated = [];
-    const keys = Object.keys(stuff);
-    for (const key of keys) {
-      if (stuff[key] > 1) {
-        consolidated.push(`${key} (x${stuff[key]})`);
-      } else {
-        consolidated.push(key);
-      }
-    }
-
-    return consolidated;
+    const randomGear = chooseRandomItem(equipmentData);
+    setAdventuringGearSelected(randomGear.name);
   };
 
   return (
@@ -405,7 +381,6 @@ export default function EquipmentScreen(props) {
 
       <div className="gold-container">
         <h5 className="gold">
-          {" "}
           {gold} gp
           {gold === null && (
             <button
@@ -423,7 +398,7 @@ export default function EquipmentScreen(props) {
           {!characterClass.armour.includes("none") && (
             <div className="armour-container-parent">
               <div className="equipment-container--header">
-                {props.characterClass} Armour
+                {characterClass.name} Armour
               </div>
 
               <div className="equipment-restrictions">
@@ -523,7 +498,7 @@ export default function EquipmentScreen(props) {
           )}
 
           <div className="equipment-container--header">
-            {props.characterClass} Weapons
+            {characterClass.name} Weapons
           </div>
 
           <div className="equipment-restrictions">
@@ -560,11 +535,11 @@ export default function EquipmentScreen(props) {
           <div className="gear-container">
             <select
               className="gear-select"
-              value={equipmentSelected}
-              onChange={updateSelectedEquipment}
+              value={adventuringGearSelected}
+              onChange={updateSelectedAdventuringGear}
               price={null}
             >
-              {equipmentList()}
+              {adventuringGearList()}
             </select>
 
             <button
@@ -578,7 +553,7 @@ export default function EquipmentScreen(props) {
               className="button--buy-gear"
               type="submit"
               value="Buy"
-              onClick={buySelectedEquipment}
+              onClick={buySelectedAdventuringGear}
             />
           </div>
 
@@ -594,7 +569,7 @@ export default function EquipmentScreen(props) {
                 <div className="weapons-backpack">{weaponsBackpack()}</div>
               )}
 
-              {equipment && (
+              {adventuringGear && (
                 <div className="gear-backpack">{equipmentBackpack()}</div>
               )}
             </div>
@@ -604,16 +579,26 @@ export default function EquipmentScreen(props) {
             <button
               className="button button--character-details"
               onClick={() => {
-                let stateObject = {
-                  gold: gold,
-                  equipment: equipment,
+                const newCharacterEquipment = {
                   armour: armour,
                   weapons: weapons,
+                  adventuringGear: adventuringGear,
+                  gold: gold,
+
                   AC: armourClass,
                   unarmouredAC: unarmouredAC
                 };
-                props.updateParentState(stateObject);
-                props.showDetailsScreen();
+                setCharacterEquipment(newCharacterEquipment);
+                setCharacterStatistics({
+                  ...characterStatistics,
+                  armourClass: armourClass,
+                  unarmouredAC: unarmouredAC
+                });
+                setPages({
+                  ...pages,
+                  equipmentScreen: false,
+                  detailsScreen: true
+                });
               }}
             >
               Go to Character Details
@@ -624,4 +609,3 @@ export default function EquipmentScreen(props) {
     </div>
   );
 }
-// The whole component is too big, find a way to chunk it into smaller components

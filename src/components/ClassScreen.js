@@ -1,7 +1,19 @@
 import React, { useState, useEffect } from "react";
 import classOptionsData from "../data/classOptionsData";
+import { d, chooseRandomItem } from "../utilities/utilities";
 
 export default function ClassScreen(props) {
+  const {
+    pages,
+    setPages,
+    characterClass,
+    character,
+    setCharacter,
+    characterStatistics,
+    setCharacterStatistics,
+    characterModifiers
+  } = props;
+
   const [hitPoints, setHitPoints] = useState(null);
   const [HPResult, setHPResult] = useState(null);
   const [canReroll, setCanReroll] = useState(true);
@@ -13,17 +25,13 @@ export default function ClassScreen(props) {
     getHitDie();
   }, []);
 
-  const characterClass = classOptionsData.find(
-    obj => obj.name === props.characterClass
-  );
-
   const getHitDie = () => {
     return setHitDie(characterClass.hd);
   };
 
   const getHitPoints = () => {
-    let HPResult = props.d(1, hitDie);
-    let totalHP = HPResult + props.conMod;
+    let HPResult = d(1, hitDie);
+    let totalHP = HPResult + parseInt(characterModifiers.constitutionMod);
     let HPRollsNew = HPRolls + 1;
 
     if (totalHP < 1) {
@@ -38,25 +46,17 @@ export default function ClassScreen(props) {
     setHPRolls(HPRollsNew);
   };
 
-  const choose = array => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
-
   const chooseSpells = () => {
-    let characterClass = classOptionsData.find(
-      obj => obj.name === props.characterClass
-    );
-
     if (characterClass.arcaneSpells) {
-      return choose(magicUserSpells);
+      return chooseRandomItem(magicUserSpells);
     }
 
     if (characterClass.druidSpells) {
-      return choose(druidSpells);
+      return chooseRandomItem(druidSpells);
     }
 
     if (characterClass.illusionistSpells) {
-      return choose(illusionistSpells);
+      return chooseRandomItem(illusionistSpells);
     }
 
     return "No Spells Found";
@@ -104,15 +104,15 @@ export default function ClassScreen(props) {
   ];
 
   const spellOption = spell => {
-    return <option value={spell}>{spell}</option>;
+    return (
+      <option key={spell} value={spell}>
+        {spell}
+      </option>
+    );
   };
 
   const spellsList = () => {
     let spellList = "";
-
-    let characterClass = classOptionsData.find(
-      obj => obj.name === props.characterClass
-    );
 
     if (characterClass.arcaneSpells) {
       spellList = magicUserSpells.map(spell => {
@@ -139,36 +139,39 @@ export default function ClassScreen(props) {
     setSpellSelected(event.target.value);
   };
 
-  let stateObject = {
-    hitPoints: hitPoints,
-    spells: spellSelected,
-    hasSpells: false
-  };
+  // let stateObject = {
+  //   hitPoints: hitPoints,
+  //   spells: spellSelected,
+  //   hasSpells: false
+  // };
 
-  if (spellSelected.length > 1) {
-    stateObject = {
-      hitPoints: hitPoints,
-      spells: spellSelected,
-      hasSpells: true
-    };
-  }
+  // if (spellSelected.length > 1) {
+  //   stateObject.hasSpells = true;
+  // }
 
-  let charClass = classOptionsData.find(
-    obj => obj.name === props.characterClass
-  );
+  const hasSpells =
+    characterClass.arcaneSpells ||
+    characterClass.divineSpells ||
+    characterClass.illusionistSpells ||
+    characterClass.druidSpells
+      ? true
+      : false;
 
   return (
     <div className="class-options-screen">
       <h3 className="header-default">Class Options</h3>
 
-      {canReroll && (
-        <button
-          className="button button-primary button--hp"
-          onClick={() => setTimeout(getHitPoints(), 200)}
-        >
-          {HPRolls === 0 ? "Roll HP" : "Reroll?"}
-        </button>
-      )}
+      <button
+        className="button button-primary button--hp"
+        onClick={() => setTimeout(getHitPoints(), 200)}
+        disabled={!canReroll}
+        style={{
+          fontSize: canReroll ? "" : "4rem"
+        }}
+      >
+        {canReroll && `${HPRolls === 0 ? "Roll HP" : "Reroll?"}`}
+        {!canReroll && hitPoints}
+      </button>
 
       <div className="hp-container container">
         <div className="hp-container--hit-die">
@@ -186,8 +189,7 @@ export default function ClassScreen(props) {
         <div className="hp-container--math">+</div>
 
         <div className="hp-container--con-mod">
-          {" "}
-          {props.conMod}
+          {characterModifiers.constitutionMod}
           <div className="hp-container--con-mod-name">Con Mod</div>
         </div>
 
@@ -202,8 +204,7 @@ export default function ClassScreen(props) {
       {hitPoints && (
         <div className="saving-throws-menu">
           <h5 className="saving-throws-menu--header">
-            {" "}
-            {props.characterClass} Saving Throws
+            {characterClass.name} Saving Throws
           </h5>
 
           <div className="saving-throws container">
@@ -239,7 +240,7 @@ export default function ClassScreen(props) {
         <div className="class-ability-menu">
           <h5 className="class-ability-menu--header">
             {" "}
-            {props.characterClass} Abilities
+            {characterClass.name} Abilities
           </h5>
 
           <div className="class-ability-menu--abilities">
@@ -257,39 +258,42 @@ export default function ClassScreen(props) {
         </div>
       )}
 
-      {hitPoints &&
-        (charClass.arcaneSpells ||
-          charClass.druidSpells ||
-          charClass.illusionistSpells) && (
-          <div className="spell-selection-menu">
-            <h5 className="class-ability-menu--header">
-              {props.characterClass} Spells
-            </h5>
-            <select
-              className="spells-select"
-              value={spellSelected}
-              onChange={handleSpellChange}
-            >
-              <option value="" disabled>
-                Select Spell
-              </option>
-              {spellsList()}
-            </select>
-            <button
-              className="button--random-spell"
-              onClick={() => setSpellSelected(chooseSpells())}
-            >
-              Random Spell
-            </button>
-          </div>
-        )}
+      {hitPoints && hasSpells && (
+        <div className="spell-selection-menu">
+          <h5 className="class-ability-menu--header">
+            {characterClass.name} Spells
+          </h5>
+          <select
+            className="spells-select"
+            value={spellSelected}
+            onChange={handleSpellChange}
+          >
+            <option value="" disabled>
+              Select Spell
+            </option>
+            {spellsList()}
+          </select>
+          <button
+            className="button--random-spell"
+            onClick={() => setSpellSelected(chooseSpells())}
+          >
+            Random Spell
+          </button>
+        </div>
+      )}
 
       {hitPoints > 0 && (
         <button
           className="button button--equipment-options"
           onClick={() => {
-            props.updateParentState(stateObject);
-            props.showEquipmentScreen();
+            setCharacterStatistics({
+              ...characterStatistics,
+              hitPoints: hitPoints,
+              hasSpells: hasSpells,
+              spell: spellSelected
+            });
+
+            setPages({ ...pages, equipmentScreen: true, classScreen: false });
           }}
         >
           Go to Equipment

@@ -1,105 +1,92 @@
 import React from "react";
 import classOptionsData from "../data/classOptionsData";
+import { joinDuplicates } from "../utilities/utilities";
+import { abilityScoreNames } from "../constants/constants";
 
 // export default function
 
 const CharacterSheet = React.forwardRef((props, ref) => {
-  let char = props.parentState;
-  let characterClass = classOptionsData.find(
-    obj => obj.name === props.parentState.characterClass
-  );
+  const {
+    abilityScores,
+    character,
+    characterStatistics,
+    characterClass,
+    characterEquipment,
+    characterModifiers
+  } = props;
 
-  const joinDuplicates = array => {
-    let stuff = {};
-    // In React you rarerly use for loops
-    // use .map() .froEach() instead
-    for (let i = 0; i < array.length; i++) {
-      if (stuff.hasOwnProperty(array[i])) {
-        stuff[array[i]] += 1;
-      } else {
-        stuff[array[i]] = 1;
-      }
-    }
-    let consolidated = [];
-    const keys = Object.keys(stuff);
-    for (const key of keys) {
-      if (stuff[key] > 1) {
-        consolidated.push(`${key} (x${stuff[key]})`);
-      } else {
-        consolidated.push(key);
-      }
-    }
-
-    return consolidated;
-  };
-
-  const alignmentCapitalized = char.alignment
-    ? char.alignment.charAt(0).toUpperCase() + char.alignment.slice(1)
+  const alignmentCapitalized = character.alignment
+    ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
     : "Alignment";
 
-  const languageText = char.hasLanguages
-    ? `${alignmentCapitalized}, Common, ${char.languages.join(", ")}`
+  const languageText = character.hasLanguages
+    ? `${alignmentCapitalized}, Common, ${character.languages.join(", ")}`
     : `${alignmentCapitalized}, Common`;
+
+  const characterFields = [
+    ["Background Skill", character.background],
+    ["Appearance", character.appearance],
+    ["Personality", character.personality],
+    ["Misfortune", character.misfortune],
+    ["Languages", languageText]
+  ];
+
+  const getCharacterFields = () => {
+    return characterFields.map(field => {
+      const fieldDescription = field[0];
+      const fieldValue = field[1];
+
+      return (
+        <div
+          key={fieldDescription}
+          className={`character-container ${fieldValue}`}
+        >
+          <span className="charsheet-value-name">{fieldDescription}</span>
+          <span className="charsheet-value">{fieldValue}</span>{" "}
+        </div>
+      );
+    });
+  };
+
+  const generateAbilityScores = () => {
+    let array = abilityScoreNames;
+  };
 
   return (
     <div ref={ref} className="character-sheet-component">
-      <h3 className="character--name">{char.characterName}</h3>
-      <h4 className="character--subheader"> Level 1 {char.characterClass}</h4>
+      <h3 className="character--name">{character.name}</h3>
+      <h4 className="character--subheader"> Level 1 {characterClass.name}</h4>
       <div className="character-sheet">
-        <div className="character-top-container">
-          <div className="character--alignment character-container">
-            <span className="charsheet-value-name">Alignment</span>{" "}
-            <span className="charsheet-value">{alignmentCapitalized}</span>{" "}
-          </div>
-          {/* Whenever you have a repetetive code like this think about
-          changing it to a data structure and then rendering it with .map() */}
-          <div className="background character-container">
-            <span className="charsheet-value-name">Background Skill</span>{" "}
-            <span className="charsheet-value">{char.background}</span>
-          </div>
-          <div className="appearance character-container">
-            <span className="charsheet-value-name">Appearance</span>{" "}
-            <span className="charsheet-value">{char.appearance}</span>
-          </div>
-          <div className="personality character-container">
-            <span className="charsheet-value-name">Personality</span>{" "}
-            <span className="charsheet-value">{char.personality}</span>
-          </div>
-
-          <div className="misfortune character-container">
-            <span className="charsheet-value-name">Misfortune</span>{" "}
-            <span className="charsheet-value">{char.misfortune}</span>
-          </div>
-
-          <div className="languages character-container">
-            <span className="charsheet-value-name">Languages</span>{" "}
-            <span className="charsheet-value">{languageText}</span>
-          </div>
-        </div>
+        <div className="character-top-container">{getCharacterFields()}</div>
 
         <div className="ability-scores-container">
           <div className="strength character-container">
             <span className="charsheet-value-name"> Strength </span>
             <span className="charsheet-value">
               {" "}
-              {char.strength}
-              {char.strengthModMelee !== "0" && (
-                <span> ({char.strengthModMelee})</span>
+              {abilityScores.strength}
+              {characterModifiers.strengthModMelee !== "0" && (
+                <span> ({characterModifiers.strengthModMelee})</span>
               )}
             </span>
           </div>
 
           <div className="intelligence character-container">
             <span className="charsheet-value-name"> Intelligence </span>
-            <span className="charsheet-value"> {char.intelligence} </span>
+            <span className="charsheet-value">
+              {" "}
+              {abilityScores.intelligence}{" "}
+            </span>
           </div>
 
           <div className="wisdom character-container">
             <span className="charsheet-value-name"> Wisdom </span>
             <span className="charsheet-value">
               {" "}
-              {char.wisdom}
-              {char.wisdomMod !== "0" && <span> ({char.wisdomMod})</span>}
+              {abilityScores.wisdom}
+              {abilityScores.wisdomMod !== "0" && (
+                <span> ({characterModifiers.wisdomMod})</span>
+              )}
             </span>
           </div>
 
@@ -107,9 +94,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name"> Dexterity </span>
             <span className="charsheet-value">
               {" "}
-              {char.dexterity}
-              {char.dexterityModMissiles !== "0" && (
-                <span> ({char.dexterityModMissiles})</span>
+              {abilityScores.dexterity}
+              {characterModifiers.dexterityModMissiles !== "0" && (
+                <span> ({characterModifiers.dexterityModMissiles})</span>
               )}
             </span>
           </div>
@@ -118,9 +105,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name"> Constitution </span>
             <span className="charsheet-value">
               {" "}
-              {char.constitution}
-              {char.constitutionMod !== "0" && (
-                <span> ({char.constitutionMod})</span>
+              {abilityScores.constitution}
+              {characterModifiers.constitutionMod !== "0" && (
+                <span> ({characterModifiers.constitutionMod})</span>
               )}
             </span>
           </div>
@@ -129,9 +116,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name"> Charisma </span>
             <span className="charsheet-value">
               {" "}
-              {char.charisma}
-              {char.charismaModNPCReactions !== "0" && (
-                <span> ({char.charismaModNPCReactions})</span>
+              {abilityScores.charisma}
+              {characterModifiers.charismaModNPCReactions !== "0" && (
+                <span> ({characterModifiers.charismaModNPCReactions})</span>
               )}
             </span>
           </div>
@@ -178,11 +165,11 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             </span>
           </div>
 
-          {char.hasSpells && (
+          {character.hasSpells && (
             <div className="character-container">
               <span className="charsheet-value-name">Spells</span>
               <span className="charsheet-value character-sheet--class-ability">
-                {char.spells}
+                {character.spells}
               </span>
             </div>
           )}
@@ -191,17 +178,21 @@ const CharacterSheet = React.forwardRef((props, ref) => {
         <div className="character-sheet-ability-list">
           <div className="hit-points character-container">
             <span className="charsheet-value-name">Hit Points</span>{" "}
-            <span className="charsheet-value">{char.hitPoints}</span>
+            <span className="charsheet-value">
+              {characterStatistics.hitPoints}
+            </span>
           </div>
           <div className="armor-class character-container">
             <span className="charsheet-value-name">Armour Class</span>{" "}
-            <span className="charsheet-value">{char.AC}</span>
+            <span className="charsheet-value">
+              {characterStatistics.armourClass}
+            </span>
           </div>
           <div className="character-container">
             <span className="charsheet-value-name">Weapons</span>
 
             <span className="charsheet-value charsheet--weapons">
-              {joinDuplicates(char.weapons).map((item, index) => {
+              {joinDuplicates(characterEquipment.weapons).map((item, index) => {
                 return (
                   <span key={index} className="charsheet--weapon-item">
                     {" "}
@@ -216,7 +207,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Armour</span>
 
             <span className="charsheet-value charsheet--armour">
-              {char.armour.map((item, index) => {
+              {characterEquipment.armour.map((item, index) => {
                 return (
                   <span key={index} className="charsheet--armour-item">
                     {" "}
@@ -231,14 +222,16 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Gear</span>
 
             <span className="charsheet-value charsheet--gear">
-              {joinDuplicates(char.equipment).map((item, index) => {
-                return (
-                  <span key={index} className="charsheet--gear-item">
-                    {" "}
-                    {item}{" "}
-                  </span>
-                );
-              })}
+              {joinDuplicates(characterEquipment.adventuringGear).map(
+                (item, index) => {
+                  return (
+                    <span key={index} className="charsheet--gear-item">
+                      {" "}
+                      {item}{" "}
+                    </span>
+                  );
+                }
+              )}
             </span>
           </div>
 
@@ -246,7 +239,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             <span className="charsheet-value-name">Gold</span>
 
             <span className="charsheet-value charsheet--gold">
-              {char.gold}gp
+              {characterEquipment.gold}gp
             </span>
           </div>
         </div>

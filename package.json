@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.26.1",
     "babel-eslint": "^10.0.3",
     "classnames": "^2.2.6",
     "downloadjs": "^1.4.7",
@@ -15,16 +16,18 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-standard": "^4.0.1",
+    "npm": "^8.7.0",
     "pdf-lib": "^1.13.0",
     "prettier": "^1.19.1",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^16.13.1",
     "react-native-restart": "0.0.17",
     "react-scripts": "^4.0.0",
     "react-skeleton-css": "^1.1.0",
     "react-spinners": "^0.9.0",
-    "react-sticky": "^6.0.3"
+    "react-sticky": "^6.0.3",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

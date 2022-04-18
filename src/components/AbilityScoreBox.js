@@ -1,48 +1,66 @@
 import React from "react";
 
-// First of all please deconstruct props either by doing AbilityScoreBox({ abilityScoreValue, etc... })
-// or by adding const { abilityScoreValue, etc... } = props
-// it adds visibibility to the code + you dont need to put props. every time you want to use them
 export default function AbilityScoreBox(props) {
+  const {
+    abilityScoreValue,
+    abilityScoreValueOriginal,
+    abilityScoreName,
+    scoreIncrease,
+    scoreDecrease,
+    canDecrease,
+    characterClass,
+    pointBuy
+  } = props;
+
   const redFail = "#730505";
+  const lowScore = 6;
+  const highScore = 15;
+  const maxScore = 18;
+  const minimumDecrementRequirement = 10;
+
+  let showIncrementButton = false;
+
+  let hasPointstoIncrease =
+    characterClass.primeReqs?.includes(abilityScoreName) ||
+    abilityScoreValue < abilityScoreValueOriginal;
+
+  if (pointBuy > 0 && hasPointstoIncrease && abilityScoreValue < maxScore) {
+    showIncrementButton = true;
+  }
+
+  const showDecreaseButton =
+    abilityScoreValue > minimumDecrementRequirement && canDecrease;
+
   return (
     <div
-      //
-      className={
-        // Use https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-        // becasue ability-score stays in both conditions and only ability-score--high is the one that you want to change
-        props.abilityScoreValue > 15
-          ? "ability-score ability-score--high"
-          : "ability-score"
-      }
-      style={{ color: props.abilityScoreValue < 6 ? redFail : "" }}
+      className={`ability-score ${
+        abilityScoreValue > highScore ? "abilityscore--high" : ""
+      }`}
+      style={{ color: abilityScoreValue < lowScore ? redFail : "" }}
     >
-      {props.abilityScoreValue}
+      {abilityScoreValue}
 
-      {props.abilityScoreValue > 10 && props.canDecrease && (
+      {showDecreaseButton && (
         <button
           className="button button--ability button--ability--decrease"
           onClick={() => {
-            props.scoreDecrease(props.abilityScoreName);
+            scoreDecrease(abilityScoreName);
           }}
         >
           <div className="arrow-down"></div>
         </button>
       )}
 
-      {props.pointBuy > 0 &&
-        (props.primeReqs.includes(props.abilityScoreName) ||
-          props.abilityScoreValue < props.abilityScoreValueOriginal) &&
-        props.abilityScoreValue < 18 && (
-          <button
-            className="button button--ability button--ability--increase"
-            onClick={() => {
-              props.scoreIncrease(props.abilityScoreName);
-            }}
-          >
-            <div className="arrow-up"></div>
-          </button>
-        )}
+      {showIncrementButton && (
+        <button
+          className="button button--ability button--ability--increase"
+          onClick={() => {
+            scoreIncrease(abilityScoreName);
+          }}
+        >
+          <div className="arrow-up"></div>
+        </button>
+      )}
     </div>
   );
 }

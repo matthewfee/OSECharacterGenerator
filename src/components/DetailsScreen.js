@@ -1,7 +1,25 @@
 import React, { useState, useEffect } from "react";
 import classOptionsData from "../data/classOptionsData";
+import {
+  firstNames,
+  lastNames,
+  appearances,
+  traits,
+  misfortunes,
+  languageOptions
+} from "../constants/constants";
+import { chooseRandomItem } from "../utilities/utilities";
 
 export default function DetailsScreen(props) {
+  const {
+    pages,
+    setPages,
+    character,
+    setCharacter,
+    characterClass,
+    characterModifiers
+  } = props;
+
   const [characterName, setCharacterName] = useState("");
   const [alignment, setAlignment] = useState("");
   const [appearance, setAppearance] = useState("");
@@ -14,36 +32,29 @@ export default function DetailsScreen(props) {
   const [classLanguageCount, setClassLanguageCount] = useState(0);
   const [hasLanguages, setHasLanguages] = useState(true);
 
-  const characterClass = classOptionsData.find(
-    obj => obj.name === props.parentState.characterClass
-  );
-
   useEffect(() => {
-    let classLanguages = [];
+    const languagesArr = characterClass.languages.split(",");
 
-    if (characterClass.languages.length <= 17) {
-      if (props.parentState.languageCount < 1) {
+    if (languagesArr.length <= 2) {
+      if (characterModifiers.intelligenceModExtraLanguageCount < 1) {
         setHasLanguages(false);
       }
       return;
     } else {
-      const arr = characterClass.languages.substring(19).split(", ");
-
-      const classLanguageNumber = parseInt(arr.length);
+      //first two langauges are not class-specific languages
+      const classLanguageNumber = languagesArr.length - 2;
       setClassLanguageCount(classLanguageNumber);
-      setLanguages(arr);
+      setLanguages(languagesArr);
     }
   }, []);
 
   useEffect(() => {
     setLanguageCount(
-      props.parentState.languageCount + classLanguageCount - languages.length
+      characterModifiers.extraLanguageCount +
+        classLanguageCount -
+        characterClass.languages.length
     );
   }, [languages]);
-
-  const choose = array => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
 
   const handleName = event => {
     setCharacterName(event.currentTarget.value);
@@ -54,318 +65,21 @@ export default function DetailsScreen(props) {
   };
 
   const getName = () => {
-    // this is data, keep it seperetly in a consts folder/file
-    const firstNames = [
-      "Balthazar",
-      "Arthwit",
-      "Clewd",
-      "Abernathy",
-      "Ethex",
-      "Tomumbolo",
-      "Lambop",
-      "Obolm",
-      "Gremo",
-      "Abernathy",
-      "Oglom",
-      "Bagnack",
-      "Pestil",
-      "Wumpus",
-      "Ginger",
-      "Misty",
-      "Boots",
-      "Gringle",
-      "Mannog",
-      "Melnax",
-      "Melnoth",
-      "Melwesh",
-      "Orthax",
-      "Yirmeor",
-      "Canhoreal",
-      "Breyir",
-      "Breagle",
-      "Cannora",
-      "Agnel",
-      "Beatrice",
-      "Legwen",
-      "Thegwin",
-      "Lirann",
-      "Gruwth",
-      "Yirmeor",
-      "Basil",
-      "Bertram",
-      "Blaxton",
-      "Chadwick",
-      "Clovis",
-      "Jules",
-      "Leopold",
-      "Merrick",
-      "Mortimer",
-      "Ogden",
-      "Orion",
-      "Destrian",
-      "Ellis",
-      "Erasmus",
-      "Faustus",
-      "Finn",
-      "Fitzhugh",
-      "Oswald",
-      "Percival",
-      "Quentin",
-      "Redmaine",
-      "Reinhold",
-      "Florian",
-      "Fox",
-      "Godwin",
-      "Giles",
-      "Hannibal",
-      "Jasper",
-      "Joffrey",
-      "Jiles",
-      "Silas",
-      "Stilton",
-      "Stratford",
-      "Tenpiece",
-      "Waverly",
-      "Webster",
-      "Adelaide",
-      "Alma",
-      "Barsaba",
-      "Beatrix",
-      "Bianca",
-      "Cleopha",
-      "Morgot",
-      "Minerva",
-      "Nerissa",
-      "Odette",
-      "Olga",
-      "Orchid",
-      "Clover",
-      "Constance",
-      "Damaris",
-      "Daphne",
-      "Demona",
-      "Elsbeth",
-      "Pepper",
-      "Phoebe",
-      "Piety",
-      "Poppy",
-      "Silence",
-      "Sybil",
-      "Esme",
-      "Fern",
-      "Hester",
-      "Hippolyta",
-      "Jessamine",
-      "Jilly",
-      "Trillby",
-      "Tuesday",
-      "Ursula",
-      "Vivian",
-      "Wendy",
-      "Zora"
-    ];
-
-    const lastNames = [
-      "Abernathy",
-      "Addercapper",
-      "Candleswick",
-      "Cormick",
-      "Dregger",
-      "Crumwaller",
-      "Getri",
-      "Glas",
-      "Gruewater",
-      "Harper",
-      "Lank",
-      "Logueweaver",
-      "Loomer",
-      "Malksmilk",
-      "Smith",
-      "Sunderman",
-      "Swinney",
-      "Thatcher",
-      "Tolmen",
-      "Vulgamoore",
-      "Wolder",
-      "Belvedere",
-      "Bithesea",
-      "Calaver",
-      "Carvolo",
-      "De Rippe",
-      "Drolle",
-      "La Marque",
-      "Malmora",
-      "Miter",
-      "Oblington",
-      "Onymous",
-      "Phillifent",
-      "Dunlow",
-      "Edevane",
-      "Erelong",
-      "Febland",
-      "Fernsby",
-      "Fisk",
-      "Portendorfer",
-      "Romatet",
-      "Rothery",
-      "Skorbeck",
-      "Slora",
-      "Southwark",
-      "Gastrell",
-      "Girdwood",
-      "Gorgon",
-      "Grimeson",
-      "Gruger",
-      "Hitheryon",
-      "Stavish",
-      "Vandermeer",
-      "Wellbelove",
-      "Westergren",
-      "Wexley",
-      "Wilberforce",
-
-      "Barrow",
-      "Beetleman",
-      "Berrycloth",
-      "Birdwhistle",
-      "Bobich",
-      "Chips",
-      "Knibbs",
-      "Midnighter",
-      "Needle",
-      "Nethercoat",
-      "Pestle",
-      "Relish",
-      "Coffin",
-      "Crumpling",
-      "Culpepper",
-      "Dankworth",
-      "Digworthy",
-      "Dreggs",
-      "Rumbold",
-      "Rummage",
-      "Sallow",
-      "Saltmarsh",
-      "Silverless",
-      "Skitter",
-      "Gimble",
-      "Graveworm",
-      "Greelish",
-      "Hardwick",
-      "Hatman",
-      "Hovel",
-      "Slee",
-      "Slitherly",
-      "Stoker",
-      "Tarwater",
-      "Tumbler",
-      "Villin"
-    ];
-
-    let fullName = `${choose(firstNames)} ${choose(lastNames)}`;
+    let fullName = `${chooseRandomItem(firstNames)} ${chooseRandomItem(
+      lastNames
+    )}`;
 
     setCharacterName(fullName);
   };
 
   const getAppearance = () => {
-    let appearances = [
-      "stylish",
-      "tattooed",
-      "thin",
-      "warm",
-      "cold",
-      "healthy",
-      "sickly",
-      "old-fashioned",
-      "shiny",
-      "disheveld",
-      "bloody",
-      "old-fashioned",
-      "adorable",
-      "misty",
-      "colorful",
-      "monochromatic",
-      "snobbish",
-      "plain",
-      "alluring",
-      "filthy",
-      "clean",
-      "muddy",
-      "elegant",
-      "slippery",
-      "sunburned",
-      "grimy",
-      "slender",
-      "charming",
-      "rugged",
-      "rough",
-      "clean-cut",
-      "aged",
-      "elderly",
-      "young",
-      "seasoned",
-      "youthful",
-      "burly",
-      "sturdy",
-      "malodorous",
-      "luminous",
-      "cloudy",
-      "obscure",
-      "mysterious",
-      "hooded",
-      "shadowy",
-      "radiant",
-      "affluent",
-      "ghostly",
-      "nimble",
-      "aquiline",
-      "athletic",
-      "barrel-chested",
-      "boney",
-      "brawny",
-      "brutish",
-      "bullnecked",
-      "chiseled",
-      "cultish",
-      "corpulent",
-      "craggy",
-      "delicate",
-      "furrowed",
-      "gaunt",
-      "gorgeous",
-      "grizzled",
-      "haggard",
-      "handsome",
-      "hideous",
-      "lanky",
-      "pudgy",
-      "ripped",
-      "rosy",
-      "scrawny",
-      "sinewy",
-      "slender",
-      "slumped",
-      "solid",
-      "square-jawed",
-      "statuesque",
-      "towering",
-      "tall",
-      "short",
-      "muscular",
-      "scrawny",
-      "trim",
-      "weathered",
-      "willowy",
-      "wiry",
-      "wrinkly"
-    ];
-
+    let appearanceArray = [...appearances];
     let num = 2;
     let selectedAppearances = [];
     for (let i = 0; i < num; i++) {
-      let appearance = choose(appearances);
-      selectedAppearances.push(appearance);
-      appearances = appearances.filter(k => k !== appearance);
+      let randomAppearance = chooseRandomItem(appearanceArray);
+      selectedAppearances.push(randomAppearance);
+      appearanceArray = appearanceArray.filter(k => k !== randomAppearance);
     }
 
     setAppearance(selectedAppearances.join(", "));
@@ -373,6 +87,7 @@ export default function DetailsScreen(props) {
 
   const getBackground = () => {
     let bgs = [];
+
     // This code looks suspicious.
     // use map() or figure out some other way
     bgs = bgs.concat(Array(3).fill("Animal trainer"));
@@ -408,219 +123,26 @@ export default function DetailsScreen(props) {
     bgs = bgs.concat(Array(2).fill("Vinter"));
     bgs = bgs.concat(Array(1).fill("Noble bastard"));
 
-    setBackground(choose(bgs));
+    setBackground(chooseRandomItem(bgs));
   };
 
   const getPersonality = () => {
-    let traits = [
-      "stoic",
-      "doomed",
-      "proud",
-      "stern",
-      "sociable",
-      "admirable",
-      "calm",
-      "dramatic",
-      "unforgiving",
-      "dishonest",
-      "logical",
-      "impatient",
-      "romantic",
-      "scholarly",
-      "sentimental",
-      "sophisticated",
-      "wise",
-      "contradictory",
-      "dreamy",
-      "earthy",
-      "folksy",
-      "abrasive",
-      "inquisitive",
-      "old-fashioned",
-      "mystical",
-      "mellow",
-      "experimental",
-      "cute",
-      "determined",
-      "artful",
-      "absentminded",
-      "self-conscious",
-      "anxious",
-      "calculating",
-      "desperate",
-      "respectful",
-      "extravagant",
-      "forgetful",
-      "fiery",
-      "gloomy",
-      "decisive",
-      "messy",
-      "weak-willed",
-      "wishful",
-      "reliable",
-      "boorish",
-      "aggressive",
-      "arrogant",
-      "cruel",
-      "compulsive",
-      "rude",
-      "paranoid",
-      "greedy",
-      "hateful",
-      "ambitious",
-      "insane",
-      "intolerant",
-      "lustful",
-      "pessimistic",
-      "absent-minded",
-      "amiable",
-      "nervous",
-      "eccentric",
-      "bookish",
-      "chill",
-      "mischievous",
-      "loquacious",
-      "homesick",
-      "humble",
-      "curious",
-      "flirtatious",
-      "foolhardy",
-      "flamboyant",
-      "stoic",
-      "gregarious",
-      "secretive",
-      "naive",
-      "proud",
-      "taciturn",
-      "superstitious",
-      "devoted",
-      "friendly",
-      "faithful",
-      "eloquent",
-      "brave",
-      "cautious",
-      "celibate",
-      "generous",
-      "cheerful",
-      "confident",
-      "polite",
-      "resolute",
-      "persuasive",
-      "industrious",
-      "strict",
-      "merciful",
-      "gentle-hearted",
-      "protective",
-      "helpful",
-      "honorable",
-      "loyal",
-      "shrewd",
-      "pure",
-      "jealous",
-      "vengeful",
-      "shrewd",
-      "impulsive",
-      "charitable",
-      "daring",
-      "reckless",
-      "ambitious"
-    ];
     let num = 2;
+    let traitsArray = [...traits];
     let selectedPersonalities = [];
     for (let i = 0; i < num; i++) {
-      let trait = choose(traits);
-      selectedPersonalities.push(trait);
-
-      traits = traits.filter(k => k !== trait);
+      let randomTrait = chooseRandomItem(traits);
+      selectedPersonalities.push(randomTrait);
+      traitsArray = traits.filter(k => k !== randomTrait);
     }
 
     setPersonality(selectedPersonalities.join(", "));
   };
 
   const getMisfortune = () => {
-    const misfortunes = [
-      "rejected",
-      "accused",
-      "debt",
-      "hunted",
-      "abandoned",
-      "addicted",
-      "blackmailed",
-      "burgled",
-      "challenged",
-      "framed",
-      "neglected",
-      "bullied",
-      "haunted",
-      "humiliated",
-      "impoverished",
-      "kidnapped",
-      "lost",
-      "condemned",
-      "cursed",
-      "injured",
-      "imprisoned",
-      "banished",
-      "defrauded",
-      "demoted",
-      "depressed",
-      "betrayed",
-      "mobbed",
-      "overworked",
-      "unemployed",
-      "poisoned",
-      "pursued",
-      "rejected",
-      "discredited",
-      "dismissed",
-      "disowned",
-      "exiled",
-      "famished",
-      "forgotten",
-      "replaced",
-      "robbed",
-      "sick",
-      "sued",
-      "suspected",
-      "transformed",
-      "shunned",
-      "forsaken",
-      "damned",
-      "murdered",
-      "followed",
-      "misunderstood",
-      "unappreciated",
-      "unpopular",
-      "destitute",
-      "heartbroken"
-    ];
-
-    let randomMisfortune = choose(misfortunes);
+    let randomMisfortune = chooseRandomItem(misfortunes);
     setMisfortune(randomMisfortune);
   };
-
-  const languagesArray = [
-    "Bugbear",
-    "Doppelganger",
-    "Dragon",
-    "Dwarvish",
-    "Elvish",
-    "Gargoyle",
-    "Gnoll",
-    "Gnomish",
-    "Goblin",
-    "Halfling",
-    "Harpy",
-    "Hobgoblin",
-    "Kobold",
-    "Lizard man",
-    "Medusa",
-    "Minotaur",
-    "Ogre",
-    "Orcish",
-    "Pixie",
-    "Human dialect"
-  ];
 
   const languageOption = item => {
     return (
@@ -631,13 +153,13 @@ export default function DetailsScreen(props) {
   };
 
   const languagesList = () => {
-    return languagesArray.map(item => {
+    return languageOptions.map(item => {
       return languageOption(item);
     });
   };
 
   const chooseLanguage = () => {
-    setLanguageSelected(choose(languagesArray));
+    setLanguageSelected(chooseRandomItem(languageOption));
   };
 
   const handleLanguageChange = event => {
@@ -865,8 +387,9 @@ export default function DetailsScreen(props) {
         <button
           className="button button--character-sheet"
           onClick={() => {
-            let stateObject = {
-              characterName: characterName,
+            setCharacter({
+              ...character,
+              name: characterName,
               alignment: alignment,
               appearance: appearance,
               background: background,
@@ -874,9 +397,13 @@ export default function DetailsScreen(props) {
               misfortune: misfortune,
               languages: languages,
               hasLanguages: hasLanguages
-            };
-            props.updateParentState(stateObject);
-            props.showCharacterSheetScreen();
+            });
+
+            setPages({
+              ...pages,
+              detailsScreen: false,
+              characterSheetScreen: true
+            });
           }}
         >
           Go to Character Sheet

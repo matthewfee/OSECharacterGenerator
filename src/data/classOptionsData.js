@@ -1,8 +1,10 @@
 const classOptionsData = [
   {
     name: "Fighter",
+    category: "basic",
     requirements: null,
-    primeReq: "Strength",
+    primeReqs: ["strength"],
+    multiplePrimeReqs: false,
     hd: 8,
     maxLevel: 14,
     armour: "any leather, chainmail, plate, shields",
@@ -19,8 +21,10 @@ const classOptionsData = [
   },
   {
     name: "Cleric",
+    category: "basic",
     requirements: null,
-    primeReq: "Wisdom",
+    primeReqs: ["wisdom"],
+    multiplePrimeReqs: false,
     hd: 6,
     maxLevel: 14,
     armour: "any leather, chainmail, plate, shields",
@@ -37,8 +41,9 @@ const classOptionsData = [
   },
   {
     name: "Magic-User",
+    category: "basic",
     requirements: null,
-    primeReq: "Intelligence",
+    primeReqs: ["intelligence"],
     hd: 4,
     maxLevel: 14,
     armour: "none",
@@ -57,8 +62,9 @@ const classOptionsData = [
   },
   {
     name: "Thief",
+    category: "basic",
     requirements: null,
-    primeReq: "Dexterity",
+    primeReqs: ["dexterity"],
     hd: 4,
     maxLevel: 0,
     armour: "leather",
@@ -80,8 +86,9 @@ const classOptionsData = [
   },
   {
     name: "Dwarf",
-    requirements: "Minimum CON 9",
-    primeReq: "Strength",
+    category: "basic",
+    requirements: "Minimum 9 constitution ",
+    primeReqs: ["strength"],
     hd: 8,
     maxLevel: 12,
     armour: "any leather, chainmail, plate, shields",
@@ -104,8 +111,20 @@ const classOptionsData = [
   },
   {
     name: "Elf",
-    requirements: "Minimum INT 9",
-    primeReq: "Intelligence, Strength",
+    category: "basic",
+    requirements: "Minimum 9 intelligence",
+    primeReqs: ["intelligence", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 13) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 6,
     maxLevel: 10,
     armour: "any leather, chainmail, plate, shields",
@@ -129,8 +148,20 @@ const classOptionsData = [
   },
   {
     name: "Halfling",
-    requirements: "Minimum CON 9, minimum DEX 9",
-    primeReq: "Dexterity, Strength",
+    category: "basic",
+    requirements: "Minimum 9 constitution, minimum 9 dexterity",
+    primeReqs: ["dexterity", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 6,
     maxLevel: 8,
     armour: "any leather, chainmail, plate, shields",
@@ -155,8 +186,9 @@ const classOptionsData = [
   },
   {
     name: "Acrobat",
+    category: "advanced",
     requirements: null,
-    primeReq: "Dexterity",
+    primeReqs: ["dexterity"],
     hd: 4,
     maxLevel: 14,
     armour: "leather",
@@ -180,8 +212,9 @@ const classOptionsData = [
   },
   {
     name: "Assassin",
+    category: "advanced",
     requirements: null,
-    primeReq: "Dexterity",
+    primeReqs: ["dexterity"],
     hd: 4,
     maxLevel: 14,
     armour: "leather, shields",
@@ -204,9 +237,20 @@ const classOptionsData = [
   },
   {
     name: "Barbarian",
-    requirements: "Minimum DEX 9",
-    primeReq: "Constitution",
-    primeReq2: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 dexterity",
+    primeReqs: ["constitution", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 8,
     maxLevel: 14,
     armour: "leather, chainmail, shields",
@@ -231,8 +275,9 @@ const classOptionsData = [
   },
   {
     name: "Bard",
-    requirements: "Minimum DEX 9, minimum INT 9",
-    primeReq: "Charisma",
+    category: "advanced",
+    requirements: "Minimum 9 dexterity, minimum 9 intelligence",
+    primeReqs: ["charisma"],
     hd: 6,
     maxLevel: 14,
     armour: "leather, chainmail",
@@ -255,9 +300,20 @@ const classOptionsData = [
   },
   {
     name: "Drow",
-    requirements: "Minimum INT 9",
-    primeReq: "Strength",
-    primeReq2: "Wisdom",
+    category: "advanced",
+    requirements: "Minimum 9 intelligence",
+    primeReqs: ["wisdom", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 13) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 6,
     maxLevel: 14,
     armour: "any leather, chainmail, plate, shields",
@@ -284,8 +340,9 @@ const classOptionsData = [
   },
   {
     name: "Druid",
-    requirements: "none",
-    primeReq: "Wisdom",
+    category: "advanced",
+    requirements: null,
+    primeReqs: ["wisdom"],
     hd: 6,
     maxLevel: 14,
     armour: "leather, wooden shields",
@@ -311,8 +368,9 @@ const classOptionsData = [
   },
   {
     name: "Duergar",
-    requirements: "Minimum CON 9, minimum INT 9",
-    primeReq: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 constitution, minimum 9 intelligence",
+    primeReqs: ["strength"],
     hd: 6,
     maxLevel: 10,
     armour: "any leather, chainmail, plate, shields",
@@ -337,9 +395,21 @@ const classOptionsData = [
   },
   {
     name: "Gnome",
-    requirements: "Minimum CON 9",
-    primeReq: "Dexterity",
-    primeReq2: "Intelligence",
+    category: "advanced",
+    requirements: "Minimum 9 constitution",
+    primeReqs: ["intelligence", "dexterity"],
+    primeReqs: ["wisdom", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 13) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 4,
     maxLevel: 8,
     armour: "leather, shields",
@@ -366,9 +436,23 @@ const classOptionsData = [
   },
   {
     name: "Half-Elf",
-    requirements: "Minimum CHA 9, minimum CON 9",
-    primeReq: "Intelligence",
-    primeReq2: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 charisma, minimum 9 constitution",
+    primeReqs: ["intelligence", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (
+        (abilityScore1 >= 16 && abilityScore2 >= 13) ||
+        (abilityScore2 >= 16 && abilityScore1 >= 13)
+      ) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 6,
     maxLevel: 12,
     armour: "any leather, chainmail, plate, shields",
@@ -385,9 +469,20 @@ const classOptionsData = [
   },
   {
     name: "Half-Orc",
+    category: "advanced",
     requirements: null,
-    primeReq: "Dexterity",
-    primeReq2: "Strength",
+    primeReqs: ["dexterity", "strength"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 6,
     maxLevel: 8,
     armour: "leather, chainmail, shields",
@@ -408,8 +503,9 @@ const classOptionsData = [
   },
   {
     name: "Illusionist",
-    requirements: "Minimum DEX 9",
-    primeReq: "Intelligence",
+    category: "advanced",
+    requirements: "Minimum 9 dexterity",
+    primeReqs: ["intelligence"],
     hd: 4,
     maxLevel: 14,
     armour: "none",
@@ -427,8 +523,9 @@ const classOptionsData = [
   },
   {
     name: "Knight",
-    requirements: "Minimum CON 9, minimum DEX 9",
-    primeReq: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 constitution, minimum 9 dexterity",
+    primeReqs: ["strength"],
     hd: 8,
     maxLevel: 14,
     armour: "any chainmail, plate mail, shields",
@@ -453,9 +550,20 @@ const classOptionsData = [
   },
   {
     name: "Paladin",
-    requirements: "Minimum CHA 9",
-    primeReq: "Strength",
-    primeReq2: "Wisdom",
+    category: "advanced",
+    requirements: "Minimum 9 charisma",
+    primeReqs: ["strength", "wisdom"],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10;
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5;
+      }
+
+      return 0;
+    },
     hd: 8,
     maxLevel: 14,
     armour: "any leather, chainmail, plate, shields",
@@ -479,8 +587,9 @@ const classOptionsData = [
   },
   {
     name: "Ranger",
-    requirements: "Minimum CON 9, minimum WIS 9",
-    primeReq: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 constitution, minimum 9 wisdom",
+    primeReqs: ["strength"],
     hd: 8,
     maxLevel: 14,
     armour: "leather, chainmail, shields",
@@ -505,8 +614,9 @@ const classOptionsData = [
   },
   {
     name: "Svirfneblin",
-    requirements: "Minimum CON 9",
-    primeReq: "Strength",
+    category: "advanced",
+    requirements: "Minimum 9 constitution",
+    primeReqs: ["strength"],
     hd: 6,
     maxLevel: 8,
     armour: "any leather, chainmail, plate, shields",

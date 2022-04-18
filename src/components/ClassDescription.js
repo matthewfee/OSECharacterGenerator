@@ -2,27 +2,29 @@ import React from "react";
 import classOptionsData from "../data/classOptionsData";
 
 export default function ClassDescription(props) {
-  if (props.characterClass === null) {
+  const { characterClass } = props;
+
+  if (!characterClass.name) {
     return <div className="class-details" style={{ border: "none" }}></div>;
   }
-  let obj = classOptionsData.find(obj => obj.name === props.characterClass);
+  let obj = classOptionsData.find(obj => obj.name === characterClass.name);
   return (
     <details className="class-details">
       <summary className="class-summary">
-        {props.characterClass} Details{" "}
+        {characterClass.name} Details{" "}
       </summary>
 
       <ul className="class-description-list">
         <li>
           <h4 className="class-description-list--header">
-            {props.characterClass}
+            {characterClass.name}
           </h4>
         </li>
         <li>
           <b>Description:</b> {obj.description}
         </li>
         <li>
-          <b>Prime Requisites:</b> {obj.primeReq}{" "}
+          <b>Prime Requisites:</b> {obj.primeReqs}{" "}
         </li>
         <li>
           <b>Hit Dice:</b> d{obj.hd}
@@ -43,13 +45,12 @@ export default function ClassDescription(props) {
           <b>XP to level 2:</b> {obj.nextLevel}
         </li>
         <li>
-          <b>Maximium Level:</b> {obj.maxLevel}{" "}
+          <b>Maximium Level:</b> {obj.maxLevel}
         </li>
         <li>
-          <b>Saving Throws:</b>{" "}
+          <b>Saving Throws:</b>
           <span>
-            {" "}
-            Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis{" "}
+            Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis
             {obj.savingThrows[2]}, Breath Attacks {obj.savingThrows[3]},
             Spells/rods/staves {obj.savingThrows[4]}
           </span>
@@ -59,7 +60,7 @@ export default function ClassDescription(props) {
             <a href={obj.link} target="_blank" rel="noopener noreferrer">
               More Details
             </a>
-          </b>{" "}
+          </b>
         </li>
       </ul>
     </details>

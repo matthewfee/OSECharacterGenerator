@@ -1,27 +1,56 @@
 import React, { useState, useEffect } from "react";
 
 export default function CharacterStorageScreen(props) {
-  const [myCharacters, setMyCharacters] = useState(undefined);
+  const {
+    pages,
+    setPages,
+    character,
+    setCharacter,
+    characterStatistics,
+    setCharacterStatistics,
+    characterClass,
+    setCharacterClass,
+    characterEquipment,
+    setCharacterEquipment,
+    characterModifiers,
+    setCharacterModifiers,
+    abilityScores,
+    setAbilityScores,
+    setCharacterRolled
+  } = props;
+
+  const [myCharacters, setMyCharacters] = useState([]);
 
   useEffect(() => {
-    const characters = JSON.parse(window.localStorage.getItem("characters"));
+    const characters = JSON.parse(
+      window.localStorage.getItem("characterStorage")
+    );
     setMyCharacters(characters);
   }, []);
 
   const handleCharacter = (e, index, action) => {
-    // let index = e.currentTarget.value;
-    // let name = e.currentTarget.name;
     e.stopPropagation();
     switch (action) {
       case "setActiveCharacter":
-        let obj = myCharacters[index];
-        props.updateParentState(obj);
-        props.showCharacterSheetScreen();
+        let characterObject = myCharacters[index];
+        setCharacter(characterObject.character);
+        setCharacterStatistics(characterObject.characterStatistics);
+        setCharacterClass(characterObject.characterClass);
+        setCharacterEquipment(characterObject.characterEquipment);
+        setCharacterModifiers(characterObject.characterModifiers);
+        setAbilityScores(characterObject.abilityScores);
+        setCharacterRolled(true);
+
+        setPages({
+          ...pages,
+          characterSheetScreen: true,
+          characterStorageScreen: false
+        });
 
       case "deleteCharacter":
         let newStorage = [...myCharacters];
         newStorage.splice(index, 1);
-        localStorage.setItem("characters", JSON.stringify(newStorage));
+        localStorage.setItem("characterStorage", JSON.stringify(newStorage));
         setMyCharacters(newStorage);
 
       default:
@@ -30,28 +59,13 @@ export default function CharacterStorageScreen(props) {
   };
 
   const characterButton = (char, index) => {
-    let characterStorageName = char.characterName || char.name;
+    let characterStorageName = char.character.name;
 
-    if (characterStorageName === "") {
-      return (
-        <button
-          className="character-button"
-          key={index}
-          value={index}
-          name="setActiveCharacter"
-          // eslint-disable-next-line prettier/prettier
-          onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
-        >
-          Unnamed
-        </button>
-      );
-    }
     return (
       <button
         className="character-button"
         key={index}
-        // eslint-disable-next-line prettier/prettier
-        onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
+        onClick={e => handleCharacter(e, index, "setActiveCharacter")}
         value={index}
         name="setActiveCharacter"
       >
@@ -59,19 +73,11 @@ export default function CharacterStorageScreen(props) {
           {characterStorageName}
         </div>
         <div className="character-button--level" value={index}>
-          {char.characterClass}
+          {char.characterClass.name}
         </div>
-        {/* <div className="character-button--ability-scores">
-          <div>STR {char.strength}</div>
-          <div>INT {char.intelligence}</div>
-          <div>WIS {char.wisdom}</div>
-          <div>DEX {char.dexterity}</div>
-          <div>CON {char.constitution}</div>
-          <div>CHA {char.charisma}</div>
-        </div> */}
+
         <div
-          // eslint-disable-next-line prettier/prettier
-          onClick={(e) => handleCharacter(e, index, "deleteCharacter")}
+          onClick={e => handleCharacter(e, index, "deleteCharacter")}
           className="character-button--delete"
           key={index}
           value={index}
@@ -95,12 +101,17 @@ export default function CharacterStorageScreen(props) {
 
       <button
         className="button--new-character"
-        onClick={props.showAbilityScreen}
+        onClick={() => {
+          setPages({
+            ...pages,
+            abilityScreen: true,
+            characterStorageScreen: false
+          });
+          setCharacterRolled(false);
+        }}
       >
         Back to Main
       </button>
     </div>
   );
 }
-
-// /* eslint-disable react/prop-types */
