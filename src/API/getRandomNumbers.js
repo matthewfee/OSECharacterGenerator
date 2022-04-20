@@ -6,7 +6,7 @@ export async function getRandomNumbers() {
     jsonrpc: "2.0",
     method: "generateIntegers",
     params: {
-      apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d",
+      apiKey: provess.env.REACT_APP_API_KEY,
       n: 50,
       min: 1,
       max: 6,
