@@ -1,38 +1,35 @@
 import { RANDOM_NUMBERS_API_URL } from "../constants/constants";
 
 export async function getRandomNumbers() {
-  const requestBody = {
+  const axios = require("axios");
+  let data = JSON.stringify({
     jsonrpc: "2.0",
     method: "generateIntegers",
     params: {
-      apiKey: process.env.REACT_APP_API_KEY,
-      n: "70",
-      min: "1",
-      max: "6"
+      apiKey: "13182fb2-ebca-46d3-94e9-13e1f93fc79d",
+      n: 50,
+      min: 1,
+      max: 6,
+      replacement: true
     },
-    id: "42"
-  };
-  // use axios
-  // https://github.com/axios/axios
-  const response = await fetch(RANDOM_NUMBERS_API_URL, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(requestBody)
+    id: 42
   });
 
-  const data = await response.json();
-  return data.result.random.data;
+  let config = {
+    method: "post",
+    url: RANDOM_NUMBERS_API_URL,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    data: data
+  };
 
-  // .then(res => res.json())
-  // .then(data => {
-  //   return data.result.random.data;
-  // })
-  // .catch(error => {
-  //   return console.error(error);
-  // });
+  try {
+    const response = await axios(config);
+    return response.data.result.random.data;
+  } catch (error) {
+    console.log(error);
+  }
 
   return;
 }
