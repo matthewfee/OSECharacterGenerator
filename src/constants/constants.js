@@ -2,6 +2,8 @@
 
 export const redFail = "#730505";
 
+let test = "test"
+
 // URLS
 
 export const CHARACTER_SHEET_PURIST_URL =
