@@ -77,10 +77,9 @@ export default function AbilityScores(props) {
       {pointBuy > 0 && <div className="point-buy">Point Buy: {pointBuy}</div>}
 
       <div className="ability-score-name">
-        {/* Add i18n https://react.i18next.com/ */}
         <h2>STRENGTH</h2>
 
-        {primeReqs.includes(abilityScoreNames.strength) && (
+        {primeReqs.includes("strength") && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -88,7 +87,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.strength}
         abilityScoreValueOriginal={abilityScores.strengthOriginal}
-        abilityScoreName={abilityScoreNames.strength}
+        abilityScoreName={"strength"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={
@@ -115,7 +114,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.intelligence}
         abilityScoreValueOriginal={abilityScores.intelligenceOriginal}
-        abilityScoreName={abilityScoreNames.intelligence}
+        abilityScoreName={"intelligence"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={true}
@@ -139,7 +138,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.wisdom}
         abilityScoreValueOriginal={abilityScores.wisdomOriginal}
-        abilityScoreName={abilityScoreNames.wisdom}
+        abilityScoreName={"wisdom"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={true}
@@ -162,7 +161,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.dexterity}
         abilityScoreValueOriginal={abilityScores.dexterityOriginal}
-        abilityScoreName={abilityScoreNames.dexterity}
+        abilityScoreName={"dexterity"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}
@@ -187,7 +186,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.constitution}
         abilityScoreValueOriginal={abilityScores.constitutionOriginal}
-        abilityScoreName={abilityScoreNames.constitution}
+        abilityScoreName={"constitution"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}
@@ -210,7 +209,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.charisma}
         abilityScoreValueOriginal={abilityScores.charismaOriginal}
-        abilityScoreName={abilityScoreNames.charisma}
+        abilityScoreName={"charisma"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}

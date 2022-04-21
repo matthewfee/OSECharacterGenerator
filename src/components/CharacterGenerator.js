@@ -25,6 +25,7 @@ import CharacterSheetScreen from "./CharacterSheetScreen";
 import { getRandomNumbers } from "../API/getRandomNumbers";
 import CharacterStorageScreen from "./CharacterStorageScreen";
 import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
@@ -290,3 +291,22 @@ export default function CharacterGenerator() {
     </div>
   );
 }
+
+CharacterGenerator.propTypes = {
+  character: PropTypes.object,
+  abilityScores: PropTypes.shape({
+    strength: PropTypes.number,
+    strengthOriginal: PropTypes.number,
+    intelligence: PropTypes.number,
+    intelligenceOriginal: PropTypes.number,
+    wisdom: PropTypes.number,
+    wisdomOriginal: PropTypes.number,
+    dexterity: PropTypes.number,
+    dexterityOriginal: PropTypes.number,
+    constitution: PropTypes.number,
+    constitutionOriginal: PropTypes.number,
+    charisma: PropTypes.number,
+    charismaOriginal: PropTypes.number
+  }),
+  pointBuy: PropTypes.number
+};
