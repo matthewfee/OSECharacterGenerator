@@ -12,7 +12,8 @@ import {
   Thief,
   MagicUser,
   Dwarf,
-  Halfling
+  Halfling,
+  armourTypes
 } from "../constants/constants";
 import { joinDuplicates, chooseRandomItem, d6 } from "../utilities/utilities";
 
@@ -333,32 +334,34 @@ export default function EquipmentScreen(props) {
   };
 
   const calculateAC = () => {
-    let armourClass = 10;
+    let baseArmour = 10;
 
     let dexMod = characterModifiers.dexterityModAC;
     if (dexMod.includes("+")) {
       dexMod = dexMod.substring(1);
     }
     dexMod = parseInt(dexMod);
-    armourClass += dexMod;
+    baseArmour += dexMod;
 
     if (!armour) {
-      setArmourClass(armourClass);
+      setArmourClass(baseArmour);
       return;
     }
 
-    setUnarmouredAC(armourClass);
+    setUnarmouredAC(baseArmour);
 
-    if (armour.includes("Plate mail")) {
-      armourClass += 6;
+    let armourClass = baseArmour;
+
+    if (armour.includes(armourTypes.leather)) {
+      armourClass = baseArmour + 2;
     }
-    if (armour.includes("Chainmail")) {
-      armourClass += 4;
+    if (armour.includes(armourTypes.chainMail)) {
+      armourClass = baseArmour + 4;
     }
-    if (armour.includes("Leather")) {
-      armourClass += 2;
+    if (armour.includes(armourTypes.plateMail)) {
+      armourClass = baseArmour + 6;
     }
-    if (armour.includes("Shield")) {
+    if (armour.includes(armourTypes.shield)) {
       armourClass += 1;
     }
 
@@ -407,16 +410,16 @@ export default function EquipmentScreen(props) {
 
               <div className="armour-container">
                 <div className="radio-container">
-                  {characterClass.armour.includes("leather") && (
+                  {characterClass.armour.includes(armourTypes.leather) && (
                     <label className="armour-radio">
                       <input
                         type="radio"
-                        value="Leather"
+                        value={armourTypes.leather}
                         className="form-check-input"
-                        checked={armourSelected === "Leather"}
+                        checked={armourSelected === armourTypes.leather}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes("leather")
+                          characterClass.armour.includes(armourTypes.leather)
                             ? false
                             : true
                         }
@@ -428,16 +431,16 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes("chainmail") && (
+                  {characterClass.armour.includes(armourTypes.chainMail) && (
                     <label className="armour-radio">
                       <input
                         type="radio"
-                        value="Chainmail"
+                        value={armourTypes.chainMail}
                         className="form-check-input"
-                        checked={armourSelected === "Chainmail"}
+                        checked={armourSelected === armourTypes.chainMail}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes("chainmail")
+                          characterClass.armour.includes(armourTypes.chainMail)
                             ? false
                             : true
                         }
@@ -448,16 +451,18 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes("plate") && (
+                  {characterClass.armour.includes(armourTypes.plateMail) && (
                     <label className="armour-radio">
                       <input
                         type="radio"
-                        value="Plate mail"
+                        value={armourTypes.plateMail}
                         className="form-check-input"
-                        checked={armourSelected === "Plate mail"}
+                        checked={armourSelected === armourTypes.plateMail}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes("plate") ? false : true
+                          characterClass.armour.includes(armourTypes.plateMail)
+                            ? false
+                            : true
                         }
                       />
                       <span className="radio--label">
@@ -466,16 +471,16 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes("shield") && (
+                  {characterClass.armour.includes(armourTypes.shield) && (
                     <label className="armour-radio">
                       <input
                         type="checkbox"
-                        value="Shield"
+                        value={armourTypes.shield}
                         className="form-check-input"
                         checked={shieldSelected === true}
                         onChange={handleShieldChange}
                         disabled={
-                          characterClass.armour.includes("shields")
+                          characterClass.armour.includes(armourTypes.shield)
                             ? false
                             : true
                         }

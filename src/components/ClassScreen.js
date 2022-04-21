@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import classOptionsData from "../data/classOptionsData";
 import { d, chooseRandomItem } from "../utilities/utilities";
+import {
+  magicUserSpells,
+  druidSpells,
+  illusionistSpells
+} from "../data/spells";
 
 export default function ClassScreen(props) {
   const {
@@ -61,47 +66,6 @@ export default function ClassScreen(props) {
 
     return "No Spells Found";
   };
-
-  const magicUserSpells = [
-    "Charm Person",
-    "Detect Magic",
-    "Floating Disc",
-    "Hold Portal",
-    "Light",
-    "Magic Missile",
-    "Protection from Evil",
-    "Read Languages",
-    "Read Magic",
-    "Shield",
-    "Sleep",
-    "Ventriloquism"
-  ];
-
-  const druidSpells = [
-    "Animal Friendship",
-    "Detect Danger",
-    "Entangle",
-    "Faerie Fire",
-    "Invisibility to Animals",
-    "Locate Plant or Animal",
-    "Predict Weather",
-    "Speak with Aniamls"
-  ];
-
-  const illusionistSpells = [
-    "Auditory Illusions",
-    "Chromatic Orb",
-    "Colour Spray",
-    "Dancing Lights",
-    "Detect Illusion",
-    "Glamour",
-    "Hypnotism",
-    "Light",
-    "Phantasmal Force",
-    "Read Magic",
-    "Spook",
-    "Wall of Fog"
-  ];
 
   const spellOption = spell => {
     return (

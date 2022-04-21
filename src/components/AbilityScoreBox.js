@@ -1,4 +1,5 @@
 import React from "react";
+import { redFail } from "../constants/constants";
 
 export default function AbilityScoreBox(props) {
   const {
@@ -12,7 +13,6 @@ export default function AbilityScoreBox(props) {
     pointBuy
   } = props;
 
-  const redFail = "#730505";
   const lowScore = 6;
   const highScore = 15;
   const maxScore = 18;

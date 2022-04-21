@@ -48,10 +48,6 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     });
   };
 
-  const generateAbilityScores = () => {
-    let array = abilityScoreNames;
-  };
-
   return (
     <div ref={ref} className="character-sheet-component">
       <h3 className="character--name">{character.name}</h3>

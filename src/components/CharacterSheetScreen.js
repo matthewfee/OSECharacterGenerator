@@ -6,7 +6,8 @@ import { joinDuplicates } from "../utilities/utilities";
 import download from "downloadjs";
 import {
   CHARACTER_SHEET_PURIST_URL,
-  CHARACTER_SHEET_UNDERGROUND_URL
+  CHARACTER_SHEET_UNDERGROUND_URL,
+  CHARACTER_STORAGE
 } from "../constants/constants";
 
 export default function CharacterSheetScreen(props) {
@@ -38,7 +39,7 @@ export default function CharacterSheetScreen(props) {
 
   const updateLocalStorage = () => {
     const myCharacters = JSON.parse(
-      window.localStorage.getItem("characterStorage")
+      window.localStorage.getItem(CHARACTER_STORAGE)
     );
 
     const id = character.id || 0;
@@ -53,14 +54,14 @@ export default function CharacterSheetScreen(props) {
     }
     let arr = [];
 
-    if (localStorage.getItem("characterStorage") === null) {
+    if (localStorage.getItem(CHARACTER_STORAGE) === null) {
       let arr = [];
       arr.push(characterDataObject);
-      window.localStorage.setItem("characterStorage", JSON.stringify(arr));
+      window.localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(arr));
     } else {
       myCharacters.push(characterDataObject);
       window.localStorage.setItem(
-        "characterStorage",
+        CHARACTER_STORAGE,
         JSON.stringify(myCharacters)
       );
     }

@@ -141,6 +141,16 @@ export const d6 = (howMany, randomNumbersArray) => {
   return sum;
 };
 
+export const getWeightedValue = (weightedList, diceValue) => {
+  const result = d(1, diceValue);
+
+  for (let i = result; i <= diceValue; i++) {
+    if (weightedList.hasOwnProperty(i)) {
+      return weightedList[i];
+    }
+  }
+};
+
 export const joinDuplicates = array => {
   let stuff = {};
   for (let i = 0; i < array.length; i++) {

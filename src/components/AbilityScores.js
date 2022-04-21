@@ -1,5 +1,7 @@
 import React from "react";
 import AbilityScoreBox from "./AbilityScoreBox";
+import { redFail } from "../constants/constants";
+import { abilityScoreNames } from "../constants/constants";
 
 export default function AbilityScores(props) {
   const {
@@ -68,7 +70,6 @@ export default function AbilityScores(props) {
     setAbilityScores({ ...abilityScores, [key]: newValue });
   };
 
-  const redFail = "#730505";
   const primeReqs = characterClass.primeReqs?.join(" ");
 
   return (
@@ -79,7 +80,7 @@ export default function AbilityScores(props) {
         {/* Add i18n https://react.i18next.com/ */}
         <h2>STRENGTH</h2>
 
-        {primeReqs.includes("strength") && (
+        {primeReqs.includes(abilityScoreNames.strength) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -87,7 +88,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.strength}
         abilityScoreValueOriginal={abilityScores.strengthOriginal}
-        abilityScoreName={`strength`}
+        abilityScoreName={abilityScoreNames.strength}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={
@@ -106,7 +107,7 @@ export default function AbilityScores(props) {
       <div className="ability-score-name">
         <h2>INTELLIGENCE</h2>
 
-        {primeReqs.includes("intelligence") && (
+        {primeReqs.includes(abilityScoreNames.intelligence) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -114,7 +115,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.intelligence}
         abilityScoreValueOriginal={abilityScores.intelligenceOriginal}
-        abilityScoreName={`intelligence`}
+        abilityScoreName={abilityScoreNames.intelligence}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={true}
@@ -130,7 +131,7 @@ export default function AbilityScores(props) {
       <div className="ability-score-name">
         <h2>WISDOM</h2>
 
-        {primeReqs.includes("wisdom") && (
+        {primeReqs.includes(abilityScoreNames.wisdom) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -138,7 +139,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.wisdom}
         abilityScoreValueOriginal={abilityScores.wisdomOriginal}
-        abilityScoreName={`wisdom`}
+        abilityScoreName={abilityScoreNames.wisdom}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={true}
@@ -153,7 +154,7 @@ export default function AbilityScores(props) {
       <div className="ability-score-name">
         <h2>DEXTERITY</h2>
 
-        {primeReqs.includes("dexterity") && (
+        {primeReqs.includes(abilityScoreNames.dexterity) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -161,7 +162,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.dexterity}
         abilityScoreValueOriginal={abilityScores.dexterityOriginal}
-        abilityScoreName={`dexterity`}
+        abilityScoreName={abilityScoreNames.dexterity}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}
@@ -178,7 +179,7 @@ export default function AbilityScores(props) {
       <div className="ability-score-name">
         <h2>CONSTITUTION</h2>
 
-        {primeReqs.includes("constitution") && (
+        {primeReqs.includes(abilityScoreNames.constitution) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -186,7 +187,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.constitution}
         abilityScoreValueOriginal={abilityScores.constitutionOriginal}
-        abilityScoreName={`constitution`}
+        abilityScoreName={abilityScoreNames.constitution}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}
@@ -201,7 +202,7 @@ export default function AbilityScores(props) {
       <div className="ability-score-name">
         <h2>CHARISMA</h2>
 
-        {primeReqs.includes("charisma") && (
+        {primeReqs.includes(abilityScoreNames.charisma) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
         )}
       </div>
@@ -209,7 +210,7 @@ export default function AbilityScores(props) {
       <AbilityScoreBox
         abilityScoreValue={abilityScores.charisma}
         abilityScoreValueOriginal={abilityScores.charismaOriginal}
-        abilityScoreName={`charisma`}
+        abilityScoreName={abilityScoreNames.charisma}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
         canDecrease={false}
