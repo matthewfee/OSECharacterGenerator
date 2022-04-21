@@ -21,6 +21,7 @@
     "npm": "^8.7.0",
     "pdf-lib": "^1.13.0",
     "prettier": "^1.19.1",
+    "prop-types": "^15.8.1",
     "react": "^16.14.0",
     "react-component-export-image": "^1.0.6",
     "react-dom": "^16.13.1",
