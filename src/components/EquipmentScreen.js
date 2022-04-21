@@ -119,7 +119,9 @@ export default function EquipmentScreen(props) {
       return joinDuplicates(adventuringGear).map((item, index) => (
         <EquipmentBackpack
           name={item}
-          sellSelectedEquipment={sellSelectedAdventuringGear}
+          sellSelectedEquipment={() => {
+            storeHandler(item, "sell", "gear");
+          }}
           key={index}
         ></EquipmentBackpack>
       ));
@@ -138,7 +140,7 @@ export default function EquipmentScreen(props) {
           <button
             className="button button--equipment button--weapon"
             value={item}
-            onClick={() => sellSelectedWeapon(item)}
+            onClick={() => storeHandler(item, "sell", "weapon")}
           >
             Sell
           </button>
@@ -159,7 +161,7 @@ export default function EquipmentScreen(props) {
           <button
             className="button button--equipment button--armour"
             value={item}
-            onClick={() => sellSelectedArmour(item)}
+            onClick={() => storeHandler(item, "sell", "armour")}
           >
             Sell
           </button>
@@ -172,99 +174,8 @@ export default function EquipmentScreen(props) {
     setAdventuringGearSelected(event.target.value);
   };
 
-  const findGear = object => {
-    return object.name === adventuringGearSelected;
-  };
-
-  const buySelectedAdventuringGear = () => {
-    const adventuringGearObject = equipmentData.find(findGear);
-
-    if (adventuringGearObject.price > gold) {
-      return;
-    }
-
-    if (!adventuringGearObject) {
-      console.error(adventuringGearObject);
-    }
-
-    setAdventuringGear([...adventuringGear, adventuringGearObject.name]);
-    setGold(gold - adventuringGearObject.price);
-  };
-
-  const sellSelectedAdventuringGear = itemName => {
-    let adventuringGearObject = equipmentData.find(object => {
-      return itemName.includes(object.name);
-    });
-
-    let itemsRemoved = 0;
-
-    const removeOneItem = item => {
-      if (itemsRemoved > 0) {
-        return true;
-      }
-
-      if (adventuringGearObject.name === item) {
-        itemsRemoved++;
-        return false;
-      }
-
-      return true;
-    };
-
-    const newAdventuringGearArray = adventuringGear.filter(removeOneItem);
-
-    setAdventuringGear(newAdventuringGearArray);
-    setGold(gold + adventuringGearObject.price);
-  };
-
   const updateSelectedWeapon = event => {
     setWeaponSelected(event.target.value);
-  };
-
-  const findWeapon = object => {
-    return object.name === weaponSelected;
-  };
-
-  const buySelectedWeapon = () => {
-    const weaponObject = weaponsData.find(findWeapon);
-
-    if (weaponObject.price > gold) {
-      return;
-    }
-
-    setGold(gold - weaponObject.price);
-
-    setWeapons(oldWeapons => [...oldWeapons, weaponObject.name]);
-  };
-
-  const sellSelectedWeapon = itemName => {
-    if (itemName.includes(" (x")) {
-      let itemNameNonConsolidated = itemName.split(" (x");
-      itemName = itemNameNonConsolidated[0];
-    }
-
-    const weaponObject = weaponsData.find(object => {
-      return object.name === itemName;
-    });
-
-    let itemsRemoved = 0;
-
-    const removeTheItem = item => {
-      if (itemsRemoved > 0) {
-        return true;
-      }
-
-      if (weaponObject.name === item) {
-        itemsRemoved++;
-        return false;
-      }
-
-      return true;
-    };
-
-    let newWeaponsArray = weapons.filter(removeTheItem);
-    setWeapons(newWeaponsArray);
-    setGold(gold + weaponObject.price);
   };
 
   const handleOptionChange = event => {
@@ -279,56 +190,98 @@ export default function EquipmentScreen(props) {
     }
   };
 
-  const findArmour = object => {
-    return object.name === armourSelected;
-  };
-
-  const buySelectedArmour = () => {
-    const armourObject = armourData.find(findArmour);
-
-    if (armourObject.price > gold) {
-      return;
+  const storeHandler = (selectedItem, action, type) => {
+    if (selectedItem.includes(" (x")) {
+      let itemNameNonConsolidated = selectedItem.split(" (x");
+      selectedItem = itemNameNonConsolidated[0];
     }
 
-    if (shieldSelected && armourObject.price + 10 > gold) {
-      return;
+    let storeCollection;
+
+    switch (type) {
+      case "armour":
+        storeCollection = armourData;
+        break;
+      case "weapon":
+        storeCollection = weaponsData;
+        break;
+      case "gear":
+        storeCollection = equipmentData;
+        break;
     }
 
-    if (shieldSelected) {
-      setGold(gold - armourObject.price - 10);
-      setArmour(oldArmour => [...oldArmour, armourObject.name, "Shield"]);
-    } else {
-      setGold(gold - armourObject.price);
-      setArmour(oldArmour => [...oldArmour, armourObject.name]);
-    }
-  };
-
-  const sellSelectedArmour = itemName => {
-    const findArmourToSell = object => {
-      return object.name === itemName;
+    const findItem = object => {
+      return object.name === selectedItem;
     };
 
-    const armourObject = armourData.find(findArmourToSell);
+    const item = storeCollection.find(findItem);
 
-    let itemsRemoved = 0;
-
-    const removeTheItem = item => {
-      if (itemsRemoved > 0) {
-        return true;
+    if (type === "weapon") {
+      switch (action) {
+        case "buy":
+          if (item.price > gold) {
+            return;
+          }
+          setGold(gold - item.price);
+          setWeapons(oldItems => [...oldItems, item.name]);
+          break;
+        case "sell":
+          const index = weapons.findIndex(x => {
+            return x === item.name;
+          });
+          let newWeaponsArray = [...weapons];
+          newWeaponsArray.splice(index, 1);
+          setWeapons(newWeaponsArray);
+          setGold(gold + item.price);
       }
+    }
 
-      if (armourObject.name === item) {
-        itemsRemoved++;
-        return false;
+    if (type === "armour") {
+      let shieldCost = shieldSelected ? 10 : 0;
+      switch (action) {
+        case "buy":
+          if (item.price + shieldCost > gold) {
+            return;
+          }
+          if (shieldSelected) {
+            setGold(gold - item.price - shieldCost);
+            setArmour(oldArmour => [...oldArmour, item.name, "Shield"]);
+          } else {
+            setGold(gold - item.price);
+            setArmour(oldArmour => [...oldArmour, item.name]);
+          }
+          break;
+        case "sell":
+          const index = armour.findIndex(x => {
+            return x === item.name;
+          });
+          let newArmourArray = [...armour];
+          newArmourArray.splice(index, 1);
+          setArmour(newArmourArray);
+          setGold(gold + item.price);
       }
+    }
 
-      return true;
-    };
+    if (type === "gear") {
+      switch (action) {
+        case "buy":
+          if (item.price > gold) {
+            return;
+          }
+          setGold(gold - item.price);
+          setAdventuringGear(oldGear => [...oldGear, item.name]);
+          break;
+        case "sell":
+          const index = adventuringGear.findIndex(x => {
+            return x === item.name;
+          });
 
-    const newArmourArray = armour.filter(removeTheItem);
-
-    setGold(gold + armourObject.price);
-    setArmour(newArmourArray);
+          let newGearArray = [...adventuringGear];
+          newGearArray.splice(index, 1);
+          setAdventuringGear(newGearArray);
+          setGold(gold + item.price);
+      }
+    }
   };
 
   const calculateAC = () => {
@@ -490,7 +443,9 @@ export default function EquipmentScreen(props) {
                   className="button--buy-armour"
                   type="submit"
                   value="Buy"
-                  onClick={buySelectedArmour}
+                  onClick={() => {
+                    storeHandler(armourSelected, "buy", "armour");
+                  }}
                   price={null}
                   disabled={armourSelected ? false : true}
                 />
@@ -526,7 +481,7 @@ export default function EquipmentScreen(props) {
               className="button--buy-weapon"
               type="submit"
               value="Buy"
-              onClick={buySelectedWeapon}
+              onClick={() => storeHandler(weaponSelected, "buy", "weapon")}
               price={null}
             />
           </div>
@@ -554,7 +509,9 @@ export default function EquipmentScreen(props) {
               className="button--buy-gear"
               type="submit"
               value="Buy"
-              onClick={buySelectedAdventuringGear}
+              onClick={() => {
+                storeHandler(adventuringGearSelected, "buy", "gear");
+              }}
             />
           </div>
 
