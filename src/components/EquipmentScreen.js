@@ -183,8 +183,6 @@ export default function EquipmentScreen(props) {
       return;
     }
 
-    console.log(adventuringGearObject);
-
     if (!adventuringGearObject) {
       console.error(adventuringGearObject);
     }

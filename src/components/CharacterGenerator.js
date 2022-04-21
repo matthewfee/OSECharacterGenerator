@@ -308,5 +308,51 @@ CharacterGenerator.propTypes = {
     charisma: PropTypes.number,
     charismaOriginal: PropTypes.number
   }),
-  pointBuy: PropTypes.number
+  characterModifiers: PropTypes.shape({
+    primeReq: PropTypes.number,
+    strengthModMelee: PropTypes.number,
+    strengthModDoors: PropTypes.number,
+    intelligenceModLanguages: PropTypes.number,
+    intelligenceModLiteracy: PropTypes.string,
+    intelligenceModExtraLanguageCount: PropTypes.number,
+    wisdomMod: PropTypes.number,
+    dexterityModAC: PropTypes.number,
+    dexterityModMissiles: PropTypes.number,
+    dexterityModInitiative: PropTypes.number,
+    constitutionMod: PropTypes.number,
+    charismaModNPCReactions: PropTypes.number,
+    charismaModRetainersMax: PropTypes.number,
+    charismaModLoyalty: PropTypes.number
+  }),
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.array,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number
+  }),
+  pointBuy: PropTypes.number,
+  characterClass: PropTypes.shape({
+    name: PropTypes.string,
+    primeReqs: PropTypes.array
+  }),
+  pages: PropTypes.shape({
+    equipmentScreen: PropTypes.bool,
+    abilityScreen: PropTypes.bool,
+    classScreen: PropTypes.bool,
+    detailsScreen: PropTypes.bool,
+    characterSheetScreen: PropTypes.bool,
+    characterStorageScreen: PropTypes.bool
+  }),
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number
+  }),
+  loadingRandomNumbers: PropTypes.bool,
+  randomNumbers: PropTypes.array,
+  characterolled: PropTypes.bool,
+  rollButtonHover: PropTypes.bool,
+  advancedClassesDisplay: PropTypes.bool
 };
