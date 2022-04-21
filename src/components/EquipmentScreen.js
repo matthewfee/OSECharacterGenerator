@@ -410,7 +410,7 @@ export default function EquipmentScreen(props) {
 
               <div className="armour-container">
                 <div className="radio-container">
-                  {characterClass.armour.includes(armourTypes.leather) && (
+                  {characterClass.armour.includes("leather") && (
                     <label className="armour-radio">
                       <input
                         type="radio"
@@ -419,7 +419,7 @@ export default function EquipmentScreen(props) {
                         checked={armourSelected === armourTypes.leather}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes(armourTypes.leather)
+                          characterClass.armour.includes("leather")
                             ? false
                             : true
                         }
@@ -431,7 +431,7 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes(armourTypes.chainMail) && (
+                  {characterClass.armour.includes("chainmail") && (
                     <label className="armour-radio">
                       <input
                         type="radio"
@@ -440,7 +440,7 @@ export default function EquipmentScreen(props) {
                         checked={armourSelected === armourTypes.chainMail}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes(armourTypes.chainMail)
+                          characterClass.armour.includes("chainmail")
                             ? false
                             : true
                         }
@@ -451,7 +451,7 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes(armourTypes.plateMail) && (
+                  {characterClass.armour.includes("plate") && (
                     <label className="armour-radio">
                       <input
                         type="radio"
@@ -460,9 +460,7 @@ export default function EquipmentScreen(props) {
                         checked={armourSelected === armourTypes.plateMail}
                         onChange={handleOptionChange}
                         disabled={
-                          characterClass.armour.includes(armourTypes.plateMail)
-                            ? false
-                            : true
+                          characterClass.armour.includes("plate") ? false : true
                         }
                       />
                       <span className="radio--label">
@@ -471,7 +469,7 @@ export default function EquipmentScreen(props) {
                     </label>
                   )}
 
-                  {characterClass.armour.includes(armourTypes.shield) && (
+                  {characterClass.armour.includes("shield") && (
                     <label className="armour-radio">
                       <input
                         type="checkbox"
@@ -480,7 +478,7 @@ export default function EquipmentScreen(props) {
                         checked={shieldSelected === true}
                         onChange={handleShieldChange}
                         disabled={
-                          characterClass.armour.includes(armourTypes.shield)
+                          characterClass.armour.includes("shields")
                             ? false
                             : true
                         }
