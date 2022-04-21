@@ -2,7 +2,8 @@
 import abilityScoreMods from "../data/abilityScoreMods";
 import {
   abilityScoreNames,
-  primeRequisiteModifiers
+  primeRequisiteModifiers,
+  armourTypes
 } from "../constants/constants";
 import classOptionsData from "../data/classOptionsData";
 
@@ -171,4 +172,34 @@ export const joinDuplicates = array => {
   }
 
   return consolidated;
+};
+
+export const calculateArmourClass = (dexMod, armour) => {
+  let baseArmour = 10;
+  let armourClass = baseArmour;
+
+  if (dexMod.includes("+")) {
+    dexMod = dexMod.substring(1);
+  }
+  dexMod = parseInt(dexMod);
+  baseArmour += dexMod;
+
+  if (!armour) {
+    return [baseArmour, armourClass];
+  }
+
+  if (armour.includes(armourTypes.leather)) {
+    armourClass = baseArmour + 2;
+  }
+  if (armour.includes(armourTypes.chainMail)) {
+    armourClass = baseArmour + 4;
+  }
+  if (armour.includes(armourTypes.plateMail)) {
+    armourClass = baseArmour + 6;
+  }
+  if (armour.includes(armourTypes.shield)) {
+    armourClass += 1;
+  }
+
+  return [baseArmour, armourClass];
 };

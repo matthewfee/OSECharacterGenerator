@@ -1,17 +1,19 @@
 import React from "react";
 
 export default function EquipmentBackpack(props) {
+  const { name, keyName, sellSelectedEquipment } = props;
+
   return (
     <li
       className="backpack-item backpack-item--gear"
-      value={props.name}
-      key={props.keyName}
+      value={name}
+      key={keyName}
     >
-      {props.name}
+      {name}
       <button
         className="button button--equipment"
-        value={props.name}
-        onClick={() => props.sellSelectedEquipment(props.name)}
+        value={name}
+        onClick={() => sellSelectedEquipment(props.name)}
       >
         Sell
       </button>

@@ -15,7 +15,16 @@ import {
   Halfling,
   armourTypes
 } from "../constants/constants";
-import { joinDuplicates, chooseRandomItem, d6 } from "../utilities/utilities";
+import {
+  joinDuplicates,
+  chooseRandomItem,
+  d6,
+  calculateArmourClass
+} from "../utilities/utilities";
+import ArmourOptionsContainer from "./ArmourOptionsContainer";
+import WeaponOptionsContainer from "./WeaponOptionsContainer";
+import GearOptionsContainer from "./GearOptionsContainer";
+import Inventory from "./Inventory";
 
 export default function EquipmentScreen(props) {
   const {
@@ -108,66 +117,6 @@ export default function EquipmentScreen(props) {
 
   const weaponsList = () => {
     return weaponsData.map(item => weaponsOptions(item));
-  };
-
-  const equipmentBackpack = () => {
-    if (!adventuringGear) {
-      return;
-    }
-
-    if (adventuringGear.length > 0) {
-      return joinDuplicates(adventuringGear).map((item, index) => (
-        <EquipmentBackpack
-          name={item}
-          sellSelectedEquipment={() => {
-            storeHandler(item, "sell", "gear");
-          }}
-          key={index}
-        ></EquipmentBackpack>
-      ));
-    }
-  };
-
-  const weaponsBackpack = () => {
-    return joinDuplicates(weapons).map((item, index) => {
-      return (
-        <li
-          className="backpack-item backpack-item--weapon"
-          value={item}
-          key={index}
-        >
-          {item}
-          <button
-            className="button button--equipment button--weapon"
-            value={item}
-            onClick={() => storeHandler(item, "sell", "weapon")}
-          >
-            Sell
-          </button>
-        </li>
-      );
-    });
-  };
-
-  const armourBackpack = () => {
-    return armour.map((item, index) => {
-      return (
-        <li
-          className="backpack-item backpack-item--armour"
-          value={item}
-          key={index}
-        >
-          {item}
-          <button
-            className="button button--equipment button--armour"
-            value={item}
-            onClick={() => storeHandler(item, "sell", "armour")}
-          >
-            Sell
-          </button>
-        </li>
-      );
-    });
   };
 
   const updateSelectedAdventuringGear = event => {
@@ -285,37 +234,11 @@ export default function EquipmentScreen(props) {
   };
 
   const calculateAC = () => {
-    let baseArmour = 10;
-
-    let dexMod = characterModifiers.dexterityModAC;
-    if (dexMod.includes("+")) {
-      dexMod = dexMod.substring(1);
-    }
-    dexMod = parseInt(dexMod);
-    baseArmour += dexMod;
-
-    if (!armour) {
-      setArmourClass(baseArmour);
-      return;
-    }
-
+    const [baseArmour, armourClass] = calculateArmourClass(
+      characterModifiers.dexterityModAC,
+      armour
+    );
     setUnarmouredAC(baseArmour);
-
-    let armourClass = baseArmour;
-
-    if (armour.includes(armourTypes.leather)) {
-      armourClass = baseArmour + 2;
-    }
-    if (armour.includes(armourTypes.chainMail)) {
-      armourClass = baseArmour + 4;
-    }
-    if (armour.includes(armourTypes.plateMail)) {
-      armourClass = baseArmour + 6;
-    }
-    if (armour.includes(armourTypes.shield)) {
-      armourClass += 1;
-    }
-
     setArmourClass(armourClass);
   };
 
@@ -350,188 +273,40 @@ export default function EquipmentScreen(props) {
       {goldRolled && (
         <div className="equipment-purchase-container">
           {!characterClass.armour.includes("none") && (
-            <div className="armour-container-parent">
-              <div className="equipment-container--header">
-                {characterClass.name} Armour
-              </div>
-
-              <div className="equipment-restrictions">
-                Allowed Armour: {characterClass.armour}
-              </div>
-
-              <div className="armour-container">
-                <div className="radio-container">
-                  {characterClass.armour.includes("leather") && (
-                    <label className="armour-radio">
-                      <input
-                        type="radio"
-                        value={armourTypes.leather}
-                        className="form-check-input"
-                        checked={armourSelected === armourTypes.leather}
-                        onChange={handleOptionChange}
-                        disabled={
-                          characterClass.armour.includes("leather")
-                            ? false
-                            : true
-                        }
-                      />
-
-                      <span className="radio--label">
-                        Leather - AC 7 [12] - 20 gp
-                      </span>
-                    </label>
-                  )}
-
-                  {characterClass.armour.includes("chainmail") && (
-                    <label className="armour-radio">
-                      <input
-                        type="radio"
-                        value={armourTypes.chainMail}
-                        className="form-check-input"
-                        checked={armourSelected === armourTypes.chainMail}
-                        onChange={handleOptionChange}
-                        disabled={
-                          characterClass.armour.includes("chainmail")
-                            ? false
-                            : true
-                        }
-                      />
-                      <span className="radio--label">
-                        Chainmail - AC 5 [14] - 40 gp
-                      </span>
-                    </label>
-                  )}
-
-                  {characterClass.armour.includes("plate") && (
-                    <label className="armour-radio">
-                      <input
-                        type="radio"
-                        value={armourTypes.plateMail}
-                        className="form-check-input"
-                        checked={armourSelected === armourTypes.plateMail}
-                        onChange={handleOptionChange}
-                        disabled={
-                          characterClass.armour.includes("plate") ? false : true
-                        }
-                      />
-                      <span className="radio--label">
-                        Plate mail - AC 3 [16] - 60 gp
-                      </span>
-                    </label>
-                  )}
-
-                  {characterClass.armour.includes("shield") && (
-                    <label className="armour-radio">
-                      <input
-                        type="checkbox"
-                        value={armourTypes.shield}
-                        className="form-check-input"
-                        checked={shieldSelected === true}
-                        onChange={handleShieldChange}
-                        disabled={
-                          characterClass.armour.includes("shields")
-                            ? false
-                            : true
-                        }
-                      />
-                      Shield (AC +1 bonus) - 10gp
-                    </label>
-                  )}
-                </div>
-
-                <input
-                  className="button--buy-armour"
-                  type="submit"
-                  value="Buy"
-                  onClick={() => {
-                    storeHandler(armourSelected, "buy", "armour");
-                  }}
-                  price={null}
-                  disabled={armourSelected ? false : true}
-                />
-              </div>
-            </div>
+            <ArmourOptionsContainer
+              characterClass={characterClass}
+              handleOptionChange={handleOptionChange}
+              armourSelected={armourSelected}
+              shieldSelected={shieldSelected}
+              handleShieldChange={handleShieldChange}
+              storeHandler={storeHandler}
+            ></ArmourOptionsContainer>
           )}
 
-          <div className="equipment-container--header">
-            {characterClass.name} Weapons
-          </div>
+          <WeaponOptionsContainer
+            characterClass={characterClass}
+            weaponSelected={weaponSelected}
+            updateSelectedWeapon={updateSelectedWeapon}
+            weaponsList={weaponsList}
+            storeHandler={storeHandler}
+            selectRandomWeapon={selectRandomWeapon}
+          ></WeaponOptionsContainer>
 
-          <div className="equipment-restrictions">
-            Allowed Weapons: {characterClass.weapons}
-          </div>
+          <GearOptionsContainer
+            characterClass={characterClass}
+            adventuringGearSelected={adventuringGearSelected}
+            updateSelectedAdventuringGear={updateSelectedAdventuringGear}
+            adventuringGearList={adventuringGearList}
+            storeHandler={storeHandler}
+            selectRandomGear={selectRandomGear}
+          ></GearOptionsContainer>
 
-          <div className="weapons-container">
-            <select
-              className="weapons-select"
-              value={weaponSelected}
-              onChange={updateSelectedWeapon}
-            >
-              {weaponsList()}
-            </select>
-
-            <button
-              className="button--random-weapon"
-              onClick={selectRandomWeapon}
-            >
-              Random
-            </button>
-
-            <input
-              className="button--buy-weapon"
-              type="submit"
-              value="Buy"
-              onClick={() => storeHandler(weaponSelected, "buy", "weapon")}
-              price={null}
-            />
-          </div>
-
-          <div className="equipment-container--header">Adventuring Gear</div>
-
-          <div className="gear-container">
-            <select
-              className="gear-select"
-              value={adventuringGearSelected}
-              onChange={updateSelectedAdventuringGear}
-              price={null}
-            >
-              {adventuringGearList()}
-            </select>
-
-            <button
-              className="button--random-weapon"
-              onClick={selectRandomGear}
-            >
-              Random
-            </button>
-
-            <input
-              className="button--buy-gear"
-              type="submit"
-              value="Buy"
-              onClick={() => {
-                storeHandler(adventuringGearSelected, "buy", "gear");
-              }}
-            />
-          </div>
-
-          <div className="inventory">
-            <h3 className="header-default"> Inventory </h3>
-
-            <div className="backpack-container">
-              {armour && (
-                <div className="armour-backpack">{armourBackpack()}</div>
-              )}
-
-              {weapons && (
-                <div className="weapons-backpack">{weaponsBackpack()}</div>
-              )}
-
-              {adventuringGear && (
-                <div className="gear-backpack">{equipmentBackpack()}</div>
-              )}
-            </div>
-          </div>
+          <Inventory
+            weapons={weapons}
+            adventuringGear={adventuringGear}
+            armour={armour}
+            storeHandler={storeHandler}
+          ></Inventory>
 
           {goldRolled && (
             <button
