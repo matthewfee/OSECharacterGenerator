@@ -1,3 +1,7 @@
+// styling
+
+export const redFail = "#730505";
+
 // URLS
 
 export const CHARACTER_SHEET_PURIST_URL =
@@ -17,6 +21,8 @@ export const abilityScoreNames = [
   "constitution",
   "charisma"
 ];
+
+export const CHARACTER_STORAGE = "characterStorage";
 
 export const primeRequisiteModifiers = [
   null,
@@ -49,6 +55,15 @@ export const Dwarf = "Dwarf";
 export const Halfling = "Halfling";
 export const MagicUser = "Magic-User";
 export const Thief = "Thief";
+
+//strings for armour
+
+export const armourTypes = {
+  leather: "Leather",
+  chainMail: "Chainmail",
+  plateMail: "Plate mail",
+  shield: "Shield"
+};
 
 //strings for first names
 

@@ -4,6 +4,7 @@ import "./css/normalize.css";
 import "./css/skeleton.css";
 import "./img/header.jpg";
 import CharacterGenerator from "./components/CharacterGenerator";
+import { useTranslation, Trans } from "react-i18next";
 
 class App extends React.Component {
   render() {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CHARACTER_STORAGE } from "../constants/constants";
 
 export default function CharacterStorageScreen(props) {
   const {
@@ -23,7 +24,7 @@ export default function CharacterStorageScreen(props) {
 
   useEffect(() => {
     const characters = JSON.parse(
-      window.localStorage.getItem("characterStorage")
+      window.localStorage.getItem(CHARACTER_STORAGE)
     );
     setMyCharacters(characters);
   }, []);
@@ -50,7 +51,7 @@ export default function CharacterStorageScreen(props) {
       case "deleteCharacter":
         let newStorage = [...myCharacters];
         newStorage.splice(index, 1);
-        localStorage.setItem("characterStorage", JSON.stringify(newStorage));
+        localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(newStorage));
         setMyCharacters(newStorage);
 
       default:

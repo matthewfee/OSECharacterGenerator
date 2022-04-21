@@ -5,11 +5,6 @@ import { abilityScoreNames } from "../constants/constants";
 export default function ClassOptionsButton(props) {
   const { characterClass, abilityScores, changeCharacterClass } = props;
 
-  // what is the data structure of 'requirements'? Use PropTypes
-
-  // this whole if statement below does not seem right. Think about other way of doing it
-  // Tip: put all the attributes like (STR) to the array, and then use one of those methods map(), find()
-
   const checkAbilityScoreRequirements = (abilityScores, characterClass) => {
     let meetsAbilityScoreRequirements = true;
 

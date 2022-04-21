@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classOptionsData from "../data/classOptionsData";
+import { characterBackgrounds } from "../data/backgrounds";
+import { d, getWeightedValue } from "../utilities/utilities";
+
 import {
   firstNames,
   lastNames,
@@ -86,44 +89,16 @@ export default function DetailsScreen(props) {
   };
 
   const getBackground = () => {
-    let bgs = [];
+    let background = getWeightedValue(characterBackgrounds, 100);
 
-    // This code looks suspicious.
-    // use map() or figure out some other way
-    bgs = bgs.concat(Array(3).fill("Animal trainer"));
-    bgs = bgs.concat(Array(2).fill("Armorer"));
-    bgs = bgs.concat(Array(4).fill("Baker"));
-    bgs = bgs.concat(Array(3).fill("Blacksmith"));
-    bgs = bgs.concat(Array(1).fill("Bookbinder"));
-    bgs = bgs.concat(Array(4).fill("Bowyer/fletcher"));
-    bgs = bgs.concat(Array(4).fill("Brewer"));
-    bgs = bgs.concat(Array(3).fill("Butcher"));
-    bgs = bgs.concat(Array(3).fill("Carpenter"));
-    bgs = bgs.concat(Array(3).fill("Chandler"));
-    bgs = bgs.concat(Array(3).fill("Cooper"));
-    bgs = bgs.concat(Array(2).fill("Coppersmith"));
-    bgs = bgs.concat(Array(10).fill("Farmer"));
-    bgs = bgs.concat(Array(4).fill("Fisher"));
-    bgs = bgs.concat(Array(4).fill("Furrier"));
-    bgs = bgs.concat(Array(1).fill("Glassblower"));
-    bgs = bgs.concat(Array(4).fill("Hunter"));
-    bgs = bgs.concat(Array(3).fill("Jeweller"));
-    bgs = bgs.concat(Array(3).fill("Lorimer"));
-    bgs = bgs.concat(Array(1).fill("Cartographer"));
-    bgs = bgs.concat(Array(3).fill("Mason"));
-    bgs = bgs.concat(Array(3).fill("Miner"));
-    bgs = bgs.concat(Array(3).fill("Potter"));
-    bgs = bgs.concat(Array(2).fill("Roper"));
-    bgs = bgs.concat(Array(3).fill("Sailor"));
-    bgs = bgs.concat(Array(3).fill("Shipwright"));
-    bgs = bgs.concat(Array(3).fill("Tailor"));
-    bgs = bgs.concat(Array(3).fill("Tanner"));
-    bgs = bgs.concat(Array(3).fill("Thatcher"));
-    bgs = bgs.concat(Array(3).fill("Lumberjack"));
-    bgs = bgs.concat(Array(2).fill("Vinter"));
-    bgs = bgs.concat(Array(1).fill("Noble bastard"));
+    while (background.includes("Roll for two skills")) {
+      background = `${getWeightedValue(
+        characterBackgrounds,
+        100
+      )}, ${getWeightedValue(characterBackgrounds, 100)}`;
+    }
 
-    setBackground(chooseRandomItem(bgs));
+    setBackground(background);
   };
 
   const getPersonality = () => {
