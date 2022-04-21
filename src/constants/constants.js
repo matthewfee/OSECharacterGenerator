@@ -2,8 +2,6 @@
 
 export const redFail = "#730505";
 
-let test = "test"
-
 // URLS
 
 export const CHARACTER_SHEET_PURIST_URL =
@@ -14,6 +12,8 @@ export const CHARACTER_SHEET_UNDERGROUND_URL =
 
 export const RANDOM_NUMBERS_API_URL =
   "https://api.random.org/json-rpc/4/invoke";
+
+// strings
 
 export const abilityScoreNames = [
   "strength",

@@ -6,6 +6,15 @@ import {
   armourTypes
 } from "../constants/constants";
 import classOptionsData from "../data/classOptionsData";
+import React from "react";
+
+export const LinkText = ({ href, children }) => {
+  return (
+    <a href={href || ""} target="_blank">
+      {children}
+    </a>
+  );
+};
 
 export const getModValue = (abilityScoreName, abilityScore) => {
   let newAbilityModifiers = {};

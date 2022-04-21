@@ -1,8 +1,17 @@
 import React from "react";
 import CircleLoader from "react-spinners/CircleLoader";
 import { css } from "@emotion/react";
+import { useTranslation, Trans } from "react-i18next";
+import { LinkText } from "../utilities/utilities";
 
 export default function Header(props) {
+  const { t, i18n } = useTranslation();
+
+  const lngs = {
+    en: { nativeName: "English" },
+    de: { nativeName: "Deutsch" }
+  };
+
   const {
     characterRolled,
     setCharacterRolled,
@@ -42,7 +51,8 @@ export default function Header(props) {
         className={`title ${rollButtonHover ? "fade" : ""}`}
         style={{ fontSize: characterRolled ? "1.2rem" : "" }}
       >
-        OSE Character Generator
+        <Trans i18nKey="AppName"></Trans>
+        {/* OSE Character Generator */}
       </h2>
       {pages.abilityScreen && !characterRolled && (
         <button
@@ -52,7 +62,11 @@ export default function Header(props) {
           onMouseEnter={() => setRollButtonHover(true)}
           onMouseLeave={() => setRollButtonHover(false)}
         >
-          {!loadingRandomNumbers && <div>Roll</div>}
+          {!loadingRandomNumbers && (
+            <div>
+              <Trans i18nKey="Roll"></Trans>
+            </div>
+          )}
 
           <div className="sweet-loading">
             <CircleLoader
@@ -79,7 +93,7 @@ export default function Header(props) {
             setCharacterRolled(true);
           }}
         >
-          Tavern
+          <Trans i18nKey="Tavern"></Trans>
         </button>
       )}
 
@@ -87,20 +101,39 @@ export default function Header(props) {
         <div
           className={`main-page--subheader ${rollButtonHover ? "fade" : ""} `}
         >
-          Designed for use with{" "}
-          <a href="https://necroticgnome.com/"> Old School Essentials</a>. OSE
-          Advanced Fantasy classes included with the permission of Necrotic
-          Gnome.
+          <Trans
+            i18nKey="AppDescription"
+            t={t}
+            components={[
+              <LinkText href="https://necroticgnome.com/" />,
+              <LinkText href="https://random.org" />
+            ]}
+          />
           <br></br>
-          All dice values are generated from{" "}
-          <a href="https://www.random.org/">RANDOM.ORG</a>. <br></br> <br></br>
           <br></br>
-          <a
-            href="https://eviltables.dev/ose-character-generator/"
-            className="main-page--subheadername"
-          >
-            Created by EvilTables
-          </a>
+          <Trans
+            i18nKey="CreatedBy"
+            t={t}
+            components={[
+              <LinkText href="https://eviltables.dev/ose-character-generator/" />
+            ]}
+          />
+          <br></br>
+          <br></br>
+          <div>
+            {Object.keys(lngs).map(lng => (
+              <button
+                key={lng}
+                style={{
+                  fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal"
+                }}
+                type="submit"
+                onClick={() => i18n.changeLanguage(lng)}
+              >
+                {lngs[lng].nativeName}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </header>
