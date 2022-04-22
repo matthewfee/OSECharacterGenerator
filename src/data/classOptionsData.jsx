@@ -398,7 +398,6 @@ const classOptionsData = [
     category: "advanced",
     requirements: "Minimum 9 constitution",
     primeReqs: ["intelligence", "dexterity"],
-    primeReqs: ["wisdom", "strength"],
     checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10;
