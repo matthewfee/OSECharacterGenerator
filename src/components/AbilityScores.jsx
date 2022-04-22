@@ -1,7 +1,8 @@
-import React from "react";
-import AbilityScoreBox from "./AbilityScoreBox";
-import { redFail } from "../constants/constants";
-import { abilityScoreNames } from "../constants/constants";
+import React from "react"
+import AbilityScoreBox from "./AbilityScoreBox"
+import { redFail, Thief } from "../constants/constants"
+import { abilityScoreNames } from "../constants/constants"
+import { Trans } from "react-i18next"
 
 export default function AbilityScores(props) {
   const {
@@ -10,8 +11,8 @@ export default function AbilityScores(props) {
     setAbilityScores,
     pointBuy,
     setPointBuy,
-    characterModifiers
-  } = props;
+    characterModifiers,
+  } = props
 
   const {
     primeReq,
@@ -26,58 +27,58 @@ export default function AbilityScores(props) {
     constitutionMod,
     charismaModNPCReactions,
     charismaModRetainersMax,
-    charismaModLoyalty
-  } = characterModifiers;
+    charismaModLoyalty,
+  } = characterModifiers
 
-  const scoreIncrease = key => {
-    const keyOriginal = key + "Original";
-    const value = abilityScores[key];
+  const scoreIncrease = (key) => {
+    const keyOriginal = key + "Original"
+    const value = abilityScores[key]
 
-    //checks if score has already been decreased
+    //check if score has already been decreased
 
-    const increment = value < abilityScores[keyOriginal] ? 2 : 1;
-
-    //checks if there's points to buy
+    const increment = value < abilityScores[keyOriginal] ? 2 : 1
 
     if (pointBuy < 1) {
-      return;
+      return
     }
 
-    const maximumAbilityScore = 18;
+    const maximumAbilityScore = 18
 
     if (value === maximumAbilityScore) {
-      return;
+      return
     }
 
-    let newValue = value + increment;
+    let newValue = value + increment
 
-    setAbilityScores({ ...abilityScores, [key]: newValue });
-    setPointBuy(pointBuy - 1);
-  };
+    setAbilityScores({ ...abilityScores, [key]: newValue })
+    setPointBuy(pointBuy - 1)
+  }
 
-  const scoreDecrease = key => {
-    const keyOriginal = key + "Original";
-    const value = abilityScores[key];
-    let decrement = value > abilityScores[keyOriginal] ? -1 : -2;
+  const scoreDecrease = (key) => {
+    const keyOriginal = key + "Original"
+    const value = abilityScores[key]
+    let decrement = value > abilityScores[keyOriginal] ? -1 : -2
 
     if (abilityScores[key] <= 10) {
-      return;
+      return
     }
 
-    let newValue = value + decrement;
+    let newValue = value + decrement
 
-    setPointBuy(pointBuy + 1);
-    setAbilityScores({ ...abilityScores, [key]: newValue });
-  };
+    setPointBuy(pointBuy + 1)
+    setAbilityScores({ ...abilityScores, [key]: newValue })
+  }
 
-  const primeReqs = characterClass.primeReqs?.join(" ");
+  const primeReqs = characterClass.primeReqs?.join(" ")
 
   return (
     <div className="container ability-score-container">
       {pointBuy > 0 && <div className="point-buy">Point Buy: {pointBuy}</div>}
 
       <div className="ability-score-name">
-        <h2>STRENGTH</h2>
+        <h2>
+          <Trans i18nKey="abilityScoreNames.strength"></Trans>
+        </h2>
 
         {primeReqs.includes("strength") && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -92,7 +93,7 @@ export default function AbilityScores(props) {
         scoreDecrease={scoreDecrease}
         canDecrease={
           // Put all Strings that you are reusing into consts folder/file and access it via variable
-          characterClass.className === "Thief" ? false : true
+          characterClass.className === Thief ? false : true
         }
         characterClass={characterClass}
         pointBuy={pointBuy}
@@ -104,7 +105,10 @@ export default function AbilityScores(props) {
       </div>
 
       <div className="ability-score-name">
-        <h2>INTELLIGENCE</h2>
+        <h2>
+          {" "}
+          <Trans i18nKey="abilityScoreNames.intelligence"></Trans>
+        </h2>
 
         {primeReqs.includes(abilityScoreNames.intelligence) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -128,7 +132,9 @@ export default function AbilityScores(props) {
       </div>
 
       <div className="ability-score-name">
-        <h2>WISDOM</h2>
+        <h2>
+          <Trans i18nKey="abilityScoreNames.wisdom"></Trans>
+        </h2>
 
         {primeReqs.includes(abilityScoreNames.wisdom) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -151,7 +157,9 @@ export default function AbilityScores(props) {
       </div>
 
       <div className="ability-score-name">
-        <h2>DEXTERITY</h2>
+        <h2>
+          <Trans i18nKey="abilityScoreNames.dexterity"></Trans>
+        </h2>
 
         {primeReqs.includes(abilityScoreNames.dexterity) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -176,7 +184,9 @@ export default function AbilityScores(props) {
       </div>
 
       <div className="ability-score-name">
-        <h2>CONSTITUTION</h2>
+        <h2>
+          <Trans i18nKey="abilityScoreNames.constitution"></Trans>
+        </h2>
 
         {primeReqs.includes(abilityScoreNames.constitution) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -199,7 +209,9 @@ export default function AbilityScores(props) {
       </div>
 
       <div className="ability-score-name">
-        <h2>CHARISMA</h2>
+        <h2>
+          <Trans i18nKey="abilityScoreNames.charisma"></Trans>
+        </h2>
 
         {primeReqs.includes(abilityScoreNames.charisma) && (
           <div className="prime-req">Prime Req: {primeReq}</div>
@@ -223,5 +235,5 @@ export default function AbilityScores(props) {
         <span>Loyalty: {charismaModLoyalty}</span>
       </div>
     </div>
-  );
+  )
 }

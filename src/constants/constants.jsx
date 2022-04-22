@@ -1,17 +1,16 @@
 // styling
 
-export const redFail = "#730505";
+export const redFail = "#730505"
 
 // URLS
 
 export const CHARACTER_SHEET_PURIST_URL =
-  "https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf";
+  "https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf"
 
 export const CHARACTER_SHEET_UNDERGROUND_URL =
-  "https://matthewfee.github.io/OSECharacterServer/public/Underground10.pdf";
+  "https://matthewfee.github.io/OSECharacterServer/public/Underground10.pdf"
 
-export const RANDOM_NUMBERS_API_URL =
-  "https://api.random.org/json-rpc/4/invoke";
+export const RANDOM_NUMBERS_API_URL = "https://api.random.org/json-rpc/4/invoke"
 
 // strings
 
@@ -21,10 +20,15 @@ export const abilityScoreNames = [
   "wisdom",
   "dexterity",
   "constitution",
-  "charisma"
-];
+  "charisma",
+]
 
-export const CHARACTER_STORAGE = "characterStorage";
+export const lngs = {
+  en: { nativeName: "English" },
+  de: { nativeName: "Deutsch" },
+}
+
+export const CHARACTER_STORAGE = "characterStorage"
 
 export const primeRequisiteModifiers = [
   null,
@@ -45,18 +49,18 @@ export const primeRequisiteModifiers = [
   5,
   10,
   10,
-  10
-];
+  10,
+]
 
 //strings for class names
 
-export const Cleric = "Cleric";
-export const Fighter = "Fighter";
-export const Elf = "Elf";
-export const Dwarf = "Dwarf";
-export const Halfling = "Halfling";
-export const MagicUser = "Magic-User";
-export const Thief = "Thief";
+export const Cleric = "Cleric"
+export const Fighter = "Fighter"
+export const Elf = "Elf"
+export const Dwarf = "Dwarf"
+export const Halfling = "Halfling"
+export const MagicUser = "Magic-User"
+export const Thief = "Thief"
 
 //strings for armour
 
@@ -64,8 +68,8 @@ export const armourTypes = {
   leather: "Leather",
   chainMail: "Chainmail",
   plateMail: "Plate mail",
-  shield: "Shield"
-};
+  shield: "Shield",
+}
 
 //strings for first names
 
@@ -176,8 +180,8 @@ export const firstNames = [
   "Ursula",
   "Vivian",
   "Wendy",
-  "Zora"
-];
+  "Zora",
+]
 
 export const lastNames = [
   "Abernathy",
@@ -273,8 +277,8 @@ export const lastNames = [
   "Stoker",
   "Tarwater",
   "Tumbler",
-  "Villin"
-];
+  "Villin",
+]
 
 export const appearances = [
   "stylish",
@@ -365,8 +369,8 @@ export const appearances = [
   "weathered",
   "willowy",
   "wiry",
-  "wrinkly"
-];
+  "wrinkly",
+]
 
 export const traits = [
   "stoic",
@@ -479,8 +483,8 @@ export const traits = [
   "charitable",
   "daring",
   "reckless",
-  "ambitious"
-];
+  "ambitious",
+]
 
 export const misfortunes = [
   "rejected",
@@ -536,8 +540,8 @@ export const misfortunes = [
   "unappreciated",
   "unpopular",
   "destitute",
-  "heartbroken"
-];
+  "heartbroken",
+]
 
 export const languageOptions = [
   "Bugbear",
@@ -559,5 +563,5 @@ export const languageOptions = [
   "Ogre",
   "Orcish",
   "Pixie",
-  "Human dialect"
-];
+  "Human dialect",
+]

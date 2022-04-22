@@ -1,31 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { css } from "@emotion/react";
-import Header from "./Header";
-import AbilityScores from "./AbilityScores";
-import abilityScoreMods from "../data/abilityScoreMods";
+import React, { useState, useEffect } from "react"
+import { css } from "@emotion/react"
+import Header from "./Header"
+import AbilityScores from "./AbilityScores"
+import abilityScoreMods from "../data/abilityScoreMods"
 import {
   abilityScoreNames,
-  primeRequisiteModifiers
-} from "../constants/constants";
+  primeRequisiteModifiers,
+} from "../constants/constants"
 import {
   getModValue,
   d6,
   getPrimeReqMod,
-  updateAbilityModifiers
-} from "../utilities/utilities";
-import classOptionsData from "../data/classOptionsData";
-import ClassOptionsButton from "./ClassOptionsButton";
-import ClassDescription from "./ClassDescription";
-import ClassOptions from "./ClassOptions";
-import NavBar from "./NavBar";
-import ClassScreen from "./ClassScreen";
-import EquipmentScreen from "./EquipmentScreen";
-import DetailsScreen from "./DetailsScreen";
-import CharacterSheetScreen from "./CharacterSheetScreen";
-import { getRandomNumbers } from "../API/getRandomNumbers";
-import CharacterStorageScreen from "./CharacterStorageScreen";
-import { v4 as uuidv4 } from "uuid";
-import PropTypes from "prop-types";
+  updateAbilityModifiers,
+} from "../utilities/utilities"
+import classOptionsData from "../data/classOptionsData"
+import ClassOptionsButton from "./ClassOptionsButton"
+import ClassDescription from "./ClassDescription"
+import ClassOptions from "./ClassOptions"
+import NavigationOptions from "./NavigationOptions"
+import ClassScreen from "./ClassScreen"
+import EquipmentScreen from "./EquipmentScreen"
+import DetailsScreen from "./DetailsScreen"
+import CharacterSheetScreen from "./CharacterSheetScreen"
+import { getRandomNumbers } from "../API/getRandomNumbers"
+import CharacterStorageScreen from "./CharacterStorageScreen"
+import { v4 as uuidv4 } from "uuid"
+import PropTypes from "prop-types"
+import { Trans } from "react-i18next"
 
 export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
@@ -37,8 +38,8 @@ export default function CharacterGenerator() {
     misfortune: null,
     appearance: null,
     backgroundSkill: null,
-    alignment: null
-  });
+    alignment: null,
+  })
 
   const [abilityScores, setAbilityScores] = useState({
     strength: null,
@@ -52,8 +53,8 @@ export default function CharacterGenerator() {
     constitution: null,
     constitutionOriginal: null,
     charisma: null,
-    charismaOriginal: null
-  });
+    charismaOriginal: null,
+  })
 
   const [characterModifiers, setCharacterModifiers] = useState({
     primeReq: 0,
@@ -69,23 +70,23 @@ export default function CharacterGenerator() {
     constitutionMod: 0,
     charismaModNPCReactions: 0,
     charismaModRetainersMax: 0,
-    charismaModLoyalty: 0
-  });
+    charismaModLoyalty: 0,
+  })
 
   const [characterStatistics, setCharacterStatistics] = useState({
     hitPoints: null,
     armourClass: null,
     spell: null,
     hasSpells: false,
-    unarmouredAC: null
-  });
+    unarmouredAC: null,
+  })
 
-  const [pointBuy, setPointBuy] = useState(0);
+  const [pointBuy, setPointBuy] = useState(0)
 
   const [characterClass, setCharacterClass] = useState({
     name: null,
-    primeReqs: []
-  });
+    primeReqs: [],
+  })
 
   const [pages, setPages] = useState({
     equipmentScreen: false,
@@ -93,78 +94,78 @@ export default function CharacterGenerator() {
     classScreen: false,
     detailsScreen: false,
     characterSheetScreen: false,
-    characterStorageScreen: false
-  });
+    characterStorageScreen: false,
+  })
 
   const [characterEquipment, setCharacterEquipment] = useState({
     armour: [],
     weapons: [],
     adventuringGear: [],
-    gold: null
-  });
+    gold: null,
+  })
 
   const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
-  `;
+  `
 
-  const [loadingRandomNumbers, setLoadingRandomNumbers] = useState(true);
-  const [randomNumbers, setRandomNumbers] = useState([]);
+  const [loadingRandomNumbers, setLoadingRandomNumbers] = useState(true)
+  const [randomNumbers, setRandomNumbers] = useState([])
 
-  const [characterRolled, setCharacterRolled] = useState(false);
-  const [rollButtonHover, setRollButtonHover] = useState(false);
+  const [characterRolled, setCharacterRolled] = useState(false)
+  const [rollButtonHover, setRollButtonHover] = useState(false)
 
-  const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false);
+  const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false)
 
-  const loadRandomNumbers = async function() {
-    const randomNumbers = await getRandomNumbers();
+  const loadRandomNumbers = async function () {
+    const randomNumbers = await getRandomNumbers()
     if (randomNumbers) {
-      setRandomNumbers(randomNumbers);
+      setRandomNumbers(randomNumbers)
     }
-    setLoadingRandomNumbers(false);
-  };
+    setLoadingRandomNumbers(false)
+  }
 
   useEffect(() => {
-    loadRandomNumbers();
-  }, []);
+    loadRandomNumbers()
+  }, [])
 
   useEffect(() => {
     if (characterRolled) {
-      let newCharacterModifiers = updateAbilityModifiers(abilityScores);
-      const primeReqValue = getPrimeReqMod(abilityScores, characterClass);
-      newCharacterModifiers.primeReq = primeReqValue;
-      setCharacterModifiers(newCharacterModifiers);
+      let newCharacterModifiers = updateAbilityModifiers(abilityScores)
+      const primeReqValue = getPrimeReqMod(abilityScores, characterClass)
+      newCharacterModifiers.primeReq = primeReqValue
+      setCharacterModifiers(newCharacterModifiers)
     }
-  }, [abilityScores, characterClass]);
+  }, [abilityScores, characterClass])
 
   const rollCharacter = () => {
-    let newCharacterAbilityScores = {};
+    let newCharacterAbilityScores = {}
 
-    abilityScoreNames.forEach(score => {
-      const dieResult = d6(3, randomNumbers);
-      newCharacterAbilityScores[score] = dieResult;
-      newCharacterAbilityScores[`${score}Original`] = dieResult;
-    });
+    abilityScoreNames.forEach((score) => {
+      const dieResult = d6(3, randomNumbers)
+      newCharacterAbilityScores[score] = dieResult
+      newCharacterAbilityScores[`${score}Original`] = dieResult
+    })
 
-    const newID = uuidv4();
+    const newID = uuidv4()
 
-    setCharacter({ ...character, id: newID });
+    setCharacter({ ...character, id: newID })
 
-    setAbilityScores(newCharacterAbilityScores);
-    setRollButtonHover(false);
-    setCharacterClass({ name: null, primeReqs: [] });
-    setCharacterRolled(true);
-    setPointBuy(0);
-  };
+    setAbilityScores(newCharacterAbilityScores)
+    setRollButtonHover(false)
+    setCharacterClass({ name: null, primeReqs: [] })
+    setCharacterRolled(true)
+    setPointBuy(0)
+  }
 
-  const changeCharacterClass = event => {
+  const changeCharacterClass = (event) => {
     let characterClass = classOptionsData.find(
-      obj => obj.name === event.target.value
-    );
+      (obj) => obj.name === event.target.value,
+    )
 
-    setCharacterClass(characterClass);
-  };
+    setCharacterClass(characterClass)
+  }
 
   return (
     <div className={`wrapper ${rollButtonHover ? "wrapper-alt" : ""}`}>
@@ -186,7 +187,7 @@ export default function CharacterGenerator() {
         {pages.abilityScreen && characterRolled && (
           <div className="ability-screen container">
             <h2 className="header-default character-class-header">
-              Character Class
+              <Trans i18nKey="characterClass">Character Class</Trans>
             </h2>
             <ClassOptions
               characterClass={characterClass}
@@ -195,7 +196,7 @@ export default function CharacterGenerator() {
             ></ClassOptions>
 
             <h2 className="ability-scores--header header-default">
-              Ability Scores
+              <Trans i18nKey="abilityScores">Ability Scores</Trans>
             </h2>
 
             <AbilityScores
@@ -207,12 +208,12 @@ export default function CharacterGenerator() {
               characterModifiers={characterModifiers}
             ></AbilityScores>
 
-            <NavBar
+            <NavigationOptions
               rollCharacter={rollCharacter}
               pages={pages}
               setPages={setPages}
               characterClass={characterClass}
-            ></NavBar>
+            ></NavigationOptions>
           </div>
         )}
 
@@ -289,7 +290,7 @@ export default function CharacterGenerator() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 CharacterGenerator.propTypes = {
@@ -306,7 +307,7 @@ CharacterGenerator.propTypes = {
     constitution: PropTypes.number,
     constitutionOriginal: PropTypes.number,
     charisma: PropTypes.number,
-    charismaOriginal: PropTypes.number
+    charismaOriginal: PropTypes.number,
   }),
   characterModifiers: PropTypes.shape({
     primeReq: PropTypes.number,
@@ -322,19 +323,19 @@ CharacterGenerator.propTypes = {
     constitutionMod: PropTypes.number,
     charismaModNPCReactions: PropTypes.number,
     charismaModRetainersMax: PropTypes.number,
-    charismaModLoyalty: PropTypes.number
+    charismaModLoyalty: PropTypes.number,
   }),
   characterStatistics: PropTypes.shape({
     hitPoints: PropTypes.number,
     armourClass: PropTypes.number,
     spell: PropTypes.array,
     hasSpells: PropTypes.bool,
-    unarmouredAC: PropTypes.number
+    unarmouredAC: PropTypes.number,
   }),
   pointBuy: PropTypes.number,
   characterClass: PropTypes.shape({
     name: PropTypes.string,
-    primeReqs: PropTypes.array
+    primeReqs: PropTypes.array,
   }),
   pages: PropTypes.shape({
     equipmentScreen: PropTypes.bool,
@@ -342,17 +343,17 @@ CharacterGenerator.propTypes = {
     classScreen: PropTypes.bool,
     detailsScreen: PropTypes.bool,
     characterSheetScreen: PropTypes.bool,
-    characterStorageScreen: PropTypes.bool
+    characterStorageScreen: PropTypes.bool,
   }),
   characterEquipment: PropTypes.shape({
     armour: PropTypes.array,
     weapons: PropTypes.array,
     adventuringGear: PropTypes.array,
-    gold: PropTypes.number
+    gold: PropTypes.number,
   }),
   loadingRandomNumbers: PropTypes.bool,
   randomNumbers: PropTypes.array,
   characterolled: PropTypes.bool,
   rollButtonHover: PropTypes.bool,
-  advancedClassesDisplay: PropTypes.bool
-};
+  advancedClassesDisplay: PropTypes.bool,
+}

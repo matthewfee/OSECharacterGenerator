@@ -1,13 +1,16 @@
-import React from "react";
-import ArmourBackpack from "./ArmourBackpack";
-import WeaponsBackpack from "./WeaponsBackpack";
-import GearBackpack from "./gearBackpack";
+import React from "react"
+import ArmourBackpack from "./ArmourBackpack"
+import WeaponsBackpack from "./WeaponsBackpack"
+import GearBackpack from "./gearBackpack"
+import { Trans } from "react-i18next"
 
 export default function Inventory(props) {
-  const { weapons, adventuringGear, armour, storeHandler } = props;
+  const { weapons, adventuringGear, armour, storeHandler } = props
   return (
     <div className="inventory">
-      <h3 className="header-default"> Inventory </h3>
+      <h3 className="header-default">
+        <Trans i18nKey="inventory">Inventory</Trans>
+      </h3>
       <div className="backpack-container">
         <ArmourBackpack
           armour={armour}
@@ -25,5 +28,5 @@ export default function Inventory(props) {
         ></GearBackpack>
       </div>
     </div>
-  );
+  )
 }

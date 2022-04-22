@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
-import classOptionsData from "../data/classOptionsData";
-import { d, chooseRandomItem } from "../utilities/utilities";
-import {
-  magicUserSpells,
-  druidSpells,
-  illusionistSpells
-} from "../data/spells";
+import React, { useState, useEffect } from "react"
+import classOptionsData from "../data/classOptionsData"
+import { d, chooseRandomItem } from "../utilities/utilities"
+import { magicUserSpells, druidSpells, illusionistSpells } from "../data/spells"
+import { Trans } from "react-i18next"
 
 export default function ClassScreen(props) {
   const {
@@ -16,92 +13,92 @@ export default function ClassScreen(props) {
     setCharacter,
     characterStatistics,
     setCharacterStatistics,
-    characterModifiers
-  } = props;
+    characterModifiers,
+  } = props
 
-  const [hitPoints, setHitPoints] = useState(null);
-  const [HPResult, setHPResult] = useState(null);
-  const [canReroll, setCanReroll] = useState(true);
-  const [HPRolls, setHPRolls] = useState(0);
-  const [hitDie, setHitDie] = useState(null);
-  const [spellSelected, setSpellSelected] = useState("");
+  const [hitPoints, setHitPoints] = useState(null)
+  const [HPResult, setHPResult] = useState(null)
+  const [canReroll, setCanReroll] = useState(true)
+  const [HPRolls, setHPRolls] = useState(0)
+  const [hitDie, setHitDie] = useState(null)
+  const [spellSelected, setSpellSelected] = useState("")
 
   useEffect(() => {
-    getHitDie();
-  }, []);
+    getHitDie()
+  }, [])
 
   const getHitDie = () => {
-    return setHitDie(characterClass.hd);
-  };
+    return setHitDie(characterClass.hd)
+  }
 
   const getHitPoints = () => {
-    let HPResult = d(1, hitDie);
-    let totalHP = HPResult + parseInt(characterModifiers.constitutionMod);
-    let HPRollsNew = HPRolls + 1;
+    let HPResult = d(1, hitDie)
+    let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
+    let HPRollsNew = HPRolls + 1
 
     if (totalHP < 1) {
-      totalHP = 1;
+      totalHP = 1
     }
     if (HPResult > 2 || HPRollsNew === 2) {
-      setCanReroll(false);
+      setCanReroll(false)
     }
 
-    setHitPoints(totalHP);
-    setHPResult(HPResult);
-    setHPRolls(HPRollsNew);
-  };
+    setHitPoints(totalHP)
+    setHPResult(HPResult)
+    setHPRolls(HPRollsNew)
+  }
 
   const chooseSpells = () => {
     if (characterClass.arcaneSpells) {
-      return chooseRandomItem(magicUserSpells);
+      return chooseRandomItem(magicUserSpells)
     }
 
     if (characterClass.druidSpells) {
-      return chooseRandomItem(druidSpells);
+      return chooseRandomItem(druidSpells)
     }
 
     if (characterClass.illusionistSpells) {
-      return chooseRandomItem(illusionistSpells);
+      return chooseRandomItem(illusionistSpells)
     }
 
-    return "No Spells Found";
-  };
+    return "No Spells Found"
+  }
 
-  const spellOption = spell => {
+  const spellOption = (spell) => {
     return (
       <option key={spell} value={spell}>
         {spell}
       </option>
-    );
-  };
+    )
+  }
 
   const spellsList = () => {
-    let spellList = "";
+    let spellList = ""
 
     if (characterClass.arcaneSpells) {
-      spellList = magicUserSpells.map(spell => {
-        return spellOption(spell);
-      });
+      spellList = magicUserSpells.map((spell) => {
+        return spellOption(spell)
+      })
     }
 
     if (characterClass.druidSpells) {
-      spellList = druidSpells.map(spell => {
-        return spellOption(spell);
-      });
+      spellList = druidSpells.map((spell) => {
+        return spellOption(spell)
+      })
     }
 
     if (characterClass.illusionistSpells) {
-      spellList = illusionistSpells.map(spell => {
-        return spellOption(spell);
-      });
+      spellList = illusionistSpells.map((spell) => {
+        return spellOption(spell)
+      })
     }
 
-    return spellList;
-  };
+    return spellList
+  }
 
-  const handleSpellChange = event => {
-    setSpellSelected(event.target.value);
-  };
+  const handleSpellChange = (event) => {
+    setSpellSelected(event.target.value)
+  }
 
   // let stateObject = {
   //   hitPoints: hitPoints,
@@ -119,18 +116,20 @@ export default function ClassScreen(props) {
     characterClass.illusionistSpells ||
     characterClass.druidSpells
       ? true
-      : false;
+      : false
 
   return (
     <div className="class-options-screen">
-      <h3 className="header-default">Class Options</h3>
+      <h3 className="header-default">
+        <Trans i18nKey="classOptions">Class Options</Trans>
+      </h3>
 
       <button
         className="button button-primary button--hp"
         onClick={() => setTimeout(getHitPoints(), 200)}
         disabled={!canReroll}
         style={{
-          fontSize: canReroll ? "" : "4rem"
+          fontSize: canReroll ? "" : "4rem",
         }}
       >
         {canReroll && `${HPRolls === 0 ? "Roll HP" : "Reroll?"}`}
@@ -209,13 +208,13 @@ export default function ClassScreen(props) {
 
           <div className="class-ability-menu--abilities">
             <ul className="class-ability-list">
-              {characterClass.abilities.map(item => {
+              {characterClass.abilities.map((item) => {
                 return (
                   <li key={item} className="class-ability">
                     {" "}
                     {item}{" "}
                   </li>
-                );
+                )
               })}
             </ul>
           </div>
@@ -254,15 +253,15 @@ export default function ClassScreen(props) {
               ...characterStatistics,
               hitPoints: hitPoints,
               hasSpells: hasSpells,
-              spell: spellSelected
-            });
+              spell: spellSelected,
+            })
 
-            setPages({ ...pages, equipmentScreen: true, classScreen: false });
+            setPages({ ...pages, equipmentScreen: true, classScreen: false })
           }}
         >
           Go to Equipment
         </button>
       )}
     </div>
-  );
+  )
 }

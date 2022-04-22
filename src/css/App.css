@@ -119,6 +119,7 @@ a {
   display: flexbox;
   text-align: center;
   position: relative;
+  text-transform: uppercase;
 }
 
 .ability-score-container > .ability-score-name > h2 {
@@ -1254,6 +1255,7 @@ div > .button-class-option {
   text-align: center;
   font-weight: normal;
   font-size: 1.2rem;
+  text-transform: initial;
 }
 
 .saving-throws-menu {

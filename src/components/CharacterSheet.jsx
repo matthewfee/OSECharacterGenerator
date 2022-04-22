@@ -1,7 +1,8 @@
-import React from "react";
-import classOptionsData from "../data/classOptionsData";
-import { joinDuplicates } from "../utilities/utilities";
-import { abilityScoreNames } from "../constants/constants";
+import React from "react"
+import classOptionsData from "../data/classOptionsData"
+import { joinDuplicates } from "../utilities/utilities"
+import { abilityScoreNames } from "../constants/constants"
+import { Trans } from "react-i18next"
 
 // export default function
 
@@ -12,29 +13,29 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     characterStatistics,
     characterClass,
     characterEquipment,
-    characterModifiers
-  } = props;
+    characterModifiers,
+  } = props
 
   const alignmentCapitalized = character.alignment
     ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
-    : "Alignment";
+    : "Alignment"
 
   const languageText = character.hasLanguages
     ? `${alignmentCapitalized}, Common, ${character.languages.join(", ")}`
-    : `${alignmentCapitalized}, Common`;
+    : `${alignmentCapitalized}, Common`
 
   const characterFields = [
     ["Background Skill", character.background],
     ["Appearance", character.appearance],
     ["Personality", character.personality],
     ["Misfortune", character.misfortune],
-    ["Languages", languageText]
-  ];
+    ["Languages", languageText],
+  ]
 
   const getCharacterFields = () => {
-    return characterFields.map(field => {
-      const fieldDescription = field[0];
-      const fieldValue = field[1];
+    return characterFields.map((field) => {
+      const fieldDescription = field[0]
+      const fieldValue = field[1]
 
       return (
         <div
@@ -44,12 +45,15 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           <span className="charsheet-value-name">{fieldDescription}</span>
           <span className="charsheet-value">{fieldValue}</span>{" "}
         </div>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
     <div ref={ref} className="character-sheet-component">
+      <h3 className="header-default">
+        <Trans i18nKey={"characterSheet"}></Trans>
+      </h3>
       <h3 className="character--name">{character.name}</h3>
       <h4 className="character--subheader"> Level 1 {characterClass.name}</h4>
       <div className="character-sheet">
@@ -57,7 +61,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 
         <div className="ability-scores-container">
           <div className="strength character-container">
-            <span className="charsheet-value-name"> Strength </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.strength"}>Strength</Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.strength}
@@ -68,7 +74,11 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="intelligence character-container">
-            <span className="charsheet-value-name"> Intelligence </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.intelligence"}>
+                Intelligence
+              </Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.intelligence}{" "}
@@ -76,7 +86,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="wisdom character-container">
-            <span className="charsheet-value-name"> Wisdom </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.wisdom"}>Wisdom</Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.wisdom}
@@ -87,7 +99,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="dexterity character-container">
-            <span className="charsheet-value-name"> Dexterity </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.dexterity"}>Dexterity</Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.dexterity}
@@ -98,7 +112,11 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="constitution character-container">
-            <span className="charsheet-value-name"> Constitution </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.constitution"}>
+                Constitution
+              </Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.constitution}
@@ -109,7 +127,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           </div>
 
           <div className="charisma character-container">
-            <span className="charsheet-value-name"> Charisma </span>
+            <span className="charsheet-value-name">
+              <Trans i18nKey={"abilityScoreNames.charisma"}>Charisma</Trans>
+            </span>
             <span className="charsheet-value">
               {" "}
               {abilityScores.charisma}
@@ -155,7 +175,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                       {" "}
                       {item}{" "}
                     </li>
-                  );
+                  )
                 })}
               </ul>
             </span>
@@ -194,7 +214,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                     {" "}
                     {item}{" "}
                   </span>
-                );
+                )
               })}
             </span>
           </div>
@@ -209,7 +229,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                     {" "}
                     {item}{" "}
                   </span>
-                );
+                )
               })}
             </span>
           </div>
@@ -225,8 +245,8 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                       {" "}
                       {item}{" "}
                     </span>
-                  );
-                }
+                  )
+                },
               )}
             </span>
           </div>
@@ -241,9 +261,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
         </div>
       </div>
     </div>
-  );
-});
+  )
+})
 
-CharacterSheet.displayName = "Character Sheet";
+CharacterSheet.displayName = "Character Sheet"
 
-export default CharacterSheet;
+export default CharacterSheet

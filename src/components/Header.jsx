@@ -1,16 +1,12 @@
-import React from "react";
-import CircleLoader from "react-spinners/CircleLoader";
-import { css } from "@emotion/react";
-import { useTranslation, Trans } from "react-i18next";
-import { LinkText } from "../utilities/utilities";
+import React from "react"
+import CircleLoader from "react-spinners/CircleLoader"
+import { css } from "@emotion/react"
+import { useTranslation, Trans } from "react-i18next"
+import { LinkText } from "../utilities/utilities"
+import { lngs } from "../constants/constants"
 
 export default function Header(props) {
-  const { t, i18n } = useTranslation();
-
-  const lngs = {
-    en: { nativeName: "English" },
-    de: { nativeName: "Deutsch" }
-  };
+  const { t, i18n } = useTranslation()
 
   const {
     characterRolled,
@@ -21,29 +17,29 @@ export default function Header(props) {
     setLoadingRandomNumbers,
     pages,
     setPages,
-    rollCharacter
-  } = props;
+    rollCharacter,
+  } = props
 
   const override = css`
     display: block;
     margin: 0 auto;
     border-color: red;
-  `;
+  `
 
   const showStorageSheetScreen = () => {
-    setPages(pages => {
+    setPages((pages) => {
       return {
         ...pages,
         characterStorageScreen: true,
         characterSheetScreen: false,
-        abilityScreen: false
-      };
-    });
-  };
+        abilityScreen: false,
+      }
+    })
+  }
 
   const myCharacters = JSON.parse(
-    window.localStorage.getItem("characterStorage")
-  );
+    window.localStorage.getItem("characterStorage"),
+  )
 
   return (
     <header className={`header ${characterRolled ? "" : "header--initial"}`}>
@@ -88,9 +84,9 @@ export default function Header(props) {
             setPages({
               ...pages,
               abilityScreen: false,
-              characterStorageScreen: true
-            });
-            setCharacterRolled(true);
+              characterStorageScreen: true,
+            })
+            setCharacterRolled(true)
           }}
         >
           <Trans i18nKey="Tavern"></Trans>
@@ -106,7 +102,7 @@ export default function Header(props) {
             t={t}
             components={[
               <LinkText href="https://necroticgnome.com/" />,
-              <LinkText href="https://random.org" />
+              <LinkText href="https://random.org" />,
             ]}
           />
           <br></br>
@@ -115,17 +111,17 @@ export default function Header(props) {
             i18nKey="CreatedBy"
             t={t}
             components={[
-              <LinkText href="https://eviltables.dev/ose-character-generator/" />
+              <LinkText href="https://eviltables.dev/ose-character-generator/" />,
             ]}
           />
           <br></br>
           <br></br>
           <div>
-            {Object.keys(lngs).map(lng => (
+            {Object.keys(lngs).map((lng) => (
               <button
                 key={lng}
                 style={{
-                  fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal"
+                  fontWeight: i18n.resolvedLanguage === lng ? "bold" : "normal",
                 }}
                 type="submit"
                 onClick={() => i18n.changeLanguage(lng)}
@@ -137,5 +133,5 @@ export default function Header(props) {
         </div>
       )}
     </header>
-  );
+  )
 }

@@ -1,14 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import classOptionsData from "../data/classOptionsData";
-import CharacterSheet from "./CharacterSheet";
-import { PDFDocument, StandardFonts, PDFTextField, values } from "pdf-lib";
-import { joinDuplicates } from "../utilities/utilities";
-import download from "downloadjs";
+import React, { useEffect, useRef } from "react"
+import classOptionsData from "../data/classOptionsData"
+import CharacterSheet from "./CharacterSheet"
+import { PDFDocument, StandardFonts, PDFTextField, values } from "pdf-lib"
+import { joinDuplicates } from "../utilities/utilities"
+import download from "downloadjs"
 import {
   CHARACTER_SHEET_PURIST_URL,
   CHARACTER_SHEET_UNDERGROUND_URL,
-  CHARACTER_STORAGE
-} from "../constants/constants";
+  CHARACTER_STORAGE,
+} from "../constants/constants"
+import { Trans } from "react-i18next"
 
 export default function CharacterSheetScreen(props) {
   const {
@@ -20,9 +21,9 @@ export default function CharacterSheetScreen(props) {
     characterEquipment,
     characterModifiers,
     abilityScores,
-    setCharacterRolled
-  } = props;
-  const componentRef = useRef();
+    setCharacterRolled,
+  } = props
+  const componentRef = useRef()
 
   const characterDataObject = {
     character,
@@ -30,42 +31,42 @@ export default function CharacterSheetScreen(props) {
     characterClass,
     characterEquipment,
     characterModifiers,
-    abilityScores
-  };
+    abilityScores,
+  }
 
   useEffect(() => {
-    updateLocalStorage();
-  }, []);
+    updateLocalStorage()
+  }, [])
 
   const updateLocalStorage = () => {
     const myCharacters = JSON.parse(
-      window.localStorage.getItem(CHARACTER_STORAGE)
-    );
+      window.localStorage.getItem(CHARACTER_STORAGE),
+    )
 
-    const id = character.id || 0;
+    const id = character.id || 0
 
     if (myCharacters) {
-      const alreadyExists = myCharacters.find(obj => {
-        return obj.character.id === id;
-      });
+      const alreadyExists = myCharacters.find((obj) => {
+        return obj.character.id === id
+      })
       if (alreadyExists) {
-        return;
+        return
       }
     }
-    let arr = [];
+    let arr = []
 
     if (localStorage.getItem(CHARACTER_STORAGE) === null) {
-      let arr = [];
-      arr.push(characterDataObject);
-      window.localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(arr));
+      let arr = []
+      arr.push(characterDataObject)
+      window.localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(arr))
     } else {
-      myCharacters.push(characterDataObject);
+      myCharacters.push(characterDataObject)
       window.localStorage.setItem(
         CHARACTER_STORAGE,
-        JSON.stringify(myCharacters)
-      );
+        JSON.stringify(myCharacters),
+      )
     }
-  };
+  }
 
   // const resetPage = () => {
   //   props.showAbilityScreen();
@@ -78,45 +79,45 @@ export default function CharacterSheetScreen(props) {
 
   const alignmentCapitalized = character.alignment
     ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
-    : "Alignment";
+    : "Alignment"
 
   const languageText = character.hasLanguages
     ? `${alignmentCapitalized}, Common, ${character.languages.join(", ")}`
-    : `${alignmentCapitalized}, Common`;
+    : `${alignmentCapitalized}, Common`
 
   const abilitiesInfo = `
     Weapons: ${joinDuplicates(characterEquipment.weapons).join(", ") || ""}
-    Abilities: ${characterClass.abilities.join(", ")}`;
+    Abilities: ${characterClass.abilities.join(", ")}`
 
   const weaponsInfo = `
     Weapons: ${joinDuplicates(characterEquipment.weapons).join(", ") || ""}
     Armour: ${characterEquipment.armour.join(", ") || ""}
-    `;
+    `
 
   const equipmentInfo = `
     ${joinDuplicates(characterEquipment.adventuringGear).join(", ") || ""}
-    `;
+    `
 
-  const spellText = character.hasSpells ? `Spells: ${char.spells}` : "";
+  const spellText = character.hasSpells ? `Spells: ${char.spells}` : ""
 
   const descriptionInfo = `
     Appearance: ${character.appearance}
     Background Skill: ${character.background}
     Personality: ${character.personality}
     Misfortune: ${character.misfortune}
-    `;
+    `
 
   async function fillForm() {
-    const formUrl = CHARACTER_SHEET_PURIST_URL;
-    const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
+    const formUrl = CHARACTER_SHEET_PURIST_URL
+    const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer())
 
-    const pdfDoc = await PDFDocument.load(formPdfBytes);
+    const pdfDoc = await PDFDocument.load(formPdfBytes)
 
     // pdfDoc.save({ updateFieldAppearances: false });
     // Hmm Im not sure about those 122-210 lines, is there a better way to set and get thsoe values?
     // maybe in a object format
 
-    const form = pdfDoc.getForm();
+    const form = pdfDoc.getForm()
 
     const formFieldKeysOfficialSheet = {
       //matches the PDF Form labels with correct data
@@ -156,37 +157,37 @@ export default function CharacterSheetScreen(props) {
       "PR XP Bonus": characterModifiers.primeReqMod,
       "Attack Bonus": "0",
       Notes: spellText,
-      "Languages 2": languageText
-    };
+      "Languages 2": languageText,
+    }
 
     for (const key in formFieldKeysOfficialSheet) {
-      let value = formFieldKeysOfficialSheet[key];
+      let value = formFieldKeysOfficialSheet[key]
       if (value) {
-        value = value.toString();
+        value = value.toString()
       }
-      form.getTextField(key).setText(value);
+      form.getTextField(key).setText(value)
     }
 
-    const literacyField = form.getCheckBox("Literacy 2");
+    const literacyField = form.getCheckBox("Literacy 2")
     if (abilityScores.intelligence > 8) {
-      literacyField.check();
+      literacyField.check()
     }
 
-    const pdfBytes = await pdfDoc.save();
+    const pdfBytes = await pdfDoc.save()
 
-    const fileName = `${character.name} the ${characterClass.name}.pdf`;
+    const fileName = `${character.name} the ${characterClass.name}.pdf`
 
-    download(pdfBytes, fileName, "application/pdf");
+    download(pdfBytes, fileName, "application/pdf")
   }
 
   async function fillFormUnderground() {
-    const formUrl = CHARACTER_SHEET_UNDERGROUND_URL;
+    const formUrl = CHARACTER_SHEET_UNDERGROUND_URL
 
-    const formPdfBytes = await fetch(formUrl).then(res => res.arrayBuffer());
+    const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer())
 
-    const pdfDoc = await PDFDocument.load(formPdfBytes);
+    const pdfDoc = await PDFDocument.load(formPdfBytes)
 
-    const form = pdfDoc.getForm();
+    const form = pdfDoc.getForm()
 
     const formFieldKeysUndergroundSheet = {
       //matches the PDF Form labels with correct data
@@ -224,22 +225,22 @@ export default function CharacterSheetScreen(props) {
       GP: characterEquipment.gold,
       Description: descriptionInfo,
       "Attack Bonus": "0",
-      Portrait: character.appearance
-    };
-
-    for (const key in formFieldKeysUndergroundSheet) {
-      let value = formFieldKeysUndergroundSheet[key];
-      if (value) {
-        value = value.toString();
-      }
-      form.getTextField(key).setText(value);
+      Portrait: character.appearance,
     }
 
-    const pdfBytes = await pdfDoc.save();
+    for (const key in formFieldKeysUndergroundSheet) {
+      let value = formFieldKeysUndergroundSheet[key]
+      if (value) {
+        value = value.toString()
+      }
+      form.getTextField(key).setText(value)
+    }
 
-    let fileName = `${character.name} the ${characterClass.name}.pdf`;
+    const pdfBytes = await pdfDoc.save()
 
-    download(pdfBytes, fileName, "application/pdf");
+    let fileName = `${character.name} the ${characterClass.name}.pdf`
+
+    download(pdfBytes, fileName, "application/pdf")
   }
 
   return (
@@ -273,11 +274,11 @@ export default function CharacterSheetScreen(props) {
               setPages({
                 ...pages,
                 characterStorageScreen: true,
-                characterSheetScreen: false
-              });
+                characterSheetScreen: false,
+              })
             }}
           >
-            Tavern
+            <Trans i18nKey={"Tavern"}>Tavern</Trans>
           </button>
 
           <button
@@ -285,15 +286,15 @@ export default function CharacterSheetScreen(props) {
               setPages({
                 ...pages,
                 abilityScreen: true,
-                characterSheetScreen: false
-              });
-              setCharacterRolled(false);
+                characterSheetScreen: false,
+              })
+              setCharacterRolled(false)
             }}
           >
-            Main
+            <Trans i18nKey={"mainPage"}>Main Page</Trans>
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 }

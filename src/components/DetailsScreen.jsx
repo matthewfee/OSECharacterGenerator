@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import classOptionsData from "../data/classOptionsData";
-import { characterBackgrounds } from "../data/backgrounds";
-import { d, getWeightedValue } from "../utilities/utilities";
+import React, { useState, useEffect } from "react"
+import classOptionsData from "../data/classOptionsData"
+import { characterBackgrounds } from "../data/backgrounds"
+import { d, getWeightedValue } from "../utilities/utilities"
+import { Trans } from "react-i18next"
 
 import {
   firstNames,
@@ -9,9 +10,9 @@ import {
   appearances,
   traits,
   misfortunes,
-  languageOptions
-} from "../constants/constants";
-import { chooseRandomItem } from "../utilities/utilities";
+  languageOptions,
+} from "../constants/constants"
+import { chooseRandomItem } from "../utilities/utilities"
 
 export default function DetailsScreen(props) {
   const {
@@ -20,138 +21,140 @@ export default function DetailsScreen(props) {
     character,
     setCharacter,
     characterClass,
-    characterModifiers
-  } = props;
+    characterModifiers,
+  } = props
 
-  const [characterName, setCharacterName] = useState("");
-  const [alignment, setAlignment] = useState("");
-  const [appearance, setAppearance] = useState("");
-  const [personality, setPersonality] = useState("");
-  const [background, setBackground] = useState("");
-  const [misfortune, setMisfortune] = useState("");
-  const [languages, setLanguages] = useState([]);
-  const [languageSelected, setLanguageSelected] = useState("");
-  const [languageCount, setLanguageCount] = useState();
-  const [classLanguageCount, setClassLanguageCount] = useState(0);
-  const [hasLanguages, setHasLanguages] = useState(true);
+  const [characterName, setCharacterName] = useState("")
+  const [alignment, setAlignment] = useState("")
+  const [appearance, setAppearance] = useState("")
+  const [personality, setPersonality] = useState("")
+  const [background, setBackground] = useState("")
+  const [misfortune, setMisfortune] = useState("")
+  const [languages, setLanguages] = useState([])
+  const [languageSelected, setLanguageSelected] = useState("")
+  const [languageCount, setLanguageCount] = useState()
+  const [classLanguageCount, setClassLanguageCount] = useState(0)
+  const [hasLanguages, setHasLanguages] = useState(true)
 
   useEffect(() => {
-    const languagesArr = characterClass.languages.split(",");
+    const languagesArr = characterClass.languages.split(",")
 
     if (languagesArr.length <= 2) {
       if (characterModifiers.intelligenceModExtraLanguageCount < 1) {
-        setHasLanguages(false);
+        setHasLanguages(false)
       }
-      return;
+      return
     } else {
       //first two langauges are not class-specific languages
-      const classLanguageNumber = languagesArr.length - 2;
-      setClassLanguageCount(classLanguageNumber);
-      setLanguages(languagesArr);
+      const classLanguageNumber = languagesArr.length - 2
+      setClassLanguageCount(classLanguageNumber)
+      setLanguages(languagesArr)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     setLanguageCount(
       characterModifiers.extraLanguageCount +
         classLanguageCount -
-        characterClass.languages.length
-    );
-  }, [languages]);
+        characterClass.languages.length,
+    )
+  }, [languages])
 
-  const handleName = event => {
-    setCharacterName(event.currentTarget.value);
-  };
+  const handleName = (event) => {
+    setCharacterName(event.currentTarget.value)
+  }
 
-  const handleAlignment = event => {
-    setAlignment(event.currentTarget.value);
-  };
+  const handleAlignment = (event) => {
+    setAlignment(event.currentTarget.value)
+  }
 
   const getName = () => {
     let fullName = `${chooseRandomItem(firstNames)} ${chooseRandomItem(
-      lastNames
-    )}`;
+      lastNames,
+    )}`
 
-    setCharacterName(fullName);
-  };
+    setCharacterName(fullName)
+  }
 
   const getAppearance = () => {
-    let appearanceArray = [...appearances];
-    let num = 2;
-    let selectedAppearances = [];
+    let appearanceArray = [...appearances]
+    let num = 2
+    let selectedAppearances = []
     for (let i = 0; i < num; i++) {
-      let randomAppearance = chooseRandomItem(appearanceArray);
-      selectedAppearances.push(randomAppearance);
-      appearanceArray = appearanceArray.filter(k => k !== randomAppearance);
+      let randomAppearance = chooseRandomItem(appearanceArray)
+      selectedAppearances.push(randomAppearance)
+      appearanceArray = appearanceArray.filter((k) => k !== randomAppearance)
     }
 
-    setAppearance(selectedAppearances.join(", "));
-  };
+    setAppearance(selectedAppearances.join(", "))
+  }
 
   const getBackground = () => {
-    let background = getWeightedValue(characterBackgrounds, 100);
+    let background = getWeightedValue(characterBackgrounds, 100)
 
     while (background.includes("Roll for two skills")) {
       background = `${getWeightedValue(
         characterBackgrounds,
-        100
-      )}, ${getWeightedValue(characterBackgrounds, 100)}`;
+        100,
+      )}, ${getWeightedValue(characterBackgrounds, 100)}`
     }
 
-    setBackground(background);
-  };
+    setBackground(background)
+  }
 
   const getPersonality = () => {
-    let num = 2;
-    let traitsArray = [...traits];
-    let selectedPersonalities = [];
+    let num = 2
+    let traitsArray = [...traits]
+    let selectedPersonalities = []
     for (let i = 0; i < num; i++) {
-      let randomTrait = chooseRandomItem(traits);
-      selectedPersonalities.push(randomTrait);
-      traitsArray = traits.filter(k => k !== randomTrait);
+      let randomTrait = chooseRandomItem(traits)
+      selectedPersonalities.push(randomTrait)
+      traitsArray = traits.filter((k) => k !== randomTrait)
     }
 
-    setPersonality(selectedPersonalities.join(", "));
-  };
+    setPersonality(selectedPersonalities.join(", "))
+  }
 
   const getMisfortune = () => {
-    let randomMisfortune = chooseRandomItem(misfortunes);
-    setMisfortune(randomMisfortune);
-  };
+    let randomMisfortune = chooseRandomItem(misfortunes)
+    setMisfortune(randomMisfortune)
+  }
 
-  const languageOption = item => {
+  const languageOption = (item) => {
     return (
       <option key={item} value={item}>
         {item}
       </option>
-    );
-  };
+    )
+  }
 
   const languagesList = () => {
-    return languageOptions.map(item => {
-      return languageOption(item);
-    });
-  };
+    return languageOptions.map((item) => {
+      return languageOption(item)
+    })
+  }
 
   const chooseLanguage = () => {
-    setLanguageSelected(chooseRandomItem(languageOption));
-  };
+    setLanguageSelected(chooseRandomItem(languageOption))
+  }
 
-  const handleLanguageChange = event => {
-    setLanguageSelected(event.target.value);
-  };
+  const handleLanguageChange = (event) => {
+    setLanguageSelected(event.target.value)
+  }
 
   const addLanguage = () => {
     if (languages.includes(languageSelected) || languageSelected === "") {
-      return;
+      return
     }
-    setLanguages(oldArray => [...oldArray, languageSelected]);
-  };
+    setLanguages((oldArray) => [...oldArray, languageSelected])
+  }
 
   return (
     <div className="details-screen-container">
       <div id="print-wrapper">
-        <h3 className="header-default">Character Details</h3>
+        <h3 className="header-default">
+          <Trans i18nKey={"characterDetails"}>Character Details</Trans>
+        </h3>
 
         <div className="character-details-form">
           <label className="form-label form-label--name">
@@ -183,7 +186,7 @@ export default function DetailsScreen(props) {
                     ? "button button--alignment button--alignment--selected"
                     : "button button--alignment"
                 }
-                onClick={e => handleAlignment(e, "value")}
+                onClick={(e) => handleAlignment(e, "value")}
               >
                 Lawful
               </button>
@@ -195,7 +198,7 @@ export default function DetailsScreen(props) {
                     ? "button button--alignment button--alignment--selected"
                     : "button button--alignment"
                 }
-                onClick={e => handleAlignment(e, "value")}
+                onClick={(e) => handleAlignment(e, "value")}
               >
                 Neutral
               </button>
@@ -207,7 +210,7 @@ export default function DetailsScreen(props) {
                     ? "button button--alignment button--alignment--selected"
                     : "button button--alignment"
                 }
-                onClick={e => handleAlignment(e, "value")}
+                onClick={(e) => handleAlignment(e, "value")}
               >
                 Chaotic
               </button>
@@ -371,19 +374,19 @@ export default function DetailsScreen(props) {
               personality: personality,
               misfortune: misfortune,
               languages: languages,
-              hasLanguages: hasLanguages
-            });
+              hasLanguages: hasLanguages,
+            })
 
             setPages({
               ...pages,
               detailsScreen: false,
-              characterSheetScreen: true
-            });
+              characterSheetScreen: true,
+            })
           }}
         >
           Go to Character Sheet
         </button>
       </div>
     </div>
-  );
+  )
 }
