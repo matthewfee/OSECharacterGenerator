@@ -91,10 +91,7 @@ export default function AbilityScores(props) {
         abilityScoreName={"strength"}
         scoreIncrease={scoreIncrease}
         scoreDecrease={scoreDecrease}
-        canDecrease={
-          // Put all Strings that you are reusing into consts folder/file and access it via variable
-          characterClass.className === Thief ? false : true
-        }
+        canDecrease={characterClass.className === Thief ? false : true}
         characterClass={characterClass}
         pointBuy={pointBuy}
       ></AbilityScoreBox>

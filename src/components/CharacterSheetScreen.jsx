@@ -68,15 +68,6 @@ export default function CharacterSheetScreen(props) {
     }
   }
 
-  // const resetPage = () => {
-  //   props.showAbilityScreen();
-  // };
-
-  // let char = props.parentState;
-  // let characterClass = classOptionsData.find(
-  //   obj => obj.name === props.parentState.characterClass
-  // );
-
   const alignmentCapitalized = character.alignment
     ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
     : "Alignment"
@@ -113,14 +104,11 @@ export default function CharacterSheetScreen(props) {
 
     const pdfDoc = await PDFDocument.load(formPdfBytes)
 
-    // pdfDoc.save({ updateFieldAppearances: false });
-    // Hmm Im not sure about those 122-210 lines, is there a better way to set and get thsoe values?
-    // maybe in a object format
-
     const form = pdfDoc.getForm()
 
     const formFieldKeysOfficialSheet = {
       //matches the PDF Form labels with correct data
+
       "Name 2": character.name,
       "Alignment 2": alignmentCapitalized,
       "Character Class 2": characterClass.name,

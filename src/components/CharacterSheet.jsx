@@ -4,8 +4,6 @@ import { joinDuplicates } from "../utilities/utilities"
 import { abilityScoreNames } from "../constants/constants"
 import { Trans } from "react-i18next"
 
-// export default function
-
 const CharacterSheet = React.forwardRef((props, ref) => {
   const {
     abilityScores,

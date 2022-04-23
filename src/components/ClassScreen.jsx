@@ -100,16 +100,6 @@ export default function ClassScreen(props) {
     setSpellSelected(event.target.value)
   }
 
-  // let stateObject = {
-  //   hitPoints: hitPoints,
-  //   spells: spellSelected,
-  //   hasSpells: false
-  // };
-
-  // if (spellSelected.length > 1) {
-  //   stateObject.hasSpells = true;
-  // }
-
   const hasSpells =
     characterClass.arcaneSpells ||
     characterClass.divineSpells ||
