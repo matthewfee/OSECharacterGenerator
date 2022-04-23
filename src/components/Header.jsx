@@ -125,15 +125,17 @@ export default function Header(props) {
         </div>
       )}
 
-      <div className="main-page--created-by">
-        <Trans
-          i18nKey="CreatedBy"
-          t={t}
-          components={[
-            <LinkText href="https://eviltables.dev/ose-character-generator/" />,
-          ]}
-        />
-      </div>
+      {pages.abilityScreen && !characterRolled && !rollButtonHover && (
+        <div className="main-page--created-by">
+          <Trans
+            i18nKey="CreatedBy"
+            t={t}
+            components={[
+              <LinkText href="https://eviltables.dev/ose-character-generator/" />,
+            ]}
+          />
+        </div>
+      )}
     </header>
   )
 }

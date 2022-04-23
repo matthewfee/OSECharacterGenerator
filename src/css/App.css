@@ -120,6 +120,7 @@ a {
   text-align: center;
   position: relative;
   text-transform: uppercase;
+  padding-left: 20px;
 }
 
 .ability-score-container > .ability-score-name > h2 {
@@ -1134,7 +1135,7 @@ div > .button-class-option {
 .header > .button--roll {
   background-color: black;
   width: 10rem;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 0.5rem;
   padding: 0;
   border: none;

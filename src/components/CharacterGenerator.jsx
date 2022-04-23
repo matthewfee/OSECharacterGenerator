@@ -13,6 +13,7 @@ import {
   getPrimeReqMod,
   updateAbilityModifiers,
 } from "../utilities/utilities"
+import AbilityScreen from "./AbilityScreen"
 import classOptionsData from "../data/classOptionsData"
 import ClassOptionsButton from "./ClassOptionsButton"
 import ClassDescription from "./ClassDescription"
@@ -185,36 +186,19 @@ export default function CharacterGenerator() {
         style={{ display: characterRolled ? "inline-block" : "none" }}
       >
         {pages.abilityScreen && characterRolled && (
-          <div className="ability-screen container">
-            <h2 className="header-default character-class-header">
-              <Trans i18nKey="characterClass">Character Class</Trans>
-            </h2>
-            <ClassOptions
-              characterClass={characterClass}
-              abilityScores={abilityScores}
-              changeCharacterClass={changeCharacterClass}
-            ></ClassOptions>
-
-            <h2 className="ability-scores--header header-default">
-              <Trans i18nKey="abilityScores">Ability Scores</Trans>
-            </h2>
-
-            <AbilityScores
-              abilityScores={abilityScores}
-              setAbilityScores={setAbilityScores}
-              pointBuy={pointBuy}
-              setPointBuy={setPointBuy}
-              characterClass={characterClass}
-              characterModifiers={characterModifiers}
-            ></AbilityScores>
-
-            <NavigationOptions
-              rollCharacter={rollCharacter}
-              pages={pages}
-              setPages={setPages}
-              characterClass={characterClass}
-            ></NavigationOptions>
-          </div>
+          <AbilityScreen
+            characterRolled={characterRolled}
+            characterClass={characterClass}
+            abilityScores={abilityScores}
+            changeCharacterClass={changeCharacterClass}
+            setAbilityScores={setAbilityScores}
+            pointBuy={pointBuy}
+            setPointBuy={setPointBuy}
+            characterModifiers={characterModifiers}
+            rollCharacter={rollCharacter}
+            pages={pages}
+            setPages={setPages}
+          ></AbilityScreen>
         )}
 
         {pages.classScreen && (

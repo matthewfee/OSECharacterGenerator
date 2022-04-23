@@ -1,5 +1,5 @@
-import React from "react";
-import { redFail } from "../constants/constants";
+import React from "react"
+import { redFail } from "../constants/constants"
 
 export default function AbilityScoreBox(props) {
   const {
@@ -10,26 +10,26 @@ export default function AbilityScoreBox(props) {
     scoreDecrease,
     canDecrease,
     characterClass,
-    pointBuy
-  } = props;
+    pointBuy,
+  } = props
 
-  const lowScore = 6;
-  const highScore = 15;
-  const maxScore = 18;
-  const minimumDecrementRequirement = 10;
+  const lowScore = 6
+  const highScore = 15
+  const maxScore = 18
+  const minimumDecrementRequirement = 10
 
-  let showIncrementButton = false;
+  let showIncrementButton = false
 
   let hasPointstoIncrease =
     characterClass.primeReqs?.includes(abilityScoreName) ||
-    abilityScoreValue < abilityScoreValueOriginal;
+    abilityScoreValue < abilityScoreValueOriginal
 
   if (pointBuy > 0 && hasPointstoIncrease && abilityScoreValue < maxScore) {
-    showIncrementButton = true;
+    showIncrementButton = true
   }
 
   const showDecreaseButton =
-    abilityScoreValue > minimumDecrementRequirement && canDecrease;
+    abilityScoreValue > minimumDecrementRequirement && canDecrease
 
   return (
     <div
@@ -44,7 +44,7 @@ export default function AbilityScoreBox(props) {
         <button
           className="button button--ability button--ability--decrease"
           onClick={() => {
-            scoreDecrease(abilityScoreName);
+            scoreDecrease(abilityScoreName)
           }}
         >
           <div className="arrow-down"></div>
@@ -55,12 +55,12 @@ export default function AbilityScoreBox(props) {
         <button
           className="button button--ability button--ability--increase"
           onClick={() => {
-            scoreIncrease(abilityScoreName);
+            scoreIncrease(abilityScoreName)
           }}
         >
           <div className="arrow-up"></div>
         </button>
       )}
     </div>
-  );
+  )
 }

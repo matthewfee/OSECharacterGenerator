@@ -17,8 +17,8 @@ export const RANDOM_NUMBERS_API_URL = "https://api.random.org/json-rpc/4/invoke"
 export const abilityScoreNames = [
   "strength",
   "intelligence",
-  "wisdom",
   "dexterity",
+  "wisdom",
   "constitution",
   "charisma",
 ]
