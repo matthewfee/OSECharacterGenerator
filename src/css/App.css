@@ -263,20 +263,20 @@ a {
   text-align: center;
 }
 
-.backpack-container > .armour-backpack,
-.backpack-container > .weapons-backpack {
+.backpack-container > .backpack--armour,
+.backpack-container > .backpack--weapon {
   display: grid;
   grid-template-columns: auto min-content min-content;
   grid-gap: 2px;
   margin-left: 10px;
 }
 
-.weapons-backpack {
+.backpack--weapon {
   padding-top: 10px;
   border-top: 1px solid grey;
 }
 
-.backpack-container > .gear-backpack {
+.backpack-container > .backpack--gear {
   border-top: 1px solid grey;
   padding-top: 10px;
   display: grid;

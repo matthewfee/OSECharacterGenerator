@@ -1,8 +1,6 @@
 import React from "react"
-import ArmourBackpack from "./ArmourBackpack"
-import WeaponsBackpack from "./WeaponsBackpack"
-import GearBackpack from "./gearBackpack"
 import { Trans } from "react-i18next"
+import Backpack from "./Backpack"
 
 export default function Inventory(props) {
   const { weapons, adventuringGear, armour, storeHandler } = props
@@ -12,20 +10,23 @@ export default function Inventory(props) {
         <Trans i18nKey="inventory">Inventory</Trans>
       </h3>
       <div className="backpack-container">
-        <ArmourBackpack
-          armour={armour}
+        <Backpack
+          itemType={"armour"}
+          items={armour}
           storeHandler={storeHandler}
-        ></ArmourBackpack>
+        ></Backpack>
 
-        <WeaponsBackpack
-          weapons={weapons}
+        <Backpack
+          itemType={"weapon"}
+          items={weapons}
           storeHandler={storeHandler}
-        ></WeaponsBackpack>
+        ></Backpack>
 
-        <GearBackpack
-          adventuringGear={adventuringGear}
+        <Backpack
+          itemType={"gear"}
+          items={adventuringGear}
           storeHandler={storeHandler}
-        ></GearBackpack>
+        ></Backpack>
       </div>
     </div>
   )
