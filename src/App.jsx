@@ -11,9 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <CharacterGenerator />
-        </div>
+        <CharacterGenerator />
       </Router>
     )
   }

@@ -1,9 +1,7 @@
 import React from "react"
-import AbilityScoreBox from "./AbilityScoreBox"
-import { redFail, Thief } from "../constants/constants"
+import { Thief } from "../constants/constants"
 import { abilityScoreNames } from "../constants/constants"
-import { Trans } from "react-i18next"
-import AbilityScoresList from "./AbilityScoresList"
+import AbilityScoresRow from "./AbilityScoresRow"
 
 export default function AbilityScores(props) {
   const {
@@ -110,7 +108,7 @@ export default function AbilityScores(props) {
         const originalScore = `${abilityScoreName}Original`
 
         return (
-          <AbilityScoresList
+          <AbilityScoresRow
             abilityScoreName={abilityScoreName}
             primeReq={primeReq}
             abilityScoreValue={abilityScores[abilityScoreName]}
@@ -121,7 +119,7 @@ export default function AbilityScores(props) {
             characterClass={characterClass}
             pointBuy={pointBuy}
             modArray={abilityScoreModDescriptions[abilityScoreName]}
-          ></AbilityScoresList>
+          ></AbilityScoresRow>
         )
       })}
     </div>

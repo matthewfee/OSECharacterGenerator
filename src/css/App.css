@@ -120,7 +120,7 @@ a {
   text-align: center;
   position: relative;
   text-transform: uppercase;
-  padding-left: 20px;
+  margin-left: 20px;
 }
 
 .ability-score-container > .ability-score-name > h2 {
@@ -1252,7 +1252,6 @@ div > .button-class-option {
 
 .prime-req {
   position: absolute;
-  left: 0;
   top: 80%;
   width: 100%;
   text-align: center;

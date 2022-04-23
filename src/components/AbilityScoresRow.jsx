@@ -3,7 +3,7 @@ import AbilityScoreBox from "./AbilityScoreBox"
 import AbilityScoreMod from "./AbilityScoreMod"
 import AbilityScoreName from "./AbilityScoreName"
 
-export default function AbilityScoresList(props) {
+export default function AbilityScoresRow(props) {
   const {
     abilityScoreName,
     abilityScoreValue,
