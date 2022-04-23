@@ -1123,10 +1123,12 @@ div > .button-class-option {
 
 .wrapper > .header {
   min-height: 30px;
-  color: whitesmoke;
+  position: relative;
+  color: white;
   display: flex;
   flex-flow: column;
   align-items: center;
+  max-width: 500px;
 }
 
 .header > .button--roll {
@@ -1391,9 +1393,8 @@ div > .button-class-option {
   font-size: 2rem;
   width: auto;
   padding: 10px;
-  margin-top: 150px;
+  margin-top: 30px;
   text-align: center;
-  padding-left: 40px;
   max-width: 460px;
   /* background-color: rgba(0, 0, 0, 0.5); */
   border-radius: 20px;
@@ -1402,6 +1403,26 @@ div > .button-class-option {
 
 .main-page--subheader > .main-page--subheadername {
   font-size: 1.2rem;
+}
+
+/* .main-page--language-options {
+  margin-top: 30px;
+} */
+
+.main-page--description {
+  height: 200px;
+}
+
+.main-page--created-by {
+  margin-top: 100px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.main-page--subheader {
+  height: 100%;
 }
 
 .wrapper {

@@ -97,26 +97,18 @@ export default function Header(props) {
         <div
           className={`main-page--subheader ${rollButtonHover ? "fade" : ""} `}
         >
-          <Trans
-            i18nKey="AppDescription"
-            t={t}
-            components={[
-              <LinkText href="https://necroticgnome.com/" />,
-              <LinkText href="https://random.org" />,
-            ]}
-          />
-          <br></br>
-          <br></br>
-          <Trans
-            i18nKey="CreatedBy"
-            t={t}
-            components={[
-              <LinkText href="https://eviltables.dev/ose-character-generator/" />,
-            ]}
-          />
-          <br></br>
-          <br></br>
-          <div>
+          <div className="main-page--description">
+            <Trans
+              i18nKey="AppDescription"
+              t={t}
+              components={[
+                <LinkText href="https://necroticgnome.com/" />,
+                <LinkText href="https://random.org" />,
+              ]}
+            />
+          </div>
+
+          <div className="main-page--language-options">
             {Object.keys(lngs).map((lng) => (
               <button
                 key={lng}
@@ -132,6 +124,16 @@ export default function Header(props) {
           </div>
         </div>
       )}
+
+      <div className="main-page--created-by">
+        <Trans
+          i18nKey="CreatedBy"
+          t={t}
+          components={[
+            <LinkText href="https://eviltables.dev/ose-character-generator/" />,
+          ]}
+        />
+      </div>
     </header>
   )
 }
