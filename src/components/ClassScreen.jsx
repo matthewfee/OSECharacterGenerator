@@ -3,11 +3,12 @@ import classOptionsData from "../data/classOptionsData"
 import { d, chooseRandomItem } from "../utilities/utilities"
 import { magicUserSpells, druidSpells, illusionistSpells } from "../data/spells"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 export default function ClassScreen(props) {
   const {
-    pages,
-    setPages,
+    screen,
+    setScreen,
     characterClass,
     character,
     setCharacter,
@@ -246,7 +247,7 @@ export default function ClassScreen(props) {
               spell: spellSelected,
             })
 
-            setPages({ ...pages, equipmentScreen: true, classScreen: false })
+            setScreen({ ...screen, equipmentScreen: true, classScreen: false })
           }}
         >
           Go to Equipment
@@ -254,4 +255,20 @@ export default function ClassScreen(props) {
       )}
     </div>
   )
+}
+
+ClassScreen.propTypes = {
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  characterClass: PropTypes.object,
+  character: PropTypes.object,
+  setCharacter: PropTypes.func,
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.array,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  setCharacterStatistics: PropTypes.func,
 }

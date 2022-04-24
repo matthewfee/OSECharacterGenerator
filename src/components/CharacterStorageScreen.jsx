@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { CHARACTER_STORAGE } from "../constants/constants";
+import React, { useState, useEffect } from "react"
+import { CHARACTER_STORAGE } from "../constants/constants"
+import PropTypes from "prop-types"
 
 export default function CharacterStorageScreen(props) {
   const {
-    pages,
-    setPages,
+    screen,
+    setScreen,
     character,
     setCharacter,
     characterStatistics,
@@ -17,56 +18,56 @@ export default function CharacterStorageScreen(props) {
     setCharacterModifiers,
     abilityScores,
     setAbilityScores,
-    setCharacterRolled
-  } = props;
+    setCharacterRolled,
+  } = props
 
-  const [myCharacters, setMyCharacters] = useState([]);
+  const [myCharacters, setMyCharacters] = useState([])
 
   useEffect(() => {
     const characters = JSON.parse(
-      window.localStorage.getItem(CHARACTER_STORAGE)
-    );
-    setMyCharacters(characters);
-  }, []);
+      window.localStorage.getItem(CHARACTER_STORAGE),
+    )
+    setMyCharacters(characters)
+  }, [])
 
   const handleCharacter = (e, index, action) => {
-    e.stopPropagation();
+    e.stopPropagation()
     switch (action) {
       case "setActiveCharacter":
-        let characterObject = myCharacters[index];
-        setCharacter(characterObject.character);
-        setCharacterStatistics(characterObject.characterStatistics);
-        setCharacterClass(characterObject.characterClass);
-        setCharacterEquipment(characterObject.characterEquipment);
-        setCharacterModifiers(characterObject.characterModifiers);
-        setAbilityScores(characterObject.abilityScores);
-        setCharacterRolled(true);
+        let characterObject = myCharacters[index]
+        setCharacter(characterObject.character)
+        setCharacterStatistics(characterObject.characterStatistics)
+        setCharacterClass(characterObject.characterClass)
+        setCharacterEquipment(characterObject.characterEquipment)
+        setCharacterModifiers(characterObject.characterModifiers)
+        setAbilityScores(characterObject.abilityScores)
+        setCharacterRolled(true)
 
-        setPages({
-          ...pages,
+        setScreen({
+          ...screen,
           characterSheetScreen: true,
-          characterStorageScreen: false
-        });
+          characterStorageScreen: false,
+        })
 
       case "deleteCharacter":
-        let newStorage = [...myCharacters];
-        newStorage.splice(index, 1);
-        localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(newStorage));
-        setMyCharacters(newStorage);
+        let newStorage = [...myCharacters]
+        newStorage.splice(index, 1)
+        localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(newStorage))
+        setMyCharacters(newStorage)
 
       default:
-        return;
+        return
     }
-  };
+  }
 
   const characterButton = (char, index) => {
-    let characterStorageName = char.character.name;
+    let characterStorageName = char.character.name
 
     return (
       <button
         className="character-button"
         key={index}
-        onClick={e => handleCharacter(e, index, "setActiveCharacter")}
+        onClick={(e) => handleCharacter(e, index, "setActiveCharacter")}
         value={index}
         name="setActiveCharacter"
       >
@@ -78,7 +79,7 @@ export default function CharacterStorageScreen(props) {
         </div>
 
         <div
-          onClick={e => handleCharacter(e, index, "deleteCharacter")}
+          onClick={(e) => handleCharacter(e, index, "deleteCharacter")}
           className="character-button--delete"
           key={index}
           value={index}
@@ -87,8 +88,8 @@ export default function CharacterStorageScreen(props) {
           x
         </div>
       </button>
-    );
-  };
+    )
+  }
 
   return (
     <div className="character-storage-screen">
@@ -103,16 +104,58 @@ export default function CharacterStorageScreen(props) {
       <button
         className="button--new-character"
         onClick={() => {
-          setPages({
-            ...pages,
+          setScreen({
+            ...screen,
             abilityScreen: true,
-            characterStorageScreen: false
-          });
-          setCharacterRolled(false);
+            characterStorageScreen: false,
+          })
+          setCharacterRolled(false)
         }}
       >
         Back to Main
       </button>
     </div>
-  );
+  )
+}
+
+CharacterStorageScreen.propTypes = {
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  character: PropTypes.object,
+  setCharacter: PropTypes.func,
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.string,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  setCharacterStatistics: PropTypes.func,
+  characterClass: PropTypes.object,
+  setCharacterClass: PropTypes.func,
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number,
+  }),
+  setCharacterEquipment: PropTypes.func,
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
+  setCharacterModifiers: PropTypes.func,
+  abilityScores: PropTypes.shape({
+    strength: PropTypes.number,
+    strengthOriginal: PropTypes.number,
+    intelligence: PropTypes.number,
+    intelligenceOriginal: PropTypes.number,
+    wisdom: PropTypes.number,
+    wisdomOriginal: PropTypes.number,
+    dexterity: PropTypes.number,
+    dexterityOriginal: PropTypes.number,
+    constitution: PropTypes.number,
+    constitutionOriginal: PropTypes.number,
+    charisma: PropTypes.number,
+    charismaOriginal: PropTypes.number,
+  }),
+  setAbilityScore: PropTypes.func,
+  setCharacterRolled: PropTypes.func,
 }

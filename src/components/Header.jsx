@@ -14,9 +14,8 @@ export default function Header(props) {
     rollButtonHover,
     setRollButtonHover,
     loadingRandomNumbers,
-    setLoadingRandomNumbers,
-    pages,
-    setPages,
+    screen,
+    setScreen,
     rollCharacter,
   } = props
 
@@ -25,17 +24,6 @@ export default function Header(props) {
     margin: 0 auto;
     border-color: red;
   `
-
-  const showStorageSheetScreen = () => {
-    setPages((pages) => {
-      return {
-        ...pages,
-        characterStorageScreen: true,
-        characterSheetScreen: false,
-        abilityScreen: false,
-      }
-    })
-  }
 
   const myCharacters = JSON.parse(
     window.localStorage.getItem("characterStorage"),
@@ -50,7 +38,7 @@ export default function Header(props) {
         <Trans i18nKey="AppName"></Trans>
         {/* OSE Character Generator */}
       </h2>
-      {pages.abilityScreen && !characterRolled && (
+      {screen.abilityScreen && !characterRolled && (
         <button
           className={`button button--roll button-primary`}
           onClick={rollCharacter}
@@ -75,14 +63,14 @@ export default function Header(props) {
         </button>
       )}
 
-      {pages.abilityScreen && !characterRolled && myCharacters && (
+      {screen.abilityScreen && !characterRolled && myCharacters && (
         <button
           className={`button button--storage button-primary ${
             rollButtonHover ? "fade" : ""
           }`}
           onClick={() => {
-            setPages({
-              ...pages,
+            setScreen({
+              ...screen,
               abilityScreen: false,
               characterStorageScreen: true,
             })
@@ -93,7 +81,7 @@ export default function Header(props) {
         </button>
       )}
 
-      {pages.abilityScreen && !characterRolled && (
+      {screen.abilityScreen && !characterRolled && (
         <div
           className={`main-page--subheader ${rollButtonHover ? "fade" : ""} `}
         >
@@ -125,7 +113,7 @@ export default function Header(props) {
         </div>
       )}
 
-      {pages.abilityScreen && !characterRolled && !rollButtonHover && (
+      {screen.abilityScreen && !characterRolled && !rollButtonHover && (
         <div className="main-page--created-by">
           <Trans
             i18nKey="CreatedBy"

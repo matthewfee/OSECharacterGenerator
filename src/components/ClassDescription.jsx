@@ -1,13 +1,14 @@
-import React from "react";
-import classOptionsData from "../data/classOptionsData";
+import React from "react"
+import classOptionsData from "../data/classOptionsData"
+import PropTypes from "prop-types"
 
 export default function ClassDescription(props) {
-  const { characterClass } = props;
+  const { characterClass } = props
 
   if (!characterClass.name) {
-    return <div className="class-details" style={{ border: "none" }}></div>;
+    return <div className="class-details" style={{ border: "none" }}></div>
   }
-  let obj = classOptionsData.find(obj => obj.name === characterClass.name);
+  const obj = classOptionsData.find((obj) => obj.name === characterClass.name)
   return (
     <details className="class-details">
       <summary className="class-summary">
@@ -64,5 +65,9 @@ export default function ClassDescription(props) {
         </li>
       </ul>
     </details>
-  );
+  )
+}
+
+ClassDescription.propTypes = {
+  characterClass: PropTypes.object,
 }

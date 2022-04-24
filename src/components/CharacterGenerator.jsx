@@ -58,20 +58,20 @@ export default function CharacterGenerator() {
   })
 
   const [characterModifiers, setCharacterModifiers] = useState({
-    primeReq: 0,
-    strengthModMelee: 0,
-    strengthModDoors: 0,
-    intelligenceModLanguages: 0,
+    primeReq: "0",
+    strengthModMelee: "0",
+    strengthModDoors: "0",
+    intelligenceModLanguages: "0",
     intelligenceModLiteracy: "",
-    intelligenceModExtraLanguageCount: 0,
-    wisdomMod: 0,
-    dexterityModAC: 0,
-    dexterityModMissiles: 0,
-    dexterityModInitiative: 0,
-    constitutionMod: 0,
-    charismaModNPCReactions: 0,
-    charismaModRetainersMax: 0,
-    charismaModLoyalty: 0,
+    intelligenceModExtraLanguageCount: "0",
+    wisdomMod: "0",
+    dexterityModAC: "0",
+    dexterityModMissiles: "0",
+    dexterityModInitiative: "0",
+    constitutionMod: "0",
+    charismaModNPCReactions: "0",
+    charismaModRetainersMax: "0",
+    charismaModLoyalty: "0",
   })
 
   const [characterStatistics, setCharacterStatistics] = useState({
@@ -89,7 +89,7 @@ export default function CharacterGenerator() {
     primeReqs: [],
   })
 
-  const [pages, setPages] = useState({
+  const [screen, setScreen] = useState({
     equipmentScreen: false,
     abilityScreen: true,
     classScreen: false,
@@ -157,11 +157,13 @@ export default function CharacterGenerator() {
     setRollButtonHover(false)
     setCharacterClass({ name: null, primeReqs: [] })
     setCharacterRolled(true)
+
+    setScreen({ ...screen, AbilityScreen: true })
     setPointBuy(0)
   }
 
   const changeCharacterClass = (event) => {
-    let characterClass = classOptionsData.find(
+    const characterClass = classOptionsData.find(
       (obj) => obj.name === event.target.value,
     )
 
@@ -178,14 +180,14 @@ export default function CharacterGenerator() {
         characterRolled={characterRolled}
         setCharacterRolled={setCharacterRolled}
         rollCharacter={rollCharacter}
-        pages={pages}
-        setPages={setPages}
+        screen={screen}
+        setScreen={setScreen}
       ></Header>
       <div
         className={`character-menu container`}
         style={{ display: characterRolled ? "inline-block" : "none" }}
       >
-        {pages.abilityScreen && characterRolled && (
+        {screen.abilityScreen && characterRolled && (
           <AbilityScreen
             characterRolled={characterRolled}
             characterClass={characterClass}
@@ -196,15 +198,15 @@ export default function CharacterGenerator() {
             setPointBuy={setPointBuy}
             characterModifiers={characterModifiers}
             rollCharacter={rollCharacter}
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
           ></AbilityScreen>
         )}
 
-        {pages.classScreen && (
+        {screen.classScreen && (
           <ClassScreen
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
             characterClass={characterClass}
             character={character}
             setCharacter={setCharacter}
@@ -214,11 +216,11 @@ export default function CharacterGenerator() {
           ></ClassScreen>
         )}
 
-        {pages.equipmentScreen && (
+        {screen.equipmentScreen && (
           <EquipmentScreen
             characterClass={characterClass}
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
             characterModifiers={characterModifiers}
             characterStatistics={characterStatistics}
             setCharacterStatistics={setCharacterStatistics}
@@ -228,10 +230,10 @@ export default function CharacterGenerator() {
           />
         )}
 
-        {pages.detailsScreen && (
+        {screen.detailsScreen && (
           <DetailsScreen
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
             character={character}
             setCharacter={setCharacter}
             characterClass={characterClass}
@@ -239,10 +241,10 @@ export default function CharacterGenerator() {
           ></DetailsScreen>
         )}
 
-        {pages.characterSheetScreen && (
+        {screen.characterSheetScreen && (
           <CharacterSheetScreen
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
             character={character}
             characterStatistics={characterStatistics}
             characterClass={characterClass}
@@ -253,10 +255,10 @@ export default function CharacterGenerator() {
           ></CharacterSheetScreen>
         )}
 
-        {pages.characterStorageScreen && (
+        {screen.characterStorageScreen && (
           <CharacterStorageScreen
-            pages={pages}
-            setPages={setPages}
+            screen={screen}
+            setScreen={setScreen}
             character={character}
             setCharacter={setCharacter}
             characterStatistics={characterStatistics}
@@ -293,22 +295,7 @@ CharacterGenerator.propTypes = {
     charisma: PropTypes.number,
     charismaOriginal: PropTypes.number,
   }),
-  characterModifiers: PropTypes.shape({
-    primeReq: PropTypes.number,
-    strengthModMelee: PropTypes.string,
-    strengthModDoors: PropTypes.string,
-    intelligenceModLanguages: PropTypes.string,
-    intelligenceModLiteracy: PropTypes.string,
-    intelligenceModExtraLanguageCount: PropTypes.number,
-    wisdomMod: PropTypes.number,
-    dexterityModAC: PropTypes.number,
-    dexterityModMissiles: PropTypes.number,
-    dexterityModInitiative: PropTypes.string,
-    constitutionMod: PropTypes.string,
-    charismaModNPCReactions: PropTypes.string,
-    charismaModRetainersMax: PropTypes.string,
-    charismaModLoyalty: PropTypes.number,
-  }),
+
   characterStatistics: PropTypes.shape({
     hitPoints: PropTypes.number,
     armourClass: PropTypes.number,
@@ -321,23 +308,18 @@ CharacterGenerator.propTypes = {
     name: PropTypes.string,
     primeReqs: PropTypes.array,
   }),
-  pages: PropTypes.shape({
-    equipmentScreen: PropTypes.bool,
-    abilityScreen: PropTypes.bool,
-    classScreen: PropTypes.bool,
-    detailsScreen: PropTypes.bool,
-    characterSheetScreen: PropTypes.bool,
-    characterStorageScreen: PropTypes.bool,
-  }),
+  screen: PropTypes.objectOf(PropTypes.bool),
+
   characterEquipment: PropTypes.shape({
     armour: PropTypes.array,
     weapons: PropTypes.array,
     adventuringGear: PropTypes.array,
     gold: PropTypes.number,
   }),
+
   loadingRandomNumbers: PropTypes.bool,
   randomNumbers: PropTypes.array,
-  characterolled: PropTypes.bool,
+  characterRolled: PropTypes.bool,
   rollButtonHover: PropTypes.bool,
   advancedClassesDisplay: PropTypes.bool,
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import { joinDuplicates } from "../utilities/utilities"
+import PropTypes from "prop-types"
 
 export default function Backpack(props) {
   const { storeHandler, items, itemType } = props
@@ -25,4 +26,10 @@ export default function Backpack(props) {
       })}
     </div>
   )
+}
+
+Backpack.propTypes = {
+  itemType: PropTypes.string,
+  items: PropTypes.arrayOf(PropTypes.string),
+  storeHandler: PropTypes.func,
 }

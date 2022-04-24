@@ -1,5 +1,6 @@
 import React from "react"
 import { redFail } from "../constants/constants"
+import PropTypes from "prop-types"
 
 export default function AbilityScoreBox(props) {
   const {
@@ -63,4 +64,16 @@ export default function AbilityScoreBox(props) {
       )}
     </div>
   )
+}
+
+AbilityScoreBox.propTypes = {
+  abilityScoreName: PropTypes.string,
+  characterClass: PropTypes.object,
+  abilityScoreValue: PropTypes.number,
+  AbilityScoreValueOriginal: PropTypes.number,
+  scoreIncrease: PropTypes.func,
+  scoreDecrease: PropTypes.func,
+  canDecrease: PropTypes.bool,
+  pointBuy: PropTypes.number,
+  characterClass: PropTypes.object,
 }

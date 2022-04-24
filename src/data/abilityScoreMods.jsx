@@ -18,7 +18,7 @@ const abilityScoreMods = {
     "+1",
     "+2",
     "+2",
-    "+3"
+    "+3",
   ],
   openDoors: [
     null,
@@ -39,7 +39,7 @@ const abilityScoreMods = {
     "3-in-6",
     "4-in-6",
     "4-in-6",
-    "5-in-6"
+    "5-in-6",
   ],
   spokenLanguages: [
     null,
@@ -60,28 +60,28 @@ const abilityScoreMods = {
     "+1 ",
     "+2",
     "+2",
-    "+3"
+    "+3",
   ],
   extraLanguageCount: [
     null,
     null,
     null,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    1,
-    1,
-    1,
-    2,
-    2,
-    3
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "1",
+    "1",
+    "1",
+    "2",
+    "2",
+    "3",
   ],
   literacy: [
     null,
@@ -102,7 +102,7 @@ const abilityScoreMods = {
     "Literate",
     "Literate",
     "Literate",
-    "Literate"
+    "Literate",
   ],
   initiative: [
     null,
@@ -123,7 +123,7 @@ const abilityScoreMods = {
     "+1",
     "+1",
     "+1",
-    "+2"
+    "+2",
   ],
   npcReactions: [
     null,
@@ -144,7 +144,7 @@ const abilityScoreMods = {
     "+1",
     "+1",
     "+1",
-    "+2"
+    "+2",
   ],
   retainersMax: [
     null,
@@ -165,7 +165,7 @@ const abilityScoreMods = {
     "5",
     "6",
     "6",
-    "7"
+    "7",
   ],
   loyalty: [
     null,
@@ -186,8 +186,8 @@ const abilityScoreMods = {
     "8",
     "9",
     "9",
-    "10"
-  ]
-};
+    "10",
+  ],
+}
 
-export default abilityScoreMods;
+export default abilityScoreMods

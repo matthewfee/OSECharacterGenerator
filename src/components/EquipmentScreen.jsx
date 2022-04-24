@@ -26,12 +26,13 @@ import WeaponOptionsContainer from "./WeaponOptionsContainer"
 import GearOptionsContainer from "./GearOptionsContainer"
 import Inventory from "./Inventory"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 export default function EquipmentScreen(props) {
   const {
     characterClass,
-    pages,
-    setPages,
+    screen,
+    setScreen,
     characterModifiers,
     characterStatistics,
     setCharacterStatistics,
@@ -329,8 +330,8 @@ export default function EquipmentScreen(props) {
                   armourClass: armourClass,
                   unarmouredAC: unarmouredAC,
                 })
-                setPages({
-                  ...pages,
+                setScreen({
+                  ...screen,
                   equipmentScreen: false,
                   detailsScreen: true,
                 })
@@ -343,4 +344,27 @@ export default function EquipmentScreen(props) {
       )}
     </div>
   )
+}
+
+EquipmentScreen.propTypes = {
+  characterClass: PropTypes.object,
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.string,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  setCharacterStatistics: PropTypes.func,
+  pointBuy: PropTypes.number,
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number,
+  }),
+  randomNumbers: PropTypes.array,
 }

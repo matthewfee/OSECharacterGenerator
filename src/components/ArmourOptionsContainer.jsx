@@ -1,5 +1,6 @@
-import React from "react";
-import { armourTypes } from "../constants/constants";
+import React from "react"
+import { armourTypes } from "../constants/constants"
+import PropTypes from "prop-types"
 
 export default function ArmourOptionsContainer(props) {
   const {
@@ -8,8 +9,8 @@ export default function ArmourOptionsContainer(props) {
     handleOptionChange,
     shieldSelected,
     handleShieldChange,
-    storeHandler
-  } = props;
+    storeHandler,
+  } = props
 
   return (
     <div className="armour-container-parent">
@@ -98,12 +99,21 @@ export default function ArmourOptionsContainer(props) {
           type="submit"
           value="Buy"
           onClick={() => {
-            storeHandler(armourSelected, "buy", "armour");
+            storeHandler(armourSelected, "buy", "armour")
           }}
           price={null}
           disabled={armourSelected ? false : true}
         />
       </div>
     </div>
-  );
+  )
+}
+
+ArmourOptionsContainer.propTypes = {
+  characterClass: PropTypes.object,
+  handleOptionChange: PropTypes.func,
+  armourSelected: PropTypes.string,
+  shieldSelected: PropTypes.bool,
+  handleShieldChange: PropTypes.func,
+  storeHandler: PropTypes.func,
 }
