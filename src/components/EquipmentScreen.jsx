@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react"
 import equipmentData from "../data/equipmentData"
 import weaponsData from "../data/weaponsData"
 import armourData from "../data/armourData"
-import classOptionsData from "../data/classOptionsData"
-import EquipmentOptions from "./EquipmentOptions"
-import EquipmentBackpack from "./EquipmentBackpack"
 import {
   Cleric,
   Elf,
@@ -95,11 +92,9 @@ export default function EquipmentScreen(props) {
 
   const adventuringGearList = () => {
     return equipmentData.map((item) => (
-      <EquipmentOptions
-        price={item.price}
-        name={item.name}
-        key={item.name}
-      ></EquipmentOptions>
+      <option value={item.name} price={item.price} key={item.name}>
+        {item.name} - {item.price} gp
+      </option>
     ))
   }
 
