@@ -1,4 +1,4 @@
-# OSECharacterGenerator
+# Old School Essentials Character Generator
 A character generator for the 1981 B/X Edition of Dungeons and Dragons. Designed for use with Old School Essentials.
 ## About
 
