@@ -1,5 +1,5 @@
 # Old School Essentials Character Generator
-A character generator for the 1981 B/X Edition of Dungeons and Dragons. Designed for use with Old School Essentials.
+A character generator for the 1981 B/X Edition of Dungeons and Dragons. 
 ## About
 
 This is a character generator for the 1981 Basic/Expert edition Dungeons and Dragons. It is designed for used with [Old School Essentials](https://necroticgnome.com/). The character generator guides you through creating a character from start to finish. It enforces all of the game rules so that you can create a character quickly and get back to playing. Once your character is created, you can export your character to an official character sheet with all the data values filled in for you.
