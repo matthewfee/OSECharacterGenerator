@@ -248,11 +248,9 @@ export default function CharacterSheetScreen(props) {
         <h3 className="header-default header-pdf">Export to PDF</h3>
 
         <div className="pdf-export-container">
-          <button onClick={() => fillForm()}>Purist Sheet</button>
+          <button onClick={() => fillForm()}>Purist</button>
 
-          <button onClick={() => fillFormUnderground()}>
-            Underground Sheet
-          </button>
+          <button onClick={() => fillFormUnderground()}>Underground</button>
         </div>
 
         <h3 className="header-default header-pdf">Navigation</h3>

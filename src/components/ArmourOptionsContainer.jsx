@@ -24,6 +24,17 @@ export default function ArmourOptionsContainer(props) {
 
       <div className="armour-container">
         <div className="radio-container">
+          <label className="armour-radio">
+            <input
+              type="radio"
+              value={armourTypes.unarmoured}
+              className="form-check-input"
+              onChange={handleOptionChange}
+              checked={armourSelected === armourTypes.unarmoured}
+            />
+            Unarmoured - AC 9 [10] - 0 gp
+          </label>
+
           {characterClass.armour.includes("leather") && (
             <label className="armour-radio">
               <input
@@ -97,7 +108,7 @@ export default function ArmourOptionsContainer(props) {
         <input
           className="button--buy-armour"
           type="submit"
-          value="Buy"
+          value="Choose"
           onClick={() => {
             storeHandler(armourSelected, "buy", "armour")
           }}

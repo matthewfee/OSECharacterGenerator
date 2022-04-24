@@ -69,6 +69,7 @@ export const armourTypes = {
   chainMail: "Chainmail",
   plateMail: "Plate mail",
   shield: "Shield",
+  unarmoured: "Unarmoured",
 }
 
 //strings for first names

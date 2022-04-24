@@ -33,7 +33,7 @@ export default function Header(props) {
     <header className={`header ${characterRolled ? "" : "header--initial"}`}>
       <h2
         className={`title ${rollButtonHover ? "fade" : ""}`}
-        style={{ fontSize: characterRolled ? "1.2rem" : "" }}
+        style={{ fontSize: characterRolled ? "1.4rem" : "" }}
       >
         <Trans i18nKey="AppName"></Trans>
         {/* OSE Character Generator */}

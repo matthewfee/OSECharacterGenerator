@@ -270,34 +270,40 @@ export default function EquipmentScreen(props) {
 
       {goldRolled && (
         <div className="equipment-purchase-container">
-          {!characterClass.armour.includes("none") && (
-            <ArmourOptionsContainer
-              characterClass={characterClass}
-              handleOptionChange={handleOptionChange}
-              armourSelected={armourSelected}
-              shieldSelected={shieldSelected}
-              handleShieldChange={handleShieldChange}
-              storeHandler={storeHandler}
-            ></ArmourOptionsContainer>
-          )}
+          <div className="equipment-options">
+            {armour.length < 1 && (
+              <ArmourOptionsContainer
+                characterClass={characterClass}
+                handleOptionChange={handleOptionChange}
+                armourSelected={armourSelected}
+                shieldSelected={shieldSelected}
+                handleShieldChange={handleShieldChange}
+                storeHandler={storeHandler}
+              ></ArmourOptionsContainer>
+            )}
 
-          <WeaponOptionsContainer
-            characterClass={characterClass}
-            weaponSelected={weaponSelected}
-            updateSelectedWeapon={updateSelectedWeapon}
-            weaponsList={weaponsList}
-            storeHandler={storeHandler}
-            selectRandomWeapon={selectRandomWeapon}
-          ></WeaponOptionsContainer>
+            {armour.length > 0 && (
+              <WeaponOptionsContainer
+                characterClass={characterClass}
+                weaponSelected={weaponSelected}
+                updateSelectedWeapon={updateSelectedWeapon}
+                weaponsList={weaponsList}
+                storeHandler={storeHandler}
+                selectRandomWeapon={selectRandomWeapon}
+              ></WeaponOptionsContainer>
+            )}
 
-          <GearOptionsContainer
-            characterClass={characterClass}
-            adventuringGearSelected={adventuringGearSelected}
-            updateSelectedAdventuringGear={updateSelectedAdventuringGear}
-            adventuringGearList={adventuringGearList}
-            storeHandler={storeHandler}
-            selectRandomGear={selectRandomGear}
-          ></GearOptionsContainer>
+            {armour.length > 0 && (
+              <GearOptionsContainer
+                characterClass={characterClass}
+                adventuringGearSelected={adventuringGearSelected}
+                updateSelectedAdventuringGear={updateSelectedAdventuringGear}
+                adventuringGearList={adventuringGearList}
+                storeHandler={storeHandler}
+                selectRandomGear={selectRandomGear}
+              ></GearOptionsContainer>
+            )}
+          </div>
 
           <Inventory
             weapons={weapons}

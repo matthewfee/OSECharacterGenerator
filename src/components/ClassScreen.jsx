@@ -115,17 +115,19 @@ export default function ClassScreen(props) {
         <Trans i18nKey="classOptions">Class Options</Trans>
       </h3>
 
-      <button
-        className="button button-primary button--hp"
-        onClick={() => setTimeout(getHitPoints(), 200)}
-        disabled={!canReroll}
-        style={{
-          fontSize: canReroll ? "" : "4rem",
-        }}
-      >
-        {canReroll && `${HPRolls === 0 ? "Roll HP" : "Reroll?"}`}
-        {!canReroll && hitPoints}
-      </button>
+      {
+        <button
+          className="button button-primary button--hp"
+          onClick={() => setTimeout(getHitPoints(), 200)}
+          disabled={!canReroll}
+          style={{
+            fontSize: canReroll ? "" : "4rem",
+          }}
+        >
+          {canReroll && `${HPRolls === 0 ? "Roll HP" : "Reroll?"}`}
+          {!canReroll && hitPoints}
+        </button>
+      }
 
       <div className="hp-container container">
         <div className="hp-container--hit-die">

@@ -185,7 +185,7 @@ export default function CharacterGenerator() {
       ></Header>
       <div
         className={`character-menu container`}
-        style={{ display: characterRolled ? "inline-block" : "none" }}
+        style={{ display: characterRolled ? "flex" : "none" }}
       >
         {screen.abilityScreen && characterRolled && (
           <AbilityScreen

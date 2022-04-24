@@ -50,9 +50,9 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} className="character-sheet-component">
-      <h3 className="header-default">
+      {/* <h3 className="header-default">
         <Trans i18nKey={"characterSheet"}></Trans>
-      </h3>
+      </h3> */}
       <h3 className="character--name">{character.name}</h3>
       <h4 className="character--subheader"> Level 1 {characterClass.name}</h4>
       <div className="character-sheet">
