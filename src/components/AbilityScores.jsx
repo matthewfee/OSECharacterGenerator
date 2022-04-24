@@ -2,6 +2,7 @@ import React from "react"
 import { Thief } from "../constants/constants"
 import { abilityScoreNames } from "../constants/constants"
 import AbilityScoresRow from "./AbilityScoresRow"
+import PropTypes from "prop-types"
 
 export default function AbilityScores(props) {
   const {
@@ -104,11 +105,12 @@ export default function AbilityScores(props) {
     <div className="container ability-score-container">
       {pointBuy > 0 && <div className="point-buy">Point Buy: {pointBuy}</div>}
 
-      {abilityScoreNames.map((abilityScoreName) => {
+      {abilityScoreNames.map((abilityScoreName, index) => {
         const originalScore = `${abilityScoreName}Original`
 
         return (
           <AbilityScoresRow
+            key={index}
             abilityScoreName={abilityScoreName}
             primeReq={primeReq}
             abilityScoreValue={abilityScores[abilityScoreName]}
@@ -124,4 +126,26 @@ export default function AbilityScores(props) {
       })}
     </div>
   )
+}
+
+AbilityScores.propTypes = {
+  characterClass: PropTypes.object,
+  abilityScores: PropTypes.shape({
+    strength: PropTypes.number,
+    strengthOriginal: PropTypes.number,
+    intelligence: PropTypes.number,
+    intelligenceOriginal: PropTypes.number,
+    wisdom: PropTypes.number,
+    wisdomOriginal: PropTypes.number,
+    dexterity: PropTypes.number,
+    dexterityOriginal: PropTypes.number,
+    constitution: PropTypes.number,
+    constitutionOriginal: PropTypes.number,
+    charisma: PropTypes.number,
+    charismaOriginal: PropTypes.number,
+  }),
+  setAbilityScores: PropTypes.func,
+  pointBuy: PropTypes.number,
+  setPointBuy: PropTypes.func,
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
 }

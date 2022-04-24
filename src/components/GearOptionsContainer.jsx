@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import PropTypes from "prop-types"
 
 export default function GearOptionsContainer(props) {
   const {
@@ -7,8 +8,8 @@ export default function GearOptionsContainer(props) {
     updateSelectedAdventuringGear,
     adventuringGearList,
     storeHandler,
-    selectRandomGear
-  } = props;
+    selectRandomGear,
+  } = props
 
   return (
     <React.Fragment>
@@ -33,10 +34,19 @@ export default function GearOptionsContainer(props) {
           type="submit"
           value="Buy"
           onClick={() => {
-            storeHandler(adventuringGearSelected, "buy", "gear");
+            storeHandler(adventuringGearSelected, "buy", "gear")
           }}
         />
       </div>
     </React.Fragment>
-  );
+  )
+}
+
+GearOptionsContainer.propTypes = {
+  characterClass: PropTypes.object,
+  adventuringGearSelected: PropTypes.string,
+  updateSelectedAdventuringGear: PropTypes.func,
+  adventuringGearList: PropTypes.func,
+  selectRandomGear: PropTypes.func,
+  storeHandler: PropTypes.func,
 }

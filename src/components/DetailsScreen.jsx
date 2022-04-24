@@ -3,6 +3,7 @@ import classOptionsData from "../data/classOptionsData"
 import { characterBackgrounds } from "../data/backgrounds"
 import { d, getWeightedValue } from "../utilities/utilities"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 import {
   firstNames,
@@ -16,8 +17,8 @@ import { chooseRandomItem } from "../utilities/utilities"
 
 export default function DetailsScreen(props) {
   const {
-    pages,
-    setPages,
+    screen,
+    setScreen,
     character,
     setCharacter,
     characterClass,
@@ -377,8 +378,8 @@ export default function DetailsScreen(props) {
               hasLanguages: hasLanguages,
             })
 
-            setPages({
-              ...pages,
+            setScreen({
+              ...screen,
               detailsScreen: false,
               characterSheetScreen: true,
             })
@@ -389,4 +390,13 @@ export default function DetailsScreen(props) {
       </div>
     </div>
   )
+}
+
+DetailsScreen.propTypes = {
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  character: PropTypes.object,
+  setCharacter: PropTypes.func,
+  characterClass: PropTypes.object,
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
 }

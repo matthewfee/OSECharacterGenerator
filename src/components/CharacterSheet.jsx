@@ -3,6 +3,7 @@ import classOptionsData from "../data/classOptionsData"
 import { joinDuplicates } from "../utilities/utilities"
 import { abilityScoreNames } from "../constants/constants"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 const CharacterSheet = React.forwardRef((props, ref) => {
   const {
@@ -263,5 +264,39 @@ const CharacterSheet = React.forwardRef((props, ref) => {
 })
 
 CharacterSheet.displayName = "Character Sheet"
+
+CharacterSheet.propTypes = {
+  character: PropTypes.object,
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.string,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  characterClass: PropTypes.object,
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number,
+  }),
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
+  abilityScores: PropTypes.shape({
+    strength: PropTypes.number,
+    strengthOriginal: PropTypes.number,
+    intelligence: PropTypes.number,
+    intelligenceOriginal: PropTypes.number,
+    wisdom: PropTypes.number,
+    wisdomOriginal: PropTypes.number,
+    dexterity: PropTypes.number,
+    dexterityOriginal: PropTypes.number,
+    constitution: PropTypes.number,
+    constitutionOriginal: PropTypes.number,
+    charisma: PropTypes.number,
+    charismaOriginal: PropTypes.number,
+  }),
+  setCharacterRolled: PropTypes.func,
+}
 
 export default CharacterSheet

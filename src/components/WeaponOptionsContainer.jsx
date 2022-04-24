@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react"
+import PropTypes from "prop-types"
 
 export default function WeaponOptionsContainer(props) {
   const {
@@ -7,8 +8,8 @@ export default function WeaponOptionsContainer(props) {
     updateSelectedWeapon,
     weaponsList,
     storeHandler,
-    selectRandomWeapon
-  } = props;
+    selectRandomWeapon,
+  } = props
 
   return (
     <React.Fragment>
@@ -42,5 +43,14 @@ export default function WeaponOptionsContainer(props) {
         />
       </div>
     </React.Fragment>
-  );
+  )
+}
+
+WeaponOptionsContainer.propTypes = {
+  characterClass: PropTypes.object,
+  weaponSelected: PropTypes.string,
+  updateSelectedWeapon: PropTypes.func,
+  weaponsList: PropTypes.func,
+  selectRandomWeapon: PropTypes.func,
+  storeHandler: PropTypes.func,
 }

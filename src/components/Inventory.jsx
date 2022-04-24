@@ -1,6 +1,7 @@
 import React from "react"
 import { Trans } from "react-i18next"
 import Backpack from "./Backpack"
+import PropTypes from "prop-types"
 
 export default function Inventory(props) {
   const { weapons, adventuringGear, armour, storeHandler } = props
@@ -30,4 +31,11 @@ export default function Inventory(props) {
       </div>
     </div>
   )
+}
+
+Inventory.propTypes = {
+  weapons: PropTypes.arrayOf(PropTypes.string),
+  adventuringGear: PropTypes.arrayOf(PropTypes.string),
+  armour: PropTypes.arrayOf(PropTypes.string),
+  storeHandler: PropTypes.func,
 }

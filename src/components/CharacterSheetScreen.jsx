@@ -10,11 +10,12 @@ import {
   CHARACTER_STORAGE,
 } from "../constants/constants"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 export default function CharacterSheetScreen(props) {
   const {
-    pages,
-    setPages,
+    screen,
+    setScreen,
     character,
     characterStatistics,
     characterClass,
@@ -259,8 +260,8 @@ export default function CharacterSheetScreen(props) {
         <div className="navigation">
           <button
             onClick={() => {
-              setPages({
-                ...pages,
+              setScreen({
+                ...screen,
                 characterStorageScreen: true,
                 characterSheetScreen: false,
               })
@@ -271,8 +272,8 @@ export default function CharacterSheetScreen(props) {
 
           <button
             onClick={() => {
-              setPages({
-                ...pages,
+              setScreen({
+                ...screen,
                 abilityScreen: true,
                 characterSheetScreen: false,
               })
@@ -285,4 +286,41 @@ export default function CharacterSheetScreen(props) {
       </div>
     </div>
   )
+}
+
+CharacterSheetScreen.propTypes = {
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  character: PropTypes.object,
+  setCharacter: PropTypes.func,
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.string,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  characterClass: PropTypes.object,
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number,
+  }),
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
+  abilityScores: PropTypes.shape({
+    strength: PropTypes.number,
+    strengthOriginal: PropTypes.number,
+    intelligence: PropTypes.number,
+    intelligenceOriginal: PropTypes.number,
+    wisdom: PropTypes.number,
+    wisdomOriginal: PropTypes.number,
+    dexterity: PropTypes.number,
+    dexterityOriginal: PropTypes.number,
+    constitution: PropTypes.number,
+    constitutionOriginal: PropTypes.number,
+    charisma: PropTypes.number,
+    charismaOriginal: PropTypes.number,
+  }),
+  setCharacterRolled: PropTypes.func,
 }

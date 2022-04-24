@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react"
 import equipmentData from "../data/equipmentData"
 import weaponsData from "../data/weaponsData"
 import armourData from "../data/armourData"
-import classOptionsData from "../data/classOptionsData"
-import EquipmentOptions from "./EquipmentOptions"
-import EquipmentBackpack from "./EquipmentBackpack"
 import {
   Cleric,
   Elf,
@@ -26,12 +23,13 @@ import WeaponOptionsContainer from "./WeaponOptionsContainer"
 import GearOptionsContainer from "./GearOptionsContainer"
 import Inventory from "./Inventory"
 import { Trans } from "react-i18next"
+import PropTypes from "prop-types"
 
 export default function EquipmentScreen(props) {
   const {
     characterClass,
-    pages,
-    setPages,
+    screen,
+    setScreen,
     characterModifiers,
     characterStatistics,
     setCharacterStatistics,
@@ -94,11 +92,9 @@ export default function EquipmentScreen(props) {
 
   const adventuringGearList = () => {
     return equipmentData.map((item) => (
-      <EquipmentOptions
-        price={item.price}
-        name={item.name}
-        key={item.name}
-      ></EquipmentOptions>
+      <option value={item.name} price={item.price} key={item.name}>
+        {item.name} - {item.price} gp
+      </option>
     ))
   }
 
@@ -329,8 +325,8 @@ export default function EquipmentScreen(props) {
                   armourClass: armourClass,
                   unarmouredAC: unarmouredAC,
                 })
-                setPages({
-                  ...pages,
+                setScreen({
+                  ...screen,
                   equipmentScreen: false,
                   detailsScreen: true,
                 })
@@ -343,4 +339,27 @@ export default function EquipmentScreen(props) {
       )}
     </div>
   )
+}
+
+EquipmentScreen.propTypes = {
+  characterClass: PropTypes.object,
+  screen: PropTypes.objectOf(PropTypes.bool),
+  setScreen: PropTypes.func,
+  characterModifiers: PropTypes.objectOf(PropTypes.string),
+  characterStatistics: PropTypes.shape({
+    hitPoints: PropTypes.number,
+    armourClass: PropTypes.number,
+    spell: PropTypes.string,
+    hasSpells: PropTypes.bool,
+    unarmouredAC: PropTypes.number,
+  }),
+  setCharacterStatistics: PropTypes.func,
+  pointBuy: PropTypes.number,
+  characterEquipment: PropTypes.shape({
+    armour: PropTypes.array,
+    weapons: PropTypes.array,
+    adventuringGear: PropTypes.array,
+    gold: PropTypes.number,
+  }),
+  randomNumbers: PropTypes.array,
 }
