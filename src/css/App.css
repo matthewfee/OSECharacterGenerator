@@ -509,7 +509,6 @@ a {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
   height: 50px;
   margin-top: 40px;
 }
