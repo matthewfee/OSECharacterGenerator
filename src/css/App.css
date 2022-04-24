@@ -75,7 +75,7 @@ a {
 }
 
 .header--initial {
-  margin-top: 100px;
+  margin-top: 10%;
 }
 
 .container > .ability-score-container {
@@ -127,7 +127,7 @@ a {
   text-align: center;
   position: relative;
   text-transform: uppercase;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .ability-score-container > .ability-score-name > h2 {
@@ -597,6 +597,7 @@ a {
   width: 280px;
   margin: 0px;
   margin-top: 20px;
+  margin-left: 20px;
 }
 
 .character-sheet-component {

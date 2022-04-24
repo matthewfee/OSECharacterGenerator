@@ -72,7 +72,7 @@ export default function AbilityScores(props) {
   const abilityScoreModDescriptions = {
     strength: [
       { text: "Melee Attacks", value: strengthModMelee },
-      { text: "Open Doors", value: strengthModDoors },
+      { text: "Doors", value: strengthModDoors },
     ],
     intelligence: [
       { text: "Languages", value: intelligenceModLanguages },
@@ -86,8 +86,8 @@ export default function AbilityScores(props) {
     wisdom: [{ text: "Magic Saves", value: wisdomMod }],
     constitution: [{ text: "Hit Points", value: constitutionMod }],
     charisma: [
-      { text: "NPC Reactions", value: charismaModNPCReactions },
-      { text: "Retainers Max #", value: charismaModNPCReactions },
+      { text: "Reactions", value: charismaModNPCReactions },
+      { text: "Max Retainers", value: charismaModNPCReactions },
       { text: "Loyalty", value: charismaModLoyalty },
     ],
   }
