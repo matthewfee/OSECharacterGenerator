@@ -1467,6 +1467,7 @@ div > .button-class-option {
   background-size: cover;
   background-position: top;
   min-height: 100vh;
-  transition: all 2s ease;
+  transition: all 1s ease;
   background-color: rgb(99, 67, 255);
+  /* background-color: rgb(255, 41, 41); */
 }
