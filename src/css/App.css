@@ -8,6 +8,13 @@
   animation: inherit;
 }
 
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+
 @keyframes opacity-fadeIn {
   0% {
     opacity: 0;
@@ -1443,7 +1450,7 @@ div > .button-class-option {
     url(../img/header.svg);
   background-size: cover;
   background-position: top;
-  min-height: 100vh;
+  min-height: 1000px;
   transition: all 4s ease;
 }
 
