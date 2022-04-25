@@ -52,6 +52,7 @@ export default function AbilityScreen(props) {
         screen={screen}
         setScreen={setScreen}
         characterClass={characterClass}
+        abilityScores={abilityScores}
       ></NavigationOptions>
     </div>
   )

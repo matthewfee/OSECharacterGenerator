@@ -3,8 +3,19 @@ import { Trans } from "react-i18next"
 import PropTypes from "prop-types"
 
 export default function NavigationOptions(props) {
-  const { rollCharacter, screen, setScreen, characterClass, rollAttribute } =
+  const { screen, setScreen, characterClass, rollAttribute, abilityScores } =
     props
+
+  let hasNotRolledAbilityScores = false
+
+  Object.values(abilityScores).forEach((value) => {
+    if (!value) {
+      hasNotRolledAbilityScores = true
+    }
+  })
+
+  const hasNotChosenCharacterClass = characterClass.name === null ? true : false
+
   return (
     <div>
       <button
@@ -24,16 +35,21 @@ export default function NavigationOptions(props) {
             classScreen: true,
           })
         }
-        disabled={characterClass.name === null ? true : false}
-        style={characterClass.name === null ? { opacity: 0.4 } : {}}
+        disabled={hasNotChosenCharacterClass || hasNotRolledAbilityScores}
+        style={
+          hasNotChosenCharacterClass || hasNotRolledAbilityScores
+            ? { opacity: 0.4 }
+            : {}
+        }
       >
         <Trans i18nKey="classOptions">Class Options</Trans>
-      </button>{" "}
+      </button>
     </div>
   )
 }
 
 NavigationOptions.propTypes = {
+  abilityScores: PropTypes.objectOf(PropTypes.number),
   characterClass: PropTypes.object,
   rollCharacter: PropTypes.func,
   screen: PropTypes.objectOf(PropTypes.bool),
