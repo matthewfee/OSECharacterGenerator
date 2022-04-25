@@ -1,6 +1,7 @@
 import React from "react"
 import { redFail } from "../constants/constants"
 import PropTypes from "prop-types"
+import { componentsToColor } from "pdf-lib"
 
 export default function AbilityScoreBox(props) {
   const {
@@ -12,6 +13,7 @@ export default function AbilityScoreBox(props) {
     canDecrease,
     characterClass,
     pointBuy,
+    rollAttribute,
   } = props
 
   const lowScore = 6
@@ -33,13 +35,15 @@ export default function AbilityScoreBox(props) {
     abilityScoreValue > minimumDecrementRequirement && canDecrease
 
   return (
-    <div
+    <button
       className={`ability-score ${
         abilityScoreValue > highScore ? "abilityscore--high" : ""
       }`}
       style={{ color: abilityScoreValue < lowScore ? redFail : "" }}
+      value={`${abilityScoreName}`}
+      onClick={rollAttribute}
     >
-      {abilityScoreValue}
+      {abilityScoreValue > 1 ? abilityScoreValue : `?`}
 
       {showDecreaseButton && (
         <button
@@ -62,7 +66,7 @@ export default function AbilityScoreBox(props) {
           <div className="arrow-up"></div>
         </button>
       )}
-    </div>
+    </button>
   )
 }
 

@@ -24,6 +24,7 @@ import GearOptionsContainer from "./GearOptionsContainer"
 import Inventory from "./Inventory"
 import { Trans } from "react-i18next"
 import PropTypes from "prop-types"
+import { Dice } from "./DiceBox"
 
 export default function EquipmentScreen(props) {
   const {
@@ -86,7 +87,14 @@ export default function EquipmentScreen(props) {
   const getGold = () => {
     const goldRolled = d6(3, randomNumbers) * 10
 
-    setGold(goldRolled)
+    Dice.show().roll(`3d6`)
+  }
+
+  Dice.onRollComplete = (results) => {
+    const goldResult = results[0].value
+    const totalGold = goldResult * 10
+
+    setGold(totalGold)
     setGoldRolled(true)
   }
 

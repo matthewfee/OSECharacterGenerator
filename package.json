@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@3d-dice/dice-box": "^0.6.1",
     "@emotion/react": "^11.9.0",
     "axios": "^0.26.1",
     "downloadjs": "^1.4.7",

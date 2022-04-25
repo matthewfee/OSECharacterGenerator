@@ -12,6 +12,7 @@ export default function AbilityScores(props) {
     pointBuy,
     setPointBuy,
     characterModifiers,
+    rollAttribute,
   } = props
 
   const {
@@ -121,6 +122,7 @@ export default function AbilityScores(props) {
             characterClass={characterClass}
             pointBuy={pointBuy}
             modArray={abilityScoreModDescriptions[abilityScoreName]}
+            rollAttribute={rollAttribute}
           ></AbilityScoresRow>
         )
       })}

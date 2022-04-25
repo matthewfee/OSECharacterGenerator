@@ -16,6 +16,7 @@ export default function AbilityScoresRow(props) {
     pointBuy,
     primeReq,
     modArray,
+    rollAttribute,
   } = props
 
   const showPrimeReq = characterClass.primeReqs?.includes(abilityScoreName)
@@ -39,6 +40,7 @@ export default function AbilityScoresRow(props) {
         canDecrease={canDecrease}
         characterClass={characterClass}
         pointBuy={pointBuy}
+        rollAttribute={rollAttribute}
       ></AbilityScoreBox>
 
       <AbilityScoreMod modArray={modArray}></AbilityScoreMod>
