@@ -1,6 +1,7 @@
 import React from "react"
-import { redFail } from "../constants/constants"
+import { redFail, greenSuccess } from "../constants/constants"
 import PropTypes from "prop-types"
+import { componentsToColor } from "pdf-lib"
 
 export default function AbilityScoreBox(props) {
   const {
@@ -12,6 +13,7 @@ export default function AbilityScoreBox(props) {
     canDecrease,
     characterClass,
     pointBuy,
+    rollAttribute,
   } = props
 
   const lowScore = 6
@@ -32,37 +34,53 @@ export default function AbilityScoreBox(props) {
   const showDecreaseButton =
     abilityScoreValue > minimumDecrementRequirement && canDecrease
 
+  let buttonColor
+
+  if (abilityScoreValue > 0 && abilityScoreValue <= lowScore) {
+    buttonColor = redFail
+  }
+
+  if (abilityScoreValue >= highScore) {
+    buttonColor = greenSuccess
+  }
+
+  const scoreFontSize = abilityScoreValue > 0 ? "30px" : "14px"
+
   return (
-    <div
+    <button
       className={`ability-score ${
         abilityScoreValue > highScore ? "abilityscore--high" : ""
       }`}
-      style={{ color: abilityScoreValue < lowScore ? redFail : "" }}
+      style={{ color: buttonColor, fontSize: scoreFontSize }}
+      value={`${abilityScoreName}`}
+      onClick={rollAttribute}
     >
-      {abilityScoreValue}
+      {abilityScoreValue > 1 ? abilityScoreValue : `ROLL`}
 
       {showDecreaseButton && (
-        <button
+        <div
           className="button button--ability button--ability--decrease"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation()
             scoreDecrease(abilityScoreName)
           }}
         >
           <div className="arrow-down"></div>
-        </button>
+        </div>
       )}
 
       {showIncrementButton && (
-        <button
+        <div
           className="button button--ability button--ability--increase"
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation()
             scoreIncrease(abilityScoreName)
           }}
         >
           <div className="arrow-up"></div>
-        </button>
+        </div>
       )}
-    </div>
+    </button>
   )
 }
 

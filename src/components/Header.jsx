@@ -35,8 +35,7 @@ export default function Header(props) {
         className={`title ${rollButtonHover ? "fade" : ""}`}
         style={{ fontSize: characterRolled ? "1.4rem" : "" }}
       >
-        <Trans i18nKey="AppName"></Trans>
-        {/* OSE Character Generator */}
+        <Trans i18nKey="AppName">OSE Character Generator</Trans>
       </h2>
       {screen.abilityScreen && !characterRolled && (
         <button
@@ -48,7 +47,7 @@ export default function Header(props) {
         >
           {!loadingRandomNumbers && (
             <div>
-              <Trans i18nKey="Roll"></Trans>
+              <Trans i18nKey="Start">Start</Trans>
             </div>
           )}
 

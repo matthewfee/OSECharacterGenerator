@@ -16,6 +16,7 @@ export default function AbilityScreen(props) {
     setPointBuy,
     characterModifiers,
     rollCharacter,
+    rollAttribute,
     screen,
     setScreen,
   } = props
@@ -42,9 +43,11 @@ export default function AbilityScreen(props) {
         setPointBuy={setPointBuy}
         characterClass={characterClass}
         characterModifiers={characterModifiers}
+        rollAttribute={rollAttribute}
       ></AbilityScores>
 
       <NavigationOptions
+        rollAttribute={rollAttribute}
         rollCharacter={rollCharacter}
         screen={screen}
         setScreen={setScreen}

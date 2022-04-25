@@ -4,6 +4,7 @@ import { d, chooseRandomItem } from "../utilities/utilities"
 import { magicUserSpells, druidSpells, illusionistSpells } from "../data/spells"
 import { Trans } from "react-i18next"
 import PropTypes from "prop-types"
+import { Dice } from "./DiceBox"
 
 export default function ClassScreen(props) {
   const {
@@ -33,9 +34,14 @@ export default function ClassScreen(props) {
   }
 
   const getHitPoints = () => {
-    let HPResult = d(1, hitDie)
+    let die = characterClass.hd
+    Dice.show().roll(`1d${die}`)
+  }
+
+  Dice.onRollComplete = (results) => {
+    const HPResult = results[0].value
     let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-    let HPRollsNew = HPRolls + 1
+    const HPRollsNew = HPRolls + 1
 
     if (totalHP < 1) {
       totalHP = 1
