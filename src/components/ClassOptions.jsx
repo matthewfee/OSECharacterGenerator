@@ -10,36 +10,37 @@ export default function ClassOptions(props) {
   const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false)
 
   const listBasicClassOptions = () => {
-    let basicCharacters = []
-    for (let i = 0; i < 7; i++) {
-      let item = classOptionsData[i]
-      basicCharacters.push(
-        <ClassOptionsButton
-          key={item.name}
-          characterClass={item}
-          abilityScores={abilityScores}
-          changeCharacterClass={changeCharacterClass}
-        ></ClassOptionsButton>,
-      )
-    }
+    const basicCharacterData = classOptionsData.filter((characterClassObj) => {
+      return characterClassObj.category === "basic"
+    })
+
+    const basicCharacters = basicCharacterData.map((item) => (
+      <ClassOptionsButton
+        key={item.name}
+        characterClass={item}
+        abilityScores={abilityScores}
+        changeCharacterClass={changeCharacterClass}
+      ></ClassOptionsButton>
+    ))
 
     return basicCharacters
   }
 
   const listAdvancedClassOptions = () => {
-    let advancedCharacters = []
-    for (let i = 7; i < classOptionsData.length; i++) {
-      let item = classOptionsData[i]
-      advancedCharacters.push(
-        <ClassOptionsButton
-          key={item.name}
-          characterClass={item}
-          abilityScores={abilityScores}
-          changeCharacterClass={changeCharacterClass}
-        ></ClassOptionsButton>,
-      )
-    }
-    return advancedCharacters
+    const advCharacterData = classOptionsData.filter((characterClassObj) => {
+      return characterClassObj.category === "advanced"
+    })
+
+    const advCharacters = advCharacterData.map((item) => (
+      <ClassOptionsButton
+        key={item.name}
+        characterClass={item}
+        abilityScores={abilityScores}
+        changeCharacterClass={changeCharacterClass}
+      ></ClassOptionsButton>
+    ))
+
+    return advCharacters
   }
 
   return (
