@@ -127,6 +127,7 @@ a {
   height: 5rem;
   width: 5rem;
   padding: 0;
+  margin: 0;
 }
 
 .ability-score-container > .ability-score:hover {

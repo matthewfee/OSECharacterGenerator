@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react"
 import Header from "./Header"
-import AbilityScores from "./AbilityScores"
-import abilityScoreMods from "../data/abilityScoreMods"
 import {
   abilityScoreNames,
-  primeRequisiteModifiers,
   defaultAbilityScoresState,
 } from "../constants/constants"
-import {
-  getModValue,
-  d6,
-  getPrimeReqMod,
-  updateAbilityModifiers,
-} from "../utilities/utilities"
+import { getPrimeReqMod, updateAbilityModifiers } from "../utilities/utilities"
 import AbilityScreen from "./AbilityScreen"
 import classOptionsData from "../data/classOptionsData"
-import ClassOptionsButton from "./ClassOptionsButton"
-import ClassDescription from "./ClassDescription"
-import ClassOptions from "./ClassOptions"
-import NavigationOptions from "./NavigationOptions"
 import ClassScreen from "./ClassScreen"
 import EquipmentScreen from "./EquipmentScreen"
 import DetailsScreen from "./DetailsScreen"
@@ -26,8 +14,6 @@ import CharacterSheetScreen from "./CharacterSheetScreen"
 import { getRandomNumbers } from "../API/getRandomNumbers"
 import CharacterStorageScreen from "./CharacterStorageScreen"
 import { v4 as uuidv4 } from "uuid"
-import PropTypes from "prop-types"
-import { Trans } from "react-i18next"
 import { Dice } from "./DiceBox"
 
 export default function CharacterGenerator() {
