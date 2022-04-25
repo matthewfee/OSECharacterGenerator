@@ -144,8 +144,6 @@ export default function CharacterGenerator() {
   Dice.onRollComplete = (rollResults) => {
     let newAbilityScores = { ...abilityScores }
 
-    console.log("ROLL RESULTS", rollResults)
-
     if (pendingRoll === "all") {
       abilityScoreNames.forEach((attr, i) => {
         newAbilityScores[attr] = rollResults[i].value

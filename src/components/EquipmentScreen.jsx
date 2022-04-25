@@ -88,7 +88,6 @@ export default function EquipmentScreen(props) {
     Dice.show()
       .roll("3d6")
       .then((results) => {
-        console.log("GOLD RESULT", results)
         let goldResult = 0
         results.forEach((dieResult) => {
           goldResult += dieResult.value
