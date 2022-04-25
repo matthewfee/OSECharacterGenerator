@@ -88,10 +88,7 @@ export default function Header(props) {
             <Trans
               i18nKey="AppDescription"
               t={t}
-              components={[
-                <LinkText href="https://necroticgnome.com/" />,
-                <LinkText href="https://random.org" />,
-              ]}
+              components={[<LinkText href="https://necroticgnome.com/" />]}
             />
           </div>
 
