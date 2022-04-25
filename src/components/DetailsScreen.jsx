@@ -4,6 +4,7 @@ import { characterBackgrounds } from "../data/backgrounds"
 import { d, getWeightedValue } from "../utilities/utilities"
 import { Trans } from "react-i18next"
 import PropTypes from "prop-types"
+import { Dice } from "./DiceBox"
 
 import {
   firstNames,
@@ -91,16 +92,40 @@ export default function DetailsScreen(props) {
   }
 
   const getBackground = () => {
-    let background = getWeightedValue(characterBackgrounds, 100)
+    const listLength = 100
 
-    while (background.includes("Roll for two skills")) {
-      background = `${getWeightedValue(
-        characterBackgrounds,
-        100,
-      )}, ${getWeightedValue(characterBackgrounds, 100)}`
+    if (!background.includes("Roll for two skills")) {
+      Dice.show()
+        .roll("1d100")
+        .then((result) => {
+          let value = result[0].value
+          const newBackground = getWeightedValue(
+            characterBackgrounds,
+            value,
+            listLength,
+          )
+          setBackground(newBackground)
+        })
     }
 
-    setBackground(background)
+    if (background.includes("Roll for two skills")) {
+      Dice.show()
+        .roll(["1d100", "1d100"])
+        .then((result) => {
+          const newBackground1 = getWeightedValue(
+            characterBackgrounds,
+            result[0].value,
+            listLength,
+          )
+          const newBackground2 = getWeightedValue(
+            characterBackgrounds,
+            result[1].value,
+            listLength,
+          )
+          const newBackgrounds = `${newBackground1}, ${newBackground2}`
+          setBackground(newBackgrounds)
+        })
+    }
   }
 
   const getPersonality = () => {

@@ -87,15 +87,15 @@ export default function EquipmentScreen(props) {
   const getGold = () => {
     const goldRolled = d6(3, randomNumbers) * 10
 
-    Dice.show().roll(`3d6`)
-  }
+    Dice.show()
+      .roll(`3d6`)
+      .then((results) => {
+        const goldResult = results[0].value
+        const totalGold = goldResult * 10
 
-  Dice.onRollComplete = (results) => {
-    const goldResult = results[0].value
-    const totalGold = goldResult * 10
-
-    setGold(totalGold)
-    setGoldRolled(true)
+        setGold(totalGold)
+        setGoldRolled(true)
+      })
   }
 
   const adventuringGearList = () => {

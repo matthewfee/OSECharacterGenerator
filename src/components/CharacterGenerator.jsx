@@ -156,7 +156,7 @@ export default function CharacterGenerator() {
     }
 
     setPointBuy(0)
-
+    setPendingRoll(null)
     setAbilityScores(newAbilityScores)
   }
 

@@ -155,10 +155,8 @@ export const d6 = (howMany, randomNumbersArray) => {
   return sum
 }
 
-export const getWeightedValue = (weightedList, diceValue) => {
-  const result = d(1, diceValue)
-
-  for (let i = result; i <= diceValue; i++) {
+export const getWeightedValue = (weightedList, diceResult, listLength) => {
+  for (let i = diceResult; i <= listLength; i++) {
     if (weightedList.hasOwnProperty(i)) {
       return weightedList[i]
     }

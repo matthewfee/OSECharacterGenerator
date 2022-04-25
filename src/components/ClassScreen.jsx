@@ -35,25 +35,27 @@ export default function ClassScreen(props) {
 
   const getHitPoints = () => {
     let die = characterClass.hd
-    Dice.show().roll(`1d${die}`)
+    Dice.show()
+      .roll(`1d${die}`)
+      .then((results) => {
+        const HPResult = results[0].value
+        let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
+        const HPRollsNew = HPRolls + 1
+
+        if (totalHP < 1) {
+          totalHP = 1
+        }
+        if (HPResult > 2 || HPRollsNew === 2) {
+          setCanReroll(false)
+        }
+
+        setHitPoints(totalHP)
+        setHPResult(HPResult)
+        setHPRolls(HPRollsNew)
+      })
   }
 
-  Dice.onRollComplete = (results) => {
-    const HPResult = results[0].value
-    let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-    const HPRollsNew = HPRolls + 1
-
-    if (totalHP < 1) {
-      totalHP = 1
-    }
-    if (HPResult > 2 || HPRollsNew === 2) {
-      setCanReroll(false)
-    }
-
-    setHitPoints(totalHP)
-    setHPResult(HPResult)
-    setHPRolls(HPRollsNew)
-  }
+  // Dice.onRollComplete = (results) => {}
 
   const chooseSpells = () => {
     if (characterClass.arcaneSpells) {
