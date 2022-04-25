@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { css } from "@emotion/react"
 import Header from "./Header"
 import AbilityScores from "./AbilityScores"
 import abilityScoreMods from "../data/abilityScoreMods"
@@ -93,12 +92,6 @@ export default function CharacterGenerator() {
     adventuringGear: [],
     gold: null,
   })
-
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `
 
   const [loadingRandomNumbers, setLoadingRandomNumbers] = useState(true)
   const [randomNumbers, setRandomNumbers] = useState([])
