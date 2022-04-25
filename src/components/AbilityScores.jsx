@@ -150,4 +150,5 @@ AbilityScores.propTypes = {
   pointBuy: PropTypes.number,
   setPointBuy: PropTypes.func,
   characterModifiers: PropTypes.objectOf(PropTypes.string),
+  rollAttribute: PropTypes.func,
 }

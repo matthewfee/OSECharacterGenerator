@@ -93,5 +93,5 @@ AbilityScoreBox.propTypes = {
   scoreDecrease: PropTypes.func,
   canDecrease: PropTypes.bool,
   pointBuy: PropTypes.number,
-  characterClass: PropTypes.object,
+  rollAttribute: PropTypes.func,
 }

@@ -85,12 +85,14 @@ export default function EquipmentScreen(props) {
   }, [armour])
 
   const getGold = () => {
-    const goldRolled = d6(3, randomNumbers) * 10
-
     Dice.show()
-      .roll(`3d6`)
+      .roll("3d6")
       .then((results) => {
-        const goldResult = results[0].value
+        console.log("GOLD RESULT", results)
+        let goldResult = 0
+        results.forEach((dieResult) => {
+          goldResult += dieResult.value
+        })
         const totalGold = goldResult * 10
 
         setGold(totalGold)

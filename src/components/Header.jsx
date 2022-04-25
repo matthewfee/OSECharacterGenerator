@@ -47,7 +47,7 @@ export default function Header(props) {
         >
           {!loadingRandomNumbers && (
             <div>
-              <Trans i18nKey="Start">Start</Trans>
+              <Trans i18nKey="start">Start</Trans>
             </div>
           )}
 

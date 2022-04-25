@@ -36,6 +36,7 @@ i18n
           characterDetails: "Character Details",
           characterSheet: "Character Sheet",
           mainPage: "Main Page",
+          start: "Start",
         },
       },
       de: {
@@ -62,6 +63,7 @@ i18n
           characterDetails: "Charakterdetails",
           characterSheet: "Charakterbogen",
           mainPage: "Startseite",
+          start: "Anfang",
         },
       },
     },
