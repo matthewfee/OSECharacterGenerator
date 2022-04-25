@@ -856,7 +856,8 @@ a {
   left: 0;
   top: -44px;
   margin: auto;
-  width: 60%;
+  width: 80%;
+  min-width: 300px;
   background-color: var(--main-bg-white);
 }
 
@@ -866,7 +867,8 @@ a {
   background-color: rgba(167, 166, 189, 0.22);
   margin: auto;
   font-weight: bold;
-  width: 160px;
+  min-width: 160px;
+  width: 60%;
 }
 
 .class-details > .class-summary:hover {
@@ -896,6 +898,14 @@ a {
   padding: 2rem;
 }
 
+.class-description--summary {
+  margin-left: 10px;
+}
+
+.class-description--prime-reqs {
+  text-transform: capitalize;
+}
+
 .class-description-list--header {
   text-align: center;
 }
@@ -904,7 +914,7 @@ div.ability-screen {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   min-height: 630px;
   max-width: 600px;
   position: relative;

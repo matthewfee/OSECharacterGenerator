@@ -7,7 +7,7 @@ const classOptionsData = [
     multiplePrimeReqs: false,
     hd: 8,
     maxLevel: 14,
-    armour: "any leather, chainmail, plate, shields",
+    armour: "Any leather, chainmail, plate, shields",
     weapons: "any",
     languages: "Alignment, Common",
     description:
@@ -17,7 +17,7 @@ const classOptionsData = [
     abilities: ["Stronghold"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Fighter",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Cleric",
@@ -37,7 +37,7 @@ const classOptionsData = [
     abilities: ["Divine Magic", "Turning the Undead"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Cleric",
     arcane: false,
-    divine: true
+    divine: true,
   },
   {
     name: "Magic-User",
@@ -54,11 +54,10 @@ const classOptionsData = [
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 2500,
     abilities: ["Arcane Magic"],
-    link:
-      "https://oldschoolessentials.necroticgnome.com/srd/index.php/Magic-User",
+    link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Magic-User",
     arcane: true,
     arcaneSpells: true,
-    divine: false
+    divine: false,
   },
   {
     name: "Thief",
@@ -78,11 +77,11 @@ const classOptionsData = [
       "Backstab",
       "Thief Skills (climb sheer surfaces, find or remove treasure traps, hear noise, hide in shadows, move silently, open locks, pick pockets)",
       "Read Lanuages (level 4)",
-      "Scroll Use (level 10)"
+      "Scroll Use (level 10)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Thief",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Dwarf",
@@ -103,27 +102,27 @@ const classOptionsData = [
       "Detect Construction Tricks",
       "Detect Room Traps",
       "Infravision",
-      "Listening at Doors"
+      "Listening at Doors",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Dwarf",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Elf",
     category: "basic",
     requirements: "Minimum 9 intelligence",
     primeReqs: ["intelligence", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 6,
     maxLevel: 10,
@@ -139,28 +138,28 @@ const classOptionsData = [
       "Detect Secret Doors",
       "Infravision",
       "Listening at Doors",
-      "Immunity to Ghoul Paralysis"
+      "Immunity to Ghoul Paralysis",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Elf",
     arcane: true,
     arcaneSpells: true,
-    divine: false
+    divine: false,
   },
   {
     name: "Halfling",
     category: "basic",
     requirements: "Minimum 9 constitution, minimum 9 dexterity",
     primeReqs: ["dexterity", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 || abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 6,
     maxLevel: 8,
@@ -177,12 +176,11 @@ const classOptionsData = [
       "Listening at Doors",
       "Missile Attack Bonus",
       "Initiative Bonus (optional)",
-      "Stronghold"
+      "Stronghold",
     ],
-    link:
-      "https://oldschoolessentials.necroticgnome.com/srd/index.php/Halfling",
+    link: "https://oldschoolessentials.necroticgnome.com/srd/index.php/Halfling",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Acrobat",
@@ -203,12 +201,12 @@ const classOptionsData = [
       "Acrobat Skills (climb sheer surfaces, falling, hide in shadows, move silently, tightrope walking)",
       "Evasion",
       "Jumping",
-      "Tumbling Attack"
+      "Tumbling Attack",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false,
-    classEquivalent: "Thief"
+    classEquivalent: "Thief",
   },
   {
     name: "Assassin",
@@ -228,28 +226,28 @@ const classOptionsData = [
       "Assassin Skills (assassination, climb sheer suraces, hear noise, hide in shadows, move silently)",
       "Disguise",
       "Poison",
-      "Assassin Hirelings (level 4)"
+      "Assassin Hirelings (level 4)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: false,
-    classEquivalent: "Thief"
+    classEquivalent: "Thief",
   },
   {
     name: "Barbarian",
     category: "advanced",
     requirements: "Minimum 9 dexterity",
     primeReqs: ["constitution", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 || abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 8,
     maxLevel: 14,
@@ -267,11 +265,11 @@ const classOptionsData = [
       "Hunting",
       "Fear of Magic",
       "Agile Fighting (level 4)",
-      "Strike Invulnerable Monsters (level 4)"
+      "Strike Invulnerable Monsters (level 4)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Bard",
@@ -292,27 +290,27 @@ const classOptionsData = [
       "Divine Magic",
       "Enchantment",
       "Languages (level 4)",
-      "Lore (level 2)"
+      "Lore (level 2)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: true
+    divine: true,
   },
   {
     name: "Drow",
     category: "advanced",
     requirements: "Minimum 9 intelligence",
     primeReqs: ["wisdom", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 6,
     maxLevel: 14,
@@ -332,11 +330,11 @@ const classOptionsData = [
       "Light Sensitivity",
       "Spider Affinity",
       "Immunity to Ghoul Paralysis",
-      "Spell: Light (Darkness)"
+      "Spell: Light (Darkness)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: true
+    divine: true,
   },
   {
     name: "Druid",
@@ -359,12 +357,12 @@ const classOptionsData = [
       "Path-Finding",
       "Sylvan Languages (level 3)",
       "Shape Change (level 7)",
-      "Charm Immunity (level 7)"
+      "Charm Immunity (level 7)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
     divine: true,
-    druidSpells: true
+    druidSpells: true,
   },
   {
     name: "Duergar",
@@ -387,27 +385,27 @@ const classOptionsData = [
       "Infravision",
       "Light-Sensitivity",
       "Mental Powers (enlargment, invisibility, shrinking, heat)",
-      "Stealth"
+      "Stealth",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Gnome",
     category: "advanced",
     requirements: "Minimum 9 constitution",
     primeReqs: ["intelligence", "dexterity"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 4,
     maxLevel: 8,
@@ -426,31 +424,31 @@ const classOptionsData = [
       "Hiding",
       "Infravision",
       "Listening at Doors",
-      "Speak with Burrowing Mammals"
+      "Speak with Burrowing Mammals",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
     arcaneSpells: true,
-    divine: false
+    divine: false,
   },
   {
     name: "Half-Elf",
     category: "advanced",
     requirements: "Minimum 9 charisma, minimum 9 constitution",
     primeReqs: ["intelligence", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (
         (abilityScore1 >= 16 && abilityScore2 >= 13) ||
         (abilityScore2 >= 16 && abilityScore1 >= 13)
       ) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 6,
     maxLevel: 12,
@@ -464,23 +462,23 @@ const classOptionsData = [
     abilities: ["Arcane Magic", "Detect Secret Doors", "Infravision"],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
-    divine: false
+    divine: false,
   },
   {
     name: "Half-Orc",
     category: "advanced",
     requirements: null,
     primeReqs: ["dexterity", "strength"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 6,
     maxLevel: 8,
@@ -494,11 +492,11 @@ const classOptionsData = [
     abilities: [
       "Backstab",
       "Infravision",
-      "Thieving Skills (hide in shadows, move silently, pick pockets)"
+      "Thieving Skills (hide in shadows, move silently, pick pockets)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Illusionist",
@@ -518,7 +516,7 @@ const classOptionsData = [
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
     divine: false,
-    illusionistSpells: true
+    illusionistSpells: true,
   },
   {
     name: "Knight",
@@ -541,27 +539,27 @@ const classOptionsData = [
       "Strength of Will",
       "Hospitality (level 3)",
       "Stronghold (level 3)",
-      "Flying Mounts (level 5)"
+      "Flying Mounts (level 5)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: false
+    divine: false,
   },
   {
     name: "Paladin",
     category: "advanced",
     requirements: "Minimum 9 charisma",
     primeReqs: ["strength", "wisdom"],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
-        return 10;
+        return 10
       }
 
       if (abilityScore1 >= 13 || abilityScore2 >= 13) {
-        return 5;
+        return 5
       }
 
-      return 0;
+      return 0
     },
     hd: 8,
     maxLevel: 14,
@@ -578,11 +576,11 @@ const classOptionsData = [
       "Laying on Hands",
       "Turning the Undead",
       "Vow of Humility",
-      "War Horse (level 4)"
+      "War Horse (level 4)",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: true
+    divine: true,
   },
   {
     name: "Ranger",
@@ -605,11 +603,11 @@ const classOptionsData = [
       "Limited Possessions",
       "Pursuit",
       "Surprise Attack",
-      "Tracking"
+      "Tracking",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: true,
-    divine: false
+    divine: false,
   },
   {
     name: "Svirfneblin",
@@ -635,12 +633,12 @@ const classOptionsData = [
       "Light Sensitivity",
       "Speak with Earth Elementals",
       "Stone Murmurs",
-      "Using Magic Items"
+      "Using Magic Items",
     ],
     link: "https://oldschoolessentials.necroticgnome.com/srd/",
     arcane: false,
-    divine: false
-  }
-];
+    divine: false,
+  },
+]
 
-export default classOptionsData;
+export default classOptionsData

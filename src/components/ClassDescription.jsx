@@ -8,7 +8,7 @@ export default function ClassDescription(props) {
   if (!characterClass.name) {
     return <div className="class-details" style={{ border: "none" }}></div>
   }
-  const obj = classOptionsData.find((obj) => obj.name === characterClass.name)
+
   return (
     <details className="class-details">
       <summary className="class-summary">
@@ -22,43 +22,52 @@ export default function ClassDescription(props) {
           </h4>
         </li>
         <li>
-          <b>Description:</b> {obj.description}
+          <b>Description:</b>
+          <p className="class-description--summary">
+            {characterClass.description}
+          </p>
+        </li>
+        <li className="class-description--prime-reqs">
+          <b>Prime Requisites:</b> {characterClass.primeReqs.join(", ")}
         </li>
         <li>
-          <b>Prime Requisites:</b> {obj.primeReqs}{" "}
+          <b>Hit Dice:</b> d{characterClass.hd}
         </li>
         <li>
-          <b>Hit Dice:</b> d{obj.hd}
+          <b>Armour:</b> {characterClass.armour}
         </li>
         <li>
-          <b>Armour:</b> {obj.armour}
+          <b>Weapons:</b> {characterClass.weapons}
         </li>
         <li>
-          <b>Weapons:</b> {obj.weapons}
+          <b>Special Abilities:</b> {characterClass.abilities.join(", ")}
         </li>
         <li>
-          <b>Special Abilities:</b> {obj.abilities.join(", ")}
+          <b>Languages:</b> {characterClass.languages}
         </li>
         <li>
-          <b>Languages:</b> {obj.languages}
+          <b>XP to level 2:</b> {characterClass.nextLevel}
         </li>
         <li>
-          <b>XP to level 2:</b> {obj.nextLevel}
-        </li>
-        <li>
-          <b>Maximium Level:</b> {obj.maxLevel}
+          <b>Maximium Level:</b> {characterClass.maxLevel}
         </li>
         <li>
           <b>Saving Throws:</b>
-          <span>
-            Death {obj.savingThrows[0]}, Wands {obj.savingThrows[1]}, Paralysis
-            {obj.savingThrows[2]}, Breath Attacks {obj.savingThrows[3]},
-            Spells/rods/staves {obj.savingThrows[4]}
-          </span>
+          <p>
+            Death {characterClass.savingThrows[0]}, Wands{" "}
+            {characterClass.savingThrows[1]}, Paralysis
+            {characterClass.savingThrows[2]}, Breath Attacks{" "}
+            {characterClass.savingThrows[3]}, Spells{" "}
+            {characterClass.savingThrows[4]}
+          </p>
         </li>
         <li>
           <b>
-            <a href={obj.link} target="_blank" rel="noopener noreferrer">
+            <a
+              href={characterClass.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               More Details
             </a>
           </b>
