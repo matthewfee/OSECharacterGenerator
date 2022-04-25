@@ -129,6 +129,11 @@ a {
   padding: 0;
 }
 
+.ability-score-container > .ability-score:hover {
+  background-color: black;
+  color: white;
+}
+
 .ability-score-container > .ability-score--high {
   color: #206604;
 }

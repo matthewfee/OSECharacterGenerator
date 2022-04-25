@@ -6,6 +6,7 @@ import abilityScoreMods from "../data/abilityScoreMods"
 import {
   abilityScoreNames,
   primeRequisiteModifiers,
+  defaultAbilityScoresState,
 } from "../constants/constants"
 import {
   getModValue,
@@ -43,20 +44,7 @@ export default function CharacterGenerator() {
     alignment: null,
   })
 
-  const [abilityScores, setAbilityScores] = useState({
-    strength: null,
-    strengthOriginal: null,
-    intelligence: null,
-    intelligenceOriginal: null,
-    wisdom: null,
-    wisdomOriginal: null,
-    dexterity: null,
-    dexterityOriginal: null,
-    constitution: null,
-    constitutionOriginal: null,
-    charisma: null,
-    charismaOriginal: null,
-  })
+  const [abilityScores, setAbilityScores] = useState(defaultAbilityScoresState)
 
   const [characterModifiers, setCharacterModifiers] = useState({
     primeReq: "0",
@@ -118,8 +106,6 @@ export default function CharacterGenerator() {
   const [characterRolled, setCharacterRolled] = useState(false)
   const [rollButtonHover, setRollButtonHover] = useState(false)
 
-  const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false)
-
   const [pendingRoll, setPendingRoll] = useState("")
 
   const loadRandomNumbers = async function () {
@@ -142,44 +128,6 @@ export default function CharacterGenerator() {
       setCharacterModifiers(newCharacterModifiers)
     }
   }, [abilityScores, characterClass])
-
-  // const roll3d6 = async () => {
-  //   Dice.show().roll("3d6")
-
-  //   let result = []
-
-  //   Dice.onRollComplete = async (rollResult) => {
-  //     console.log("roll results", rollResult)
-  //     return rollResult
-  //   }
-
-  //   let sum = 0
-
-  //   finishedResult.forEach((roll) => {
-  //     sum += roll
-  //   })
-
-  //   return finishedResult
-  // }
-
-  // const roll3 = async (asName) => {
-  //   console.log(asName)
-
-  //   Dice.show().roll("3d6")
-
-  //   Dice.onRollComplete = (rollResult) => {
-  //     const newState = { ...abilityScores }
-
-  //     newState[asName] = rollResult[0].value
-
-  //     // newState[abilityScoreName] = rollResult[0].value
-  //     setAbilityScores({
-  //       ...abilityScores,
-  //       [asName]: rollResult[0].value,
-  //     }).then(roll3("intelligence"))
-  //     // setAbilityScores({ ...abilityScores, intelligence: 1 })
-  //   }
-  // }
 
   const rollAttribute = (e) => {
     const attribute = e.target.value
@@ -207,56 +155,20 @@ export default function CharacterGenerator() {
       newAbilityScores[`${pendingRoll}Original`] = rollResults[0].value
     }
 
+    setPointBuy(0)
+
     setAbilityScores(newAbilityScores)
-
-    // if (pendingRoll !== "all") {
-    //   newAbilityScores[pendingRoll] = rollResults[0].value
-    //   newAbilityScores[`${pendingRoll}Original`] = rollResults[0].value
-    //   console.log("SETTING INDIVIDUAL VALUE", pendingRoll, newAbilityScores)
-    // }
-
-    // setAbilityScores(newAbilityScores)
-  }
-
-  const updateAbilityScores = (scores) => {
-    let newAbilityScores = { ...abilityScores }
-    ;("attempting to update ability scores")
-    console.log(setAbilityScores)
-    setAbilityScores({ intelligence: 45 })
   }
 
   const rollCharacter = () => {
-    // Dice.onRollComplete = (rollResult) =>
-    //   console.log("roll results", rollResult)
-
-    // await roll3("strength")
-
-    // setTimeout(() => {
-    //   roll3("dexterity")
-    // }, 4000)
-
-    // let newCharacterAbilityScores = {}
-
-    // abilityScoreNames.forEach((score) => {
-    //   const dieResult = d6(3, randomNumbers)
-    //   newCharacterAbilityScores[score] = dieResult
-    //   newCharacterAbilityScores[`${score}Original`] = dieResult
-    // })
-
-    // abilityScoreNames.forEach((score) => {
-    //   newCharacterAbilityScores[score] = dieResult1
-    //   newCharacterAbilityScores[`${score}Original`] = dieResult1
-    // })
-
     const newID = uuidv4()
 
     setCharacter({ ...character, id: newID })
-
-    // setAbilityScores(newCharacterAbilityScores)
     setRollButtonHover(false)
     setCharacterClass({ name: null, primeReqs: [] })
     setCharacterRolled(true)
 
+    setAbilityScores(defaultAbilityScoresState)
     setScreen({ ...screen, AbilityScreen: true })
     setPointBuy(0)
   }

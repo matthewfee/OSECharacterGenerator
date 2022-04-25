@@ -33,23 +33,6 @@ export default function ClassScreen(props) {
     return setHitDie(characterClass.hd)
   }
 
-  // const getHitPoints = () => {
-  //   let HPResult = d(1, hitDie)
-  //   let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-  //   let HPRollsNew = HPRolls + 1
-
-  //   if (totalHP < 1) {
-  //     totalHP = 1
-  //   }
-  //   if (HPResult > 2 || HPRollsNew === 2) {
-  //     setCanReroll(false)
-  //   }
-
-  //   setHitPoints(totalHP)
-  //   setHPResult(HPResult)
-  //   setHPRolls(HPRollsNew)
-  // }
-
   const getHitPoints = () => {
     let die = characterClass.hd
     Dice.show().roll(`1d${die}`)
