@@ -113,7 +113,12 @@ export default function CharacterGenerator() {
 
     if (attribute === "all") {
       setPendingRoll("all")
-      Dice.show().roll(["3d6", "3d6", "3d6", "3d6", "3d6", "3d6"])
+      Dice.show().roll("3d6", { theme: "#ff0000" })
+      Dice.roll("3d6", { theme: "#061577" })
+      Dice.roll("3d6", { theme: "#09720e" })
+      Dice.roll("3d6", { theme: "#000000" })
+      Dice.roll("3d6", { theme: "#654200" })
+      Dice.roll("3d6", { theme: "#8b1876" })
     } else {
       setPendingRoll(attribute)
       Dice.show().roll("3d6")
@@ -122,7 +127,6 @@ export default function CharacterGenerator() {
 
   Dice.onRollComplete = (rollResults) => {
     let newAbilityScores = { ...abilityScores }
-
     if (pendingRoll === "all") {
       abilityScoreNames.forEach((attr, i) => {
         newAbilityScores[attr] = rollResults[i].value
