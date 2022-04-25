@@ -23,7 +23,7 @@ export default function NavigationOptions(props) {
         value={`all`}
         onClick={rollAttribute}
       >
-        Reroll
+        Roll All
       </button>
       <button
         className="button button--class-option"

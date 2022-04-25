@@ -34,6 +34,8 @@ export default function AbilityScoreBox(props) {
   const showDecreaseButton =
     abilityScoreValue > minimumDecrementRequirement && canDecrease
 
+  //determine text color for ability score
+
   let buttonColor
 
   if (abilityScoreValue > 0 && abilityScoreValue <= lowScore) {
