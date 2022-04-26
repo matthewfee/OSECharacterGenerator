@@ -150,7 +150,9 @@ export default function CharacterSheetScreen (props) {
     for (const key in formFieldKeysOfficialSheet) {
       let value = formFieldKeysOfficialSheet[key]
 
-      value = value.toString()
+      if (value != null) {
+        value = value.toString()
+      }
 
       form.getTextField(key).setText(value)
     }
