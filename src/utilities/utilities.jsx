@@ -1,62 +1,68 @@
-//generates the appropriate modifier for an ability value
-import abilityScoreMods from "../data/abilityScoreMods"
+// generates the appropriate modifier for an ability value
+import abilityScoreMods from '../data/abilityScoreMods'
 import {
   abilityScoreNames,
   primeRequisiteModifiers,
-  armourTypes,
-} from "../constants/constants"
-import classOptionsData from "../data/classOptionsData"
-import React from "react"
+  armourTypes
+} from '../constants/constants'
+import classOptionsData from '../data/classOptionsData'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export const LinkText = ({ href, children }) => {
   return (
-    <a href={href || ""} target="_blank">
+    <a href={href || ''} target="_blank" rel="noreferrer">
       {children}
     </a>
   )
+}
+
+LinkText.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.array
 }
 
 export const getModValue = (abilityScoreName, abilityScore) => {
   let newAbilityModifiers = {}
 
   switch (abilityScoreName) {
-    case "strength":
+    case 'strength':
       newAbilityModifiers = {
         strengthModMelee: abilityScoreMods.abilityMod[abilityScore],
-        strengthModDoors: abilityScoreMods.openDoors[abilityScore],
+        strengthModDoors: abilityScoreMods.openDoors[abilityScore]
       }
       break
-    case "intelligence":
+    case 'intelligence':
       newAbilityModifiers = {
         intelligenceModLanguages:
           abilityScoreMods.spokenLanguages[abilityScore],
         intelligenceModLiteracy: abilityScoreMods.literacy[abilityScore],
         intelligenceModExtraLanguageCount:
-          abilityScoreMods.extraLanguageCount[abilityScore],
+          abilityScoreMods.extraLanguageCount[abilityScore]
       }
       break
-    case "dexterity":
+    case 'dexterity':
       newAbilityModifiers = {
         dexterityModAC: abilityScoreMods.abilityMod[abilityScore],
         dexterityModMissiles: abilityScoreMods.abilityMod[abilityScore],
-        dexterityModInitiative: abilityScoreMods.initiative[abilityScore],
+        dexterityModInitiative: abilityScoreMods.initiative[abilityScore]
       }
       break
-    case "wisdom":
+    case 'wisdom':
       newAbilityModifiers = {
-        wisdomMod: abilityScoreMods.abilityMod[abilityScore],
+        wisdomMod: abilityScoreMods.abilityMod[abilityScore]
       }
       break
-    case "constitution":
+    case 'constitution':
       newAbilityModifiers = {
-        constitutionMod: abilityScoreMods.abilityMod[abilityScore],
+        constitutionMod: abilityScoreMods.abilityMod[abilityScore]
       }
       break
-    case "charisma":
+    case 'charisma':
       newAbilityModifiers = {
         charismaModNPCReactions: abilityScoreMods.npcReactions[abilityScore],
         charismaModRetainersMax: abilityScoreMods.retainersMax[abilityScore],
-        charismaModLoyalty: abilityScoreMods.loyalty[abilityScore],
+        charismaModLoyalty: abilityScoreMods.loyalty[abilityScore]
       }
       break
   }
@@ -66,7 +72,7 @@ export const getModValue = (abilityScoreName, abilityScore) => {
 
 export const updateAbilityModifiers = (abilityScoreValues) => {
   // updates all ability modifiers and returns an object containing the updates
-  let abilityModifiers = {}
+  const abilityModifiers = {}
 
   abilityScoreNames.forEach((abilityScoreName) => {
     const value = abilityScoreValues[abilityScoreName]
@@ -81,43 +87,43 @@ export const updateAbilityModifiers = (abilityScoreValues) => {
 }
 
 export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
-  //generates the correct prime req by matching a class to a prime requisite
+  // generates the correct prime req by matching a class to a prime requisite
 
   const firstAbilityName = characterClass.primeReqs[0]
   const firstAbilityScoreValue = abilityScoreValues[firstAbilityName]
 
   let primeReqPercentage = 0
 
-  //if class has only one prime requisite, we use the standard calculation
+  // if class has only one prime requisite, we use the standard calculation
 
   if (characterClass.primeReqs.length === 1) {
     const primeReqValue = primeRequisiteModifiers[firstAbilityScoreValue]
     primeReqPercentage = primeReqValue
   }
 
-  //if class has more than one prime requisite, then we need to check the specific class rules for calculating
+  // if class has more than one prime requisite, then we need to check the specific class rules for calculating
 
   if (characterClass.primeReqs.length > 1) {
     const secondAbilityName = characterClass.primeReqs[1]
     const secondAbilityScoreValue = abilityScoreValues[secondAbilityName]
 
-    //find data object to match class
+    // find data object to match class
 
-    let characterClassData = classOptionsData.find((item) => {
+    const characterClassData = classOptionsData.find((item) => {
       return item.name === characterClass.name
     })
 
     primeReqPercentage = characterClassData.checkPrimeReqRequirements(
       firstAbilityScoreValue,
-      secondAbilityScoreValue,
+      secondAbilityScoreValue
     )
   }
 
   if (!primeReqPercentage) {
-    primeReqPercentage = "0"
+    primeReqPercentage = '0'
   }
 
-  primeReqPercentage = primeReqPercentage + "%"
+  primeReqPercentage = primeReqPercentage + '%'
 
   return primeReqPercentage
 }
@@ -126,10 +132,10 @@ export const getRndInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-export const d = (how_many, sides) => {
+export const d = (howMany, sides) => {
   let total = 0
   let i
-  for (i = 0; i < how_many; i++) {
+  for (i = 0; i < howMany; i++) {
     total += getRndInteger(1, sides)
   }
   return total
@@ -140,7 +146,7 @@ export const chooseRandomItem = (array) => {
 }
 
 export const d6 = (howMany, randomNumbersArray) => {
-  //uses default JS random number seed if randomNumber API doesn't load correctly
+  // uses default JS random number seed if randomNumber API doesn't load correctly
 
   if (randomNumbersArray.length < 2) {
     return d(3, 6)
@@ -157,22 +163,22 @@ export const d6 = (howMany, randomNumbersArray) => {
 
 export const getWeightedValue = (weightedList, diceResult, listLength) => {
   for (let i = diceResult; i <= listLength; i++) {
-    if (weightedList.hasOwnProperty(i)) {
+    if (Object.prototype.hasOwnProperty.call(weightedList, i)) {
       return weightedList[i]
     }
   }
 }
 
 export const joinDuplicates = (array) => {
-  let stuff = {}
+  const stuff = {}
   for (let i = 0; i < array.length; i++) {
-    if (stuff.hasOwnProperty(array[i])) {
+    if (Object.prototype.hasOwnProperty.call(stuff, array[i])) {
       stuff[array[i]] += 1
     } else {
       stuff[array[i]] = 1
     }
   }
-  let consolidated = []
+  const consolidated = []
   const keys = Object.keys(stuff)
   for (const key of keys) {
     if (stuff[key] > 1) {
@@ -189,7 +195,7 @@ export const calculateArmourClass = (dexMod, armour) => {
   let baseArmour = 10
   let armourClass = baseArmour
 
-  if (dexMod.includes("+")) {
+  if (dexMod.includes('+')) {
     dexMod = dexMod.substring(1)
   }
   dexMod = parseInt(dexMod)

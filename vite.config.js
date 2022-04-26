@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import ViteFonts from "vite-plugin-fonts"
+import ViteFonts from 'vite-plugin-fonts'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,8 +8,8 @@ export default defineConfig({
     react(),
     ViteFonts({
       google: {
-        families: ["Crimson Text"],
-      },
-    }),
-  ],
+        families: ['Crimson Text']
+      }
+    })
+  ]
 })
