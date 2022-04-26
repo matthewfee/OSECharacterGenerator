@@ -149,9 +149,9 @@ export default function CharacterSheetScreen (props) {
 
     for (const key in formFieldKeysOfficialSheet) {
       let value = formFieldKeysOfficialSheet[key]
-      if (value) {
-        value = value.toString()
-      }
+
+      value = value.toString()
+
       form.getTextField(key).setText(value)
     }
 
