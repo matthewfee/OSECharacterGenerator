@@ -12,7 +12,8 @@ import {
 } from '../constants/constants'
 import {
   chooseRandomItem,
-  calculateArmourClass
+  calculateArmourClass,
+  d
 } from '../utilities/utilities'
 import ArmourOptionsContainer from '../containers/equipment/ArmourOptionsContainer'
 import WeaponOptionsContainer from '../containers/equipment/WeaponOptionsContainer'
@@ -21,6 +22,7 @@ import Inventory from '../components/equipment/Inventory'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { Dice } from '../utilities/DiceBox'
+import { isMobile } from 'react-device-detect'
 
 export default function EquipmentScreen (props) {
   const {
@@ -79,6 +81,14 @@ export default function EquipmentScreen (props) {
   }, [armour])
 
   const getGold = () => {
+    if (isMobile) {
+      const gold = d(3, 6)
+      const totalGold = gold * 10
+      setGold(totalGold)
+      setGoldRolled(true)
+      return
+    }
+
     Dice.show()
       .roll('3d6')
       .then((results) => {
@@ -87,6 +97,10 @@ export default function EquipmentScreen (props) {
           goldResult += dieResult.value
         })
         const totalGold = goldResult * 10
+
+        if (isNaN(totalGold)) {
+          throw new Error('Dice result was not a number')
+        }
 
         setGold(totalGold)
         setGoldRolled(true)

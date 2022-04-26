@@ -12,6 +12,7 @@ const Dice = new DiceBox(
     assetPath: '/assets/dice-box/',
     gravity: 2,
     scale: 4
+
   }
 )
 

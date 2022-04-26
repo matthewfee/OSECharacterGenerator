@@ -4,7 +4,7 @@ import {
   abilityScoreNames,
   defaultAbilityScoresState
 } from '../constants/constants'
-import { getPrimeReqMod, updateAbilityModifiers } from '../utilities/utilities'
+import { getPrimeReqMod, updateAbilityModifiers, d6 } from '../utilities/utilities'
 import AbilityScreen from './AbilityScreen'
 import classOptionsData from '../data/classOptionsData'
 import ClassScreen from './ClassScreen'
@@ -15,6 +15,7 @@ import { getRandomNumbers } from '../API/getRandomNumbers'
 import CharacterStorageScreen from './CharacterStorageScreen'
 import { v4 as uuidv4 } from 'uuid'
 import { Dice } from '../utilities/DiceBox'
+import { isMobile } from 'react-device-detect'
 
 export default function CharacterGenerator () {
   const [character, setCharacter] = useState({
@@ -109,9 +110,31 @@ export default function CharacterGenerator () {
   }, [abilityScores, characterClass])
 
   const rollAttribute = (e) => {
+    console.log('ROLLING DICE', e.target.value)
     const attribute = e.target.value
 
-    if (attribute === 'all') {
+    const newCharacterAbilityScores = { ...abilityScores }
+
+    if (isMobile && attribute === 'all') {
+      abilityScoreNames.forEach((score) => {
+        const dieResult = d6(3, randomNumbers)
+        newCharacterAbilityScores[score] = dieResult
+        newCharacterAbilityScores[`${score}Original`] = dieResult
+      })
+
+      setAbilityScores(newCharacterAbilityScores)
+      return
+    }
+
+    if (isMobile) {
+      const dieResult = d6(3, randomNumbers)
+      newCharacterAbilityScores[attribute] = dieResult
+      newCharacterAbilityScores[`${attribute}Original`] = dieResult
+      setAbilityScores(newCharacterAbilityScores)
+      return
+    }
+
+    if (!isMobile && attribute === 'all') {
       setPendingRoll('all')
       Dice.show().roll('3d6', { theme: '#ff0000' })
       Dice.roll('3d6', { theme: '#061577' })
@@ -126,12 +149,13 @@ export default function CharacterGenerator () {
   }
 
   Dice.onRollComplete = (rollResults) => {
+    console.log('ROLL COMPLETE', rollResults)
     setPendingRoll(null)
     const newAbilityScores = { ...abilityScores }
     if (pendingRoll === 'all') {
       abilityScoreNames.forEach((attr, i) => {
-        newAbilityScores[attr] = rollResults[i].value
-        newAbilityScores[`${attr}Original`] = rollResults[i].value
+        newAbilityScores[attr] = rollResults[i]?.value
+        newAbilityScores[`${attr}Original`] = rollResults[i]?.value
       })
     } else {
       newAbilityScores[pendingRoll] = rollResults[0].value

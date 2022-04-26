@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { chooseRandomItem } from '../utilities/utilities'
+import React, { useState } from 'react'
+import { chooseRandomItem, d } from '../utilities/utilities'
 import { magicUserSpells, druidSpells, illusionistSpells } from '../data/spells'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { Dice } from '../utilities/DiceBox'
+import { isMobile } from 'react-device-detect'
 
 export default function ClassScreen (props) {
   const {
@@ -19,37 +20,61 @@ export default function ClassScreen (props) {
   const [HPResult, setHPResult] = useState(null)
   const [canReroll, setCanReroll] = useState(true)
   const [HPRolls, setHPRolls] = useState(0)
-  const [hitDie, setHitDie] = useState(null)
+
   const [spellSelected, setSpellSelected] = useState('')
-
-  useEffect(() => {
-    getHitDie()
-  }, [])
-
-  const getHitDie = () => {
-    return setHitDie(characterClass.hd)
-  }
 
   const getHitPoints = () => {
     const die = characterClass.hd
-    Dice.show()
-      .roll(`1d${die}`)
-      .then((results) => {
-        const HPResult = results[0].value
-        let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-        const HPRollsNew = HPRolls + 1
 
-        if (totalHP < 1) {
-          totalHP = 1
-        }
-        if (HPResult > 2 || HPRollsNew === 2) {
-          setCanReroll(false)
-        }
+    console.log('ROLLING HP', die)
 
-        setHitPoints(totalHP)
-        setHPResult(HPResult)
-        setHPRolls(HPRollsNew)
-      })
+    let HPResult
+
+    if (isMobile) {
+      HPResult = d(1, die)
+
+      let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
+      const HPRollsNew = HPRolls + 1
+
+      if (totalHP < 1) {
+        totalHP = 1
+      }
+      if (HPResult > 2 || HPRollsNew === 2) {
+        setCanReroll(false)
+      }
+
+      setHitPoints(totalHP)
+      setHPResult(HPResult)
+      setHPRolls(HPRollsNew)
+
+      return
+    }
+
+    if (!isMobile) {
+      Dice.hide().show()
+        .roll(`1d${die}`)
+        .then((results) => {
+          const HPResult = results[0].value
+
+          if (isNaN(HPResult)) {
+            throw new Error('Dice result was not a number')
+          }
+
+          let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
+          const HPRollsNew = HPRolls + 1
+
+          if (totalHP < 1) {
+            totalHP = 1
+          }
+          if (HPResult > 2 || HPRollsNew === 2) {
+            setCanReroll(false)
+          }
+
+          setHitPoints(totalHP)
+          setHPResult(HPResult)
+          setHPRolls(HPRollsNew)
+        })
+    }
   }
 
   // Dice.onRollComplete = (results) => {}
@@ -135,7 +160,7 @@ export default function ClassScreen (props) {
       <div className="hp-container container">
         <div className="hp-container--hit-die">
           {hitPoints && <span>{HPResult}</span>}
-          {!hitPoints && <span>d{hitDie}</span>}
+          {!hitPoints && <span>d{characterClass.hd}</span>}
 
           {!hitPoints && (
             <div className="hp-container--hit-die-name">Hit Die</div>

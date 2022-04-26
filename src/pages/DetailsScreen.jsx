@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { characterBackgrounds } from '../data/backgrounds'
-import { getWeightedValue, chooseRandomItem } from '../utilities/utilities'
+import { getWeightedValue, chooseRandomItem, d } from '../utilities/utilities'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import { Dice } from '../utilities/DiceBox'
+import { isMobile } from 'react-device-detect'
 
 import {
   firstNames,
@@ -91,11 +92,35 @@ export default function DetailsScreen (props) {
   const getBackground = () => {
     const listLength = 100
 
+    if (isMobile) {
+      let diceResult = d(1, 100)
+      let diceResult2 = d(1, 100)
+      let background = getWeightedValue(characterBackgrounds, diceResult, 100)
+
+      while (background?.includes('Roll for two skills')) {
+        diceResult = d(1, 100)
+        diceResult2 = d(1, 100)
+
+        background = `${getWeightedValue(
+        characterBackgrounds, diceResult,
+        100
+      )}, ${getWeightedValue(characterBackgrounds, diceResult2, 100)}`
+      }
+
+      setBackground(background)
+      return
+    }
+
     if (!background.includes('Roll for two skills')) {
       Dice.show()
         .roll('1d100')
         .then((result) => {
           const value = result[0].value
+
+          if (isNaN(value)) {
+            throw new Error('Dice result was not a number')
+          }
+
           const newBackground = getWeightedValue(
             characterBackgrounds,
             value,
@@ -284,6 +309,30 @@ export default function DetailsScreen (props) {
               Optional Details
             </div>
 
+            {!background && (
+              <button
+                type="button"
+                className="button button--optional-details"
+                onClick={getBackground}
+              >
+                Background (d100)
+              </button>
+            )}
+
+            {background && (
+              <div className="details-result">
+                <span className="details-result--name">Background Skill:</span>
+                <span className="details-result--data">{background}</span>
+                <button
+                  type="button"
+                  className="button button--details-reroll"
+                  onClick={getBackground}
+                >
+                  Reroll
+                </button>
+              </div>
+            )}
+
             {!appearance && (
               <button
                 type="button"
@@ -326,30 +375,6 @@ export default function DetailsScreen (props) {
                   type="button"
                   className="button button--details-reroll"
                   onClick={getPersonality}
-                >
-                  Reroll
-                </button>
-              </div>
-            )}
-
-            {!background && (
-              <button
-                type="button"
-                className="button button--optional-details"
-                onClick={getBackground}
-              >
-                Background
-              </button>
-            )}
-
-            {background && (
-              <div className="details-result">
-                <span className="details-result--name">Background Skill:</span>
-                <span className="details-result--data">{background}</span>
-                <button
-                  type="button"
-                  className="button button--details-reroll"
-                  onClick={getBackground}
                 >
                   Reroll
                 </button>
