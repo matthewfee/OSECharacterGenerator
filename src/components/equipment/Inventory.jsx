@@ -3,14 +3,14 @@ import { Trans } from 'react-i18next'
 import Backpack from './Backpack'
 import PropTypes from 'prop-types'
 
-export default function Inventory (props) {
+export default function Inventory(props) {
   const { weapons, adventuringGear, armour, storeHandler } = props
   return (
-    <div className="inventory">
-      <h3 className="header-default">
-        <Trans i18nKey="inventory">Inventory</Trans>
+    <div className='inventory'>
+      <h3 className='header-default'>
+        <Trans i18nKey='inventory'>Inventory</Trans>
       </h3>
-      <div className="backpack-container">
+      <div className='backpack-container'>
         <Backpack
           itemType={'armour'}
           items={armour}

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function WeaponOptionsContainer (props) {
+export default function WeaponOptionsContainer(props) {
   const {
     characterClass,
     weaponSelected,
@@ -13,31 +13,31 @@ export default function WeaponOptionsContainer (props) {
 
   return (
     <React.Fragment>
-      <div className="equipment-container--header">
+      <div className='equipment-container--header'>
         {characterClass.name} Weapons
       </div>
 
-      <div className="equipment-restrictions">
+      <div className='equipment-restrictions'>
         Allowed Weapons: {characterClass.weapons}
       </div>
 
-      <div className="weapons-container">
+      <div className='weapons-container'>
         <select
-          className="weapons-select"
+          className='weapons-select'
           value={weaponSelected}
           onChange={updateSelectedWeapon}
         >
           {weaponsList()}
         </select>
 
-        <button className="button--random-weapon" onClick={selectRandomWeapon}>
+        <button className='button--random-weapon' onClick={selectRandomWeapon}>
           Random
         </button>
 
         <input
-          className="button--buy-weapon"
-          type="submit"
-          value="Buy"
+          className='button--buy-weapon'
+          type='submit'
+          value='Buy'
           onClick={() => storeHandler(weaponSelected, 'buy', 'weapon')}
           price={null}
         />

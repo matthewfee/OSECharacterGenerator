@@ -4,7 +4,11 @@ import {
   abilityScoreNames,
   defaultAbilityScoresState
 } from '../constants/constants'
-import { getPrimeReqMod, updateAbilityModifiers, d6 } from '../utilities/utilities'
+import {
+  getPrimeReqMod,
+  updateAbilityModifiers,
+  d6
+} from '../utilities/utilities'
 import AbilityScreen from './AbilityScreen'
 import classOptionsData from '../data/classOptionsData'
 import ClassScreen from './ClassScreen'
@@ -17,7 +21,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Dice } from '../utilities/DiceBox'
 import { isMobile } from 'react-device-detect'
 
-export default function CharacterGenerator () {
+export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
     id: null,
     name: null,
@@ -88,7 +92,7 @@ export default function CharacterGenerator () {
 
   const [pendingRoll, setPendingRoll] = useState('')
 
-  const loadRandomNumbers = async function () {
+  const loadRandomNumbers = async () => {
     const randomNumbers = await getRandomNumbers()
     if (randomNumbers) {
       setRandomNumbers(randomNumbers)
@@ -110,7 +114,6 @@ export default function CharacterGenerator () {
   }, [abilityScores, characterClass])
 
   const rollAttribute = (e) => {
-    console.log('ROLLING DICE', e.target.value)
     const attribute = e.target.value
 
     const newCharacterAbilityScores = { ...abilityScores }
@@ -149,7 +152,6 @@ export default function CharacterGenerator () {
   }
 
   Dice.onRollComplete = (rollResults) => {
-    console.log('ROLL COMPLETE', rollResults)
     setPendingRoll(null)
     const newAbilityScores = { ...abilityScores }
     if (pendingRoll === 'all') {

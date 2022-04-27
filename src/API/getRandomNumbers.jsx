@@ -1,7 +1,7 @@
 import { RANDOM_NUMBERS_API_URL } from '../constants/constants'
 import axios from 'axios'
 
-export async function getRandomNumbers () {
+export async function getRandomNumbers() {
   const data = JSON.stringify({
     jsonrpc: '2.0',
     method: 'generateIntegers',

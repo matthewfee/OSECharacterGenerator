@@ -2,7 +2,7 @@ import React from 'react'
 import { redFail, greenSuccess } from '../../constants/constants'
 import PropTypes from 'prop-types'
 import Arrow from '../../components/abilities/Arrow'
-export default function ScoreBox (props) {
+export default function ScoreBox(props) {
   const {
     abilityScoreValue,
     abilityScoreValueOriginal,

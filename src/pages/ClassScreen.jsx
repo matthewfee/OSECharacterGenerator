@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import { chooseRandomItem, d } from '../utilities/utilities'
-import { magicUserSpells, druidSpells, illusionistSpells } from '../data/spells'
-import { Trans } from 'react-i18next'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { Dice } from '../utilities/DiceBox'
-import { isMobile } from 'react-device-detect'
+import HPRoller from '../containers/class-details/HPRoller'
+import SavingThrows from '../components/class/SavingThrows'
+import ClassAbilitiesList from '../components/class/ClassAbilitiesList'
+import SpellSelection from '../containers/class-details/SpellSelection'
+import Button from '../components/general/Button'
+import Header from '../components/general/Header'
 
-export default function ClassScreen (props) {
+export default function ClassScreen(props) {
   const {
     screen,
     setScreen,
@@ -16,273 +17,47 @@ export default function ClassScreen (props) {
     characterModifiers
   } = props
 
-  const [hitPoints, setHitPoints] = useState(null)
-  const [HPResult, setHPResult] = useState(null)
-  const [canReroll, setCanReroll] = useState(true)
-  const [HPRolls, setHPRolls] = useState(0)
-
-  const [spellSelected, setSpellSelected] = useState('')
-
-  const getHitPoints = () => {
-    const die = characterClass.hd
-
-    console.log('ROLLING HP', die)
-
-    let HPResult
-
-    if (isMobile) {
-      HPResult = d(1, die)
-
-      let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-      const HPRollsNew = HPRolls + 1
-
-      if (totalHP < 1) {
-        totalHP = 1
-      }
-      if (HPResult > 2 || HPRollsNew === 2) {
-        setCanReroll(false)
-      }
-
-      setHitPoints(totalHP)
-      setHPResult(HPResult)
-      setHPRolls(HPRollsNew)
-
-      return
-    }
-
-    if (!isMobile) {
-      Dice.hide().show()
-        .roll(`1d${die}`)
-        .then((results) => {
-          const HPResult = results[0].value
-
-          if (isNaN(HPResult)) {
-            throw new Error('Dice result was not a number')
-          }
-
-          let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-          const HPRollsNew = HPRolls + 1
-
-          if (totalHP < 1) {
-            totalHP = 1
-          }
-          if (HPResult > 2 || HPRollsNew === 2) {
-            setCanReroll(false)
-          }
-
-          setHitPoints(totalHP)
-          setHPResult(HPResult)
-          setHPRolls(HPRollsNew)
-        })
-    }
-  }
-
-  // Dice.onRollComplete = (results) => {}
-
-  const chooseSpells = () => {
-    if (characterClass.arcaneSpells) {
-      return chooseRandomItem(magicUserSpells)
-    }
-
-    if (characterClass.druidSpells) {
-      return chooseRandomItem(druidSpells)
-    }
-
-    if (characterClass.illusionistSpells) {
-      return chooseRandomItem(illusionistSpells)
-    }
-
-    return 'No Spells Found'
-  }
-
-  const spellOption = (spell) => {
-    return (
-      <option key={spell} value={spell}>
-        {spell}
-      </option>
-    )
-  }
-
-  const spellsList = () => {
-    let spellList = ''
-
-    if (characterClass.arcaneSpells) {
-      spellList = magicUserSpells.map((spell) => {
-        return spellOption(spell)
-      })
-    }
-
-    if (characterClass.druidSpells) {
-      spellList = druidSpells.map((spell) => {
-        return spellOption(spell)
-      })
-    }
-
-    if (characterClass.illusionistSpells) {
-      spellList = illusionistSpells.map((spell) => {
-        return spellOption(spell)
-      })
-    }
-
-    return spellList
-  }
-
-  const handleSpellChange = (event) => {
-    setSpellSelected(event.target.value)
-  }
-
-  const hasSpells =
-    !!(characterClass.arcaneSpells ||
-    characterClass.divineSpells ||
-    characterClass.illusionistSpells ||
-    characterClass.druidSpells)
-
   return (
-    <div className="class-options-screen">
-      <h3 className="header-default">
-        <Trans i18nKey="classOptions">Class Options</Trans>
-      </h3>
+    <div className='class-options-screen'>
+      <Header name={'class-options'} translation={'classOptions'}></Header>
 
-      {
-        <button
-          className="button button-primary button--hp"
-          onClick={() => setTimeout(getHitPoints(), 200)}
-          disabled={!canReroll}
-          style={{
-            fontSize: canReroll ? '' : '4rem'
-          }}
-        >
-          {canReroll && `${HPRolls === 0 ? 'Roll HP' : 'Reroll?'}`}
-          {!canReroll && hitPoints}
-        </button>
-      }
+      <HPRoller
+        characterClass={characterClass}
+        characterStatistics={characterStatistics}
+        setCharacterStatistics={setCharacterStatistics}
+        characterModifiers={characterModifiers}
+      ></HPRoller>
 
-      <div className="hp-container container">
-        <div className="hp-container--hit-die">
-          {hitPoints && <span>{HPResult}</span>}
-          {!hitPoints && <span>d{characterClass.hd}</span>}
+      <div className='saving-throws-menu'>
+        <h5 className='saving-throws-menu--header'>
+          {characterClass.name} Saving Throws
+        </h5>
 
-          {!hitPoints && (
-            <div className="hp-container--hit-die-name">Hit Die</div>
-          )}
-          {hitPoints && (
-            <div className="hp-container--hit-die-name">Rolled</div>
-          )}
-        </div>
-
-        <div className="hp-container--math">+</div>
-
-        <div className="hp-container--con-mod">
-          {characterModifiers.constitutionMod}
-          <div className="hp-container--con-mod-name">Con Mod</div>
-        </div>
-
-        <div className="hp-container--math">=</div>
-
-        <div className="hp-container--hit-points">
-          {hitPoints}
-          <div className="hp-container--hit-points-name">Hit Points</div>
-        </div>
+        <SavingThrows characterClass={characterClass}></SavingThrows>
       </div>
 
-      {hitPoints && (
-        <div className="saving-throws-menu">
-          <h5 className="saving-throws-menu--header">
-            {characterClass.name} Saving Throws
-          </h5>
+      <div className='class-ability-menu'>
+        <h5 className='class-ability-menu--header'>
+          {characterClass.name} Abilities
+        </h5>
 
-          <div className="saving-throws container">
-            <div className="saving-throw--death saving-throw-name">Death </div>
-            <div className="saving-throw--death--value saving--value">
-              {characterClass.savingThrows[0]}
-            </div>
-            <div className="saving-throw--wands saving-throw-name">Wands </div>
-            <div className="saving-throw--wands--value saving--value">
-              {characterClass.savingThrows[1]}
-            </div>
-            <div className="saving-throw--paralysis saving-throw-name">
-              Paralysis{' '}
-            </div>
-            <div className="saving-throw--paralysis--value saving--value">
-              {characterClass.savingThrows[2]}
-            </div>
-            <div className="saving-throw--breath saving-throw-name">Breath</div>
-            <div className="saving-throw--breath--value saving--value">
-              {characterClass.savingThrows[3]}
-            </div>
-            <div className="saving-throw--spells saving-throw-name">
-              Spells{' '}
-            </div>
-            <div className="saving-throw--spells--value saving--value">
-              {characterClass.savingThrows[4]}
-            </div>
-          </div>
-        </div>
-      )}
+        <ClassAbilitiesList
+          characterClass={characterClass}
+        ></ClassAbilitiesList>
+      </div>
 
-      {hitPoints && (
-        <div className="class-ability-menu">
-          <h5 className="class-ability-menu--header">
-            {' '}
-            {characterClass.name} Abilities
-          </h5>
+      <SpellSelection
+        setCharacterStatistics={setCharacterStatistics}
+        characterClass={characterClass}
+      ></SpellSelection>
 
-          <div className="class-ability-menu--abilities">
-            <ul className="class-ability-list">
-              {characterClass.abilities.map((item) => {
-                return (
-                  <li key={item} className="class-ability">
-                    {' '}
-                    {item}{' '}
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div>
-      )}
-
-      {hitPoints && hasSpells && (
-        <div className="spell-selection-menu">
-          <h5 className="class-ability-menu--header">
-            {characterClass.name} Spells
-          </h5>
-          <select
-            className="spells-select"
-            value={spellSelected}
-            onChange={handleSpellChange}
-          >
-            <option value="" disabled>
-              Select Spell
-            </option>
-            {spellsList()}
-          </select>
-          <button
-            className="button--random-spell"
-            onClick={() => setSpellSelected(chooseSpells())}
-          >
-            Random Spell
-          </button>
-        </div>
-      )}
-
-      {hitPoints > 0 && (
-        <button
-          className="button button--equipment-options"
-          onClick={() => {
-            setCharacterStatistics({
-              ...characterStatistics,
-              hitPoints,
-              hasSpells,
-              spell: spellSelected
-            })
-
-            setScreen({ ...screen, equipmentScreen: true, classScreen: false })
-          }}
-        >
-          Go to Equipment
-        </button>
-      )}
+      <Button
+        name={'equipment-options'}
+        text={'Go to Equipment'}
+        callback={() => {
+          setScreen({ ...screen, equipmentScreen: true, classScreen: false })
+        }}
+      ></Button>
     </div>
   )
 }
@@ -296,7 +71,7 @@ ClassScreen.propTypes = {
   characterStatistics: PropTypes.shape({
     hitPoints: PropTypes.number,
     armourClass: PropTypes.number,
-    spell: PropTypes.array,
+    spell: PropTypes.string,
     hasSpells: PropTypes.bool,
     unarmouredAC: PropTypes.number
   }),

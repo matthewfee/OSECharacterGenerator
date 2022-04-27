@@ -2,7 +2,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-export default function NavigationOptions (props) {
+export default function NavigationOptions(props) {
   const { screen, setScreen, characterClass, rollAttribute, abilityScores } =
     props
 
@@ -19,14 +19,14 @@ export default function NavigationOptions (props) {
   return (
     <div>
       <button
-        className="button button--reroll"
+        className='button button--reroll'
         value={'all'}
         onClick={rollAttribute}
       >
         Roll All
       </button>
       <button
-        className="button button--class-option"
+        className='button button--class-option'
         onClick={() =>
           setScreen({
             ...screen,
@@ -42,7 +42,7 @@ export default function NavigationOptions (props) {
             : {}
         }
       >
-        <Trans i18nKey="classOptions">Class Options</Trans>
+        <Trans i18nKey='classOptions'>Class Options</Trans>
       </button>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function Arrow (props) {
+export default function Arrow(props) {
   const { abilityScoreName, direction, callBack } = props
 
   let classDirection

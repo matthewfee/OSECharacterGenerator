@@ -15,7 +15,7 @@ import {
   languageOptions
 } from '../constants/constants'
 
-export default function DetailsScreen (props) {
+export default function DetailsScreen(props) {
   const {
     screen,
     setScreen,
@@ -102,9 +102,10 @@ export default function DetailsScreen (props) {
         diceResult2 = d(1, 100)
 
         background = `${getWeightedValue(
-        characterBackgrounds, diceResult,
-        100
-      )}, ${getWeightedValue(characterBackgrounds, diceResult2, 100)}`
+          characterBackgrounds,
+          diceResult,
+          100
+        )}, ${getWeightedValue(characterBackgrounds, diceResult2, 100)}`
       }
 
       setBackground(background)
@@ -196,37 +197,37 @@ export default function DetailsScreen (props) {
   }
 
   return (
-    <div className="details-screen-container">
-      <div id="print-wrapper">
-        <h3 className="header-default">
+    <div className='details-screen-container'>
+      <div id='print-wrapper'>
+        <h3 className='header-default'>
           <Trans i18nKey={'characterDetails'}>Character Details</Trans>
         </h3>
 
-        <div className="character-details-form">
-          <label className="form-label form-label--name">
-            <div className="form-text">Choose Name:</div>
+        <div className='character-details-form'>
+          <label className='form-label form-label--name'>
+            <div className='form-text'>Choose Name:</div>
             <input
-              className="form-input"
-              type="text"
+              className='form-input'
+              type='text'
               value={characterName}
               onChange={handleName}
             />
             <button
-              className="button button--random-name"
+              className='button button--random-name'
               onClick={getName}
-              type="button"
+              type='button'
             >
               Random Name
             </button>
           </label>
 
-          <div className="form-label form-label--alignment">
-            <div className="form-text">Select Alignment:</div>
+          <div className='form-label form-label--alignment'>
+            <div className='form-text'>Select Alignment:</div>
 
-            <div className="alignment-button-container">
+            <div className='alignment-button-container'>
               <button
-                type="button"
-                value="lawful"
+                type='button'
+                value='lawful'
                 className={
                   alignment === 'lawful'
                     ? 'button button--alignment button--alignment--selected'
@@ -237,8 +238,8 @@ export default function DetailsScreen (props) {
                 Lawful
               </button>
               <button
-                type="button"
-                value="neutral"
+                type='button'
+                value='neutral'
                 className={
                   alignment === 'neutral'
                     ? 'button button--alignment button--alignment--selected'
@@ -249,8 +250,8 @@ export default function DetailsScreen (props) {
                 Neutral
               </button>
               <button
-                type="button"
-                value="chaotic"
+                type='button'
+                value='chaotic'
                 className={
                   alignment === 'chaotic'
                     ? 'button button--alignment button--alignment--selected'
@@ -263,39 +264,39 @@ export default function DetailsScreen (props) {
             </div>
           </div>
 
-          <div className="form-label form-label--languages">
-            <div className="form-text">
+          <div className='form-label form-label--languages'>
+            <div className='form-text'>
               {languageCount > 0
                 ? `Additional Languages (${languageCount}):`
                 : 'Languages:'}{' '}
             </div>
 
-            <div className="language-container">
+            <div className='language-container'>
               {`${alignment || 'Alignment'}, Common${
                 languages.length > 0 ? ', ' + languages.join(', ') : ''
               }`}
             </div>
 
             {languageCount > 0 && (
-              <div className="language-select-container">
+              <div className='language-select-container'>
                 <select
-                  className="spells-select"
+                  className='spells-select'
                   value={languageSelected}
                   onChange={handleLanguageChange}
                 >
-                  <option value="" disabled>
+                  <option value='' disabled>
                     Select Language
                   </option>
                   {languagesList()}
                 </select>
                 <button
-                  className="button--random-language"
+                  className='button--random-language'
                   onClick={() => chooseLanguage()}
                 >
                   Random
                 </button>
                 <button
-                  className="button--add-language"
+                  className='button--add-language'
                   onClick={() => addLanguage()}
                 >
                   Add
@@ -304,15 +305,15 @@ export default function DetailsScreen (props) {
             )}
           </div>
 
-          <div className="form-label form-label--optional-details">
-            <div type="button" className="form-text">
+          <div className='form-label form-label--optional-details'>
+            <div type='button' className='form-text'>
               Optional Details
             </div>
 
             {!background && (
               <button
-                type="button"
-                className="button button--optional-details"
+                type='button'
+                className='button button--optional-details'
                 onClick={getBackground}
               >
                 Background (d100)
@@ -320,12 +321,12 @@ export default function DetailsScreen (props) {
             )}
 
             {background && (
-              <div className="details-result">
-                <span className="details-result--name">Background Skill:</span>
-                <span className="details-result--data">{background}</span>
+              <div className='details-result'>
+                <span className='details-result--name'>Background Skill:</span>
+                <span className='details-result--data'>{background}</span>
                 <button
-                  type="button"
-                  className="button button--details-reroll"
+                  type='button'
+                  className='button button--details-reroll'
                   onClick={getBackground}
                 >
                   Reroll
@@ -335,8 +336,8 @@ export default function DetailsScreen (props) {
 
             {!appearance && (
               <button
-                type="button"
-                className="button button--optional-details"
+                type='button'
+                className='button button--optional-details'
                 onClick={getAppearance}
               >
                 Appearance
@@ -344,12 +345,12 @@ export default function DetailsScreen (props) {
             )}
 
             {appearance && (
-              <div className="details-result">
-                <span className="details-result--name"> Appearance: </span>
-                <span className="details-result--data"> {appearance}</span>
+              <div className='details-result'>
+                <span className='details-result--name'> Appearance: </span>
+                <span className='details-result--data'> {appearance}</span>
                 <button
-                  type="button"
-                  className="button button--details-reroll"
+                  type='button'
+                  className='button button--details-reroll'
                   onClick={getAppearance}
                 >
                   Reroll
@@ -359,8 +360,8 @@ export default function DetailsScreen (props) {
 
             {!personality && (
               <button
-                type="button"
-                className="button button--optional-details"
+                type='button'
+                className='button button--optional-details'
                 onClick={getPersonality}
               >
                 Personality
@@ -368,12 +369,12 @@ export default function DetailsScreen (props) {
             )}
 
             {personality && (
-              <div className="details-result">
-                <span className="details-result--name">Personality:</span>
-                <span className="details-result--data">{personality}</span>
+              <div className='details-result'>
+                <span className='details-result--name'>Personality:</span>
+                <span className='details-result--data'>{personality}</span>
                 <button
-                  type="button"
-                  className="button button--details-reroll"
+                  type='button'
+                  className='button button--details-reroll'
                   onClick={getPersonality}
                 >
                   Reroll
@@ -383,8 +384,8 @@ export default function DetailsScreen (props) {
 
             {!misfortune && (
               <button
-                type="button"
-                className="button button--optional-details"
+                type='button'
+                className='button button--optional-details'
                 onClick={getMisfortune}
               >
                 Misfortune
@@ -392,13 +393,13 @@ export default function DetailsScreen (props) {
             )}
 
             {misfortune && (
-              <div className="details-result">
-                <span className="details-result--name">Misfortune:</span>
-                <span className="details-result--data">{misfortune}</span>
+              <div className='details-result'>
+                <span className='details-result--name'>Misfortune:</span>
+                <span className='details-result--data'>{misfortune}</span>
 
                 <button
-                  type="button"
-                  className="button button--details-reroll"
+                  type='button'
+                  className='button button--details-reroll'
                   onClick={getMisfortune}
                 >
                   Reroll
@@ -409,7 +410,7 @@ export default function DetailsScreen (props) {
         </div>
 
         <button
-          className="button button--character-sheet"
+          className='button button--character-sheet'
           onClick={() => {
             setCharacter({
               ...character,

@@ -4,7 +4,7 @@ import ScoreName from './ScoreName'
 import PropTypes from 'prop-types'
 import ScoreBox from '../../containers/abilties/ScoreBox'
 
-export default function AbilityScoresRow (props) {
+export default function AbilityScoresRow(props) {
   const {
     abilityScoreName,
     abilityScoreValue,
