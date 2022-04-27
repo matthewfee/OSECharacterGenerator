@@ -1,9 +1,10 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    node: true
   },
-  extends: ['plugin:react/recommended', 'standard'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -13,6 +14,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'space-before-function-paren': ['error', 'ignore']
+   
   }
 }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { CHARACTER_STORAGE } from '../constants/constants'
+import React from 'react'
 import PropTypes from 'prop-types'
+import CharacterStorage from '../containers/storage/CharacterStorage'
+import Header from '../components/general/Header'
 
-export default function CharacterStorageScreen(props) {
+export default function CharacterStorageScreen (props) {
   const {
     screen,
     setScreen,
@@ -15,87 +16,21 @@ export default function CharacterStorageScreen(props) {
     setCharacterRolled
   } = props
 
-  const [myCharacters, setMyCharacters] = useState([])
-
-  useEffect(() => {
-    const characters = JSON.parse(
-      window.localStorage.getItem(CHARACTER_STORAGE)
-    )
-    setMyCharacters(characters)
-  }, [])
-
-  const handleCharacter = (e, index, action) => {
-    e.stopPropagation()
-
-    const characterObject = myCharacters[index]
-    const newStorage = [...myCharacters]
-    switch (action) {
-      case 'setActiveCharacter':
-        setCharacter(characterObject.character)
-        setCharacterStatistics(characterObject.characterStatistics)
-        setCharacterClass(characterObject.characterClass)
-        setCharacterEquipment(characterObject.characterEquipment)
-        setCharacterModifiers(characterObject.characterModifiers)
-        setAbilityScores(characterObject.abilityScores)
-        setCharacterRolled(true)
-
-        setScreen({
-          ...screen,
-          characterSheetScreen: true,
-          characterStorageScreen: false
-        })
-
-        break
-
-      case 'deleteCharacter':
-        newStorage.splice(index, 1)
-        localStorage.setItem(CHARACTER_STORAGE, JSON.stringify(newStorage))
-        setMyCharacters(newStorage)
-        break
-      default:
-    }
-  }
-
-  const characterButton = (char, index) => {
-    const characterStorageName = char.character.name
-
-    return (
-      <button
-        className='character-button'
-        key={index}
-        onClick={(e) => handleCharacter(e, index, 'setActiveCharacter')}
-        value={index}
-        name='setActiveCharacter'
-      >
-        <div className='character-button--name' value={index}>
-          {characterStorageName}
-        </div>
-        <div className='character-button--level' value={index}>
-          {char.characterClass.name}
-        </div>
-
-        <div
-          onClick={(e) => handleCharacter(e, index, 'deleteCharacter')}
-          className='character-button--delete'
-          key={index}
-          value={index}
-          name='deleteCharacter'
-        >
-          x
-        </div>
-      </button>
-    )
-  }
 
   return (
     <div className='character-storage-screen'>
-      <h3 className='header-default'> Tavern </h3>
-
-      <div className='character-storage'>
-        {myCharacters
-          ? myCharacters.map((item, index) => characterButton(item, index))
-          : ''}
-      </div>
+      <Header name='tavern' text='tavern'></Header>
+      <CharacterStorage
+        screen={screen}
+        setScreen={setScreen}
+        setCharacter={setCharacter}
+        setAbilityScores={setAbilityScores}
+        setCharacterStatistics={setCharacterStatistics}
+        setCharacterClass={setCharacterClass}
+        setCharacterEquipmen={setCharacterEquipment}
+        setCharacterModifiers={setCharacterModifiers}
+        setCharacterRolled={setCharacterRolled}
+      ></CharacterStorage>
 
       <button
         className='button--new-character'
