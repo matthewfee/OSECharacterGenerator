@@ -1,13 +1,5 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import CharacterSheet from '../containers/character/CharacterSheet'
-import { PDFDocument } from 'pdf-lib'
-import { joinDuplicates } from '../utilities/utilities'
-import download from 'downloadjs'
-import {
-  CHARACTER_SHEET_PURIST_URL,
-  CHARACTER_SHEET_UNDERGROUND_URL,
-  CHARACTER_STORAGE
-} from '../constants/constants'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import PDFExport from '../containers/character/PDFExport'
