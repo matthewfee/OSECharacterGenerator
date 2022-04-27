@@ -3,13 +3,15 @@ import equipmentData from '../../data/equipmentData'
 import weaponsData from '../../data/weaponsData'
 import armourData from '../../data/armourData'
 import {
-  Cleric, Elf,
+  Cleric,
+  Elf,
   Fighter,
   Dwarf,
   Halfling
 } from '../../constants/constants'
 import {
-  chooseRandomItem, calculateArmourClass,
+  chooseRandomItem,
+  calculateArmourClass,
   d
 } from '../../utilities/utilities'
 import ArmourOptionsContainer from '../../containers/equipment/ArmourOptionsContainer'
@@ -263,13 +265,12 @@ export default function EquipmentStore(props) {
 
   return (
     <>
-
-      <div className="gold-container">
-        <h5 className="gold">
+      <div className='gold-container'>
+        <h5 className='gold'>
           {gold} gp
           {gold === null && (
             <button
-              className="button button-primary button--gold"
+              className='button button-primary button--gold'
               onClick={() => setTimeout(getGold(), 200)}
             >
               Roll Gold
@@ -279,8 +280,8 @@ export default function EquipmentStore(props) {
       </div>
 
       {goldRolled && (
-        <div className="equipment-purchase-container">
-          <div className="equipment-options">
+        <div className='equipment-purchase-container'>
+          <div className='equipment-options'>
             {armour.length < 1 && (
               <ArmourOptionsContainer
                 characterClass={characterClass}
@@ -321,43 +322,41 @@ export default function EquipmentStore(props) {
             armour={armour}
             storeHandler={storeHandler}
           ></Inventory>
-
         </div>
       )}
 
-    {/* updates parent state with all new values when moving on to next page */}
+      {/* updates parent state with all new values when moving on to next page */}
 
-    {goldRolled && (
-            <button
-              className="button button--character-details"
-              onClick={() => {
-                const newCharacterEquipment = {
-                  armour,
-                  weapons,
-                  adventuringGear,
-                  gold,
+      {goldRolled && (
+        <button
+          className='button button--character-details'
+          onClick={() => {
+            const newCharacterEquipment = {
+              armour,
+              weapons,
+              adventuringGear,
+              gold,
 
-                  AC: armourClass,
-                  unarmouredAC
-                }
-                setCharacterEquipment(newCharacterEquipment)
-                setCharacterStatistics({
-                  ...characterStatistics,
-                  armourClass,
-                  unarmouredAC
-                })
-                setScreen({
-                  ...screen,
-                  equipmentScreen: false,
-                  detailsScreen: true
-                })
-              }}
-            >
-              Go to Character Details
-            </button>
-    )}
-</>
-
+              AC: armourClass,
+              unarmouredAC
+            }
+            setCharacterEquipment(newCharacterEquipment)
+            setCharacterStatistics({
+              ...characterStatistics,
+              armourClass,
+              unarmouredAC
+            })
+            setScreen({
+              ...screen,
+              equipmentScreen: false,
+              detailsScreen: true
+            })
+          }}
+        >
+          Go to Character Details
+        </button>
+      )}
+    </>
   )
 }
 

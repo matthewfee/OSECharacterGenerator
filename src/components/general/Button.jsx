@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 export default function Button({ name, callback, text, color }) {
   return (
     <button
-        className={`button button--${name}`}
-        onClick={() => {
-          callback()
-        }}
-     >
-    {text}
+      className={`button button--${name}`}
+      onClick={() => {
+        callback()
+      }}
+    >
+      {text}
     </button>
   )
 }

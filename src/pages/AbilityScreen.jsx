@@ -21,8 +21,7 @@ export default function AbilityScreen(props) {
   } = props
 
   return (
-    <div className="ability-screen container">
-
+    <div className='ability-screen container'>
       <Header translation={'characterClass'} name={'character-class'}></Header>
 
       <Classes

@@ -61,25 +61,25 @@ export default function CharacterStorageScreen(props) {
 
     return (
       <button
-        className="character-button"
+        className='character-button'
         key={index}
         onClick={(e) => handleCharacter(e, index, 'setActiveCharacter')}
         value={index}
-        name="setActiveCharacter"
+        name='setActiveCharacter'
       >
-        <div className="character-button--name" value={index}>
+        <div className='character-button--name' value={index}>
           {characterStorageName}
         </div>
-        <div className="character-button--level" value={index}>
+        <div className='character-button--level' value={index}>
           {char.characterClass.name}
         </div>
 
         <div
           onClick={(e) => handleCharacter(e, index, 'deleteCharacter')}
-          className="character-button--delete"
+          className='character-button--delete'
           key={index}
           value={index}
-          name="deleteCharacter"
+          name='deleteCharacter'
         >
           x
         </div>
@@ -88,17 +88,17 @@ export default function CharacterStorageScreen(props) {
   }
 
   return (
-    <div className="character-storage-screen">
-      <h3 className="header-default"> Tavern </h3>
+    <div className='character-storage-screen'>
+      <h3 className='header-default'> Tavern </h3>
 
-      <div className="character-storage">
+      <div className='character-storage'>
         {myCharacters
           ? myCharacters.map((item, index) => characterButton(item, index))
           : ''}
       </div>
 
       <button
-        className="button--new-character"
+        className='button--new-character'
         onClick={() => {
           setScreen({
             ...screen,

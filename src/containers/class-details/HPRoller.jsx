@@ -46,7 +46,8 @@ export default function HPRoller(props) {
     }
 
     if (!isMobile) {
-      Dice.hide().show()
+      Dice.hide()
+        .show()
         .roll(`1d${die}`)
         .then((results) => {
           const HPResult = results[0].value
@@ -74,47 +75,45 @@ export default function HPRoller(props) {
 
   return (
     <React.Fragment>
+      <button
+        className='button button-primary button--hp'
+        onClick={() => setTimeout(getHitPoints(), 200)}
+        disabled={!canReroll}
+        style={{
+          fontSize: canReroll ? '' : '4rem'
+        }}
+      >
+        {canReroll && `${HPRolls === 0 ? 'Roll HP' : 'Reroll?'}`}
+        {!canReroll && hitPoints}
+      </button>
 
-        <button
-          className="button button-primary button--hp"
-          onClick={() => setTimeout(getHitPoints(), 200)}
-          disabled={!canReroll}
-          style={{
-            fontSize: canReroll ? '' : '4rem'
-          }}
-        >
-          {canReroll && `${HPRolls === 0 ? 'Roll HP' : 'Reroll?'}`}
-          {!canReroll && hitPoints}
-        </button>
-
-      <div className="hp-container container">
-        <div className="hp-container--hit-die">
+      <div className='hp-container container'>
+        <div className='hp-container--hit-die'>
           {hitPoints && <span>{HPResult}</span>}
           {!hitPoints && <span>d{characterClass.hd}</span>}
 
           {!hitPoints && (
-            <div className="hp-container--hit-die-name">Hit Die</div>
+            <div className='hp-container--hit-die-name'>Hit Die</div>
           )}
           {hitPoints && (
-            <div className="hp-container--hit-die-name">Rolled</div>
+            <div className='hp-container--hit-die-name'>Rolled</div>
           )}
         </div>
 
-        <div className="hp-container--math">+</div>
+        <div className='hp-container--math'>+</div>
 
-        <div className="hp-container--con-mod">
+        <div className='hp-container--con-mod'>
           {characterModifiers.constitutionMod}
-          <div className="hp-container--con-mod-name">Con Mod</div>
+          <div className='hp-container--con-mod-name'>Con Mod</div>
         </div>
 
-        <div className="hp-container--math">=</div>
+        <div className='hp-container--math'>=</div>
 
-        <div className="hp-container--hit-points">
+        <div className='hp-container--hit-points'>
           {hitPoints}
-          <div className="hp-container--hit-points-name">Hit Points</div>
+          <div className='hp-container--hit-points-name'>Hit Points</div>
         </div>
-
-        </div>
+      </div>
     </React.Fragment>
   )
 }

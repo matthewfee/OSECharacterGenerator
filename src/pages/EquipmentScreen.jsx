@@ -15,22 +15,19 @@ export default function EquipmentScreen(props) {
   } = props
 
   return (
-    <div className="equipment-screen">
-
-      <Header translation="equipment"></Header>
+    <div className='equipment-screen'>
+      <Header translation='equipment'></Header>
 
       <EquipmentStore
-      characterClass={characterClass}
-      characterModifiers={characterModifiers}
-      characterStatistics={characterStatistics}
-      setCharacterStatistics={setCharacterStatistics}
-      setCharacterEquipment={setCharacterEquipment}
-      screen={screen}
-      setScreen={setScreen}
+        characterClass={characterClass}
+        characterModifiers={characterModifiers}
+        characterStatistics={characterStatistics}
+        setCharacterStatistics={setCharacterStatistics}
+        setCharacterEquipment={setCharacterEquipment}
+        screen={screen}
+        setScreen={setScreen}
       ></EquipmentStore>
-
     </div>
-
   )
 }
 

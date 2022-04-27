@@ -4,7 +4,11 @@ import {
   abilityScoreNames,
   defaultAbilityScoresState
 } from '../constants/constants'
-import { getPrimeReqMod, updateAbilityModifiers, d6 } from '../utilities/utilities'
+import {
+  getPrimeReqMod,
+  updateAbilityModifiers,
+  d6
+} from '../utilities/utilities'
 import AbilityScreen from './AbilityScreen'
 import classOptionsData from '../data/classOptionsData'
 import ClassScreen from './ClassScreen'
@@ -88,7 +92,7 @@ export default function CharacterGenerator() {
 
   const [pendingRoll, setPendingRoll] = useState('')
 
-  const loadRandomNumbers = async function() {
+  const loadRandomNumbers = async () => {
     const randomNumbers = await getRandomNumbers()
     if (randomNumbers) {
       setRandomNumbers(randomNumbers)

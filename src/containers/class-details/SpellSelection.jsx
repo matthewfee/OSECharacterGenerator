@@ -1,10 +1,17 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { magicUserSpells, druidSpells, illusionistSpells } from '../../data/spells'
+import {
+  magicUserSpells,
+  druidSpells,
+  illusionistSpells
+} from '../../data/spells'
 import { chooseRandomItem } from '../../utilities/utilities'
 import Option from '../../components/general/Option'
 
-export default function SpellSelection({ characterClass, setCharacterStatistics }) {
+export default function SpellSelection({
+  characterClass,
+  setCharacterStatistics
+}) {
   const [spellSelected, setSpellSelected] = useState('')
 
   const chooseSpells = () => {
@@ -23,7 +30,11 @@ export default function SpellSelection({ characterClass, setCharacterStatistics 
     }
 
     setSpellSelected(randomSpell)
-    setCharacterStatistics({ ...setCharacterStatistics, spell: randomSpell, hasSpells: true })
+    setCharacterStatistics({
+      ...setCharacterStatistics,
+      spell: randomSpell,
+      hasSpells: true
+    })
 
     return randomSpell
   }
@@ -44,46 +55,53 @@ export default function SpellSelection({ characterClass, setCharacterStatistics 
     }
 
     return spellList.map((spell, index) => {
-      return <Option key={index}value={spell.toString()}></Option>
+      return <Option key={index} value={spell.toString()}></Option>
     })
   }
 
   const handleSpellChange = (event) => {
     setSpellSelected(event.target.value)
-    setCharacterStatistics({ ...setCharacterStatistics, spell: event.target.value, hasSpells: true })
+    setCharacterStatistics({
+      ...setCharacterStatistics,
+      spell: event.target.value,
+      hasSpells: true
+    })
   }
 
-  const hasSpells =
-    !!(characterClass.arcaneSpells ||
+  const hasSpells = !!(
+    characterClass.arcaneSpells ||
     characterClass.divineSpells ||
     characterClass.illusionistSpells ||
-    characterClass.druidSpells)
+    characterClass.druidSpells
+  )
 
   return (
     <React.Fragment>
-    {hasSpells && <div className="spell-selection-menu">
-          <h5 className="class-ability-menu--header">
+      {hasSpells && (
+        <div className='spell-selection-menu'>
+          <h5 className='class-ability-menu--header'>
             {characterClass.name} Spells
           </h5>
           <select
-            className="spells-select"
+            className='spells-select'
             value={spellSelected}
             onChange={handleSpellChange}
           >
-            <option value="" disabled>
+            <option value='' disabled>
               Select Spell
             </option>
             {spellsList()}
           </select>
           <button
-            className="button--random-spell"
+            className='button--random-spell'
             onClick={() => {
               chooseSpells()
             }}
           >
             Random Spell
           </button>
-    </div>}
+        </div>
+      )}
     </React.Fragment>
   )
 }

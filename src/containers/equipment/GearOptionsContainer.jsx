@@ -12,11 +12,11 @@ export default function GearOptionsContainer(props) {
 
   return (
     <React.Fragment>
-      <div className="equipment-container--header">Adventuring Gear</div>
+      <div className='equipment-container--header'>Adventuring Gear</div>
 
-      <div className="gear-container">
+      <div className='gear-container'>
         <select
-          className="gear-select"
+          className='gear-select'
           value={adventuringGearSelected}
           onChange={updateSelectedAdventuringGear}
           price={null}
@@ -24,14 +24,14 @@ export default function GearOptionsContainer(props) {
           {adventuringGearList()}
         </select>
 
-        <button className="button--random-weapon" onClick={selectRandomGear}>
+        <button className='button--random-weapon' onClick={selectRandomGear}>
           Random
         </button>
 
         <input
-          className="button--buy-gear"
-          type="submit"
-          value="Buy"
+          className='button--buy-gear'
+          type='submit'
+          value='Buy'
           onClick={() => {
             storeHandler(adventuringGearSelected, 'buy', 'gear')
           }}

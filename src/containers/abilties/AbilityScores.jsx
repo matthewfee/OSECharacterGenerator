@@ -102,8 +102,8 @@ export default function AbilityScores(props) {
   }
 
   return (
-    <div className="container ability-score-container">
-      {pointBuy > 0 && <div className="point-buy">Point Buy: {pointBuy}</div>}
+    <div className='container ability-score-container'>
+      {pointBuy > 0 && <div className='point-buy'>Point Buy: {pointBuy}</div>}
 
       {abilityScoreNames.map((abilityScoreName, index) => {
         const originalScore = `${abilityScoreName}Original`

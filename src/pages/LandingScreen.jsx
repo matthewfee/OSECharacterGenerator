@@ -36,7 +36,7 @@ export default function LandingScreen(props) {
         className={`title ${rollButtonHover ? 'fade' : ''}`}
         style={{ fontSize: characterRolled ? '1.4rem' : '' }}
       >
-        <Trans i18nKey="AppName">OSE Character Generator</Trans>
+        <Trans i18nKey='AppName'>OSE Character Generator</Trans>
       </h2>
       {screen.abilityScreen && !characterRolled && (
         <button
@@ -48,11 +48,11 @@ export default function LandingScreen(props) {
         >
           {!loadingRandomNumbers && (
             <div>
-              <Trans i18nKey="start">Start</Trans>
+              <Trans i18nKey='start'>Start</Trans>
             </div>
           )}
 
-          <div className="sweet-loading">
+          <div className='sweet-loading'>
             <CircleLoader
               css={override}
               size={50}
@@ -77,7 +77,7 @@ export default function LandingScreen(props) {
             setCharacterRolled(true)
           }}
         >
-          <Trans i18nKey="Tavern"></Trans>
+          <Trans i18nKey='Tavern'></Trans>
         </button>
       )}
 
@@ -85,22 +85,27 @@ export default function LandingScreen(props) {
         <div
           className={`main-page--subheader ${rollButtonHover ? 'fade' : ''} `}
         >
-          <div className="main-page--description">
+          <div className='main-page--description'>
             <Trans
-              i18nKey="AppDescription"
+              i18nKey='AppDescription'
               t={t}
-              components={[<LinkText key="Necrotic-Gnome" href="https://necroticgnome.com/" />]}
+              components={[
+                <LinkText
+                  key='Necrotic-Gnome'
+                  href='https://necroticgnome.com/'
+                />
+              ]}
             />
           </div>
 
-          <div className="main-page--language-options">
+          <div className='main-page--language-options'>
             {Object.keys(lngs).map((lng) => (
               <button
                 key={lng}
                 style={{
                   fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal'
                 }}
-                type="submit"
+                type='submit'
                 onClick={() => i18n.changeLanguage(lng)}
               >
                 {lngs[lng].nativeName}
@@ -111,12 +116,15 @@ export default function LandingScreen(props) {
       )}
 
       {screen.abilityScreen && !characterRolled && !rollButtonHover && (
-        <div className="main-page--created-by">
+        <div className='main-page--created-by'>
           <Trans
-            i18nKey="CreatedBy"
+            i18nKey='CreatedBy'
             t={t}
             components={[
-              <LinkText key={'link'} href="https://eviltables.dev/ose-character-generator/" />
+              <LinkText
+                key={'link'}
+                href='https://eviltables.dev/ose-character-generator/'
+              />
             ]}
           />
         </div>
@@ -134,5 +142,4 @@ LandingScreen.propTypes = {
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
   rollCharacter: PropTypes.func
-
 }

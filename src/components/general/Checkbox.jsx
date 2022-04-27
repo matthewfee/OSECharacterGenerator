@@ -6,14 +6,13 @@ export default function Checkbox(props) {
 
   return (
     <input
-        type="checkbox"
-        value={value}
-        className={`checkbox --${value}`}
-        checked={checkedCondition}
-        key={callback}
-        onChange={() => callback()}
-    >
-    </input>
+      type='checkbox'
+      value={value}
+      className={`checkbox --${value}`}
+      checked={checkedCondition}
+      key={callback}
+      onChange={() => callback()}
+    ></input>
   )
 }
 

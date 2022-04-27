@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 export default function ListItem({ type, value }) {
   return (
     <li className={`list-item list-item--${type}`}>
-          <b>{type}:</b> {value}
+      <b>{type}:</b> {value}
     </li>
   )
 }

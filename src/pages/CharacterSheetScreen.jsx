@@ -152,6 +152,8 @@ export default function CharacterSheetScreen(props) {
 
       if (value != null) {
         value = value.toString()
+      } else {
+        value = ''
       }
 
       form.getTextField(key).setText(value)
@@ -219,9 +221,12 @@ export default function CharacterSheetScreen(props) {
 
     for (const key in formFieldKeysUndergroundSheet) {
       let value = formFieldKeysUndergroundSheet[key]
-      if (value) {
+      if (value != null) {
         value = value.toString()
+      } else {
+        value = ''
       }
+
       form.getTextField(key).setText(value)
     }
 
@@ -233,7 +238,7 @@ export default function CharacterSheetScreen(props) {
   }
 
   return (
-    <div className="character-sheet-container container">
+    <div className='character-sheet-container container'>
       <CharacterSheet
         character={character}
         characterStatistics={characterStatistics}
@@ -244,18 +249,18 @@ export default function CharacterSheetScreen(props) {
         ref={componentRef}
       ></CharacterSheet>
 
-      <div className="button-container">
-        <h3 className="header-default header-pdf">Export to PDF</h3>
+      <div className='button-container'>
+        <h3 className='header-default header-pdf'>Export to PDF</h3>
 
-        <div className="pdf-export-container">
+        <div className='pdf-export-container'>
           <button onClick={() => fillForm()}>Purist</button>
 
           <button onClick={() => fillFormUnderground()}>Underground</button>
         </div>
 
-        <h3 className="header-default header-pdf">Navigation</h3>
+        <h3 className='header-default header-pdf'>Navigation</h3>
 
-        <div className="navigation">
+        <div className='navigation'>
           <button
             onClick={() => {
               setScreen({

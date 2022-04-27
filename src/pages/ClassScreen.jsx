@@ -18,45 +18,46 @@ export default function ClassScreen(props) {
   } = props
 
   return (
-    <div className="class-options-screen">
-      <Header name={'class-options'} translation={'classOptions'}>
-      </Header>
+    <div className='class-options-screen'>
+      <Header name={'class-options'} translation={'classOptions'}></Header>
 
       <HPRoller
-      characterClass={characterClass}
-      characterStatistics={characterStatistics}
-      setCharacterStatistics={setCharacterStatistics}
-      characterModifiers={characterModifiers}>
-      </HPRoller>
+        characterClass={characterClass}
+        characterStatistics={characterStatistics}
+        setCharacterStatistics={setCharacterStatistics}
+        characterModifiers={characterModifiers}
+      ></HPRoller>
 
-        <div className="saving-throws-menu">
-          <h5 className="saving-throws-menu--header">
-            {characterClass.name} Saving Throws
-          </h5>
+      <div className='saving-throws-menu'>
+        <h5 className='saving-throws-menu--header'>
+          {characterClass.name} Saving Throws
+        </h5>
 
-          <SavingThrows characterClass={characterClass}></SavingThrows>
+        <SavingThrows characterClass={characterClass}></SavingThrows>
+      </div>
 
-        </div>
+      <div className='class-ability-menu'>
+        <h5 className='class-ability-menu--header'>
+          {characterClass.name} Abilities
+        </h5>
 
-        <div className="class-ability-menu">
-          <h5 className="class-ability-menu--header">
-            {characterClass.name} Abilities
-          </h5>
-
-          <ClassAbilitiesList characterClass={characterClass}></ClassAbilitiesList>
-        </div>
+        <ClassAbilitiesList
+          characterClass={characterClass}
+        ></ClassAbilitiesList>
+      </div>
 
       <SpellSelection
-      setCharacterStatistics={setCharacterStatistics}
-      characterClass={characterClass}
+        setCharacterStatistics={setCharacterStatistics}
+        characterClass={characterClass}
       ></SpellSelection>
 
-        <Button name={'equipment-options'} text={'Go to Equipment'} callback={() => {
+      <Button
+        name={'equipment-options'}
+        text={'Go to Equipment'}
+        callback={() => {
           setScreen({ ...screen, equipmentScreen: true, classScreen: false })
         }}
-        >
-        </Button>
-
+      ></Button>
     </div>
   )
 }

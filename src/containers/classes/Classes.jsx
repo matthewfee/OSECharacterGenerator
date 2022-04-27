@@ -17,31 +17,40 @@ export default function ClassOptions(props) {
     })
 
     const classOptions = classData.map((item) => {
-      return (<ClassOptionsButton
-        key={item.name}
-        characterClass={item}
-        abilityScores={abilityScores}
-        changeCharacterClass={changeCharacterClass}
-      ></ClassOptionsButton>)
+      return (
+        <ClassOptionsButton
+          key={item.name}
+          characterClass={item}
+          abilityScores={abilityScores}
+          changeCharacterClass={changeCharacterClass}
+        ></ClassOptionsButton>
+      )
     })
     return classOptions
   }
 
   return (
-    <div className="class-options-container container">
-      <CharacterClasses classType="basic" callback={listClassOptions}></CharacterClasses>
+    <div className='class-options-container container'>
+      <CharacterClasses
+        classType='basic'
+        callback={listClassOptions}
+      ></CharacterClasses>
 
-      <h3 className="advanced-classes-header">
+      <h3 className='advanced-classes-header'>
         Advanced Classes
         <Checkbox
-        value="Advanced Classes"
-        checkedCondition={advancedClassesDisplay}
-        callback={() => setAdvancedClassesDisplay(!advancedClassesDisplay)}
-        >
-        </Checkbox>
+          value='Advanced Classes'
+          checkedCondition={advancedClassesDisplay}
+          callback={() => setAdvancedClassesDisplay(!advancedClassesDisplay)}
+        ></Checkbox>
       </h3>
 
-      {advancedClassesDisplay && <CharacterClasses classType="advanced" callback={listClassOptions}></CharacterClasses>}
+      {advancedClassesDisplay && (
+        <CharacterClasses
+          classType='advanced'
+          callback={listClassOptions}
+        ></CharacterClasses>
+      )}
 
       <ClassDescription characterClass={characterClass}></ClassDescription>
     </div>

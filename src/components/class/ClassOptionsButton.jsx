@@ -28,7 +28,7 @@ export default function ClassOptionsButton(props) {
 
   return (
     <button
-      className="button button-class-option"
+      className='button button-class-option'
       value={characterClass.name}
       key={characterClass.name}
       onClick={changeCharacterClass}

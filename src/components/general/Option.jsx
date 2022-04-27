@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 export default function Option({ value }) {
   return (
     <option className={`option option--${value}`} value={value}>
-    {value}
-  </option>
+      {value}
+    </option>
   )
 }
 
