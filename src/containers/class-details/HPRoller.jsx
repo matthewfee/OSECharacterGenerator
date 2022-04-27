@@ -38,7 +38,7 @@ export default function HPRoller(props) {
       }
 
       setHitPoints(totalHP)
-      setCharacterStatistics({ ...characterStatistics, totalHP })
+      setCharacterStatistics({ ...characterStatistics, hitPoints: totalHP })
       setHPResult(HPResult)
       setHPRolls(HPRollsNew)
 
@@ -66,6 +66,10 @@ export default function HPRoller(props) {
             setCanReroll(false)
           }
 
+          setCharacterStatistics({
+            ...characterStatistics,
+            hitPoints: totalHP
+          })
           setHitPoints(totalHP)
           setHPResult(HPResult)
           setHPRolls(HPRollsNew)
