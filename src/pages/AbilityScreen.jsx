@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import ClassOptions from '../components/class/ClassOptions'
+import Classes from '../containers/classes/Classes'
 import AbilityScores from '../containers/abilties/AbilityScores'
 import NavigationOptions from '../containers/abilties/NavigationOptions'
 import PropTypes from 'prop-types'
@@ -25,11 +25,11 @@ export default function AbilityScreen (props) {
       <h2 className="header-default character-class-header">
         <Trans i18nKey="characterClass">Character Class</Trans>
       </h2>
-      <ClassOptions
+      <Classes
         characterClass={characterClass}
         abilityScores={abilityScores}
         changeCharacterClass={changeCharacterClass}
-      ></ClassOptions>
+      ></Classes>
 
       <h2 className="ability-scores--header header-default">
         <Trans i18nKey="abilityScores">Ability Scores</Trans>

@@ -110,7 +110,6 @@ export default function CharacterGenerator () {
   }, [abilityScores, characterClass])
 
   const rollAttribute = (e) => {
-    console.log('ROLLING DICE', e.target.value)
     const attribute = e.target.value
 
     const newCharacterAbilityScores = { ...abilityScores }
@@ -149,7 +148,6 @@ export default function CharacterGenerator () {
   }
 
   Dice.onRollComplete = (rollResults) => {
-    console.log('ROLL COMPLETE', rollResults)
     setPendingRoll(null)
     const newAbilityScores = { ...abilityScores }
     if (pendingRoll === 'all') {

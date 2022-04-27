@@ -995,8 +995,8 @@ div > .button-class-option {
 }
 
 @media screen and (min-width: 400px) {
-  .basic-class-container,
-  .advanced-class-container {
+  .class-container
+{
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
     width: 90% !important;
     max-width: 1000px !important;
@@ -1041,8 +1041,7 @@ div > .button-class-option {
   align-items: center;
 }
 
-.basic-class-container,
-.advanced-class-container {
+.class-container{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   width: 100%;
@@ -1050,8 +1049,7 @@ div > .button-class-option {
   max-width: 400px;
 }
 
-.basic-class-container > .button:disabled,
-.advanced-class-container > .button:disabled {
+.class-container > .button:disabled {
   color: rgba(0, 0, 0, 0.2);
 }
 
