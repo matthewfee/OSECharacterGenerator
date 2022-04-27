@@ -1,11 +1,11 @@
 import React from 'react'
-import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import HPRoller from '../containers/class-details/HPRoller'
 import SavingThrows from '../components/class/SavingThrows'
 import ClassAbilitiesList from '../components/class/ClassAbilitiesList'
 import SpellSelection from '../containers/class-details/SpellSelection'
 import Button from '../components/general/Button'
+import Header from '../components/general/Header'
 
 export default function ClassScreen (props) {
   const {
@@ -19,9 +19,8 @@ export default function ClassScreen (props) {
 
   return (
     <div className="class-options-screen">
-      <h3 className="header-default">
-        <Trans i18nKey="classOptions">Class Options</Trans>
-      </h3>
+      <Header name={'class-options'} translation={'classOptions'}>
+      </Header>
 
       <HPRoller
       characterClass={characterClass}
