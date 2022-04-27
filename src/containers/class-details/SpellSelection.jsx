@@ -4,7 +4,7 @@ import { magicUserSpells, druidSpells, illusionistSpells } from '../../data/spel
 import { chooseRandomItem } from '../../utilities/utilities'
 import Option from '../../components/general/Option'
 
-export default function SpellSelection ({ characterClass, setCharacterStatistics }) {
+export default function SpellSelection({ characterClass, setCharacterStatistics }) {
   const [spellSelected, setSpellSelected] = useState('')
 
   const chooseSpells = () => {

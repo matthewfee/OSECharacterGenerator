@@ -6,7 +6,7 @@ import { LinkText } from '../utilities/utilities'
 import { lngs } from '../constants/constants'
 import PropTypes from 'prop-types'
 
-export default function LandingScreen (props) {
+export default function LandingScreen(props) {
   const { t, i18n } = useTranslation()
 
   const {

@@ -3,7 +3,7 @@ import { Thief, abilityScoreNames } from '../../constants/constants'
 import AbilityScoresRow from '../../components/abilities/AbilityScoresRow'
 import PropTypes from 'prop-types'
 
-export default function AbilityScores (props) {
+export default function AbilityScores(props) {
   const {
     abilityScores,
     characterClass,

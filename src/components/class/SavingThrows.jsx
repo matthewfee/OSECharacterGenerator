@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function SavingThrows ({ characterClass }) {
+export default function SavingThrows({ characterClass }) {
   return (
     <div className="saving-throws container">
             <div className="saving-throw--death saving-throw-name">Death </div>

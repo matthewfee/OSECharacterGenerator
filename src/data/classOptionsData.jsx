@@ -113,7 +113,7 @@ const classOptionsData = [
     category: 'basic',
     requirements: 'Minimum 9 intelligence',
     primeReqs: ['intelligence', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -150,7 +150,7 @@ const classOptionsData = [
     category: 'basic',
     requirements: 'Minimum 9 constitution, minimum 9 dexterity',
     primeReqs: ['dexterity', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
         return 10
       }
@@ -238,7 +238,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 dexterity',
     primeReqs: ['constitution', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -301,7 +301,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 intelligence',
     primeReqs: ['wisdom', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -396,7 +396,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 constitution',
     primeReqs: ['intelligence', 'dexterity'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -436,7 +436,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 charisma, minimum 9 constitution',
     primeReqs: ['intelligence', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (
         (abilityScore1 >= 16 && abilityScore2 >= 13) ||
         (abilityScore2 >= 16 && abilityScore1 >= 13)
@@ -469,7 +469,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: null,
     primeReqs: ['dexterity', 'strength'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -550,7 +550,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 charisma',
     primeReqs: ['strength', 'wisdom'],
-    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }

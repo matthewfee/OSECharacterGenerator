@@ -11,7 +11,7 @@ import {
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-export default function CharacterSheetScreen (props) {
+export default function CharacterSheetScreen(props) {
   const {
     screen,
     setScreen,
@@ -97,7 +97,7 @@ export default function CharacterSheetScreen (props) {
     Misfortune: ${character.misfortune}
     `
 
-  async function fillForm () {
+  async function fillForm() {
     const formUrl = CHARACTER_SHEET_PURIST_URL
     const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer())
 
@@ -169,7 +169,7 @@ export default function CharacterSheetScreen (props) {
     download(pdfBytes, fileName, 'application/pdf')
   }
 
-  async function fillFormUnderground () {
+  async function fillFormUnderground() {
     const formUrl = CHARACTER_SHEET_UNDERGROUND_URL
 
     const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer())

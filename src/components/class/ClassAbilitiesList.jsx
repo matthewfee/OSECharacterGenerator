@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function ClassAbilitiesList ({ characterClass }) {
+export default function ClassAbilitiesList({ characterClass }) {
   return (
     <div className="class-ability-menu--abilities">
     <ul className="class-ability-list">

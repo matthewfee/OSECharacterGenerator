@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function ListItem ({ type, value }) {
+export default function ListItem({ type, value }) {
   return (
     <li className={`list-item list-item--${type}`}>
           <b>{type}:</b> {value}

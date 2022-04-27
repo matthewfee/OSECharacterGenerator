@@ -2,7 +2,7 @@ import React from 'react'
 import { joinDuplicates } from '../../utilities/utilities'
 import PropTypes from 'prop-types'
 
-export default function Backpack (props) {
+export default function Backpack(props) {
   const { storeHandler, items, itemType } = props
   return (
     <div className={`backpack backpack--${itemType}`}>

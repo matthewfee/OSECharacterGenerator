@@ -17,7 +17,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Dice } from '../utilities/DiceBox'
 import { isMobile } from 'react-device-detect'
 
-export default function CharacterGenerator () {
+export default function CharacterGenerator() {
   const [character, setCharacter] = useState({
     id: null,
     name: null,
@@ -88,7 +88,7 @@ export default function CharacterGenerator () {
 
   const [pendingRoll, setPendingRoll] = useState('')
 
-  const loadRandomNumbers = async function () {
+  const loadRandomNumbers = async function() {
     const randomNumbers = await getRandomNumbers()
     if (randomNumbers) {
       setRandomNumbers(randomNumbers)

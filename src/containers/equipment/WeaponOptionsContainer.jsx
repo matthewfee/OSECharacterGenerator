@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function WeaponOptionsContainer (props) {
+export default function WeaponOptionsContainer(props) {
   const {
     characterClass,
     weaponSelected,

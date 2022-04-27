@@ -7,7 +7,7 @@ import SpellSelection from '../containers/class-details/SpellSelection'
 import Button from '../components/general/Button'
 import Header from '../components/general/Header'
 
-export default function ClassScreen (props) {
+export default function ClassScreen(props) {
   const {
     screen,
     setScreen,

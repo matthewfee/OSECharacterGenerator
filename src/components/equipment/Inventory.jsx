@@ -1,9 +1,9 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
-import Backpack from './Backpack'
+import Backpack from '../components/equipment/Backpack'
 import PropTypes from 'prop-types'
 
-export default function Inventory (props) {
+export default function Inventory(props) {
   const { weapons, adventuringGear, armour, storeHandler } = props
   return (
     <div className="inventory">

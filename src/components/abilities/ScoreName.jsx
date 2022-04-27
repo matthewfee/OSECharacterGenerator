@@ -2,7 +2,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-export default function ScoreName (props) {
+export default function ScoreName(props) {
   const { abilityScoreName, primeReq, showPrimeReq } = props
 
   return (

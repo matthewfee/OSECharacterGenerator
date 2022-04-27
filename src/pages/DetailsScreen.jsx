@@ -15,7 +15,7 @@ import {
   languageOptions
 } from '../constants/constants'
 
-export default function DetailsScreen (props) {
+export default function DetailsScreen(props) {
   const {
     screen,
     setScreen,

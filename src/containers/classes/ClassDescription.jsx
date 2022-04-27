@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ListItem from '../../components/general/ListItem'
 
-export default function ClassDescription (props) {
+export default function ClassDescription(props) {
   const { characterClass } = props
 
   if (!characterClass.name) {

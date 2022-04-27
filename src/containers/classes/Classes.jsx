@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import CharacterClasses from '../../components/class/CharacterClasses'
 import Checkbox from '../../components/general/Checkbox'
 
-export default function ClassOptions (props) {
+export default function ClassOptions(props) {
   const { characterClass, abilityScores, changeCharacterClass } = props
 
   const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false)

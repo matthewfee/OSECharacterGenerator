@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Header from '../components/general/Header'
 import EquipmentStore from '../containers/equipment/EquipmentStore'
 
-export default function EquipmentScreen (props) {
+export default function EquipmentScreen(props) {
   const {
     characterClass,
     screen,

@@ -5,7 +5,7 @@ import NavigationOptions from '../containers/abilties/NavigationOptions'
 import PropTypes from 'prop-types'
 import Header from '../components/general/Header'
 
-export default function AbilityScreen (props) {
+export default function AbilityScreen(props) {
   const {
     characterClass,
     abilityScores,

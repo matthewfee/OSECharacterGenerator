@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { CHARACTER_STORAGE } from '../constants/constants'
 import PropTypes from 'prop-types'
 
-export default function CharacterStorageScreen (props) {
+export default function CharacterStorageScreen(props) {
   const {
     screen,
     setScreen,

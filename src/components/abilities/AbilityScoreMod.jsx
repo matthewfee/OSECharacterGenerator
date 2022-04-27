@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function AbilityScoreMod ({ modArray }) {
+export default function AbilityScoreMod({ modArray }) {
   return (
     <div className="ability-mod">
       {modArray.map((item, index) => {

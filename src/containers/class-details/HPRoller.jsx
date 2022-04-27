@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Dice } from '../../utilities/DiceBox'
 import { isMobile } from 'react-device-detect'
 
-export default function HPRoller (props) {
+export default function HPRoller(props) {
   const {
     characterClass,
     characterStatistics,

@@ -17,7 +17,7 @@ Dice.init().then(() => {
 })
 
 class App extends React.Component {
-  render () {
+  render() {
     return <CharacterGenerator />
   }
 }

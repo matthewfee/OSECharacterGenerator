@@ -20,7 +20,7 @@ import PropTypes from 'prop-types'
 import { Dice } from '../../utilities/DiceBox'
 import { isMobile } from 'react-device-detect'
 
-export default function EquipmentStore (props) {
+export default function EquipmentStore(props) {
   const {
     characterClass,
     characterModifiers,

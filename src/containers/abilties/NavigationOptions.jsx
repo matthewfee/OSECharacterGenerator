@@ -2,7 +2,7 @@ import React from 'react'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 
-export default function NavigationOptions (props) {
+export default function NavigationOptions(props) {
   const { screen, setScreen, characterClass, rollAttribute, abilityScores } =
     props
 

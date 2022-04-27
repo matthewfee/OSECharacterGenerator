@@ -2,7 +2,7 @@ import React from 'react'
 import { armourTypes } from '../../constants/constants'
 import PropTypes from 'prop-types'
 
-export default function ArmourOptionsContainer (props) {
+export default function ArmourOptionsContainer(props) {
   const {
     characterClass,
     armourSelected,
