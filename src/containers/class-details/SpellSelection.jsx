@@ -62,7 +62,7 @@ export default function SpellSelection ({ characterClass, setCharacterStatistics
   return (
     <React.Fragment>
     {hasSpells && <div className="spell-selection-menu">
-          && <h5 className="class-ability-menu--header">
+          <h5 className="class-ability-menu--header">
             {characterClass.name} Spells
           </h5>
           <select

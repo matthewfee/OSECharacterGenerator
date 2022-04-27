@@ -4,10 +4,10 @@ import { Trans } from 'react-i18next'
 
 export default function Header ({ name, text, translation }) {
   return (
-    <div className={`header-default header-default--${name}`}>
+    <h2 className={`header header-default header--${name}`}>
         {text}
         {translation ? <Trans i18nKey={`${translation}`}></Trans> : ''}
-    </div>
+    </h2>
   )
 }
 
