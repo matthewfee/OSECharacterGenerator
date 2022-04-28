@@ -116,6 +116,15 @@ export default function CharacterGenerator() {
   const rollAttribute = (e) => {
     const attribute = e.target.value
 
+    const diceThemes = {
+      strength: '#ff0000',
+      intelligence: '#061577',
+      dexterity: '#09720e',
+      wisdom: '#000000',
+      constitution: '#654200',
+      charisma: '#8b1876'
+    }
+
     const newCharacterAbilityScores = { ...abilityScores }
 
     if (isMobile && attribute === 'all') {
@@ -139,15 +148,16 @@ export default function CharacterGenerator() {
 
     if (!isMobile && attribute === 'all') {
       setPendingRoll('all')
-      Dice.show().roll('3d6', { theme: '#ff0000' })
-      Dice.roll('3d6', { theme: '#061577' })
-      Dice.roll('3d6', { theme: '#09720e' })
-      Dice.roll('3d6', { theme: '#000000' })
-      Dice.roll('3d6', { theme: '#654200' })
-      Dice.roll('3d6', { theme: '#8b1876' })
+      Dice.show().roll('3d6', { theme: diceThemes.strength})
+      Dice.roll('3d6', { theme: diceThemes.intelligence })
+      Dice.roll('3d6', { theme: diceThemes.dexterity })
+      Dice.roll('3d6', { theme: diceThemes.wisdom})
+      Dice.roll('3d6', { theme: diceThemes.constitution})
+      Dice.roll('3d6', { theme: diceThemes.charisma})
     } else {
       setPendingRoll(attribute)
-      Dice.show().roll('3d6')
+      const diceColor = diceThemes[attribute]
+      Dice.show().roll('3d6', {theme: diceColor})
     }
   }
 
