@@ -27,7 +27,7 @@ export default function CharacterStorageScreen (props) {
         setAbilityScores={setAbilityScores}
         setCharacterStatistics={setCharacterStatistics}
         setCharacterClass={setCharacterClass}
-        setCharacterEquipmen={setCharacterEquipment}
+        setCharacterEquipment={setCharacterEquipment}
         setCharacterModifiers={setCharacterModifiers}
         setCharacterRolled={setCharacterRolled}
       ></CharacterStorage>
