@@ -203,6 +203,8 @@ export default function CharacterGenerator() {
     setCharacterClass(characterClass)
   }
 
+  let characterMenuStyle = characterRolled ? {} : { display: 'none' }
+
   return (
     <div className={`wrapper ${rollButtonHover ? 'wrapper-alt' : ''}`}>
       <LandingScreen
@@ -218,10 +220,7 @@ export default function CharacterGenerator() {
         screen={screen}
         setScreen={setScreen}
       ></LandingScreen>
-      <div
-        className={'character-menu container'}
-        style={{ display: characterRolled ? 'flex' : 'none' }}
-      >
+      <div className={'character-menu container'} style={characterMenuStyle}>
         {screen.abilityScreen && characterRolled && (
           <AbilityScreen
             diceEnabled={diceEnabled}
