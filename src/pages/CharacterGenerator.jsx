@@ -117,12 +117,12 @@ export default function CharacterGenerator() {
     const attribute = e.target.value
 
     const diceThemes = {
-      strength: '#ff0000',
-      intelligence: '#061577',
-      dexterity: '#09720e',
-      wisdom: '#000000',
-      constitution: '#654200',
-      charisma: '#8b1876'
+      strength: '#8d1a10',
+      intelligence: '#30049d',
+      dexterity: '#3E6E1B',
+      wisdom: '#0A5159',
+      constitution: '#0c0828',
+      charisma: '#E795A6'
     }
 
     const newCharacterAbilityScores = { ...abilityScores }

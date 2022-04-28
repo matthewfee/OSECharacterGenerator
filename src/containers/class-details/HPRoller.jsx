@@ -46,9 +46,12 @@ export default function HPRoller(props) {
     }
 
     if (!isMobile) {
+
+      const HPDiceColor = '#FF2800'
+
       Dice.hide()
         .show()
-        .roll(`1d${die}`)
+        .roll(`1d${die}`, {theme: HPDiceColor})
         .then((results) => {
           const HPResult = results[0].value
 
