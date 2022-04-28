@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text");
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
 
 * {
   margin: 0;
@@ -995,8 +995,7 @@ div > .button-class-option {
 }
 
 @media screen and (min-width: 400px) {
-  .class-container
-{
+  .class-container {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
     width: 90% !important;
     max-width: 1000px !important;

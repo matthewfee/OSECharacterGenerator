@@ -30,7 +30,8 @@ export default function EquipmentStore(props) {
     setCharacterStatistics,
     setCharacterEquipment,
     screen,
-    setScreen
+    setScreen,
+    diceEnabled
   } = props
 
   const [gold, setGold] = useState(null)
@@ -79,7 +80,7 @@ export default function EquipmentStore(props) {
   }, [armour])
 
   const getGold = () => {
-    if (isMobile) {
+    if (isMobile || !diceEnabled) {
       const gold = d(3, 6)
       const totalGold = gold * 10
       setGold(totalGold)
@@ -90,7 +91,7 @@ export default function EquipmentStore(props) {
     const goldColor = `#D99E30`
 
     Dice.show()
-      .roll('3d6', {theme: goldColor})
+      .roll('3d6', { theme: goldColor })
       .then((results) => {
         let goldResult = 0
         results.forEach((dieResult) => {
@@ -363,6 +364,7 @@ export default function EquipmentStore(props) {
 }
 
 EquipmentStore.propTypes = {
+  diceEnabled: PropTypes.func,
   characterClass: PropTypes.object,
   characterModifiers: PropTypes.objectOf(PropTypes.string),
   characterStatistics: PropTypes.shape({

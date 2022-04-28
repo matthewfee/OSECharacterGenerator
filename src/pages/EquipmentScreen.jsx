@@ -11,7 +11,8 @@ export default function EquipmentScreen(props) {
     characterModifiers,
     characterStatistics,
     setCharacterStatistics,
-    setCharacterEquipment
+    setCharacterEquipment,
+    diceEnabled
   } = props
 
   return (
@@ -26,12 +27,14 @@ export default function EquipmentScreen(props) {
         setCharacterEquipment={setCharacterEquipment}
         screen={screen}
         setScreen={setScreen}
+        diceEnabled={diceEnabled}
       ></EquipmentStore>
     </div>
   )
 }
 
 EquipmentScreen.propTypes = {
+  diceEnabled: PropTypes.func,
   characterClass: PropTypes.object,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,

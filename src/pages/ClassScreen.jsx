@@ -14,7 +14,8 @@ export default function ClassScreen(props) {
     characterClass,
     characterStatistics,
     setCharacterStatistics,
-    characterModifiers
+    characterModifiers,
+    diceEnabled
   } = props
 
   return (
@@ -26,6 +27,7 @@ export default function ClassScreen(props) {
         characterStatistics={characterStatistics}
         setCharacterStatistics={setCharacterStatistics}
         characterModifiers={characterModifiers}
+        diceEnabled={diceEnabled}
       ></HPRoller>
 
       <div className='saving-throws-menu'>
@@ -63,6 +65,7 @@ export default function ClassScreen(props) {
 }
 
 ClassScreen.propTypes = {
+  diceEnabled: PropTypes.bool,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
   characterClass: PropTypes.object,

@@ -26,7 +26,8 @@ export default function CharacterDetails(props) {
     character,
     setCharacter,
     characterClass,
-    characterModifiers
+    characterModifiers,
+    diceEnabled
   } = props
 
   const [characterName, setCharacterName] = useState('')
@@ -96,7 +97,7 @@ export default function CharacterDetails(props) {
   const getBackground = () => {
     const listLength = 100
 
-    if (isMobile) {
+    if (isMobile || !diceEnabled) {
       let diceResult = d(1, 100)
       let diceResult2 = d(1, 100)
       let background = getWeightedValue(characterBackgrounds, diceResult, 100)
@@ -376,8 +377,8 @@ export default function CharacterDetails(props) {
       </div>
 
       <Button
-        name={"character-sheet"}
-        text={"Go to Character Sheet"}
+        name={'character-sheet'}
+        text={'Go to Character Sheet'}
         callback={() => {
           setCharacter({
             ...character,
@@ -403,6 +404,7 @@ export default function CharacterDetails(props) {
 }
 
 CharacterDetails.propTypes = {
+  diceEnabled: PropTypes.bool,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
   character: PropTypes.object,

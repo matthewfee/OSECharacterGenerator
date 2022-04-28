@@ -5,11 +5,15 @@ import { useTranslation, Trans } from 'react-i18next'
 import { LinkText } from '../utilities/utilities'
 import { lngs } from '../constants/constants'
 import PropTypes from 'prop-types'
+import CheckBox from '../components/general/Checkbox'
+import { isMobile } from 'react-device-detect'
 
 export default function LandingScreen(props) {
   const { t, i18n } = useTranslation()
 
   const {
+    diceEnabled,
+    setDiceEnabled,
     characterRolled,
     setCharacterRolled,
     rollButtonHover,
@@ -85,6 +89,18 @@ export default function LandingScreen(props) {
         <div
           className={`main-page--subheader ${rollButtonHover ? 'fade' : ''} `}
         >
+          {!isMobile && (
+            <div className='dice-enabled-container'>
+              Dice Enabled
+              <CheckBox
+                value={'dice-enabled'}
+                callback={() => {
+                  setDiceEnabled(!diceEnabled)
+                }}
+                checkedCondition={diceEnabled}
+              ></CheckBox>
+            </div>
+          )}
           <div className='main-page--description'>
             <Trans
               i18nKey='AppDescription'
@@ -134,6 +150,8 @@ export default function LandingScreen(props) {
 }
 
 LandingScreen.propTypes = {
+  diceEnabled: PropTypes.bool,
+  setDiceEnabled: PropTypes.func,
   characterRolled: PropTypes.bool,
   setCharacterRolled: PropTypes.func,
   rollButtonHover: PropTypes.bool,

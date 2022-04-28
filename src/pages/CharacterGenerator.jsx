@@ -84,6 +84,8 @@ export default function CharacterGenerator() {
     gold: null
   })
 
+  const [diceEnabled, setDiceEnabled] = useState(true)
+
   const [loadingRandomNumbers, setLoadingRandomNumbers] = useState(true)
   const [randomNumbers, setRandomNumbers] = useState([])
 
@@ -127,7 +129,9 @@ export default function CharacterGenerator() {
 
     const newCharacterAbilityScores = { ...abilityScores }
 
-    if (isMobile && attribute === 'all') {
+    const animateDice = !isMobile && diceEnabled
+
+    if (!animateDice && attribute === 'all') {
       abilityScoreNames.forEach((score) => {
         const dieResult = d6(3, randomNumbers)
         newCharacterAbilityScores[score] = dieResult
@@ -138,7 +142,7 @@ export default function CharacterGenerator() {
       return
     }
 
-    if (isMobile) {
+    if (!animateDice) {
       const dieResult = d6(3, randomNumbers)
       newCharacterAbilityScores[attribute] = dieResult
       newCharacterAbilityScores[`${attribute}Original`] = dieResult
@@ -146,18 +150,18 @@ export default function CharacterGenerator() {
       return
     }
 
-    if (!isMobile && attribute === 'all') {
+    if (attribute === 'all') {
       setPendingRoll('all')
-      Dice.show().roll('3d6', { theme: diceThemes.strength})
+      Dice.show().roll('3d6', { theme: diceThemes.strength })
       Dice.roll('3d6', { theme: diceThemes.intelligence })
       Dice.roll('3d6', { theme: diceThemes.dexterity })
-      Dice.roll('3d6', { theme: diceThemes.wisdom})
-      Dice.roll('3d6', { theme: diceThemes.constitution})
-      Dice.roll('3d6', { theme: diceThemes.charisma})
+      Dice.roll('3d6', { theme: diceThemes.wisdom })
+      Dice.roll('3d6', { theme: diceThemes.constitution })
+      Dice.roll('3d6', { theme: diceThemes.charisma })
     } else {
       setPendingRoll(attribute)
       const diceColor = diceThemes[attribute]
-      Dice.show().roll('3d6', {theme: diceColor})
+      Dice.show().roll('3d6', { theme: diceColor })
     }
   }
 
@@ -202,6 +206,8 @@ export default function CharacterGenerator() {
   return (
     <div className={`wrapper ${rollButtonHover ? 'wrapper-alt' : ''}`}>
       <LandingScreen
+        diceEnabled={diceEnabled}
+        setDiceEnabled={setDiceEnabled}
         rollButtonHover={rollButtonHover}
         setRollButtonHover={setRollButtonHover}
         loadingRandomNumbers={loadingRandomNumbers}
@@ -218,6 +224,7 @@ export default function CharacterGenerator() {
       >
         {screen.abilityScreen && characterRolled && (
           <AbilityScreen
+            diceEnabled={diceEnabled}
             characterRolled={characterRolled}
             characterClass={characterClass}
             abilityScores={abilityScores}
@@ -243,6 +250,7 @@ export default function CharacterGenerator() {
             characterModifiers={characterModifiers}
             characterStatistics={characterStatistics}
             setCharacterStatistics={setCharacterStatistics}
+            diceEnabled={diceEnabled}
           ></ClassScreen>
         )}
 
@@ -257,6 +265,7 @@ export default function CharacterGenerator() {
             characterEquipment={characterEquipment}
             setCharacterEquipment={setCharacterEquipment}
             randomNumbers={randomNumbers}
+            diceEnabled={diceEnabled}
           />
         )}
 
@@ -268,6 +277,7 @@ export default function CharacterGenerator() {
             setCharacter={setCharacter}
             characterClass={characterClass}
             characterModifiers={characterModifiers}
+            diceEnabled={diceEnabled}
           ></DetailsScreen>
         )}
 

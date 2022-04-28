@@ -9,7 +9,8 @@ export default function HPRoller(props) {
     characterClass,
     characterStatistics,
     setCharacterStatistics,
-    characterModifiers
+    characterModifiers,
+    diceEnabled
   } = props
 
   const [hitPoints, setHitPoints] = useState(null)
@@ -24,7 +25,7 @@ export default function HPRoller(props) {
 
     let HPResult
 
-    if (isMobile) {
+    if (isMobile || !diceEnabled) {
       HPResult = d(1, die)
 
       let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
@@ -45,39 +46,36 @@ export default function HPRoller(props) {
       return
     }
 
-    if (!isMobile) {
+    const HPDiceColor = '#FF2800'
 
-      const HPDiceColor = '#FF2800'
+    Dice.hide()
+      .show()
+      .roll(`1d${die}`, { theme: HPDiceColor })
+      .then((results) => {
+        const HPResult = results[0].value
 
-      Dice.hide()
-        .show()
-        .roll(`1d${die}`, {theme: HPDiceColor})
-        .then((results) => {
-          const HPResult = results[0].value
+        if (isNaN(HPResult)) {
+          throw new Error('Dice result was not a number')
+        }
 
-          if (isNaN(HPResult)) {
-            throw new Error('Dice result was not a number')
-          }
+        let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
+        const HPRollsNew = HPRolls + 1
 
-          let totalHP = HPResult + parseInt(characterModifiers.constitutionMod)
-          const HPRollsNew = HPRolls + 1
+        if (totalHP < 1) {
+          totalHP = 1
+        }
+        if (HPResult > 2 || HPRollsNew === 2) {
+          setCanReroll(false)
+        }
 
-          if (totalHP < 1) {
-            totalHP = 1
-          }
-          if (HPResult > 2 || HPRollsNew === 2) {
-            setCanReroll(false)
-          }
-
-          setCharacterStatistics({
-            ...characterStatistics,
-            hitPoints: totalHP
-          })
-          setHitPoints(totalHP)
-          setHPResult(HPResult)
-          setHPRolls(HPRollsNew)
+        setCharacterStatistics({
+          ...characterStatistics,
+          hitPoints: totalHP
         })
-    }
+        setHitPoints(totalHP)
+        setHPResult(HPResult)
+        setHPRolls(HPRollsNew)
+      })
   }
 
   return (
@@ -126,6 +124,7 @@ export default function HPRoller(props) {
 }
 
 HPRoller.propTypes = {
+  diceEnabled: PropTypes.bool,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
   characterClass: PropTypes.object,

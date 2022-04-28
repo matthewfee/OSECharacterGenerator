@@ -10,23 +10,23 @@ export default function DetailsScreen(props) {
     character,
     setCharacter,
     characterClass,
-    characterModifiers
+    characterModifiers,
+    diceEnabled
   } = props
-
 
   return (
     <div className='details-screen-container'>
       <div id='print-wrapper'>
+        <Header translation='characterDetails'></Header>
 
-        <Header translation="characterDetails"></Header>
-
-        <CharacterDetails 
-        screen={screen}
-        setScreen={setScreen} 
-        character={character}
-        setCharacter={setCharacter}
-        characterClass={characterClass}
-        characterModifiers={characterModifiers}
+        <CharacterDetails
+          screen={screen}
+          setScreen={setScreen}
+          character={character}
+          setCharacter={setCharacter}
+          characterClass={characterClass}
+          characterModifiers={characterModifiers}
+          diceEnabled={diceEnabled}
         ></CharacterDetails>
       </div>
     </div>
@@ -34,6 +34,7 @@ export default function DetailsScreen(props) {
 }
 
 DetailsScreen.propTypes = {
+  diceEnabled: PropTypes.func,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
   character: PropTypes.object,

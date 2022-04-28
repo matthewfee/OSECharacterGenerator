@@ -5,7 +5,7 @@ export default function Button({ name, callback, text, color }) {
   return (
     <button
       className={`button button--${name}`}
-      style={{"background-color": color}}
+      style={{ 'backgroundColor': color }}
       onClick={() => {
         callback()
       }}
