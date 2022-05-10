@@ -35,8 +35,8 @@ export const defaultAbilityScoresState = {
 export const abilityScoreNames = [
   'strength',
   'intelligence',
-  'dexterity',
   'wisdom',
+  'dexterity',
   'constitution',
   'charisma'
 ]
