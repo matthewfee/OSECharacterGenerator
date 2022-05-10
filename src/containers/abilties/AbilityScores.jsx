@@ -78,12 +78,12 @@ export default function AbilityScores(props) {
       { text: 'Languages', value: intelligenceModLanguages },
       { text: 'Literacy', value: intelligenceModLiteracy }
     ],
+    wisdom: [{ text: 'Magic Saves', value: wisdomMod }],
     dexterity: [
       { text: 'AC', value: dexterityModAC },
       { text: 'Missiles', value: dexterityModMissiles },
       { text: 'Initiative', value: dexterityModInitiative }
     ],
-    wisdom: [{ text: 'Magic Saves', value: wisdomMod }],
     constitution: [{ text: 'Hit Points', value: constitutionMod }],
     charisma: [
       { text: 'Reactions', value: charismaModNPCReactions },
@@ -95,8 +95,8 @@ export default function AbilityScores(props) {
   const abilityScoresCanDecrease = {
     strength: characterClass.name !== Thief,
     intelligence: true,
-    dexterity: true,
-    wisdom: false,
+    wisdom: true,
+    dexterity: false,
     constitution: false,
     charisma: false
   }
