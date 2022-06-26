@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { joinDuplicates } from '../../utilities/utilities'
 import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
+import Button from '../../components/general/Button'
+import NumberInput from '../../components/character/NumberInput'
 
 const CharacterSheet = React.forwardRef((props, ref) => {
   const {
@@ -12,6 +14,8 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     characterEquipment,
     characterModifiers
   } = props
+
+  const [editMode, setEditMode] = useState(true)
 
   const alignmentCapitalized = character.alignment
     ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
@@ -46,13 +50,15 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     })
   }
 
+  const toggleEditMode = () => {
+    setEditMode((prevMode) => !prevMode)
+  }
+
   return (
     <div ref={ref} className='character-sheet-component'>
-      {/* <h3 className="header-default">
-        <Trans i18nKey={"characterSheet"}></Trans>
-      </h3> */}
       <h3 className='character--name'>{character.name}</h3>
       <h4 className='character--subheader'> Level 1 {characterClass.name}</h4>
+      <Button callback={toggleEditMode}>Edit</Button>
       <div className='character-sheet'>
         <div className='character-top-container'>{getCharacterFields()}</div>
 
@@ -62,8 +68,10 @@ const CharacterSheet = React.forwardRef((props, ref) => {
               <Trans i18nKey={'abilityScoreNames.strength'}>Strength</Trans>
             </span>
             <span className='charsheet-value'>
-              {' '}
-              {abilityScores.strength}
+              <NumberInput
+                defaultValue={abilityScores.strength}
+                editMode={editMode}
+              />
               {characterModifiers.strengthModMelee !== '0' && (
                 <span> ({characterModifiers.strengthModMelee})</span>
               )}
@@ -77,8 +85,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
               </Trans>
             </span>
             <span className='charsheet-value'>
-              {' '}
-              {abilityScores.intelligence}{' '}
+              {abilityScores.intelligence}
             </span>
           </div>
 
@@ -87,7 +94,6 @@ const CharacterSheet = React.forwardRef((props, ref) => {
               <Trans i18nKey={'abilityScoreNames.wisdom'}>Wisdom</Trans>
             </span>
             <span className='charsheet-value'>
-              {' '}
               {abilityScores.wisdom}
               {characterModifiers.wisdomMod !== '0' && (
                 <span> ({characterModifiers.wisdomMod})</span>
@@ -148,15 +154,15 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                 <span>Wands</span> <span>{characterClass.savingThrows[1]}</span>
               </div>
               <div>
-                <span>Paralysis</span>{' '}
+                <span>Paralysis</span>
                 <span>{characterClass.savingThrows[2]}</span>
               </div>
               <div>
-                <span>Breath</span>{' '}
+                <span>Breath</span>
                 <span>{characterClass.savingThrows[3]}</span>
               </div>
               <div>
-                <span>Spells</span>{' '}
+                <span>Spells</span>
                 <span>{characterClass.savingThrows[4]}</span>
               </div>
             </span>
@@ -169,8 +175,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                 {characterClass.abilities.map((item, index) => {
                   return (
                     <li key={index} className='character-sheet--class-ability'>
-                      {' '}
-                      {item}{' '}
+                      {item}
                     </li>
                   )
                 })}
@@ -239,8 +244,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                 (item, index) => {
                   return (
                     <span key={index} className='charsheet--gear-item'>
-                      {' '}
-                      {item}{' '}
+                      {item}
                     </span>
                   )
                 }

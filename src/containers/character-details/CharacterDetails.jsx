@@ -311,11 +311,9 @@ export default function CharacterDetails(props) {
           </div>
 
           {!background && (
-            <Button
-              name='optional-details'
-              callback={getBackground}
-              text={'Background (d100)'}
-            ></Button>
+            <Button name='optional-details' callback={getBackground}>
+              Background (d100)
+            </Button>
           )}
 
           {background && (
@@ -327,11 +325,9 @@ export default function CharacterDetails(props) {
           )}
 
           {!appearance && (
-            <Button
-              name='optional-details'
-              callback={getAppearance}
-              text={'Appearance'}
-            ></Button>
+            <Button name='optional-details' callback={getAppearance}>
+              Appearance
+            </Button>
           )}
 
           {appearance && (
@@ -343,11 +339,9 @@ export default function CharacterDetails(props) {
           )}
 
           {!personality && (
-            <Button
-              name='optional-details'
-              callback={getPersonality}
-              text={'Personality'}
-            ></Button>
+            <Button name='optional-details' callback={getPersonality}>
+              Personality
+            </Button>
           )}
 
           {personality && (
@@ -359,11 +353,9 @@ export default function CharacterDetails(props) {
           )}
 
           {!misfortune && (
-            <Button
-              name='optional-details'
-              callback={getMisfortune}
-              text={'Misfortune'}
-            ></Button>
+            <Button name='optional-details' callback={getMisfortune}>
+              Misfortune
+            </Button>
           )}
 
           {misfortune && (
@@ -378,7 +370,6 @@ export default function CharacterDetails(props) {
 
       <Button
         name={'character-sheet'}
-        text={'Go to Character Sheet'}
         callback={() => {
           setCharacter({
             ...character,
@@ -398,7 +389,9 @@ export default function CharacterDetails(props) {
             characterSheetScreen: true
           })
         }}
-      ></Button>
+      >
+        Go to Character Sheet
+      </Button>
     </React.Fragment>
   )
 }

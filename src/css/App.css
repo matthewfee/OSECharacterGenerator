@@ -580,6 +580,18 @@ a {
   justify-content: center;
 }
 
+.character-sheet--number-input {
+  width: 6rem;
+  max-height: 3rem;
+  margin: 0;
+  padding-left: 2rem;
+  text-align: center;
+}
+
+.character-sheet--number-input.character-sheet--number-no-edit {
+  border: none;
+}
+
 .character-sheet-container > .button-container {
   display: flex;
   flex-flow: column;
@@ -627,25 +639,29 @@ a {
   display: flex;
   flex-flow: row nowrap;
   justify-content: left;
+  align-items: center;
   padding-left: 4px;
+  padding-bottom: 10px;
   margin-top: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(101, 138, 110, 0.274);
 }
 
 .character-container > .charsheet-value-name {
   width: 38%;
-  text-align: left;
-  border-bottom: 1px solid rgba(101, 138, 110, 0.274);
   font-weight: bold;
   color: black;
 }
 .character-container > .charsheet-value {
   margin: 0px;
-  border-bottom: 1px solid rgba(101, 138, 110, 0.274);
   text-align: left;
   max-width: 62%;
-  padding-left: 40px;
+  padding-left: 20px;
   text-transform: capitalize;
   color: var(--main-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .character-container > .charsheet-value--saving-throws {

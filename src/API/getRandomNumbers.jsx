@@ -28,6 +28,6 @@ export async function getRandomNumbers() {
     const response = await axios(config)
     return response.data.result.random.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

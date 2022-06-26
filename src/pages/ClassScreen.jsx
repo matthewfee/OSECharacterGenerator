@@ -55,11 +55,12 @@ export default function ClassScreen(props) {
 
       <Button
         name={'equipment-options'}
-        text={'Go to Equipment'}
         callback={() => {
           setScreen({ ...screen, equipmentScreen: true, classScreen: false })
         }}
-      ></Button>
+      >
+        Go to Equipment
+      </Button>
     </div>
   )
 }
