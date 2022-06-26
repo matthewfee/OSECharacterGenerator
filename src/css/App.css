@@ -584,11 +584,13 @@ a {
   width: 6rem;
   max-height: 3rem;
   margin: 0;
+  margin-left: 1rem;
   padding-left: 2rem;
   text-align: center;
 }
 
-.character-sheet--number-input.character-sheet--number-no-edit {
+.character-sheet--number-input.character-sheet--number-no-edit,
+.character-sheet--text-input.character-sheet--text-no-edit {
   border: none;
 }
 
@@ -666,13 +668,21 @@ a {
 
 .character-container > .charsheet-value--saving-throws {
   padding-bottom: 10px;
+  display: flex;
+  flex-flow: column;
 }
 
 .charsheet-value--saving-throws > div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: 100px;
+  width: 100%;
+}
+
+.charactersheet--saving-throw-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 
 .character-sheet--class-ability,

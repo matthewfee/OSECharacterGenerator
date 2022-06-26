@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { joinDuplicates } from '../../utilities/utilities'
-import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 import Button from '../../components/general/Button'
+import AbilityScoreRowFields from '../../components/character/AbilityScoreRowFields'
 import NumberInput from '../../components/character/NumberInput'
+import { savingThrowNames } from '../../constants/constants'
+import TextInput from '../../components/character/TextInput'
 
 const CharacterSheet = React.forwardRef((props, ref) => {
   const {
@@ -11,8 +13,8 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     character,
     characterStatistics,
     characterClass,
-    characterEquipment,
-    characterModifiers
+    characterEquipment
+    // characterModifiers
   } = props
 
   const [editMode, setEditMode] = useState(true)
@@ -26,7 +28,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
     : `${alignmentCapitalized}, Common`
 
   const characterFields = [
-    ['Background Skill', character.background],
+    ['Background', character.background],
     ['Appearance', character.appearance],
     ['Personality', character.personality],
     ['Misfortune', character.misfortune],
@@ -61,111 +63,36 @@ const CharacterSheet = React.forwardRef((props, ref) => {
       <Button callback={toggleEditMode}>Edit</Button>
       <div className='character-sheet'>
         <div className='character-top-container'>{getCharacterFields()}</div>
-
         <div className='ability-scores-container'>
-          <div className='strength character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.strength'}>Strength</Trans>
-            </span>
-            <span className='charsheet-value'>
-              <NumberInput
-                defaultValue={abilityScores.strength}
-                editMode={editMode}
-              />
-              {characterModifiers.strengthModMelee !== '0' && (
-                <span> ({characterModifiers.strengthModMelee})</span>
-              )}
-            </span>
-          </div>
-
-          <div className='intelligence character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.intelligence'}>
-                Intelligence
-              </Trans>
-            </span>
-            <span className='charsheet-value'>
-              {abilityScores.intelligence}
-            </span>
-          </div>
-
-          <div className='wisdom character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.wisdom'}>Wisdom</Trans>
-            </span>
-            <span className='charsheet-value'>
-              {abilityScores.wisdom}
-              {characterModifiers.wisdomMod !== '0' && (
-                <span> ({characterModifiers.wisdomMod})</span>
-              )}
-            </span>
-          </div>
-
-          <div className='dexterity character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.dexterity'}>Dexterity</Trans>
-            </span>
-            <span className='charsheet-value'>
-              {' '}
-              {abilityScores.dexterity}
-              {characterModifiers.dexterityModMissiles !== '0' && (
-                <span> ({characterModifiers.dexterityModMissiles})</span>
-              )}
-            </span>
-          </div>
-
-          <div className='constitution character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.constitution'}>
-                Constitution
-              </Trans>
-            </span>
-            <span className='charsheet-value'>
-              {' '}
-              {abilityScores.constitution}
-              {characterModifiers.constitutionMod !== '0' && (
-                <span> ({characterModifiers.constitutionMod})</span>
-              )}
-            </span>
-          </div>
-
-          <div className='charisma character-container'>
-            <span className='charsheet-value-name'>
-              <Trans i18nKey={'abilityScoreNames.charisma'}>Charisma</Trans>
-            </span>
-            <span className='charsheet-value'>
-              {' '}
-              {abilityScores.charisma}
-              {characterModifiers.charismaModNPCReactions !== '0' && (
-                <span> ({characterModifiers.charismaModNPCReactions})</span>
-              )}
-            </span>
-          </div>
+          <AbilityScoreRowFields
+            editMode={editMode}
+            abilityScores={abilityScores}
+          />
         </div>
 
         <div className='charsheet-saving-throws-container'>
           <div className='character-container'>
             <span className='charsheet-value-name'>Saving Throws</span>
-            <span className='charsheet-value charsheet-value--saving-throws'>
-              <div>
-                <span>Death</span> <span>{characterClass.savingThrows[0]}</span>
-              </div>
-              <div>
-                <span>Wands</span> <span>{characterClass.savingThrows[1]}</span>
-              </div>
-              <div>
-                <span>Paralysis</span>
-                <span>{characterClass.savingThrows[2]}</span>
-              </div>
-              <div>
-                <span>Breath</span>
-                <span>{characterClass.savingThrows[3]}</span>
-              </div>
-              <div>
-                <span>Spells</span>
-                <span>{characterClass.savingThrows[4]}</span>
-              </div>
-            </span>
+            <div className='charsheet-value charsheet-value--saving-throws'>
+              {characterClass.savingThrows.map((savingThrow, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`charactersheet--saving-throw-container`}
+                  >
+                    <div>{savingThrowNames[index]} </div>
+                    <div>
+                      <NumberInput
+                        defaultValue={savingThrow}
+                        editMode={editMode}
+                        key={index}
+                      ></NumberInput>
+                      {/* {savingThrow} */}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
           <div className='character-container'>
@@ -197,34 +124,47 @@ const CharacterSheet = React.forwardRef((props, ref) => {
           <div className='hit-points character-container'>
             <span className='charsheet-value-name'>Hit Points</span>{' '}
             <span className='charsheet-value'>
-              {characterStatistics.hitPoints}
+              <NumberInput
+                defaultValue={characterStatistics.hitPoints}
+                editMode={editMode}
+              ></NumberInput>
             </span>
           </div>
           <div className='armor-class character-container'>
             <span className='charsheet-value-name'>Armour Class</span>{' '}
             <span className='charsheet-value'>
-              {characterStatistics.armourClass}
+              <NumberInput
+                defaultValue={characterStatistics.armourClass}
+                editMode={editMode}
+              ></NumberInput>
             </span>
           </div>
           <div className='character-container'>
             <span className='charsheet-value-name'>Weapons</span>
 
-            <span className='charsheet-value charsheet--weapons'>
-              {joinDuplicates(characterEquipment.weapons).map((item, index) => {
+            <div className='charsheet-value charsheet--weapons' contentEditable>
+              {/* {joinDuplicates(characterEquipment.weapons).map((item, index) => {
                 return (
-                  <span key={index} className='charsheet--weapon-item'>
-                    {' '}
-                    {item}{' '}
-                  </span>
+                  <span key={index} className='charsheet--weapon-item'></span>
                 )
-              })}
-            </span>
+              })} */}
+
+              <TextInput
+                defaultValue={`${joinDuplicates(
+                  characterEquipment.weapons
+                ).join(', ')}`}
+                editMode={editMode}
+              />
+            </div>
           </div>
 
           <div className='character-container'>
             <span className='charsheet-value-name'>Armour</span>
 
-            <span className='charsheet-value charsheet--armour'>
+            <div
+              className='charsheet-value charsheet--armour'
+              contentEditable={editMode}
+            >
               {characterEquipment.armour.map((item, index) => {
                 return (
                   <span key={index} className='charsheet--armour-item'>
@@ -233,7 +173,7 @@ const CharacterSheet = React.forwardRef((props, ref) => {
                   </span>
                 )
               })}
-            </span>
+            </div>
           </div>
 
           <div className='character-container'>

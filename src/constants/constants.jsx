@@ -13,8 +13,6 @@ export const CHARACTER_SHEET_UNDERGROUND_URL =
 
 export const RANDOM_NUMBERS_API_URL = 'https://api.random.org/json-rpc/4/invoke'
 
-// default states
-
 export const defaultAbilityScoresState = {
   strength: null,
   strengthOriginal: null,
@@ -39,6 +37,14 @@ export const abilityScoreNames = [
   'dexterity',
   'constitution',
   'charisma'
+]
+
+export const savingThrowNames = [
+  'Death',
+  'Wands',
+  'Paralysis',
+  'Breath',
+  'Spells'
 ]
 
 export const lngs = {
