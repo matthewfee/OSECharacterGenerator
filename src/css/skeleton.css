@@ -466,6 +466,7 @@ fieldset {
 input[type='checkbox'],
 input[type='radio'] {
   display: inline;
+  accent-color: black;
 }
 
 label > .label-body {
