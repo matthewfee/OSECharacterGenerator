@@ -1,6 +1,4 @@
 import React from 'react'
-import CircleLoader from 'react-spinners/CircleLoader'
-import { css } from '@emotion/react'
 import { useTranslation, Trans } from 'react-i18next'
 import { LinkText } from '../utilities/utilities'
 import { lngs } from '../constants/constants'
@@ -24,18 +22,16 @@ export default function LandingScreen(props) {
     rollCharacter
   } = props
 
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `
-
   const myCharacters = JSON.parse(
     window.localStorage.getItem('characterStorage')
   )
 
   return (
-    <header className={`header ${characterRolled ? '' : 'header--initial'}`}>
+    <header
+      className={`header ${characterRolled ? '' : 'header--initial'} ${
+        rollButtonHover ? 'header--hover' : ''
+      }`}
+    >
       <h2
         className={`title ${rollButtonHover ? 'fade' : ''}`}
         style={{ fontSize: characterRolled ? '1.4rem' : '' }}
@@ -57,12 +53,12 @@ export default function LandingScreen(props) {
           )}
 
           <div className='sweet-loading'>
-            <CircleLoader
+            {/* <CircleLoader
               css={override}
               size={50}
               color={'white'}
               loading={loadingRandomNumbers}
-            />
+            /> */}
           </div>
         </button>
       )}
