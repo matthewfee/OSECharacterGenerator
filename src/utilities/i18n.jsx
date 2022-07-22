@@ -41,7 +41,7 @@ i18n
       },
       de: {
         translation: {
-          AppName: 'Old School Essentials Charaktergenerator',
+          AppName: 'OSE Charaktergenerator',
           Roll: 'Würfeln',
           Tavern: 'Taverne',
           AppDescription:
