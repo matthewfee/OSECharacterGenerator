@@ -1503,7 +1503,7 @@ div > .button-class-option {
     url(../img/header.svg);
   background-size: cover;
   background-position: top;
-  min-height: 1400px;
+  min-height: 1100px;
   transition: all 1s ease;
 }
 
@@ -1526,6 +1526,7 @@ div > .button-class-option {
   background-size: cover;
   background-position: top;
   transition: all 1s ease;
-  background-color: rgb(99, 67, 255);
+  background-color: var(--light-bg-color);
+  /* background-color: rgb(99, 67, 255); */
   /* background-color: rgb(255, 41, 41); */
 }

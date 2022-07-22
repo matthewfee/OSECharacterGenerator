@@ -47,7 +47,7 @@ export default function ScoreBox(props) {
 
   // make whole thing container, remove pieces from it, make them components
 
-  const scoreFontSize = abilityScoreValue > 0 ? '30px' : '14px'
+  const scoreFontSize = abilityScoreValue > 0 ? '30px' : '20px'
 
   return (
     <button
@@ -58,7 +58,7 @@ export default function ScoreBox(props) {
       value={`${abilityScoreName}`}
       onClick={rollAttribute}
     >
-      {abilityScoreValue > 1 ? abilityScoreValue : ''}
+      {abilityScoreValue > 1 ? abilityScoreValue : '?'}
 
       {showDecreaseButton && (
         <Arrow
