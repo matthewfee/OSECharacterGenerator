@@ -5,6 +5,8 @@ import NavigationOptions from '../containers/abilties/NavigationOptions'
 import PropTypes from 'prop-types'
 import Header from '../components/general/Header'
 
+import { useEffect } from 'react'
+
 export default function AbilityScreen(props) {
   const {
     characterClass,
@@ -17,8 +19,16 @@ export default function AbilityScreen(props) {
     rollCharacter,
     rollAttribute,
     screen,
-    setScreen
+    setScreen,
+    diceEnabled
   } = props
+
+  useEffect(() => {
+    console.log('Loaded')
+    if (!diceEnabled) {
+      rollAttribute('e', 'all')
+    }
+  }, [])
 
   return (
     <div className='ability-screen container'>
@@ -79,5 +89,6 @@ AbilityScreen.propTypes = {
   rollCharacter: PropTypes.func,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,
-  rollAttribute: PropTypes.func
+  rollAttribute: PropTypes.func,
+  diceEnabled: PropTypes.bool
 }

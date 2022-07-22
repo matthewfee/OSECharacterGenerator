@@ -115,8 +115,10 @@ export default function CharacterGenerator() {
     }
   }, [abilityScores, characterClass])
 
-  const rollAttribute = (e) => {
-    const attribute = e.target.value
+  const rollAttribute = (e, input) => {
+    const attribute = e?.target?.value || input
+
+    console.log(e?.target?.value, input, attribute)
 
     const diceThemes = {
       strength: '#8d1a10',

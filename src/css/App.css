@@ -546,14 +546,14 @@ a {
 
 .button.button--reroll {
   position: absolute;
-  top: -3rem;
+  bottom: -3rem;
   right: 0;
   left: 0;
   width: 10rem;
   margin: 0 auto;
   padding: 0;
   border: none;
-  border-radius: 10%;
+  border-radius: 4px;
   background-color: rgba(47, 79, 79, 0.164);
 }
 .character-sheet-container.container {
@@ -632,7 +632,6 @@ a {
 }
 
 .container.ability-score-container {
-  padding-top: 1rem;
   margin-bottom: 4rem;
 }
 
@@ -1313,7 +1312,7 @@ div > .button-class-option {
   font-weight: normal;
   left: 50%;
   transform: translate(-50%);
-  bottom: -3rem;
+  top: -3rem;
   text-align: center;
 }
 
