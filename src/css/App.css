@@ -555,7 +555,6 @@ a {
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: center;
-  border: 3px solid red;
 }
 
 .character-short {
