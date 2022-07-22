@@ -387,7 +387,7 @@ input[type='submit'].button-primary:focus,
 input[type='reset'].button-primary:focus,
 input[type='button'].button-primary:focus {
   color: #fff;
-  background-color: var(--primary-bg-hover);
+  background-color: black;
   border-color: var(--secondary-bg-color);
 }
 
