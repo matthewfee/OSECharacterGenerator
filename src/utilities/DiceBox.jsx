@@ -10,9 +10,8 @@ const Dice = new DiceBox(
     id: 'dice-canvas', // canvas element id
     theme: 'purpleRock', // this can be a hex color if you like
     assetPath: '/assets/dice-box/',
-    gravity: 2,
+    gravity: 3,
     scale: 4
-
   }
 )
 
