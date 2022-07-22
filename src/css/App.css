@@ -553,8 +553,9 @@ a {
   margin: auto;
   width: 100%;
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
+  flex-flow: row-reverse wrap;
+  justify-content: center;
+  border: 3px solid red;
 }
 
 .character-short {
@@ -611,15 +612,13 @@ a {
 }
 
 .character-top-container,
-.ability-score-container,
+.ability-scores-container,
 .charsheet-saving-throws-container,
 .character-sheet-ability-list,
 .character-equipment {
   font-size: 1.7rem;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
   width: 280px;
   margin: 0px;
   margin-top: 20px;
@@ -896,7 +895,8 @@ a {
   top: -44px;
   width: 100%;
   color: var(--main-bg-color);
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .class-details > .class-summary {
@@ -905,6 +905,7 @@ a {
   background-color: rgba(167, 166, 189, 0.22);
   margin: auto;
   font-weight: bold;
+  font-size: 1.8rem;
   min-width: 160px;
   width: 60%;
 }
