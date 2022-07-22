@@ -63,7 +63,7 @@ export default function PDFExport(props) {
 
   const alignmentCapitalized = character.alignment
     ? character.alignment.charAt(0).toUpperCase() + character.alignment.slice(1)
-    : 'Alignment'
+    : ''
 
   const languageText = character.hasLanguages
     ? `${alignmentCapitalized}, Common, ${character.languages.join(', ')}`
