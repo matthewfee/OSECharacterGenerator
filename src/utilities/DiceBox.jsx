@@ -8,7 +8,7 @@ const Dice = new DiceBox(
   '#dice-box', // target DOM element to inject the canvas for rendering
   {
     id: 'dice-canvas', // canvas element id
-    theme: 'purpleRock', // this can be a hex color if you like
+    theme: 'default', // this can be a hex color if you like
     assetPath: '/assets/dice-box/',
     gravity: 3,
     scale: 4

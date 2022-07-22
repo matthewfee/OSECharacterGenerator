@@ -154,16 +154,16 @@ export default function CharacterGenerator() {
 
     if (attribute === 'all') {
       setPendingRoll('all')
-      Dice.show().roll('3d6', { theme: diceThemes.strength })
-      Dice.roll('3d6', { theme: diceThemes.intelligence })
-      Dice.roll('3d6', { theme: diceThemes.dexterity })
-      Dice.roll('3d6', { theme: diceThemes.wisdom })
-      Dice.roll('3d6', { theme: diceThemes.constitution })
-      Dice.roll('3d6', { theme: diceThemes.charisma })
+      Dice.show().roll('3d6', { themeColor: diceThemes.strength })
+      Dice.roll('3d6', { themeColor: diceThemes.intelligence })
+      Dice.roll('3d6', { themeColor: diceThemes.dexterity })
+      Dice.roll('3d6', { themeColor: diceThemes.wisdom })
+      Dice.roll('3d6', { themeColor: diceThemes.constitution })
+      Dice.roll('3d6', { themeColor: diceThemes.charisma })
     } else {
       setPendingRoll(attribute)
       const diceColor = diceThemes[attribute]
-      Dice.show().roll('3d6', { theme: diceColor })
+      Dice.show().roll('3d6', { themeColor: diceColor })
     }
   }
 
