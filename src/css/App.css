@@ -495,7 +495,8 @@ a {
 
 .advanced-classes-header,
 .basic-classes-header {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
   grid-column-start: 1;
   grid-column-end: 5;
   letter-spacing: 1px;
@@ -503,6 +504,7 @@ a {
   margin-bottom: 1rem;
   width: 90%;
   text-align: right;
+  letter-spacing: 1px;
 }
 
 .checkbox {
