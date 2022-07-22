@@ -14,11 +14,11 @@ i18n
     resources: {
       en: {
         translation: {
-          AppName: 'Old School Essentials Character Generator',
+          AppName: 'OSE Character Generator',
           Roll: 'Roll',
           Tavern: 'Tavern',
           AppDescription:
-            'Designed for use with <0>Old School Essentials</0>. OSE Advanced Fantasy classes included with the permission of Necrotic Gnome.',
+            'Designed for use with <0>Old School Essentials</0>. Advanced Fantasy classes included with the permission of Necrotic Gnome.',
           CreatedBy: '<0>Created by EvilTables</0>',
           abilityScoreNames: {
             strength: 'Strength',
