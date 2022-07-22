@@ -2,6 +2,7 @@ import React from 'react'
 import { Thief, abilityScoreNames } from '../../constants/constants'
 import AbilityScoresRow from '../../components/abilities/AbilityScoresRow'
 import PropTypes from 'prop-types'
+import Button from '../../components/general/Button'
 
 export default function AbilityScores(props) {
   const {
@@ -125,6 +126,10 @@ export default function AbilityScores(props) {
           ></AbilityScoresRow>
         )
       })}
+
+      <Button name='reroll' value={'all'} callback={rollAttribute}>
+        Roll All
+      </Button>
     </div>
   )
 }

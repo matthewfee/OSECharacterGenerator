@@ -131,8 +131,7 @@ a {
 }
 
 .ability-score-container > .ability-score:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--light-bg-color);
 }
 
 .ability-score-container > .ability-score--high {
@@ -159,8 +158,7 @@ a {
 }
 
 .ability-score-container > div > span {
-  font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
   margin-right: 0.4rem;
   padding-right: 10px;
   text-align: left;
@@ -314,7 +312,7 @@ a {
   list-style: none;
   padding: 5px;
   width: auto;
-  color: var(--secondary-bg-color);
+  color: black;
 }
 
 .backpack-item.backpack-item--weapon,
@@ -371,7 +369,7 @@ a {
 }
 
 .button--ability--decrease > .arrow-down:hover {
-  border-top: 2.2rem solid var(--secondary-text-color);
+  border-top: 2.2rem solid var(--secondary-bg-color);
   background-color: transparent;
 }
 
@@ -385,7 +383,7 @@ a {
 }
 
 .button--ability--increase > .arrow-up:hover {
-  border-bottom: 2.2rem solid var(--secondary-text-color);
+  border-bottom: 2.2rem solid var(--secondary-bg-color);
   z-index: 2;
   background-color: transparent;
 }
@@ -472,7 +470,7 @@ a {
 
 .button--alignment--selected {
   /* color: var(--secondary-text-color) !important; */
-  background-color: var(--tertiary-bg-color) !important;
+  background-color: var(--light-bg-color) !important;
 }
 
 .button--alignment:hover {
@@ -493,13 +491,12 @@ a {
 
 .advanced-classes-header,
 .basic-classes-header {
-  font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2rem;
   grid-column-start: 1;
   grid-column-end: 5;
   letter-spacing: 1px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   width: 90%;
   text-align: right;
 }
@@ -541,6 +538,17 @@ a {
   margin-bottom: 0px;
 }
 
+.button.button--reroll {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  left: 0;
+  width: 10rem;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 15%;
+}
 .character-sheet-container.container {
   margin: auto;
   width: 100%;
@@ -561,7 +569,7 @@ a {
   font-weight: bold;
   margin: 0;
   margin-top: 20px;
-  color: var(--secondary-bg-color);
+  color: var(--main-text-color);
 }
 
 .character--subheader {
@@ -570,7 +578,7 @@ a {
   margin: 0;
   font-weight: normal;
   font-style: italic;
-  color: var(--main-bg-color);
+  color: var(--main-text-color);
 }
 
 .character-sheet {
@@ -603,17 +611,24 @@ a {
 }
 
 .character-top-container,
-.ability-scores-container,
+.ability-score-container,
 .charsheet-saving-throws-container,
 .character-sheet-ability-list,
 .character-equipment {
   font-size: 1.7rem;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   width: 280px;
   margin: 0px;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+.container.ability-score-container {
+  padding-top: 1rem;
+  margin-bottom: 4rem;
 }
 
 .character-sheet-component {
@@ -876,6 +891,14 @@ a {
   background-color: var(--main-bg-white);
 }
 
+.class-details-indicator {
+  position: absolute;
+  top: -44px;
+  width: 100%;
+  color: var(--main-bg-color);
+  font-size: 2rem;
+}
+
 .class-details > .class-summary {
   user-select: none;
   border-radius: 4px;
@@ -887,7 +910,7 @@ a {
 }
 
 .class-details > .class-summary:hover {
-  background-color: var(--tertiary-bg-color);
+  background-color: var(--light-bg-color);
   cursor: pointer;
 }
 
@@ -926,7 +949,8 @@ a {
 }
 
 .dice-enabled-container {
-  margin-bottom: 1rem;
+  margin-bottom: 8rem;
+  margin-top: 4rem;
 }
 
 div.ability-screen {
@@ -978,15 +1002,11 @@ div.character-menu {
 .class-options-screen > .button.button--hp.button-primary {
   background-color: var(--main-bg-color);
   margin: 2rem;
-  height: 10rem;
+  height: 4rem;
   width: 10rem;
   font-size: 1.6rem;
-  padding: 10px;
+  padding: 0;
   white-space: wrap;
-}
-
-.class-options-screen > .button.button--hp.button-primary:hover {
-  background-color: black;
 }
 
 div > .button-class-option {
@@ -1017,6 +1037,7 @@ div > .button-class-option {
 
 .class-options-container.container {
   margin-top: 40px;
+  margin-bottom: 2rem;
 }
 
 .class-options-container > .button-class-option:hover {
@@ -1113,8 +1134,8 @@ div > .button-class-option {
   width: 100%;
   height: 100%;
   width: 10rem;
-  height: 10rem;
-  font-size: 2rem;
+  height: 4rem;
+  font-size: 1.4rem;
   white-space: normal;
   line-height: normal;
 }
@@ -1176,33 +1197,31 @@ div > .button-class-option {
 
 .header > .button--roll {
   background-color: black;
-  width: 10rem;
   margin-top: 40px;
   margin-bottom: 0.5rem;
-  padding: 0;
   border: none;
+  width: 10rem;
+  height: 4rem;
+  padding: 0;
 }
 
 .header > .button--storage {
   background-color: black;
-  width: 10rem;
-  margin-top: 10px;
-  margin-bottom: 0.5rem;
-  padding: 0;
   border: none;
+  width: 10rem;
+  text-align: center;
+  padding: 0;
+  margin-top: 1rem;
+  height: 4rem;
 }
 
 .header > .button--roll:hover.button {
   margin-bottom: 0.5rem;
-  width: 10rem;
   padding: 0;
-  background-color: black !important;
   color: rgb(255, 255, 255) !important;
-  height: 10rem;
 }
 
 .header > .button {
-  height: 10rem;
   font-size: 1.5rem;
 }
 
@@ -1236,10 +1255,11 @@ div > .button-class-option {
   border: none;
   background-color: transparent;
   width: 2rem;
+  font-weight: bold;
 }
 
-.hp-container > .hp-container--hit-points,
-.hp-container > .hp-container--hit-die {
+.hp-container > .hp-container--hit-points {
+  color: black;
   font-weight: bold;
 }
 
@@ -1254,18 +1274,13 @@ div > .button-class-option {
 
 .hp-container > .hp-container--hit-points {
   font-size: 3rem;
-  background-color: var(--main-bg-color);
-  color: white;
+  background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-.hp-container--hit-points > .hp-container--hit-points-name {
-  color: black;
 }
 
 .hp-container > .hp-container--con-mod {
   font-size: 3rem;
-  background-color: var(--tertiary-bg-color);
+  background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -1283,13 +1298,16 @@ div > .button-class-option {
 
 .ability-score-container > .point-buy {
   position: absolute;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   font-weight: normal;
-  font-style: italic;
   left: 50%;
   transform: translate(-50%);
-  top: -2rem;
+  bottom: -3rem;
   text-align: center;
+}
+
+.opacity-0 {
+  opacity: 0 !important;
 }
 
 .prime-req {
@@ -1298,7 +1316,7 @@ div > .button-class-option {
   width: 100%;
   text-align: center;
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   text-transform: initial;
 }
 
@@ -1337,7 +1355,8 @@ div > .button-class-option {
   position: absolute;
   clip-path: polygon(50px 0px, 100px 44px, 76px 100px, 24px 100px, 0px 44px);
   z-index: 0;
-  background-color: var(--main-bg-color);
+  background-color: var(--dark-bg-color);
+  opacity: 80%;
   text-align: center;
 }
 
