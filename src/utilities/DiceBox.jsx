@@ -13,7 +13,8 @@ const Dice = new DiceBox(
     delay: 100,
     throwForce: 3,
     spinForce: 7,
-    gravity: 5
+    gravity: 3,
+    settleTimeout: 2000
   }
 )
 
