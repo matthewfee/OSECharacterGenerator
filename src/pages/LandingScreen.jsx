@@ -89,18 +89,6 @@ export default function LandingScreen(props) {
         <div
           className={`main-page--subheader ${rollButtonHover ? 'fade' : ''} `}
         >
-          {!isMobile && (
-            <div className='dice-enabled-container'>
-              Dice Enabled
-              <CheckBox
-                value={'dice-enabled'}
-                callback={() => {
-                  setDiceEnabled(!diceEnabled)
-                }}
-                checkedCondition={diceEnabled}
-              ></CheckBox>
-            </div>
-          )}
           <div className='main-page--description'>
             <Trans
               i18nKey='AppDescription'
@@ -113,6 +101,19 @@ export default function LandingScreen(props) {
               ]}
             />
           </div>
+
+          {!isMobile && (
+            <div className='dice-enabled-container'>
+              Dice Enabled
+              <CheckBox
+                value={'dice-enabled'}
+                callback={() => {
+                  setDiceEnabled(!diceEnabled)
+                }}
+                checkedCondition={diceEnabled}
+              ></CheckBox>
+            </div>
+          )}
 
           <div className='main-page--language-options'>
             {Object.keys(lngs).map((lng) => (

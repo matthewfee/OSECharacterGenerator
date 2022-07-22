@@ -84,7 +84,7 @@ export default function CharacterGenerator() {
     gold: null
   })
 
-  const [diceEnabled, setDiceEnabled] = useState(true)
+  const [diceEnabled, setDiceEnabled] = useState(false)
 
   const [loadingRandomNumbers, setLoadingRandomNumbers] = useState(true)
   const [randomNumbers, setRandomNumbers] = useState([])

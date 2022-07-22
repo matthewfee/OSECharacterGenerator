@@ -925,6 +925,10 @@ a {
   text-align: center;
 }
 
+.dice-enabled-container {
+  margin-bottom: 1rem;
+}
+
 div.ability-screen {
   display: flex;
   flex-flow: column nowrap;
