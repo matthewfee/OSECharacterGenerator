@@ -904,12 +904,13 @@ a {
 .class-details > .class-summary {
   user-select: none;
   border-radius: 4px;
-  background-color: rgba(167, 166, 189, 0.22);
+  background-color: var(--button-bg-color);
   margin: auto;
   font-weight: bold;
   font-size: 1.8rem;
   min-width: 160px;
-  width: 60%;
+  padding: 0.2rem 2rem;
+  width: fit-content;
 }
 
 .class-details > .class-summary:hover {
