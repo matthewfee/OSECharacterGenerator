@@ -30,10 +30,8 @@ export default function SpellSelection({
     }
 
     setSpellSelected(randomSpell)
-    setCharacterStatistics({
-      ...setCharacterStatistics,
-      spell: randomSpell,
-      hasSpells: true
+    setCharacterStatistics((prevState) => {
+      return { ...prevState, spell: randomSpell, hasSpells: true }
     })
 
     return randomSpell
