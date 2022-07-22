@@ -53,13 +53,16 @@ export default function ClassScreen(props) {
         characterClass={characterClass}
       ></SpellSelection>
 
-      <Button
-        name={'equipment-options'}
-        text={'Go to Equipment'}
-        callback={() => {
-          setScreen({ ...screen, equipmentScreen: true, classScreen: false })
-        }}
-      ></Button>
+      {characterStatistics?.hitPoints && (
+        <Button
+          name={'equipment-options'}
+          text={'Go to Equipment'}
+          callback={() => {
+            setScreen({ ...screen, equipmentScreen: true, classScreen: false })
+          }}
+          disabled={characterStatistics?.hitPoints === null}
+        ></Button>
+      )}
     </div>
   )
 }

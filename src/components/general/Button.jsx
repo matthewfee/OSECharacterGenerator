@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function Button({ name, callback, text, color }) {
+export default function Button({ name, callback, text, color, disabled }) {
   return (
     <button
       className={`button button--${name}`}
@@ -9,6 +9,7 @@ export default function Button({ name, callback, text, color }) {
       onClick={() => {
         callback()
       }}
+      disabled={disabled}
     >
       {text}
     </button>
@@ -19,5 +20,6 @@ Button.propTypes = {
   name: PropTypes.string,
   callback: PropTypes.func,
   text: PropTypes.string,
-  color: PropTypes.string
+  color: PropTypes.string,
+  disabled: PropTypes.bool
 }
