@@ -50,7 +50,7 @@ export default function HPRoller(props) {
 
     Dice.hide()
       .show()
-      .roll(`1d${die}`, { theme: HPDiceColor })
+      .roll(`1d${die}`, { themeColor: HPDiceColor })
       .then((results) => {
         const HPResult = results[0].value
 

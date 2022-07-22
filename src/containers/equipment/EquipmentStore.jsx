@@ -91,7 +91,7 @@ export default function EquipmentStore(props) {
     const goldColor = `#D99E30`
 
     Dice.show()
-      .roll('3d6', { theme: goldColor })
+      .roll('3d6', { themeColor: goldColor })
       .then((results) => {
         let goldResult = 0
         results.forEach((dieResult) => {
