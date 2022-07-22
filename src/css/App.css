@@ -1155,7 +1155,7 @@ div > .button-class-option {
 
 .gold > .button--gold:hover.button {
   background-color: black;
-  color: gold;
+  /* color: gold; */
 }
 
 .gold {
@@ -1171,7 +1171,7 @@ div > .button-class-option {
   height: 38px;
   width: 100px;
   z-index: 3;
-  background-color: gold;
+  background-color: lightgrey;
   color: #2a2a2d;
   border-radius: 4px;
 }
@@ -1196,6 +1196,21 @@ div > .button-class-option {
 
 .button--new-character {
   margin-top: 100px;
+}
+
+.wrapper {
+  --main-bg-color: rgb(77, 77, 77);
+  --secondary-bg-color: grey;
+  --tertiary-bg-color: rgb(77, 77, 77);
+  --light-bg-color: lightgrey;
+  --arrow-color: darkgrey;
+  --arrow-color-hover: rgb(77, 77, 77);
+  --dark-bg-color: #141414;
+  --main-text-color: #000000;
+  --secondary-text-color: #575757;
+  --main-bg-white: rgb(255, 255, 255);
+  --primary-bg-hover: #2c2c2c;
+  --button-bg-color: rgba(105, 105, 105, 0.2);
 }
 
 .wrapper > .header {
@@ -1482,7 +1497,11 @@ div > .button-class-option {
 }
 
 .main-page--language-options > button {
-  background-color: rgba(5, 29, 29, 0.7);
+  background-color: var(--button-bg-color);
+}
+
+.main-page--language-options > button:hover {
+  background-color: black;
 }
 
 .main-page--description {

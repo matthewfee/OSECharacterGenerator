@@ -120,6 +120,7 @@ export default function LandingScreen(props) {
                 }}
                 type='submit'
                 onClick={() => i18n.changeLanguage(lng)}
+                className='button button-primary'
               >
                 {lngs[lng].nativeName}
               </button>

@@ -182,9 +182,6 @@ export default function CharacterGenerator() {
 
     setPointBuy(0)
     setAbilityScores(newAbilityScores)
-    setTimeout(() => {
-      Dice.clear()
-    }, 2000)
   }
 
   const rollCharacter = () => {
