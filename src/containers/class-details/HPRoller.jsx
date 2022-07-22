@@ -81,7 +81,9 @@ export default function HPRoller(props) {
   return (
     <React.Fragment>
       <button
-        className='button button-primary button--hp'
+        className={`button button-primary button--hp ${
+          canReroll ? '' : 'opacity-0'
+        }`}
         onClick={() => setTimeout(getHitPoints(), 200)}
         disabled={!canReroll}
         style={{

@@ -24,7 +24,7 @@
 - Media Queries
 */
 
-@import url("https://fonts.googleapis.com/css?family=Crimson+Text");
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -207,18 +207,21 @@
   html is set to 62.5% so that all the REM measurements are based on 10px sizing. */
 html {
   font-size: 62.5%;
-  /* --main-bg-color: #67755f;
-  --secondary-bg-color: #444b40;
-  --tertiary-bg-color: #b6c4ae;
+  --main-bg-color: #6343ff;
+  --secondary-bg-color: #8631e8;
+  --tertiary-bg-color: #3148e8;
+  --light-bg-color: #3149e82c;
+  --dark-bg-color: #141414;
   --main-text-color: #101726;
-  --secondary-text-color: #a1ac9a;
-  --main-bg-white: rgb(255, 255, 255); */
-  --main-bg-color: #5f6175;
+  --secondary-text-color: #8631e8;
+  --main-bg-white: rgb(255, 255, 255);
+  --primary-bg-hover: #0f0a2b;
+  /* --main-bg-color: #5f6175;
   --secondary-bg-color: #41404b;
   --tertiary-bg-color: #aeaec4;
   --main-text-color: #101726;
   --secondary-text-color: #9a9cac;
-  --main-bg-white: rgb(255, 255, 255);
+  --main-bg-white: rgb(255, 255, 255); */
 }
 
 body {
@@ -226,7 +229,7 @@ body {
 
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Crimson Text", "HelveticaNeue", "Helvetica Neue", Helvetica,
+  font-family: 'Crimson Text', 'HelveticaNeue', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
   color: #222;
 }
@@ -325,9 +328,9 @@ a:hover {
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button,
 button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type='submit'],
+input[type='reset'],
+input[type='button'] {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
@@ -349,24 +352,24 @@ input[type="button"] {
 
 .button:hover,
 button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover,
+input[type='submit']:hover,
+input[type='reset']:hover,
+input[type='button']:hover,
 .button:focus,
 button:focus,
-input[type="submit"]:focus,
-input[type="reset"]:focus,
-input[type="button"]:focus {
+input[type='submit']:focus,
+input[type='reset']:focus,
+input[type='button']:focus {
   outline: 0;
   opacity: 1;
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: var(--light-bg-color);
 }
 
 .button.button-primary,
 button.button-primary,
-input[type="submit"].button-primary,
-input[type="reset"].button-primary,
-input[type="button"].button-primary {
+input[type='submit'].button-primary,
+input[type='reset'].button-primary,
+input[type='button'].button-primary {
   color: #fff;
   background-color: var(--main-bg-color);
   border-color: var(--main-bg-color);
@@ -375,28 +378,28 @@ input[type="button"].button-primary {
 
 .button.button-primary:hover,
 button.button-primary:hover,
-input[type="submit"].button-primary:hover,
-input[type="reset"].button-primary:hover,
-input[type="button"].button-primary:hover,
+input[type='submit'].button-primary:hover,
+input[type='reset'].button-primary:hover,
+input[type='button'].button-primary:hover,
 .button.button-primary:focus,
 button.button-primary:focus,
-input[type="submit"].button-primary:focus,
-input[type="reset"].button-primary:focus,
-input[type="button"].button-primary:focus {
+input[type='submit'].button-primary:focus,
+input[type='reset'].button-primary:focus,
+input[type='button'].button-primary:focus {
   color: #fff;
-  background-color: var(--secondary-bg-color);
+  background-color: var(--primary-bg-hover);
   border-color: var(--secondary-bg-color);
 }
 
 /* Forms
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+input[type='password'],
 textarea,
 select {
   height: 38px;
@@ -410,13 +413,13 @@ select {
 }
 
 /* Removes awkward default styles on some inputs for iOS */
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+input[type='password'],
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -429,13 +432,13 @@ textarea {
   padding-bottom: 6px;
 }
 
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="search"]:focus,
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='search']:focus,
+input[type='text']:focus,
+input[type='tel']:focus,
+input[type='url']:focus,
+input[type='password']:focus,
 textarea:focus,
 select:focus {
   border: 1px solid var(--main-bg-color);
@@ -454,8 +457,8 @@ fieldset {
   border-width: 0;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
   display: inline;
 }
 
@@ -592,7 +595,7 @@ hr {
 .container:after,
 .row:after,
 .u-cf {
-  content: "";
+  content: '';
   display: table;
   clear: both;
 }

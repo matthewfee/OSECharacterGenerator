@@ -3,8 +3,7 @@ import { Trans } from 'react-i18next'
 import PropTypes from 'prop-types'
 
 export default function NavigationOptions(props) {
-  const { screen, setScreen, characterClass, rollAttribute, abilityScores } =
-    props
+  const { screen, setScreen, characterClass, abilityScores } = props
 
   let hasNotRolledAbilityScores = false
 
@@ -18,13 +17,6 @@ export default function NavigationOptions(props) {
 
   return (
     <div>
-      <button
-        className='button button--reroll'
-        value={'all'}
-        onClick={rollAttribute}
-      >
-        Roll All
-      </button>
       <button
         className='button button--class-option'
         onClick={() =>

@@ -6,7 +6,11 @@ export default function ClassDescription(props) {
   const { characterClass } = props
 
   if (!characterClass.name) {
-    return <div className='class-details' style={{ border: 'none' }}></div>
+    return (
+      <div className='class-details-indicator' style={{ border: 'none' }}>
+        Select Class
+      </div>
+    )
   }
 
   const primeReqString = characterClass.primeReqs.join(', ')
