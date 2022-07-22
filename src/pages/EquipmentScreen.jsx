@@ -34,7 +34,7 @@ export default function EquipmentScreen(props) {
 }
 
 EquipmentScreen.propTypes = {
-  diceEnabled: PropTypes.func,
+  diceEnabled: PropTypes.bool,
   characterClass: PropTypes.object,
   screen: PropTypes.objectOf(PropTypes.bool),
   setScreen: PropTypes.func,

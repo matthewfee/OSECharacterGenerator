@@ -364,7 +364,7 @@ export default function EquipmentStore(props) {
 }
 
 EquipmentStore.propTypes = {
-  diceEnabled: PropTypes.func,
+  diceEnabled: PropTypes.bool,
   characterClass: PropTypes.object,
   characterModifiers: PropTypes.objectOf(PropTypes.string),
   characterStatistics: PropTypes.shape({

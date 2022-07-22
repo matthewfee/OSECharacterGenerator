@@ -1452,14 +1452,13 @@ div > .button-class-option {
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 3rem;
   /* font-family: "Montserrat"; */
   font-weight: bold;
   letter-spacing: 0.2rem;
   margin: 0;
   position: relative;
   border-radius: 4px;
-  padding: 10px;
   color: white;
 }
 
