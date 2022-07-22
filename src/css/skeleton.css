@@ -467,6 +467,12 @@ input[type='checkbox'],
 input[type='radio'] {
   display: inline;
   accent-color: black;
+  transform: scale(1.5);
+}
+
+input[type='checkbox']:hover,
+input[type='radio']:hover {
+  cursor: pointer;
 }
 
 label > .label-body {
