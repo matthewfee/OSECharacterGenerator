@@ -138,9 +138,6 @@ a {
   background-color: var(--light-bg-color);
 }
 
-.ability-score-container > .ability-score--high {
-  color: #206604;
-}
 .ability-score-container > .ability-score-name {
   display: flexbox;
   text-align: center;
@@ -369,11 +366,11 @@ a {
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
-  border-top: 2.2rem solid var(--tertiary-bg-color);
+  border-top: 2.2rem solid var(--arrow-color);
 }
 
 .button--ability--decrease > .arrow-down:hover {
-  border-top: 2.2rem solid var(--secondary-bg-color);
+  border-top: 2.2rem solid var(--arrow-color-hover);
   background-color: transparent;
 }
 
@@ -382,12 +379,12 @@ a {
   height: 0;
   border-left: 0.8rem solid transparent;
   border-right: 0.8rem solid transparent;
-  border-bottom: 2.2rem solid var(--tertiary-bg-color);
+  border-bottom: 2.2rem solid var(--arrow-color);
   z-index: 2;
 }
 
 .button--ability--increase > .arrow-up:hover {
-  border-bottom: 2.2rem solid var(--secondary-bg-color);
+  border-bottom: 2.2rem solid var(--arrow-color-hover);
   z-index: 2;
   background-color: transparent;
 }

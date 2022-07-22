@@ -1,7 +1,7 @@
 // styling
 
 export const redFail = '#b10909'
-export const greenSuccess = '#3da00c'
+export const greenSuccess = '#09b341'
 
 // URLS
 

@@ -52,13 +52,13 @@ export default function ScoreBox(props) {
   return (
     <button
       className={`ability-score ${
-        abilityScoreValue > highScore ? 'abilityscore--high' : ''
+        abilityScoreValue > highScore ? 'ability-score--high' : ''
       }`}
       style={{ color: buttonColor, fontSize: scoreFontSize }}
       value={`${abilityScoreName}`}
       onClick={rollAttribute}
     >
-      {abilityScoreValue > 1 ? abilityScoreValue : 'ROLL'}
+      {abilityScoreValue > 1 ? abilityScoreValue : ''}
 
       {showDecreaseButton && (
         <Arrow
