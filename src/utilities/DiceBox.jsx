@@ -12,7 +12,8 @@ const Dice = new DiceBox(
     scale: 4,
     delay: 100,
     throwForce: 3,
-    spinForce: 7
+    spinForce: 7,
+    gravity: 5
   }
 )
 
