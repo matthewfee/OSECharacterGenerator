@@ -209,7 +209,7 @@ a {
   display: flex;
   font-size: 1.6rem;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
   width: 250px;
   margin: auto;
   margin-top: 10px;
@@ -895,7 +895,6 @@ a {
   margin: auto;
   width: 80%;
   min-width: 300px;
-  background-color: var(--main-bg-white);
 }
 
 .class-details-indicator {
@@ -909,7 +908,7 @@ a {
 .class-details > .class-summary {
   user-select: none;
   border-radius: 4px;
-  background-color: var(--button-bg-color);
+  background-color: transparent !important;
   margin: auto;
   font-weight: bold;
   font-size: 1.8rem;
@@ -926,6 +925,7 @@ a {
 .class-details > .class-description-list {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  background-color: white;
 }
 
 .class-details > .class-details--arrow {
@@ -1208,7 +1208,7 @@ div > .button-class-option {
   --dark-bg-color: #141414;
   --main-text-color: #000000;
   --secondary-text-color: #575757;
-  --main-bg-white: rgb(255, 255, 255);
+  --main-bg-white: rgba(255, 255, 255, 0.95);
   --primary-bg-hover: #2c2c2c;
   --button-bg-color: rgba(105, 105, 105, 0.2);
 }

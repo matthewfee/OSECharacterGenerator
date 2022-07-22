@@ -371,6 +371,12 @@ input[type='button']:focus {
   background-color: var(--light-bg-color);
 }
 
+/* option:hover,
+option:focus {
+  background-color: green !important;
+  color: red;
+} */
+
 .button.button-primary,
 button.button-primary,
 input[type='submit'].button-primary,
