@@ -1093,6 +1093,7 @@ div > .button-class-option {
   font-size: 1.7rem;
   height: 100%;
   width: 100%;
+  align-items: center;
 }
 
 .equipment-purchase-container {
@@ -1470,9 +1471,13 @@ div > .button-class-option {
   font-size: 1.2rem;
 }
 
-/* .main-page--language-options {
+.main-page--language-options {
   margin-top: 30px;
-} */
+}
+
+.main-page--language-options > button {
+  background-color: rgba(5, 29, 29, 0.7);
+}
 
 .main-page--description {
   height: auto;
