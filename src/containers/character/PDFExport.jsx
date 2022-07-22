@@ -85,10 +85,10 @@ export default function PDFExport(props) {
   const spellText = character.hasSpells ? `Spells: ${character.spells}` : ''
 
   const descriptionInfo = `
-    Appearance: ${character.appearance}
-    Background Skill: ${character.background}
-    Personality: ${character.personality}
-    Misfortune: ${character.misfortune}
+    ${character.appearance && `Appearance: ${character.appearance}`}
+    ${character.background && `Background: ${character.background}`}
+    ${character.personality && `Personality: ${character.personality}`}
+    ${character.misfortune && `Misfortune: ${character.misfortune}`}
     `
 
   async function fillForm() {
