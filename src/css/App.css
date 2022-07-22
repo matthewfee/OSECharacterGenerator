@@ -1101,6 +1101,7 @@ div > .button-class-option {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  min-width: 400px;
 }
 
 .equipment-purchase-container > .equipment-options {
