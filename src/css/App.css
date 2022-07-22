@@ -893,7 +893,6 @@ a {
   position: absolute;
   top: -44px;
   width: 100%;
-  color: var(--main-bg-color);
   font-size: 1.8rem;
   font-weight: 600;
 }

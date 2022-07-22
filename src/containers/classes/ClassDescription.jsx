@@ -8,7 +8,7 @@ export default function ClassDescription(props) {
   if (!characterClass.name) {
     return (
       <div className='class-details-indicator' style={{ border: 'none' }}>
-        Select Class
+        Select Your Class
       </div>
     )
   }
