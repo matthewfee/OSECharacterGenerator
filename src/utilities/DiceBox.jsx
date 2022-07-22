@@ -10,8 +10,10 @@ const Dice = new DiceBox(
     id: 'dice-canvas', // canvas element id
     theme: 'default', // this can be a hex color if you like
     assetPath: '/assets/dice-box/',
-    gravity: 3,
-    scale: 4
+    scale: 4,
+    delay: 100,
+    throwForce: 3,
+    spinForce: 7
   }
 )
 

@@ -25,6 +25,7 @@ export default function AbilityScreen(props) {
 
   useEffect(() => {
     console.log('Loaded')
+
     if (!diceEnabled) {
       rollAttribute('e', 'all')
     }
