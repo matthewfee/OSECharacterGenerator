@@ -221,8 +221,15 @@ a {
   width: 100%;
 }
 
+.armour-button-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .button--buy-armour {
-  align-self: end;
+  margin: 1rem 0;
 }
 
 .button--buy-weapon,

@@ -97,16 +97,20 @@ export default function ArmourOptionsContainer(props) {
           )}
         </div>
 
-        <input
-          className='button--buy-armour'
-          type='submit'
-          value='Choose'
-          onClick={() => {
-            storeHandler(armourSelected, 'buy', 'armour')
-          }}
-          price={null}
-          disabled={!armourSelected}
-        />
+        <div className='armour-button-container'>
+          <button
+            className='button--buy-armour'
+            type='button'
+            value='Choose'
+            onClick={() => {
+              storeHandler(armourSelected, 'buy', 'armour')
+            }}
+            price={null}
+            disabled={!armourSelected}
+          >
+            Choose
+          </button>
+        </div>
       </div>
     </div>
   )

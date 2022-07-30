@@ -36,6 +36,7 @@ export default function EquipmentStore(props) {
 
   const [gold, setGold] = useState(null)
   const [goldRolled, setGoldRolled] = useState(false)
+  const [showGoldInfo, setShowGoldInfo] = useState(false)
   const [adventuringGear, setAdventuringGear] = useState([])
   const [adventuringGearSelected, setAdventuringGearSelected] =
     useState('Backpack')
@@ -85,6 +86,7 @@ export default function EquipmentStore(props) {
       const totalGold = gold * 10
       setGold(totalGold)
       setGoldRolled(true)
+      setShowGoldInfo(true)
       return
     }
 
@@ -105,6 +107,7 @@ export default function EquipmentStore(props) {
 
         setGold(totalGold)
         setGoldRolled(true)
+        setShowGoldInfo(true)
       })
   }
 
@@ -269,7 +272,7 @@ export default function EquipmentStore(props) {
   return (
     <>
       <div className='gold-container'>
-        {gold && <h5 className='gold'>{gold} gp</h5>}
+        {showGoldInfo && <h5 className='gold'>{gold} gp</h5>}
         {gold === null && (
           <button
             className='button button-primary button--gold'
