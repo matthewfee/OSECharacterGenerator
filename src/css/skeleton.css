@@ -220,6 +220,8 @@ html {
   --main-bg-white: rgb(255, 255, 255);
   --primary-bg-hover: #0f0a2b;
   --button-bg-color: rgba(49, 116, 81, 0.2);
+  --light-green: rgba(49, 116, 81, 0.1);
+  /* --button-default-bg: #2f4f4f; */
   /* --main-bg-color: #5f6175;
   --secondary-bg-color: #41404b;
   --tertiary-bg-color: #aeaec4;

@@ -908,7 +908,7 @@ a {
 .class-details > .class-summary {
   user-select: none;
   border-radius: 4px;
-  background-color: transparent !important;
+  background-color: var(--light-bg-color);
   margin: auto;
   font-weight: bold;
   font-size: 1.8rem;
@@ -918,7 +918,6 @@ a {
 }
 
 .class-details > .class-summary:hover {
-  background-color: var(--light-bg-color);
   cursor: pointer;
 }
 
@@ -1025,7 +1024,8 @@ div > .button-class-option {
   padding: 0;
   margin: 0.2rem;
   border: none;
-  background-color: rgba(56, 77, 65, 0.1);
+  /* background-color: var(--main-bg-color);
+  color: white; */
 }
 
 @media screen and (min-width: 400px) {
@@ -1163,17 +1163,21 @@ div > .button-class-option {
   top: 0;
   text-transform: uppercase;
   /* font-family: Helvetica, sans-serif; */
-  font-size: 24px;
+  font-size: 2.8rem;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: 0.1rem;
   white-space: nowrap;
   height: 38px;
-  width: 100px;
+  width: 120px;
   z-index: 3;
-  background-color: lightgrey;
+  background-color: rgba(255, 217, 0, 0.8);
   color: #2a2a2d;
   border-radius: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .equipment-screen > .armour-container {
@@ -1199,10 +1203,10 @@ div > .button-class-option {
 }
 
 .wrapper {
-  --main-bg-color: rgb(77, 77, 77);
+  /* --main-bg-color: rgb(77, 77, 77); */
   --secondary-bg-color: grey;
   --tertiary-bg-color: rgb(77, 77, 77);
-  --light-bg-color: lightgrey;
+  /* --light-bg-color: lightgrey; */
   --arrow-color: darkgrey;
   --arrow-color-hover: rgb(77, 77, 77);
   --dark-bg-color: #141414;
@@ -1210,7 +1214,8 @@ div > .button-class-option {
   --secondary-text-color: #575757;
   --main-bg-white: rgba(255, 255, 255, 0.95);
   --primary-bg-hover: #2c2c2c;
-  --button-bg-color: rgba(105, 105, 105, 0.2);
+  /* --button-bg-color: rgba(56, 77, 65, 0.2); */
+  /* --button-default-bg: rgb(77, 77, 77); */
 }
 
 .wrapper > .header {
@@ -1539,7 +1544,6 @@ div > .button-class-option {
   background-size: cover;
   background-position: top;
   min-height: 1100px;
-  transition: all 1s ease;
 }
 
 .wrapper-alt.wrapper {

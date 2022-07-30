@@ -269,17 +269,15 @@ export default function EquipmentStore(props) {
   return (
     <>
       <div className='gold-container'>
-        <h5 className='gold'>
-          {gold} gp
-          {gold === null && (
-            <button
-              className='button button-primary button--gold'
-              onClick={() => setTimeout(getGold(), 200)}
-            >
-              Roll Gold
-            </button>
-          )}
-        </h5>
+        {gold && <h5 className='gold'>{gold} gp</h5>}
+        {gold === null && (
+          <button
+            className='button button-primary button--gold'
+            onClick={() => setTimeout(getGold(), 200)}
+          >
+            Roll Gold
+          </button>
+        )}
       </div>
 
       {goldRolled && (
