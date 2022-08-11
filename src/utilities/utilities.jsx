@@ -84,7 +84,11 @@ export const updateAbilityModifiers = (abilityScoreValues) => {
   })
 
   return abilityModifiers
+
+
+
 }
+
 
 export const getPrimeReqMod = (abilityScoreValues, characterClass) => {
   // generates the correct prime req by matching a class to a prime requisite

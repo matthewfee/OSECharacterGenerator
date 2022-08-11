@@ -5,6 +5,7 @@ import { lngs } from '../constants/constants'
 import PropTypes from 'prop-types'
 import CheckBox from '../components/general/Checkbox'
 import { isMobile } from 'react-device-detect'
+import { useCharacterStore } from '../zustand/store'
 
 export default function LandingScreen(props) {
   const { t, i18n } = useTranslation()
@@ -26,6 +27,8 @@ export default function LandingScreen(props) {
     window.localStorage.getItem('characterStorage')
   )
 
+  const state = useCharacterStore()
+
   return (
     <header
       className={`header ${characterRolled ? '' : 'header--initial'} ${
@@ -36,7 +39,14 @@ export default function LandingScreen(props) {
         className={`title ${rollButtonHover ? 'fade' : ''}`}
         style={{ fontSize: characterRolled ? '1.4rem' : '' }}
       >
-        <Trans i18nKey='AppName'>OSE Character Generator</Trans>
+        {/* <Trans i18nKey='AppName'>OSE Character Generator</Trans> */}
+        {state.id}
+
+        <button onClick={state.incrementID}>increment ID</button>
+        <button onClick={() => state.setState({ id: 243 })}>set State</button>
+        <button onClick={() => state.setState({ id: state.id - 2 })}>
+          decrement State
+        </button>
       </h2>
       {screen.abilityScreen && !characterRolled && (
         <button

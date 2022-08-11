@@ -48,6 +48,9 @@ export default function EquipmentStore(props) {
   const [armourClass, setArmourClass] = useState()
   const [unarmouredAC, setUnarmouredAC] = useState()
 
+  // make a hook to take logic
+  // first file, logic in terms of setup data
+
   useEffect(() => {
     // calculate base armour class
 
@@ -299,12 +302,13 @@ export default function EquipmentStore(props) {
 
             {armour.length > 0 && (
               <WeaponOptionsContainer
-                characterClass={characterClass}
+                // characterClass={characterClass}
                 weaponSelected={weaponSelected}
                 updateSelectedWeapon={updateSelectedWeapon}
                 weaponsList={weaponsList}
-                storeHandler={storeHandler}
+                // storeHandler={storeHandler}  
                 selectRandomWeapon={selectRandomWeapon}
+                {...props}
               ></WeaponOptionsContainer>
             )}
 

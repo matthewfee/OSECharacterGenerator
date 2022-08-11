@@ -22,6 +22,8 @@ import { Dice } from '../utilities/DiceBox'
 import { isMobile } from 'react-device-detect'
 
 export default function CharacterGenerator() {
+  //generate store
+
   const [character, setCharacter] = useState({
     id: null,
     name: null,
@@ -114,6 +116,10 @@ export default function CharacterGenerator() {
       setCharacterModifiers(newCharacterModifiers)
     }
   }, [abilityScores, characterClass])
+
+  // const characterDetailsZustand = useCharacterStore(
+  //   (state) => state.characterDetails
+  // )
 
   const rollAttribute = (e, input) => {
     const attribute = e?.target?.value || input

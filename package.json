@@ -21,7 +21,8 @@
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.7",
     "react-router-dom": "^6.3.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zustand": "^4.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
