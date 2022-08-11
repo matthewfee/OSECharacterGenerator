@@ -43,9 +43,28 @@ export default function LandingScreen(props) {
         {state.id}
 
         <button onClick={state.incrementID}>increment ID</button>
-        <button onClick={() => state.setState({ id: 243 })}>set State</button>
-        <button onClick={() => state.setState({ id: state.id - 2 })}>
-          decrement State
+        <button onClick={() => state.mergeState({ id: 243, test: 'James' })}>
+          set State {state.test2}
+        </button>
+        <button
+          onClick={() =>
+            state.mergeState({
+              id: state.id - 1,
+              test2: 'Doug',
+              test: 'George'
+            })
+          }
+        >
+          decrement State {state.test}
+        </button>
+        <button
+          onClick={() =>
+            state.actions.setCharacterDetails({
+              name: 'Lars'
+            })
+          }
+        >
+          Update Name {state.characterDetails.name}
         </button>
       </h2>
       {screen.abilityScreen && !characterRolled && (
