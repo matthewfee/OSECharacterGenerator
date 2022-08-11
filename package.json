@@ -14,6 +14,7 @@
     "downloadjs": "^1.4.7",
     "i18next": "^21.6.16",
     "i18next-browser-languagedetector": "^6.1.4",
+    "immer": "^9.0.15",
     "pdf-lib": "^1.17.1",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
