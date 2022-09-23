@@ -141,6 +141,7 @@ export default function CharacterGenerator() {
       })
 
       setAbilityScores(newCharacterAbilityScores)
+      setPointBuy(0)
       return
     }
 
@@ -149,6 +150,7 @@ export default function CharacterGenerator() {
       newCharacterAbilityScores[attribute] = dieResult
       newCharacterAbilityScores[`${attribute}Original`] = dieResult
       setAbilityScores(newCharacterAbilityScores)
+      setPointBuy(0)
       return
     }
 
