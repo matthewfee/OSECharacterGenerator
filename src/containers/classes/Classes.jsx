@@ -11,6 +11,8 @@ export default function ClassOptions(props) {
 
   const [advancedClassesDisplay, setAdvancedClassesDisplay] = useState(false)
 
+  const [carcassClassesDisplay, setCarcassClassesDisplay] = useState(false)
+
   const listClassOptions = (classType) => {
     const classData = classOptionsData.filter((characterClass) => {
       return characterClass.category === classType
@@ -42,12 +44,25 @@ export default function ClassOptions(props) {
           value='Advanced Classes'
           checkedCondition={advancedClassesDisplay}
           callback={() => setAdvancedClassesDisplay(!advancedClassesDisplay)}
+        ></Checkbox>&nbsp;
+        Carcass Crawler Classes
+        <Checkbox
+          value='Carcass Crawler Classes'
+          checkedCondition={carcassClassesDisplay}
+          callback={() => setCarcassClassesDisplay(!carcassClassesDisplay)}
         ></Checkbox>
       </h3>
 
       {advancedClassesDisplay && (
         <CharacterClasses
           classType='advanced'
+          callback={listClassOptions}
+        ></CharacterClasses>
+      )}
+
+      {carcassClassesDisplay && (
+        <CharacterClasses
+          classType='carcass'
           callback={listClassOptions}
         ></CharacterClasses>
       )}
