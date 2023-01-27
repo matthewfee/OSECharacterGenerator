@@ -18,7 +18,7 @@ i18n
           Roll: 'Roll',
           Tavern: 'Tavern',
           AppDescription:
-            'Designed for use with <0>Old School Essentials</0>. Advanced Fantasy classes included with the permission of Necrotic Gnome.',
+            'Designed for use with <0>Old School Essentials</0>. Additional classes included with the permission of Necrotic Gnome & James Maliszewski.',
           CreatedBy: '<0>Created by EvilTables</0>',
           abilityScoreNames: {
             strength: 'Strength',
@@ -45,7 +45,7 @@ i18n
           Roll: 'Würfeln',
           Tavern: 'Taverne',
           AppDescription:
-            'Entwickelt für die Verwendung mit <0>Old School Essentials</0>. OSE Advanced Fantasy-Klassen enthalten mit Genehmigung von Necrotic Gnome.',
+            'Entwickelt für die Verwendung mit <0>Old School Essentials</0>. Zusätzlich Klassen enthalten mit Genehmigung von Necrotic Gnome & James Maliszewski.',
           CreatedBy: '<0>Erstellt von EvilTables</0>',
           abilityScoreNames: {
             strength: 'Stärke',

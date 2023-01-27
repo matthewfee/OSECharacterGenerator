@@ -953,6 +953,7 @@ a {
 
 .class-description--summary {
   margin-left: 10px;
+  white-space: pre-wrap;
 }
 
 .class-description--prime-reqs {
