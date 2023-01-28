@@ -19,7 +19,7 @@ i18n
           Tavern: 'Tavern',
           AppDescription:
             'Designed for use with <0>Old School Essentials</0>. Additional classes included with the permission of Necrotic Gnome & James Maliszewski.',
-          CreatedBy: '<0>Created by EvilTables</0>',
+          CreatedBy: '<0>Created by EvilTables</0> <1>Carcass Crawler classes from Taranat</1>',
           abilityScoreNames: {
             strength: 'Strength',
             intelligence: 'Intelligence',
@@ -46,7 +46,7 @@ i18n
           Tavern: 'Taverne',
           AppDescription:
             'Entwickelt für die Verwendung mit <0>Old School Essentials</0>. Zusätzlich Klassen enthalten mit Genehmigung von Necrotic Gnome & James Maliszewski.',
-          CreatedBy: '<0>Erstellt von EvilTables</0>',
+          CreatedBy: '<0>Erstellt von EvilTables</0> <1>Carcass Crawler Klassen von Taranat</1>',
           abilityScoreNames: {
             strength: 'Stärke',
             intelligence: 'Intelligenz',
