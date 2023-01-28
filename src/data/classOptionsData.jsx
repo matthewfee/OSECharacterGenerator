@@ -717,7 +717,7 @@ const classOptionsData = [
 
       return 0
     },
-    hd: 10,
+    hd: 6,
     maxLevel: 10,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any appropriate to size',
