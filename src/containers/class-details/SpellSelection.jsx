@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {
   magicUserSpells,
   druidSpells,
-  illusionistSpells
+  illusionistSpells,
+  necromancerSpells
 } from '../../data/spells'
 import { chooseRandomItem } from '../../utilities/utilities'
 import Option from '../../components/general/Option'
@@ -29,6 +30,10 @@ export default function SpellSelection({
       randomSpell = chooseRandomItem(illusionistSpells)
     }
 
+    if (characterClass.necromancerSpells) {
+      randomSpell = chooseRandomItem(necromancerSpells)
+    }
+
     setSpellSelected(randomSpell)
     setCharacterStatistics((prevState) => {
       return { ...prevState, spell: randomSpell, hasSpells: true }
@@ -52,6 +57,10 @@ export default function SpellSelection({
       spellList = illusionistSpells
     }
 
+    if (characterClass.necromancerSpells) {
+      spellList = necromancerSpells
+    }
+
     return spellList.map((spell, index) => {
       return <Option key={index} value={spell.toString()}></Option>
     })
@@ -70,7 +79,8 @@ export default function SpellSelection({
     characterClass.arcaneSpells ||
     characterClass.divineSpells ||
     characterClass.illusionistSpells ||
-    characterClass.druidSpells
+    characterClass.druidSpells ||
+    characterClass.necromancerSpells
   )
 
   return (
