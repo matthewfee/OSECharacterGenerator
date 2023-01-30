@@ -38,3 +38,18 @@ export const illusionistSpells = [
   "Spook",
   "Wall of Fog"
 ];
+
+export const necromancerSpells = [
+  "Chill Touch",
+  "Command Dead",
+  "Corpse Visage",
+  "Decay",
+  "Deathlight",
+  "Detect Undead",
+  "Marionette",
+  "Pass Undead",
+  "Protection from Evil",
+  "Read Magic",
+  "Skull Speech",
+  "Undead Servitor"
+];

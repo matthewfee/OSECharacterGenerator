@@ -546,6 +546,29 @@ const classOptionsData = [
     divine: false
   },
   {
+    name: 'Necromancer',
+    category: 'advanced',
+    requirements: 'Minimum 9 wisdom',
+    primeReqs: ['intelligence'],
+    hd: 4,
+    maxLevel: 14,
+    armour: 'none',
+    weapons: 'dagger, staff (optional)',
+    languages:
+      'Alignment, Common',
+    description:
+      'Necromancers are adventurers who study the arcane arts of death and the undead. Through this study, they have learned to cast magic spells.',
+    savingThrows: [13, 14, 13, 16, 15],
+    nextLevel: 2500,
+    abilities: [
+      'Arcane Magic',
+    ],
+    link: 'https://www.drivethrurpg.com/product/414657/OldSchool-Essentials-The-Necromancer',
+    arcane: true,
+    necromancerSpells: true,
+    divine: false
+  },
+  {
     name: 'Paladin',
     category: 'advanced',
     requirements: 'Minimum 9 charisma',
