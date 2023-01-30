@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import CheckBox from '../components/general/Checkbox'
 import {isMobile} from 'react-device-detect'
 import {CircleLoader} from 'react-spinners';
+import designed from '../img/designed.png'
 
 export default function LandingScreen(props) {
     const {t, i18n} = useTranslation()
@@ -107,16 +108,14 @@ export default function LandingScreen(props) {
                     )}
 
                     <div className='main-page--description'>
-                        <Trans
-                            i18nKey='AppDescription'
-                            t={t}
-                            components={[
-                                <LinkText
-                                    key='Necrotic-Gnome'
-                                    href='https://necroticgnome.com/'
-                                />
-                            ]}
-                        />
+                        <a href="https://necroticgnome.com/" target="_blank" rel="noreferrer">
+                            <img
+                                src={designed}
+                                alt='Designed for use with Old-School Essentials'
+                                width='35%'
+                                height='35%'
+                            />
+                        </a>
                     </div>
 
                     <div className='main-page--language-options'>
@@ -140,7 +139,7 @@ export default function LandingScreen(props) {
             {screen.abilityScreen && !characterRolled && !rollButtonHover && (
                 <div className='main-page--created-by'>
                     <Trans
-                        i18nKey='CreatedBy'
+                        i18nKey='Footer'
                         t={t}
                         components={[
                             <LinkText
@@ -149,8 +148,16 @@ export default function LandingScreen(props) {
                             />,
                             <LinkText
                                 key={'link2'}
-                                href='https://www.taranat.com/'
-                            />
+                                href='https://github.com/matthewfee/OSECharacterGenerator/graphs/contributors'
+                            />,
+                            <LinkText
+                                key='Necrotic-Gnome'
+                                href='https://necroticgnome.com/'
+                            />,
+                            <LinkText
+                                key='James-Maliszewski.'
+                                href='https://grognardia.blogspot.com/'
+                            />,
                         ]}
                     />
                 </div>

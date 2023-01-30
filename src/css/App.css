@@ -1527,8 +1527,8 @@ div > .button-class-option {
   margin-top: 10px;
   width: 100%;
   text-align: center;
-  display: flex;
-  flex-flow: column;
+  display: inline;
+  font-size: 11px;
 }
 
 .main-page--subheader {

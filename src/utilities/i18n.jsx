@@ -14,12 +14,10 @@ i18n
     resources: {
       en: {
         translation: {
-          AppName: 'OSE Character Generator',
+          AppName: 'Old-School Character Generator',
           Roll: 'Roll',
           Tavern: 'Tavern',
-          AppDescription:
-            'Designed for use with <0>Old School Essentials</0>. Additional classes included with the permission of Necrotic Gnome & James Maliszewski.',
-          CreatedBy: '<0>Created by EvilTables</0> <1>Carcass Crawler classes from Taranat</1>',
+          Footer: 'Old-School Character Generator is an independent open-source project by <0>EvilTables</0> & <1>contributors</1> and is not affiliated with <2>Necrotic Gnome</2>. Permission to include additional classes from Advanced Fantasy and Carcass Crawler granted by <2>Necrotic Gnome</2> & <3>James Maliszewski</3>. Old-School Essentials is a trademark of <2>Necrotic Gnome</2>. The trademark and Old-School Essentials logo are used with permission of <2>Necrotic Gnome</2>, under license.',
           abilityScoreNames: {
             strength: 'Strength',
             intelligence: 'Intelligence',
@@ -41,12 +39,10 @@ i18n
       },
       de: {
         translation: {
-          AppName: 'OSE Charaktergenerator',
+          AppName: 'Old-School Charaktergenerator',
           Roll: 'Würfeln',
           Tavern: 'Taverne',
-          AppDescription:
-            'Entwickelt für die Verwendung mit <0>Old School Essentials</0>. Zusätzlich Klassen enthalten mit Genehmigung von Necrotic Gnome & James Maliszewski.',
-          CreatedBy: '<0>Erstellt von EvilTables</0> <1>Carcass Crawler Klassen von Taranat</1>',
+          Footer: 'Old-School Charaktergenerator ist ein unabhängiges Open-Source-Projekt von <0>EvilTables</0> & <1>Mitwirkenden</1> und steht in keiner Verbindung zu <2>Necrotic Gnome</2>. Die Erlaubnis zur Aufnahme weiterer Klassen aus Advanced Fantasy und Carcass Crawler wurde von <2>Necrotic Gnome</2> & <3>James Maliszewski</3> erteilt. Old-School Essentials ist ein Warenzeichen von <2>Necrotic Gnome</2>. Die Marke und das Old-School Essentials Logo werden mit Genehmigung von <2>Necrotic Gnome</2> unter Lizenz verwendet.',
           abilityScoreNames: {
             strength: 'Stärke',
             intelligence: 'Intelligenz',
