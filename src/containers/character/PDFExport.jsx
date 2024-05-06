@@ -4,6 +4,7 @@ import { joinDuplicates } from '../../utilities/utilities'
 import download from 'downloadjs'
 import {
   CHARACTER_SHEET_PURIST_URL,
+  CHARACTER_SHEET_PURIST_DAC_URL,
   CHARACTER_SHEET_UNDERGROUND_URL,
   CHARACTER_STORAGE
 } from '../../constants/constants'
@@ -165,6 +166,96 @@ export default function PDFExport(props) {
     download(pdfBytes, fileName, 'application/pdf')
   }
 
+  async function fillFormDAC() {
+    const formUrl = CHARACTER_SHEET_PURIST_DAC_URL
+    const formPdfBytes = await fetch(formUrl).then((res) => res.arrayBuffer())
+
+    const pdfDoc = await PDFDocument.load(formPdfBytes)
+
+    const form = pdfDoc.getForm()
+
+	const fields = form.getFields()
+	fields.forEach(field => {
+		const type = field.constructor.name
+		const name = field.getName()
+		console.log(`${type}: ${name}`)
+	})
+
+    const formFieldKeysOfficialSheet = {
+      // matches the PDF Form labels with correct data
+
+      'Name': character.name,
+      'Alignment': alignmentCapitalized,
+      'Character Class': characterClass.name,
+      'Level': '1',
+      'STR': abilityScores.strength,
+      'INT': abilityScores.intelligence,
+      'DEX': abilityScores.dexterity,
+      'WIS': abilityScores.wisdom,
+      'CON': abilityScores.constitution,
+      'CHA': abilityScores.charisma,
+
+      'Death Save': characterClass.savingThrows[0],
+      'Wands Save': characterClass.savingThrows[1],
+      'Paralysis Save': characterClass.savingThrows[2],
+      'Breath Save': characterClass.savingThrows[3],
+      'Spells Save': characterClass.savingThrows[4],
+
+      'Magic Save Mod': characterModifiers.wisdomMod,
+      'HP': characterStatistics.hitPoints,
+      'Max HP': characterStatistics.hitPoints,
+      'AC': 19 - characterStatistics.armourClass,
+      'CON HP Mod': characterModifiers.constitutionMod,
+      'Unarmoured AC': 19 - characterStatistics.unarmouredAC,
+      'DEX AC Mod': characterModifiers.dexterityModAC,
+      'STR Melee Mod': characterModifiers.strengthModMelee,
+      'Dex Missile Mod': characterModifiers.dexterityModMissiles,
+      'Abilities, Skills, Weapons': abilitiesInfo,
+      'Reactions CHA Mod': characterModifiers.charismaModNPCReactions,
+      Equipment: equipmentInfo,
+      'Weapons and Armour': weaponsInfo,
+      GP: characterEquipment.gold,
+      // Description: descriptionInfo,
+      'XP for Next Level': characterClass.nextLevel,
+      'PR XP Bonus': characterModifiers.primeReqMod,
+ 	  'THAC9': '10',
+ 	  'THAC8': '11',
+ 	  'THAC7': '12',
+ 	  'THAC6': '13',
+ 	  'THAC5': '14',
+ 	  'THAC4': '15',
+ 	  'THAC3': '16',
+ 	  'THAC2': '17',
+ 	  'THAC1': '18',
+ 	  'THAC0': '19',
+      Notes: spellText,
+      'Languages': languageText
+    }
+
+    for (const key in formFieldKeysOfficialSheet) {
+      let value = formFieldKeysOfficialSheet[key]
+
+      if (value != null) {
+        value = value.toString()
+      } else {
+        value = ''
+      }
+
+      form.getTextField(key).setText(value)
+    }
+
+    const literacyField = form.getCheckBox('Literacy')
+    if (abilityScores.intelligence > 8) {
+      literacyField.check()
+    }
+
+    const pdfBytes = await pdfDoc.save()
+
+    const fileName = `${character.name} the ${characterClass.name}.pdf`
+
+    download(pdfBytes, fileName, 'application/pdf')
+  }
+
   async function fillFormUnderground() {
     const formUrl = CHARACTER_SHEET_UNDERGROUND_URL
 
@@ -234,6 +325,8 @@ export default function PDFExport(props) {
   return (
     <div className='pdf-export-container'>
       <button onClick={() => fillForm()}>Purist</button>
+
+      <button onClick={() => fillFormDAC()}>Purist (DAC)</button>
 
       <button onClick={() => fillFormUnderground()}>Underground</button>
     </div>

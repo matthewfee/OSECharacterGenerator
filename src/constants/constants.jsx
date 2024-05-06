@@ -8,6 +8,9 @@ export const greenSuccess = '#09b341'
 export const CHARACTER_SHEET_PURIST_URL =
   'https://matthewfee.github.io/OSECharacterServer/public/CharacterSheetTemplate7.pdf'
 
+export const CHARACTER_SHEET_PURIST_DAC_URL =
+  '/src/img/DAC.pdf'
+
 export const CHARACTER_SHEET_UNDERGROUND_URL =
   'https://matthewfee.github.io/OSECharacterServer/public/Underground10.pdf'
 
