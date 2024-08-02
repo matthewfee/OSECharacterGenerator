@@ -953,6 +953,155 @@ const classOptionsData = [
     arcane: false,
     divine: true,
     druidSpells: true,
+  },
+  {
+    name: 'Beast Master',
+    category: 'carcass',
+    requirements: null,
+    primeReqs: ['strength','wisdom'],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 13) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 6,
+    maxLevel: 14,
+    armour: 'leather, chainmail, shields',
+    weapons: 'any',
+    languages: 'Alignment, Common',
+    description:
+      'Beast masters are adventurers with a special connection to animals. They are often accompanied by one or more loyal beasts.',
+    savingThrows: [11, 12, 12, 15, 16],
+    nextLevel: 1800,
+    abilities: [
+      'Animal Companions',
+      'Clairvoyance (level 5)',
+      'Identify Tracks',
+      'Reaction Modifier',
+      'Speak with Animals'
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Dragonborn',
+    category: 'carcass',
+    requirements: 'Minimum 9 constitution, minimum 9 intelligence',
+    primeReqs: ['strength'],
+    hd: 8,
+    maxLevel: 10,
+    armour: 'any leather, chainmail, plate, shields',
+    weapons: 'any',
+    languages: 'Alignment, Common, Dragon',
+    description:
+      'Dragonborn are tall, powerful demihumans with scaled skin and dragon-like heads. They typically weigh about 250 pounds and stand around 6’ tall. As reptiles, they reproduce by laying eggs. Unlike true dragons, dragonborn do not have wings or tails. Dragonborn live in clans based on the colour of their scales (see Draconic Bloodline) and are known for their fierce loyalty and their love of hoarding gold. It is believed that dragonborn were created by the dragon gods.',
+    savingThrows: [12, 13, 14, 13, 16],
+    nextLevel: 3000,
+    abilities: [
+      'Breath Weapon',
+      'Draconic Bloodline (roll d10 on table)',
+      'Draconic Resistance',
+      'Dragon-Affecting Magic',
+      'Dragon Affinity',
+      'Scales'
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Mutoid',
+    category: 'carcass',
+    requirements: null,
+    primeReqs: ['dexterity'],
+    hd: 6,
+    maxLevel: 8,
+    armour: 'leather, shields',
+    weapons: 'one-handed melee weapons, all missile weapons',
+    languages: 'Alignment, Common',
+    description:
+      'Demihumans with mismatched body parts of many different creatures (e.g. reptiles, crustaceans, birds, mammals, etc.). Each individual has a unique appearance. Mutoids are often shunned by other species and live in ruins or in hidden lairs within large settlements.',
+    savingThrows: [10, 11, 12, 13, 14],
+    nextLevel: 1750,
+    abilities: [
+      'Back-Stab',
+      'Mutations',
+      'Mutoid Skills (Hide in shadows, mimicry, move silently, pick pockets)',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Mycelian',
+    category: 'carcass',
+    requirements: 'Minimum 9 constitution',
+    primeReqs: ['strength'],
+    hd: 8,
+    maxLevel: 6,
+    armour: 'shields',
+    weapons: 'any',
+    languages: 'Alignment, Common, Deepcommon',
+    description:
+      'Mycelians are humanoid mushrooms, with tall stems, wide, flat caps, and beady eyes amid their gills. They have no mouths, but communicate telepathically. They dwell in lightless caverns deep underground.',
+    savingThrows: [9, 11, 9, 13, 12],
+    nextLevel: 3000,
+    abilities: [
+      'Fungal Spores (Pacifying, hallucinogenic)',
+      'Growth',
+      'Unarmed Attacks',
+      'Natural Armour Class',
+      'Infravision',
+      'Light Sensitivity',
+      'Rest and Sustenence',
+      'Telepathic Communication',
+      'Fungal Reanimation (level 6)'
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Tiefling',
+    category: 'carcass',
+    requirements: 'Minimum 9 intelligence',
+    primeReqs: ['charisma','dexterity'],
+    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 6,
+    maxLevel: 10,
+    armour: 'leather, chainmail, shields',
+    weapons: 'any',
+    languages: 'Alignment, Common',
+    description: 
+      'Tieflings are humans with a mysterious fiendish ancestor. They tend to be outcasts living on the fringes of society, shunned by those who fear their heritage.',
+    savingThrows: [11, 12, 12, 15, 14],
+    nextLevel: 2500,
+    abilities: [
+      'Fiendish Heritage (roll on tables)',
+      'Holy Water Vulnerability',
+      'Infravision',
+      'Tiefling Skills (Beguile, hear noise, hide in shadows, move silently',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
+    arcane: false,
+    divine: false,
   }
 ]
 
