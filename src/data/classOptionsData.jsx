@@ -1102,6 +1102,103 @@ const classOptionsData = [
     link: 'https://necroticgnome.com/products/carcass-crawler-issue-3',
     arcane: false,
     divine: false,
+  },
+  {
+    name: 'Halfling Hearthsinger',
+    category: 'carcass',
+    requirements: 'Minimum 9 charisma, minimum 9 constitution, minimum 9 dexterity',
+    primeReqs: ['charisma', 'constitution'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 6,
+    maxLevel: 8,
+    armour: 'leather, shields',
+    weapons: 'any appropriate to size',
+    languages: 'Alignment, Common, Halfling',
+    description: 'Hearthsingers are halflings who specialise in memorising and recalling legends, lore, and local folktales. The desire to learn the truth behind lost legends and forgotten myths often drives them to adventure and they value tomes, journals, and written histories over other treasure.',
+    savingThrows: [8, 9, 10, 13, 12],
+    nextLevel: 2000,
+    abilities: [
+      'Defensive Bonus',
+      'Halfling Hearthsinger Skills',
+      'Listening at Doors (2-in-6)',
+      'Rumour Monger',
+      'Tavern',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-4',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Halfling Reeve',
+    category: 'carcass',
+    requirements: 'minimum 9 constitution, minimum 9 dexterity, minimum 9 wisdom',
+    primeReqs: ['constitution', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 6,
+    maxLevel: 8,
+    armour: 'leather, shields',
+    weapons: 'any appropriate to size',
+    languages: 'Alignment, Common, Halfling',
+    description: 'Reeves are the sworn protectors of rural halfling communities. They patrol the wilderness surrounding these idyllic villages, forgoing home comforts to ensure that predators and enemies do not endanger their kinsfolk or threaten the simple peace of the little folk.',
+    savingThrows: [8, 9, 10, 13, 12],
+    nextLevel: 2500,
+    abilities: [
+      'Defensive Bonus',
+      'Divine Magic (4th Level)',
+      'Goblin Slayer',
+      'Limited Possessions',
+      'Stealth',
+      'Wolf Hunter',
+      'Hunting Lodge'
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-4',
+    arcane: false,
+    divine: true,
+  },
+  {
+    name: 'Arcane Bard',
+    category: 'carcass',
+    requirements: 'Minimum 9 dexterity, minimum 9 intelligence',
+    primeReqs: ['charisma', 'dexterity'],
+    hd: 6,
+    maxLevel: 14,
+    armour: 'leather, chainmail',
+    weapons: 'missile weapons, one-handed melee weapons',
+    languages: 'Alignment, Common',
+    description:
+      'Arcane bards are musicians and poets drawn to a life of wandering and adventure. They pick up a wide range of abilities in their travels, becoming jacks-of-all-trades.', 
+    savingThrows: [13, 14, 13, 16, 15],
+    nextLevel: 2000,
+    abilities: [
+      'Anti-Charm',
+      'Arcane Bard Skills',
+      'Arcane Magic',
+      'Lore (level 2)',
+      'Manor',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-4',
+    arcane: true,
+    divine: false
   }
 ]
 
