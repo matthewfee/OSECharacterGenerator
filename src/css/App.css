@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Crimson+Text");
 
 * {
   margin: 0;
@@ -503,18 +503,24 @@ a {
   margin-top: 12px;
 }
 
-.advanced-classes-header,
+.advanced-classes-container,
 .basic-classes-header {
   font-size: 1.8rem;
   font-weight: bold;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  letter-spacing: 1px;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 0.5rem; /* Add spacing between rows */
   width: 90%;
   text-align: right;
-  letter-spacing: 1px;
+  align-items: end;
+  margin-top: 1rem;
+}
+
+.advanced-class-item {
+  display: flex;
+  justify-content: space-between; /* Labels on the left, checkboxes on the right */
+  align-items: center; /* Align vertically */
+  width: 230px;
 }
 
 .checkbox {
@@ -1029,15 +1035,14 @@ div > .button-class-option {
   white-space: normal;
   max-height: 40px;
   height: auto;
+  line-height: 20px;
   width: auto;
-  padding: 0;
+  padding: 4px;
   margin: 0.2rem;
   border: none;
-  /* background-color: var(--main-bg-color);
-  color: white; */
 }
 
-@media screen and (min-width: 400px) {
+@media screen and (min-width: 450px) {
   .class-container {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
     width: 90% !important;
@@ -1086,7 +1091,7 @@ div > .button-class-option {
 
 .class-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   width: 100%;
   position: relative;
   max-width: 400px;
