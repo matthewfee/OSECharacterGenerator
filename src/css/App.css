@@ -1026,6 +1026,7 @@ div.character-menu {
 }
 
 div > .button-class-option {
+  white-space: normal;
   max-height: 40px;
   height: auto;
   width: auto;
