@@ -113,7 +113,7 @@ const classOptionsData = [
     category: 'basic',
     requirements: 'Minimum 9 intelligence',
     primeReqs: ['intelligence', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -150,7 +150,7 @@ const classOptionsData = [
     category: 'basic',
     requirements: 'Minimum 9 constitution, minimum 9 dexterity',
     primeReqs: ['dexterity', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 13 && abilityScore2 >= 13) {
         return 10
       }
@@ -238,7 +238,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 dexterity',
     primeReqs: ['constitution', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -301,7 +301,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 intelligence',
     primeReqs: ['wisdom', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -396,7 +396,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 constitution',
     primeReqs: ['intelligence', 'dexterity'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -436,7 +436,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 charisma, minimum 9 constitution',
     primeReqs: ['intelligence', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (
         (abilityScore1 >= 16 && abilityScore2 >= 13) ||
         (abilityScore2 >= 16 && abilityScore1 >= 13)
@@ -469,7 +469,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: null,
     primeReqs: ['dexterity', 'strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -573,7 +573,7 @@ const classOptionsData = [
     category: 'advanced',
     requirements: 'Minimum 9 charisma',
     primeReqs: ['strength', 'wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -694,8 +694,8 @@ const classOptionsData = [
     name: 'Gargantua',
     category: 'carcass',
     requirements: 'Minimum 9 constitution, minimum 9 strength',
-    primeReqs: ['constitution','strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['constitution', 'strength'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 13 && abilityScore2 >= 16) {
         return 10
       }
@@ -728,8 +728,8 @@ const classOptionsData = [
     name: 'Goblin',
     category: 'carcass',
     requirements: 'Minimum 9 dexterity',
-    primeReqs: ['dexterity','strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['dexterity', 'strength'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -765,8 +765,8 @@ const classOptionsData = [
     name: 'Hephaestan',
     category: 'carcass',
     requirements: 'Minimum 9 charisma, minimum 9 constitution',
-    primeReqs: ['intelligence','wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['intelligence', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -800,8 +800,8 @@ const classOptionsData = [
     name: 'Kineticist',
     category: 'carcass',
     requirements: null,
-    primeReqs: ['dexterity','wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['dexterity', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -835,8 +835,8 @@ const classOptionsData = [
     name: 'Mage',
     category: 'carcass',
     requirements: null,
-    primeReqs: ['intelligence','wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['intelligence', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -877,8 +877,8 @@ const classOptionsData = [
     name: 'Phase Elf',
     category: 'carcass',
     requirements: 'Minimum 9 intelligence',
-    primeReqs: ['intelligence','strength'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['intelligence', 'strength'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -916,8 +916,8 @@ const classOptionsData = [
     name: 'Wood Elf',
     category: 'carcass',
     requirements: 'Minimum 9 dexterity, minimum 9 intelligence',
-    primeReqs: ['dexterity','wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['dexterity', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -958,8 +958,8 @@ const classOptionsData = [
     name: 'Beast Master',
     category: 'carcass',
     requirements: null,
-    primeReqs: ['strength','wisdom'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['strength', 'wisdom'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 13) {
         return 10
       }
@@ -1072,8 +1072,8 @@ const classOptionsData = [
     name: 'Tiefling',
     category: 'carcass',
     requirements: 'Minimum 9 intelligence',
-    primeReqs: ['charisma','dexterity'],
-    checkPrimeReqRequirements: function(abilityScore1, abilityScore2) {
+    primeReqs: ['charisma', 'dexterity'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
       if (abilityScore1 >= 16 && abilityScore2 >= 16) {
         return 10
       }
@@ -1089,7 +1089,7 @@ const classOptionsData = [
     armour: 'leather, chainmail, shields',
     weapons: 'any',
     languages: 'Alignment, Common',
-    description: 
+    description:
       'Tieflings are humans with a mysterious fiendish ancestor. They tend to be outcasts living on the fringes of society, shunned by those who fear their heritage.',
     savingThrows: [11, 12, 12, 15, 14],
     nextLevel: 2500,
@@ -1180,13 +1180,24 @@ const classOptionsData = [
     category: 'carcass',
     requirements: 'Minimum 9 dexterity, minimum 9 intelligence',
     primeReqs: ['charisma', 'dexterity'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if ((abilityScore1 >= 16 && abilityScore2 >= 13) || (abilityScore1 >= 13 && abilityScore2 >= 16)) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
     hd: 6,
     maxLevel: 14,
     armour: 'leather, chainmail',
     weapons: 'missile weapons, one-handed melee weapons',
     languages: 'Alignment, Common',
     description:
-      'Arcane bards are musicians and poets drawn to a life of wandering and adventure. They pick up a wide range of abilities in their travels, becoming jacks-of-all-trades.', 
+      'Arcane bards are musicians and poets drawn to a life of wandering and adventure. They pick up a wide range of abilities in their travels, becoming jacks-of-all-trades.',
     savingThrows: [13, 14, 13, 16, 15],
     nextLevel: 2000,
     abilities: [
