@@ -1198,7 +1198,7 @@ const classOptionsData = [
     ],
     link: 'https://necroticgnome.com/products/carcass-crawler-issue-4',
     arcane: true,
-    divine: false
+    divine: false,
   }
 ]
 
