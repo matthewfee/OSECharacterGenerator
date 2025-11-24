@@ -1248,9 +1248,20 @@ div > .button-class-option {
     ),
     url(../img/header.svg);
   background-size: cover;
-  background-position: top;
+  background-position: 50% 25%;
   min-height: 1100px;
   justify-content: center;
+}
+
+
+.wrapper-alt.wrapper {
+    width: 100vw;
+    min-height: 1400px;
+    transition: all 1s ease;
+    background-color: var(--light-bg-color);
+    background-image:
+            linear-gradient(to right bottom, rgba(150, 150, 42, 0.34), rgba(55, 3, 136, 0.4)),
+            url(../img/header.svg);
 }
 
 .wrapper-container {
@@ -1579,13 +1590,3 @@ div > .button-class-option {
   height: 100%;
 }
 
-.wrapper-alt.wrapper {
-  width: 100vw;
-  background-image:
-    linear-gradient(to right bottom, rgba(100, 98, 0, 0.3), rgba(0, 0, 0, 0.8)),
-    url(../img/header.svg);
-  background-position: top;
-  min-height: 1200px;
-  transition: all 1s ease;
-  background-color: var(--light-bg-color);
-}
