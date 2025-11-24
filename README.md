@@ -9,7 +9,7 @@ This is a character generator for the 1981 Basic/Expert edition Dungeons and Dra
 
 ## Additional Features
 
--One click generation
+- One click generation
 
 ## Available Scripts
 

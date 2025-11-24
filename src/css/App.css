@@ -84,13 +84,14 @@ a {
 }
 
 .header--initial {
-  margin-top: 10%;
   background-color: #03001444;
   border-radius: 10%;
   padding: 2rem 2rem;
 }
 
 .header--hover {
+  border-radius: 10%;
+  padding: 2rem 2rem;
   background-color: transparent !important;
 }
 
@@ -1230,6 +1231,43 @@ div > .button-class-option {
   --primary-bg-hover: #2c2c2c;
   /* --button-bg-color: rgba(56, 77, 65, 0.2); */
   /* --button-default-bg: rgb(77, 77, 77); */
+  position: relative;
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 1.7rem;
+  background-image:
+    linear-gradient(
+      to right bottom,
+      rgba(12, 12, 12, 0.75),
+      rgba(0, 0, 0, 0.95)
+    ),
+    url(../img/header.svg);
+  background-size: cover;
+  background-position: top;
+  min-height: 1100px;
+  justify-content: center;
+}
+
+.wrapper-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  min-height: 1100px;
+  background-color: white;
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
 }
 
 .wrapper > .header {
@@ -1541,47 +1579,13 @@ div > .button-class-option {
   height: 100%;
 }
 
-.wrapper {
-  position: relative;
-  width: 100vw;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  text-align: center;
-  font-size: 1.7rem;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(12, 12, 12, 0.75),
-      rgba(0, 0, 0, 0.95)
-    ),
-    url(../img/header.svg);
-  background-size: cover;
-  background-position: top;
-  min-height: 1100px;
-}
-
 .wrapper-alt.wrapper {
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  min-height: 1200px;
   width: 100vw;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  text-align: center;
-  background-image: linear-gradient(
-      to right bottom,
-      rgba(100, 98, 0, 0.3),
-      rgba(0, 0, 0, 0.8)
-    ),
+  background-image:
+    linear-gradient(to right bottom, rgba(100, 98, 0, 0.3), rgba(0, 0, 0, 0.8)),
     url(../img/header.svg);
-  background-size: cover;
   background-position: top;
+  min-height: 1200px;
   transition: all 1s ease;
   background-color: var(--light-bg-color);
-  /* background-color: rgb(99, 67, 255); */
-  /* background-color: rgb(255, 41, 41); */
 }
