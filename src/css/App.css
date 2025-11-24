@@ -1006,6 +1006,7 @@ div.character-menu {
   min-height: 800px;
   height: 100%;
   position: relative;
+  padding: 20px;
   justify-content: center;
 }
 
@@ -1240,8 +1241,7 @@ div > .button-class-option {
   margin-bottom: 0px;
   text-align: center;
   font-size: 1.7rem;
-  background-image:
-    linear-gradient(
+  background-image: linear-gradient(
       to right bottom,
       rgba(12, 12, 12, 0.75),
       rgba(0, 0, 0, 0.95)
@@ -1253,15 +1253,17 @@ div > .button-class-option {
   justify-content: center;
 }
 
-
 .wrapper-alt.wrapper {
-    width: 100vw;
-    min-height: 1400px;
-    transition: all 1s ease;
-    background-color: var(--light-bg-color);
-    background-image:
-            linear-gradient(to right bottom, rgba(150, 150, 42, 0.34), rgba(55, 3, 136, 0.4)),
-            url(../img/header.svg);
+  width: 100vw;
+  min-height: 1400px;
+  transition: all 1s ease;
+  background-color: var(--light-bg-color);
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(150, 150, 42, 0.34),
+      rgba(55, 3, 136, 0.4)
+    ),
+    url(../img/header.svg);
 }
 
 .wrapper-container {
@@ -1589,4 +1591,3 @@ div > .button-class-option {
 .main-page--subheader {
   height: 100%;
 }
-
