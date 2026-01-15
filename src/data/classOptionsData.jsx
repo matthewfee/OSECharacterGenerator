@@ -9,7 +9,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Fighters are adventurers dedicated to mastering the arts of combat and war. In a group of adventurers, the role of fighters is to battle monsters and to defend other characters.',
     savingThrows: [12, 13, 14, 15, 16],
@@ -29,7 +29,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'only blunt weapons',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Clerics are adventurers who have sworn to serve a deity. They are trained for battle and channel the power of their deity.',
     savingThrows: [11, 12, 14, 16, 15],
@@ -48,7 +48,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'none',
     weapons: 'dagger, staff',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Magic-users are adventurers whose study of arcane secrets has taught them how to cast spells. Magic-users are able to cast a greater number of increasingly powerful spells as they advance in level.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -68,7 +68,7 @@ const classOptionsData = [
     maxLevel: 0,
     armour: 'leather',
     weapons: 'any',
-    languages: 'alignment, common',
+    languages: '',
     description:
       'Thieves are adventurers who live by their skills of deception and stealth. Their range of unique skills makes them very handy companions in adventures. However, thieves are not always to be trusted.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -93,7 +93,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons:
       'any small or normal sized, but cannot use longbows or two-handed swords',
-    languages: 'Alignment, Common, Dwarvish, Gnomish, Goblin, Kobold',
+    languages: 'Dwarvish, Gnomish, Goblin, Kobold',
     description:
       'Dwarves are stout, bearded demihumans, about 4’ tall and weighing about 150 pounds. Dwarves typically live underground and love fine craftsmanship, gold, hearty food, and strong drink. They have skin, hair, and eye colours in earth tones. Dwarves are known for their stubbornness and practicality. They are a hardy people and have a strong resistance to magic, as reflected in their saving throws.',
     savingThrows: [8, 9, 10, 13, 12],
@@ -128,7 +128,7 @@ const classOptionsData = [
     maxLevel: 10,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Elvish, Gnoll, Hobgoblin, Orcish',
+    languages: 'Elvish, Gnoll, Hobgoblin, Orcish',
     description:
       'Elves are slender, fey demihumans with pointed ears. They typically weigh about 120 pounds and are between 5 and 5½ feet tall. Elves are seldom met in human settlements, preferring to feast and make merry in the woods. If crossed, they are dangerous enemies, as they are masters of both sword and spell. Elves are fascinated by spells and beautifully constructed magic items and love to collect both.',
     savingThrows: [12, 13, 13, 15, 15],
@@ -165,7 +165,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any appropriate to size',
-    languages: 'Alignment, Common, Halfling',
+    languages: 'Halfling',
     description:
       'Halflings are small, rotund demihumans with furry feet and curly hair. They weigh about 60 pounds and are around 3’ tall. Halflings are a friendly and welcoming folk. Above all, they love the comforts of home and are not known for their bravery. Halflings who gain treasure through adventuring will often use their wealth in pursuit of a quiet, comfortable life.',
     savingThrows: [8, 9, 10, 13, 12],
@@ -192,7 +192,7 @@ const classOptionsData = [
     armour: 'leather',
     weapons:
       'missile weapons, dagger, sword, short sword, polearm, spear, staff',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Acrobats are trained in skills of balance, gymnastics, and stealth. They often work in conjunction with thieves and may belong to a Thieves’ Guild.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -217,7 +217,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Assassins are adventurers who specialise in the arts of infiltration and killing by stealth. They sometimes form guilds whereby their illicit services may be hired.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -253,7 +253,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, chainmail, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Barbarians are tribal warriors from wild lands. They are formidable fighters with many useful survival skills but have a deep mistrust of the arcane',
     savingThrows: [10, 13, 12, 15, 16],
@@ -280,7 +280,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, chainmail',
     weapons: 'missile weapons, one-handed melee weapons',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Bards are members of a sect of minstrels and warrior poets associated with the druids. Like druids, bards worship the force of nature and the myriad deities that personify it. Their strengths lie in their deep knowledge of myth and legend, the magic that they wield on behalf of their gods, and the enchanting power of their music.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -317,7 +317,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
     languages:
-      'Alignment, Common, Deepcommon, Elvish, Gnomish, the secret language of spiders',
+      'Deepcommon, Elvish, Gnomish, the secret language of spiders',
     description:
       'Drow are slender, fey demihumans with pointed ears, skin as black as the night sky, and hair of silver or white. They have extremely long lifespans, being nigh immortal. Drow dwell exclusively underground, carving great cities of stone and crystal. They are related to the elves of the surface world and share their love of nature and magic. Drow typically weigh about 120 pounds and are from 5 to 5½ feet tall. They are talented fighters and gain powerful magic through the worship of their strange subterranean deities. They have a strong resistance to magic, as reflected in their saving throws.',
     savingThrows: [12, 13, 13, 15, 12],
@@ -345,7 +345,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, wooden shields',
     weapons: 'Club, dagger, sling, spear, staff',
-    languages: 'Alignment, Common, the secret druidic tongue',
+    languages: 'the secret druidic tongue',
     description:
       'Druids are priests of nature, protecting wild lands from the encroachment of “civilised” Law and the corrupting touch of Chaos. They worship the force of nature itself, personified in the form of various nature deities.',
     savingThrows: [11, 12, 14, 16, 15],
@@ -374,7 +374,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'small or normal sized',
     languages:
-      'Alignment, Common, Deepcommon, Dwarvish, Gnomish, Goblin, Kobold',
+      'Deepcommon, Dwarvish, Gnomish, Goblin, Kobold',
     description:
       'Duergars (also known as grey dwarves) are short, scrawny, bearded demihumans with grey skin and hair and ugly visages. They are around 4’ tall, weigh about 120 pounds, and have life spans of up to 500 years. Duergars dwell in strongholds and cities deep underground. They are renowned for their greed and for metals and stones and for their xenophobia toward other races. Duergars have a naturally strong constitution and are highly resistant to magic.',
     savingThrows: [8, 9, 10, 13, 12],
@@ -412,7 +412,7 @@ const classOptionsData = [
     armour: 'leather, shields',
     weapons: 'any appropriate to size',
     languages:
-      'Alignment, Common, Deepcommon, Dwarvish, Gnomish, Goblin, Kobold',
+      'Deepcommon, Dwarvish, Gnomish, Goblin, Kobold',
     description:
       'Gnomes are a race of short demihumans with long noses and beards. They are cousins of the dwarves and the two races are on friendly terms. Gnomes prefer to dwell in underground complexes in forests or foothills. They love mining, precious stones, and machinery—from miniature marvels of clockwork to great construction 3½’ tall and weigh around 100 pounds.',
     savingThrows: [8, 9, 10, 14, 11],
@@ -454,7 +454,7 @@ const classOptionsData = [
     maxLevel: 12,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Elvish',
+    languages: 'Elvish',
     description:
       'Half-elves are the rare offspring of elves and humans. Physically, they tend to combine the best features of the robust physique of humans. They are human-like in stature but always have a feature that marks their elven heritage (e.g. pointed ears or unusually bright eyes). Half-elves are skilled fighters and dabble with magic, though they lack their elvish parents’ mastery of the arcane.',
     savingThrows: [12, 13, 13, 15, 15],
@@ -484,7 +484,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'leather, chainmail, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Orcish',
+    languages: 'Orcish',
     description:
       'Half-orcs are the rare offspring of orcs and humans. They are human-like in stature and appearance, but usually have at least one feature that marks their orcish heritage (e.g. fangs or a pig-like snout). Due to the common animosity between orcs and humans, half-orcs are typically outcasts from both their parent cultures, living on the fringes of society and making a living by whatever means they can. Half-orc adventurers are capable combatants and have some skill as thieves.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -507,7 +507,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'none',
     weapons: 'dagger, staff',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Illusionists are adventurers who study the arcane arts of illusion and deception. Through this study, they have learned to cast magic spells.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -527,7 +527,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'any chainmail, plate mail, shields',
     weapons: 'melee weapons',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Knights are warriors who serve a noble house or knightly order, carrying out their liege’s command and combat, preferring the lance above all other weapons. Knights are often members of the noble classes, but a person of lowlier origin may be initiated as a knight as a reward for noble deeds.',
     savingThrows: [12, 13, 14, 15, 16],
@@ -555,7 +555,7 @@ const classOptionsData = [
     armour: 'none',
     weapons: 'dagger, staff (optional)',
     languages:
-      'Alignment, Common',
+      '',
     description:
       'Necromancers are adventurers who study the arcane arts of death and the undead. Through this study, they have learned to cast magic spells.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -588,7 +588,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Paladins are warriors sworn by sacred oath to the service of a Lawful holy order.',
     savingThrows: [10, 11, 12, 13, 14],
@@ -614,7 +614,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, chainmail, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Rangers are members of a secret society which protects their native lands from invasion and the influence of Chaos. They are skilled warriors who are adapted to life in the wilds. At higher levels, their connection with nature grants them the ability to cast spells.',
     savingThrows: [12, 13, 14, 15, 16],
@@ -642,7 +642,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
     languages:
-      'Alignment, Common, Deepcommon, Gnomish, Dwarvish, Kobold, the language of earth elementals',
+      'Deepcommon, Gnomish, Dwarvish, Kobold, the language of earth elementals',
     description:
       'Short, thickset demihumans with long noses and gnarled, hairless, grey skin. Svirfneblins (also known as deep gnomes) are subterranean cousins of the gnomes who live close to the surface. Svirfneblins are skilled tunnellers and makers of mechanical contraptions and cunning secret doors. They love gems above all else and excavate their communities around veins of precious stones. Svirfneblins are typically around 3½’ tall and weigh around 120 pounds.',
     savingThrows: [8, 9, 10, 14, 11],
@@ -672,7 +672,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'only blunt weapons',
     languages:
-      'Alignment, Common',
+      '',
     description:
       'Acolytes are adventurers who have sworn to serve a deity. They are trained for battle and can channel the power of their deity.',
     savingThrows: [11, 12, 14, 16, 15],
@@ -711,7 +711,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any, can wield two-handed melee weapon with one hand',
     languages:
-      'Alignment, Common',
+      '',
     description:
       'Known as the “Big Siblings of Human-kind,” gargantuas are demihumans who stand about 7½’ tall and weigh 550 pounds. Gargantuas typically live among or near humans, though some prefer to establish their own communities in the wilderness. They are known as powerful warriors with a strong resistance to every kind of hardship. Gargantuas also have a reputation for being slow-witted and literal-minded that is not entirely deserved, though it is true that they lack subtlety when compared to their smaller kin. They can be steadfast allies or unyielding foes.',
     savingThrows: [8, 9, 10, 13, 12],
@@ -745,7 +745,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any appropriate to size',
     languages:
-      'Alignment, Common, Goblin, the language of wolves',
+      'Goblin, the language of wolves',
     description:
       'Goblins are short demihumans standing between 3’ and 3½’ tall. They possess skin ranging in colour from yellow to orange to red (and everything in between), while their eyes are usually reddish in hue and are visible even in the dark. Though many goblins live underground, not all do so, especially those most likely to interact with humans and join adventuring parties. Goblins can be somewhat surly and resentful when interacting with other beings, or even their own kin, like bugbears and hobgoblins. These attitudes are only heightened by the fact that many goblins—though not all—are aligned with Chaos.',
     savingThrows: [8, 9, 10, 13, 12],
@@ -782,7 +782,7 @@ const classOptionsData = [
     armour: 'leather, chainmail, shields',
     weapons: 'any',
     languages:
-      'Alignment, Common, Hephaestan',
+      'Hephaestan',
     description:
       'Hephaestans are a race of tall (6’), thin demihumans with angular features and pointed ears. Some sages claim they are relatives of elves, hailing from a distant land or even another world. For their part, hephaestans are tight lipped on the subject of their origins. Coldly rational and seemingly without emotion, the hephaestans are highly skilled in the use of mental powers, which they employ instead of magic. Despite their aloofness, hephaestans get along well with most intelligent races.',
     savingThrows: [12, 13, 13, 15, 15],
@@ -817,7 +817,7 @@ const classOptionsData = [
     armour: 'none',
     weapons: 'any',
     languages:
-      'Alignment, Common',
+      '',
     description:
       'Kineticists are masters of mind over matter, their rigorous physical and mental training focusing on the manipulation of internal kinetic force. This force can be harnessed to accelerate motion and hone reactions or can be projected outward to affect distant objects.\nThe ability to manipulate kinetic force may be awakened spontaneously or may be learned from a master. Either way, it is often the case that this power runs in families.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -852,7 +852,7 @@ const classOptionsData = [
     armour: 'none',
     weapons: 'dagger, short sword, staff, sword',
     languages:
-      'Alignment, Common',
+      '',
     description:
       'Mages are adventurers who study the secrets of deep magic, making them powerful allies.',
     savingThrows: [12, 13, 12, 15, 14],
@@ -894,7 +894,7 @@ const classOptionsData = [
     armour: 'any leather, chainmail, plate, shields / none',
     weapons: 'any / dagger',
     languages:
-      'Alignment, Common, Elvish, Doppelgänger, Dragon, Pixie',
+      'Elvish, Doppelgänger, Dragon, Pixie',
     description:
       'Phase elves are slender, fey demihumans with pointed ears. They typically weigh about 120 pounds and are between 5½ and 6 feet tall. Their hair tends to be violet or silver and their eyes are either pure black or pure white—without an iris or pupil (see Dual Persona). Phase elves originate from an alternate dimension which is inaccessible to other races, and about which they never speak.',
     savingThrows: [12, 13, 13, 15, 15],
@@ -933,7 +933,7 @@ const classOptionsData = [
     armour: 'leather, shields',
     weapons: 'any',
     languages:
-      'Alignment, Common, Elvish, Bugbear, Dryad, Gnoll',
+      'Elvish, Bugbear, Dryad, Gnoll',
     description:
       'Wood elves are slender, fey demihumans with pointed ears. They typically weigh about 110 pounds and are between 5 and 5½ feet tall. Wood elves dwell in hidden, treetop settlements in deep forests, and are seldom seen by humans. They are reclusive and defend their homelands against trespassers. Like druids, wood elves worship the force of nature and the myriad deities that personify it.',
     savingThrows: [12, 13, 13, 15, 15],
@@ -974,7 +974,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, chainmail, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Beast masters are adventurers with a special connection to animals. They are often accompanied by one or more loyal beasts.',
     savingThrows: [11, 12, 12, 15, 16],
@@ -999,7 +999,7 @@ const classOptionsData = [
     maxLevel: 10,
     armour: 'any leather, chainmail, plate, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Dragon',
+    languages: 'Dragon',
     description:
       'Dragonborn are tall, powerful demihumans with scaled skin and dragon-like heads. They typically weigh about 250 pounds and stand around 6’ tall. As reptiles, they reproduce by laying eggs. Unlike true dragons, dragonborn do not have wings or tails. Dragonborn live in clans based on the colour of their scales (see Draconic Bloodline) and are known for their fierce loyalty and their love of hoarding gold. It is believed that dragonborn were created by the dragon gods.',
     savingThrows: [12, 13, 14, 13, 16],
@@ -1025,7 +1025,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'leather, shields',
     weapons: 'one-handed melee weapons, all missile weapons',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Demihumans with mismatched body parts of many different creatures (e.g. reptiles, crustaceans, birds, mammals, etc.). Each individual has a unique appearance. Mutoids are often shunned by other species and live in ruins or in hidden lairs within large settlements.',
     savingThrows: [10, 11, 12, 13, 14],
@@ -1048,7 +1048,7 @@ const classOptionsData = [
     maxLevel: 6,
     armour: 'shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Deepcommon',
+    languages: 'Deepcommon',
     description:
       'Mycelians are humanoid mushrooms, with tall stems, wide, flat caps, and beady eyes amid their gills. They have no mouths, but communicate telepathically. They dwell in lightless caverns deep underground.',
     savingThrows: [9, 11, 9, 13, 12],
@@ -1088,7 +1088,7 @@ const classOptionsData = [
     maxLevel: 10,
     armour: 'leather, chainmail, shields',
     weapons: 'any',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Tieflings are humans with a mysterious fiendish ancestor. They tend to be outcasts living on the fringes of society, shunned by those who fear their heritage.',
     savingThrows: [11, 12, 12, 15, 14],
@@ -1123,7 +1123,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'leather, shields',
     weapons: 'any appropriate to size',
-    languages: 'Alignment, Common, Halfling',
+    languages: 'Halfling',
     description: 'Hearthsingers are halflings who specialise in memorising and recalling legends, lore, and local folktales. The desire to learn the truth behind lost legends and forgotten myths often drives them to adventure and they value tomes, journals, and written histories over other treasure.',
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2000,
@@ -1158,7 +1158,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'leather, shields',
     weapons: 'any appropriate to size',
-    languages: 'Alignment, Common, Halfling',
+    languages: 'Halfling',
     description: 'Reeves are the sworn protectors of rural halfling communities. They patrol the wilderness surrounding these idyllic villages, forgoing home comforts to ensure that predators and enemies do not endanger their kinsfolk or threaten the simple peace of the little folk.',
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2500,
@@ -1195,7 +1195,7 @@ const classOptionsData = [
     maxLevel: 14,
     armour: 'leather, chainmail',
     weapons: 'missile weapons, one-handed melee weapons',
-    languages: 'Alignment, Common',
+    languages: '',
     description:
       'Arcane bards are musicians and poets drawn to a life of wandering and adventure. They pick up a wide range of abilities in their travels, becoming jacks-of-all-trades.',
     savingThrows: [13, 14, 13, 16, 15],
@@ -1220,7 +1220,7 @@ const classOptionsData = [
     maxLevel: 8,
     armour: 'leather, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, the secret language of rats',
+    languages: 'the secret language of rats',
     description: 'Ratlings are fur-covered, rat-like, bipedal humanoids. They stand 4′ to 5′ tall and have 3′-long prehensile tails, large ears, and sensitive noses. Though industrious and adaptable, their association with ver- min tends to place them in the fringes of human settlements. Ratlings are born in broods of 3–5, reach maturity around age 7 or 8, and rarely live past 40. Naturally gregarious, their relatively short lifespans lend the species a certain devil-may-care outlook that other races find amusive',
     savingThrows: [8, 9, 10, 13, 12],
     nextLevel: 2000,
@@ -1255,7 +1255,7 @@ const classOptionsData = [
     maxLevel: 10,
     armour: 'leather, shields',
     weapons: 'any',
-    languages: 'Alignment, Common, Doppelgänger',
+    languages: 'Doppelgänger',
     description:
       'Changelings are magical demihumans with powers of deception and shape-steal- ing. In their natural form, a changeling appears to be a normal human.',
     savingThrows: [11, 12, 12, 15, 12],
