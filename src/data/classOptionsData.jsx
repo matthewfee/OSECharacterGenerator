@@ -1269,6 +1269,79 @@ const classOptionsData = [
     arcane: false,
     divine: false,
   },
+  {
+    name: 'Dwarf Brewmaster',
+    category: 'carcass',
+    requirements: 'Minimum 9 constitution',
+    primeReqs: ['constitution', 'strength'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 8,
+    maxLevel: 10,
+    armour: 'leather, chainmail, shields',
+    weapons: 'battle axe, dagger, hand axe, mace, short sword, warhammer',
+    languages: 'Dwarvish, Gnomish, Goblin, Kobold',
+    description:
+      'Brewmasters are dwarves who dedicate their lives to the craft of brewing alcohol. In combat, they are unpredictable brawl- ers who fight with drunken fury. Dwarf brewmasters are driven to adventure in search of rare ingredients, secret recipes, and ever-stronger drinks.',
+    savingThrows: [8, 9, 10, 13, 12],
+    nextLevel: 2500,
+    abilities: [
+      'Brewing',
+      'Drunken Fighting',
+      'Infravision',
+      'Ingested Poison Resistance',
+      'Listening at Doors',
+
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-6',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Dwarf Runesmith',
+    category: 'carcass',
+    requirements: 'Minimum 9 constitution, minimum 9 intelligence',
+    primeReqs: ['intelligence', 'strength'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 13 && abilityScore2 >= 16) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 && abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 8,
+    maxLevel: 10,
+    armour: 'any leather, chainmail, plate, shields',
+    weapons: 'small or normal-sized',
+    languages: 'Dwarvish, Gnomish, Goblin, Kobold',
+    description:
+      'While dwarves typically have no skill as magic-users, the wondrous magical armaments of their smiths are legendary. Masters of an ancient secret tradition, dwarf runesmiths wield magic by binding it into runes of power.',
+    savingThrows: [8, 9, 10, 13, 12],
+    nextLevel: 2800,
+    abilities: [
+      'Forge-Craft',
+      'Infravision',
+      'Listening at Doors',
+      'Rune Magic',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-6',
+    arcane: false,
+    runesmithSpells: true,
+    divine: false,
+  },
 ]
 
 export default classOptionsData
