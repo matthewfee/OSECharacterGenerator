@@ -4,7 +4,8 @@ import {
   magicUserSpells,
   druidSpells,
   illusionistSpells,
-  necromancerSpells
+  necromancerSpells,
+  runesmithSpells
 } from '../../data/spells'
 import { chooseRandomItem } from '../../utilities/utilities'
 import Option from '../../components/general/Option'
@@ -34,6 +35,10 @@ export default function SpellSelection({
       randomSpell = chooseRandomItem(necromancerSpells)
     }
 
+    if (characterClass.runesmithSpells) {
+      randomSpell = chooseRandomItem(runesmithSpells)
+    }
+
     setSpellSelected(randomSpell)
     setCharacterStatistics((prevState) => {
       return { ...prevState, spell: randomSpell, hasSpells: true }
@@ -61,6 +66,10 @@ export default function SpellSelection({
       spellList = necromancerSpells
     }
 
+    if (characterClass.runesmithSpells) {
+      spellList = runesmithSpells
+    }
+
     return spellList.map((spell, index) => {
       return <Option key={index} value={spell.toString()}></Option>
     })
@@ -80,7 +89,8 @@ export default function SpellSelection({
     characterClass.divineSpells ||
     characterClass.illusionistSpells ||
     characterClass.druidSpells ||
-    characterClass.necromancerSpells
+    characterClass.necromancerSpells ||
+    characterClass.runesmithSpells
   )
 
   return (
