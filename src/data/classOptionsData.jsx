@@ -1210,7 +1210,65 @@ const classOptionsData = [
     link: 'https://necroticgnome.com/products/carcass-crawler-issue-4',
     arcane: true,
     divine: false,
-  }
+  },
+  {
+    name: 'Ratling',
+    category: 'carcass',
+    requirements: 'Minimum 9 constitution',
+    primeReqs: ['dexterity'],
+    hd: 6,
+    maxLevel: 8,
+    armour: 'leather, shields',
+    weapons: 'any',
+    languages: 'Alignment, Common, the secret language of rats',
+    description: 'Ratlings are fur-covered, rat-like, bipedal humanoids. They stand 4′ to 5′ tall and have 3′-long prehensile tails, large ears, and sensitive noses. Though industrious and adaptable, their association with ver- min tends to place them in the fringes of human settlements. Ratlings are born in broods of 3–5, reach maturity around age 7 or 8, and rarely live past 40. Naturally gregarious, their relatively short lifespans lend the species a certain devil-may-care outlook that other races find amusive',
+    savingThrows: [8, 9, 10, 13, 12],
+    nextLevel: 2000,
+    abilities: [
+      'Awareness',
+      'Infravision',
+      'Prehensile Tail',
+      'Rat Affinity',
+      'Ratling Skills (climb sheer surfaces, detect poison, hear noise, hide in shadows, move silently)',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-5',
+    arcane: false,
+    divine: false,
+  },
+  {
+    name: 'Changeling',
+    category: 'carcass',
+    requirements: 'Minimum 9 intelligence',
+    primeReqs: ['charisma', 'dexterity'],
+    checkPrimeReqRequirements: function (abilityScore1, abilityScore2) {
+      if (abilityScore1 >= 16 && abilityScore2 >= 16) {
+        return 10
+      }
+
+      if (abilityScore1 >= 13 || abilityScore2 >= 13) {
+        return 5
+      }
+
+      return 0
+    },
+    hd: 6,
+    maxLevel: 10,
+    armour: 'leather, shields',
+    weapons: 'any',
+    languages: 'Alignment, Common, Doppelgänger',
+    description:
+      'Changelings are magical demihumans with powers of deception and shape-steal- ing. In their natural form, a changeling appears to be a normal human.',
+    savingThrows: [11, 12, 12, 15, 12],
+    nextLevel: 2500,
+    abilities: [
+      'Back-Stab',
+      'Changeling Skills (beguile, hear noise, hide in shadows, move silently)',
+      'Shape-Stealing',
+    ],
+    link: 'https://necroticgnome.com/products/carcass-crawler-issue-5',
+    arcane: false,
+    divine: false,
+  },
 ]
 
 export default classOptionsData
