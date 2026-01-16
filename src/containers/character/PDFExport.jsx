@@ -83,7 +83,7 @@ export default function PDFExport(props) {
     ${joinDuplicates(characterEquipment.adventuringGear).join(', ') || ''}
     `
 
-  const spellText = character.hasSpells ? `Spells: ${character.spells}` : ''
+  const spellText = characterStatistics.hasSpells ? `Spells: ${characterStatistics.spell}` : ''
 
   const descriptionInfo = `
     ${character.appearance && `Appearance: ${character.appearance}`}

@@ -178,11 +178,11 @@ const CharacterSheet = React.forwardRef((props, ref) => {
             </span>
           </div>
 
-          {character.hasSpells && (
+          {characterStatistics.hasSpells && (
             <div className='character-container'>
               <span className='charsheet-value-name'>Spells</span>
               <span className='charsheet-value character-sheet--class-ability'>
-                {character.spells}
+                {characterStatistics.spell}
               </span>
             </div>
           )}

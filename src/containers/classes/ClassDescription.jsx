@@ -14,14 +14,14 @@ export default function ClassDescription(props) {
   }
 
   const primeReqString = characterClass.primeReqs.join(', ')
-
+  const langString = ['Alignment', 'Common'].concat(characterClass.languages).join(', ');
   const classDescriptionValues = {
     'Prime Requisites': primeReqString,
     'Hit Dice': `d${characterClass.hd}`,
     Armour: characterClass.armour,
     Weapons: characterClass.weapons,
     'Special Abilities': `${characterClass.abilities.join(', ')}`,
-    Languages: characterClass.languages,
+    Languages: langString,
     'XP to level 2': characterClass.nextLevel,
     'Maximum Level': characterClass.maxLevel,
     'Saving Throws': `Death ${characterClass.savingThrows[0]}, 

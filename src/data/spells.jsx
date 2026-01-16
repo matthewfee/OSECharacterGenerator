@@ -53,3 +53,18 @@ export const necromancerSpells = [
   "Skull Speech",
   "Undead Servitor"
 ];
+
+export const runesmithSpells = [
+  "Rune of Alarm",
+  "Rune of Ale",
+  "Rune of Finding",
+  "Rune of Fire",
+  "Rune of Grounding",
+  "Rune of Healing",
+  "Rune of Luck",
+  "Rune of the Forge",
+  "Rune of Shielding",
+  'Rune of Thunder',
+  "Rune of Slaying",
+  "Rune of Warding"
+];
