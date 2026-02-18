@@ -894,9 +894,10 @@ a {
 
 .class-details {
   font-size: 1.7rem;
-  display: inline-flex;
+  display: flex;
   position: absolute;
   border-radius: 4px;
+  flex-direction: column;
   z-index: 2;
   right: 0;
   left: 0;
