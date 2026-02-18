@@ -1250,7 +1250,6 @@ div > .button-class-option {
 
 .wrapper-alt.wrapper {
   width: 100vw;
-  min-height: 1400px;
   display: flex;
   transition: all 1s ease;
   background-color: var(--light-bg-color);
