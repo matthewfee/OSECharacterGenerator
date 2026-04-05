@@ -47,6 +47,7 @@ export const abilityScoreNames = [
 export const lngs = {
   en: { nativeName: "English" },
   de: { nativeName: "Deutsch" },
+  es: { nativeName: "Español" },
 };
 
 export const CHARACTER_STORAGE = "characterStorage";
