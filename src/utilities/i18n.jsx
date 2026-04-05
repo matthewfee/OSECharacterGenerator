@@ -61,6 +61,31 @@ i18n
           mainPage: 'Startseite',
           start: 'Anfang'
         }
+      },
+      es: {
+        translation: {
+          AppName: 'Generador de Personajes Old-School',
+          Roll: 'Tirar',
+          Tavern: 'Taberna',
+          Footer: 'Old-School Character Generator es un proyecto de código abierto independiente de <0>EvilTables</0> & <1>colaboradores</1> y no está afiliado con <2>Necrotic Gnome</2>. Permiso para incluir clases adicionales de Advanced Fantasy y Carcass Crawler concedido por <2>Necrotic Gnome</2> & <3>James Maliszewski</3>. Old-School Essentials es una marca registrada de <2>Necrotic Gnome</2>. La marca y el logotipo de Old-School Essentials se utilizan con permiso de <2>Necrotic Gnome</2>, bajo licencia.',
+          abilityScoreNames: {
+            strength: 'Fuerza',
+            intelligence: 'Inteligencia',
+            dexterity: 'Destreza',
+            wisdom: 'Sabiduría',
+            constitution: 'Constitución',
+            charisma: 'Carisma'
+          },
+          abilityScores: 'Puntuaciones de Habilidad',
+          characterClass: 'Clase de Personaje',
+          classOptions: 'Opciones de Clase',
+          equipment: 'Equipo',
+          inventory: 'Inventario',
+          characterDetails: 'Detalles del Personaje',
+          characterSheet: 'Hoja de Personaje',
+          mainPage: 'Página Principal',
+          start: 'Inicio'
+        }
       }
     }
   })
