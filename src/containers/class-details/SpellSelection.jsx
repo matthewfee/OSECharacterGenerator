@@ -77,11 +77,11 @@ export default function SpellSelection({
 
   const handleSpellChange = (event) => {
     setSpellSelected(event.target.value)
-    setCharacterStatistics({
-      ...setCharacterStatistics,
+    setCharacterStatistics((prevState) => ({
+      ...prevState,
       spell: event.target.value,
       hasSpells: true
-    })
+    }))
   }
 
   const hasSpells = !!(

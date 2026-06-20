@@ -192,6 +192,11 @@ export default function CharacterGenerator() {
     setCharacter({ ...character, id: newID });
     setRollButtonHover(false);
     setCharacterClass({ name: null, primeReqs: [] });
+    setCharacterStatistics((prevState) => ({
+      ...prevState,
+      spell: null,
+      hasSpells: false,
+    }));
     setCharacterRolled(true);
 
     setAbilityScores(defaultAbilityScoresState);
@@ -205,6 +210,11 @@ export default function CharacterGenerator() {
     );
 
     setCharacterClass(characterClass);
+    setCharacterStatistics((prevState) => ({
+      ...prevState,
+      spell: null,
+      hasSpells: false,
+    }));
   };
 
   let characterMenuStyle = characterRolled ? {} : { display: "none" };
